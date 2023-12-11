@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <inventory>
+        <id>1</id>
+        <storeId>101</storeId>
+        <quantity>100</quantity>
+        <status>InStock</status>
+        <enabled>true</enabled>
+    </inventory>
+    <inventory>
+        <id>2</id>
+        <storeId>102</storeId>
+        <quantity>300</quantity>
+        <status>OutOfStock</status>
+        <enabled>false</enabled>
+    </inventory>
+    <inventory>
+        <id>3</id>
+        <storeId>103</storeId>
+        <quantity>400</quantity>
+        <status>InStock</status>
+        <enabled>true</enabled>
+    </inventory>
+    <inventory>
+        <id>4</id>
+        <storeId>104</storeId>
+        <quantity>500</quantity>
+        <status>OutOfStock</status>
+        <enabled>false</enabled>
+    </inventory>
+    <inventory>
+        <id>5</id>
+        <storeId>105</storeId>
+        <quantity>600</quantity>
+        <status>OutOfStock</status>
+        <enabled>false</enabled>
+    </inventory>
+</root>

@@ -1,0 +1,41 @@
+{
+  "algoliaApplicationId": "C9ZBDTVH9V",
+  "algoliaAdminApiKey": "9ac5c97da1c7616ffce7dca25d794a78",
+  "algoliaIndexName": "realme",
+  "sourceConfiguration": {
+    "type": "xmlConnector",
+    "filePaths": {
+      "inventoryXmlFile": "xml-input/inventory.xml",
+      "priceXmlFile": "xml-input/price.xml",
+      "productXmlFile": "xml-input/product.xml"
+    },
+    "collectionConfiguration": [
+      {
+        "collectionType": "product",
+        "collectionName": "product",
+        "fieldsToFetch": [
+          "id",
+          "title",
+          "images"
+        ]
+      },
+      {
+        "collectionType": "inventory",
+        "collectionName": "inventory",
+        "fieldsToFetch": [
+          "id",
+          "quantity",
+          "status"
+        ]
+      },
+      {
+        "collectionType": "price",
+        "collectionName": "price",
+        "fieldsToFetch": [
+          "id",
+          "productPrice"
+        ]
+      }
+    ]
+  }
+}

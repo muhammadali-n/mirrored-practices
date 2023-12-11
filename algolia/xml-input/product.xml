@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <product>
+        <id>1</id>
+        <title>iPhone 9</title>
+        <description>An apple mobile which is nothing like apple</description>
+        <images>https://i.dummyjson.com/data/products/27/1.jpg</images>
+    </product>
+    <product>
+        <id>2</id>
+        <title>iPhone X</title>
+        <description>SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...</description>
+        <images>https://i.dummyjson.com/data/products/28/1.jpg</images>
+    </product>
+    <product>
+        <id>3</id>
+        <title>Samsung Universe 9</title>
+        <description>Samsung's new variant which goes beyond Galaxy to the Universe</description>
+        <images>https://i.dummyjson.com/data/products/19/2.jpg</images>
+    </product>
+    <product>
+        <id>4</id>
+        <title>OPPOF19</title>
+        <description>OPPO F19 is officially announced on April 2021.</description>
+        <images>https://i.dummyjson.com/data/products/17/3.jpg</images>
+    </product>
+    <product>
+        <id>5</id>
+        <title>Huawei P30</title>
+        <description>Huaweis re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.</description>
+        <images>https://i.dummyjson.com/data/products/26/3.jpg</images>
+    </product>
+</root>

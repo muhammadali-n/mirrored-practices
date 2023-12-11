@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <price>
+        <id>1</id>
+        <priceType>SalePrice</priceType>
+        <productPrice>400</productPrice>
+        <enabled>true</enabled>
+    </price>
+    <price>
+        <id>2</id>
+        <priceType>SalePrice</priceType>
+        <productPrice>500</productPrice>
+        <enabled>true</enabled>
+    </price>
+    <price>
+        <id>3</id>
+        <priceType>SalePrice</priceType>
+        <productPrice>800</productPrice>
+        <enabled>true</enabled>
+    </price>
+    <price>
+        <id>4</id>
+        <priceType>SalePrice</priceType>
+        <productPrice>900</productPrice>
+        <enabled>true</enabled>
+    </price>
+    <price>
+        <id>5</id>
+        <priceType>ListPrice</priceType>
+        <productPrice>1000</productPrice>
+        <enabled>true</enabled>
+    </price>
+</root>

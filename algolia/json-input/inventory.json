@@ -1,0 +1,41 @@
+{
+  "inventory": [
+    {
+      "id": "1",
+      "storeId": "101",
+      "quantity":100,
+      "status" : "InStock",
+      "enabled": true
+    },
+    {
+      "id": "2",
+      "storeId": "102",
+      "quantity":300,
+      "status" : "OutOfStock",
+      "enabled": false
+    },
+    {
+      "id": "3",
+      "storeId": "103",
+      "quantity":400,
+      "status" : "InStock",
+      "enabled": true
+    },
+    {
+      "id": "4",
+      "storeId": "104",
+      "quantity":500,
+      "status" : "OutOfStock",
+      "enabled": false
+    },
+    {
+      "id": "5",
+      "storeId": "105",
+      "quantity":600,
+      "status" : "OutOfStock",
+      "enabled": false
+    }
+  ]
+}
+
+

@@ -1,0 +1,34 @@
+{
+  "price": [
+    {
+      "id": "1",
+      "priceType": "SalePrice",
+      "price": 400.0,
+      "enabled": true
+    },
+    {
+      "id": "2",
+      "priceType": "SalePrice",
+      "price": 500.0,
+      "enabled": true
+    },
+    {
+      "id": "3",
+      "priceType": "SalePrice",
+      "price": 800.0,
+      "enabled": true
+    },
+    {
+      "id": "4",
+      "priceType": "SalePrice",
+      "price": 500.0,
+      "enabled": true
+    },
+    {
+      "id": "5",
+      "priceType": "SalePrice",
+      "price": 900.0,
+      "enabled": true
+    }
+  ]
+}
