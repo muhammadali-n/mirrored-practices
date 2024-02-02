@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { getConfig } from '../../config';
-import { transformation } from './shopify-transformer';
+import { performTransformation } from '../common-transformer';
 
 
 export const getShopifyProducts = async () => {
@@ -43,7 +42,7 @@ export const getShopifyProducts = async () => {
     description: node.description,
     price: node.priceRange.maxVariantPrice.amount,
   }));
-const  {transformedData} = transformation(data);
+const  {transformedData} = performTransformation(data);
 
 return transformedData;
 

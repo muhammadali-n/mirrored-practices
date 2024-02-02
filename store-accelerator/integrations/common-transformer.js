@@ -1,18 +1,20 @@
-const performTransformation = (data,transformerConfig) => {
+import transformerConfig from './shopify/shopify-transform-config.json';
+
+const performTransformation = (data) => {
 
     if (!data) {
         throw new Error('Input data is undefined');
     }
 
-    const transformedData = data.map((product) => {
-        const transformedProduct = {};
+    const transformedData = data.map((item) => {
+        const data = {};
 
         transformerConfig.transformer.forEach((transform) => {
             const { inputFieldName, outputFieldName, convertTo } = transform;
             let value;
 
-            if (product.hasOwnProperty(inputFieldName)) {
-                value = product[inputFieldName];
+            if (item.hasOwnProperty(inputFieldName)) {
+                value = item[inputFieldName];
 
                 if (convertTo === 'integerToString') {
                     value = String(parseInt(value, 10));
@@ -22,11 +24,11 @@ const performTransformation = (data,transformerConfig) => {
                     value = parseInt(value, 10);
                 }
 
-                transformedProduct[outputFieldName] = value;
+                data[outputFieldName] = value;
             }
         });
 
-        return transformedProduct;
+        return data;
     });
 
     return {

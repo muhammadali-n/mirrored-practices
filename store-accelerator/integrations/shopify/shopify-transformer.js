@@ -1,10 +1,9 @@
-import { performTransformation } from '../common-transformation';
-import transformerConfig from './shopify-transform-config.json';
-
-
-const transformation = (data) => {
-  return performTransformation(data, transformerConfig);
+//handling non generic transformations
+const productTransformation = (data) => {
+  const transformedData = data.map((data) => ({
+    objectID: data.id
+  }));
+  return transformedData;
 };
 
-export { transformation };
-
+export { productTransformation };
