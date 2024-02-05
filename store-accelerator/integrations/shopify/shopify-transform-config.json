@@ -1,0 +1,30 @@
+{
+    "transformer": [
+       
+        {
+            "inputFieldName": "handle",
+            "outputFieldName": "handles"
+        },
+        {
+            "inputFieldName": "description",
+            "outputFieldName": " descriptions"
+        },
+        {
+            "inputFieldName": "_id",
+            "outputFieldName": "objectID"
+        },
+        {
+            "inputFieldName": "id",
+            "outputFieldName": "objectID"
+        },
+        {
+            "inputFieldName": "title",
+            "outputFieldName": "product_name"
+        },
+        {
+            "inputFieldName": "price",
+            "outputFieldName": "product_price",
+            "convertTo": "stringToInteger"
+        }
+    ]
+}
