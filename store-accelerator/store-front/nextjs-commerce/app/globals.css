@@ -1,0 +1,53 @@
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading='lazy'] {
+    clip-path: inset(0.6px);
+  }
+}
+
+a,
+input,
+button {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-50 dark:focus-visible:ring-neutral-600 dark:focus-visible:ring-offset-neutral-900;
+}
+.title{
+color: black;
+}
+
+.image-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px;
+}
+.image {
+  max-width: 300px;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.portable-text{
+  color: black;
+  font-family: sans-serif;
+  margin-left: 6em;
+}
+
+.rich-text> li{
+
+  list-style-type: disc;
+}
+.rich-text-unordered> li{
+  list-style-type: auto;
+}
+.sections{
+}
+a{
+  text-decoration: none !important;
+  color: white !important;
+}
