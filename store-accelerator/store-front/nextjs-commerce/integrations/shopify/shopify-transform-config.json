@@ -3,11 +3,11 @@
        
         {
             "inputFieldName": "handle",
-            "outputFieldName": "handles"
+            "outputFieldName": "handle"
         },
         {
             "inputFieldName": "description",
-            "outputFieldName": " descriptions"
+            "outputFieldName": " description"
         },
         {
             "inputFieldName": "_id",
@@ -15,16 +15,15 @@
         },
         {
             "inputFieldName": "id",
-            "outputFieldName": "objectID"
+            "outputFieldName": "id"
         },
         {
             "inputFieldName": "title",
-            "outputFieldName": "product_name"
+            "outputFieldName": "title"
         },
         {
             "inputFieldName": "price",
-            "outputFieldName": "product_price",
-            "convertTo": "stringToInteger"
+            "outputFieldName": "price"
         }
     ]
 }

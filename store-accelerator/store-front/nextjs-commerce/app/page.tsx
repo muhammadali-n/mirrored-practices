@@ -1,13 +1,14 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { performCommonIntegration, IntegrationResult } from '../integrations/common-integration';
-import { getConfig, Config } from '../config';
+import { getShopifyProducts } from '@/integrations/shopify/shopify-integration';
+
 
 interface TransformedProduct {
-  objectID: string;
-  product_name: string;
-  product_price: number;
-  handles: string;
+  id: string;
+  title: string;
+  price: number;
+  handle: string;
 }
 
 const Home: React.FC = () => {
@@ -19,10 +20,8 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-       console.log("pageLevel");
        
-        const integrationData: IntegrationResult = await performCommonIntegration();
-        console.log("integrationData",integrationData);
+       const integrationData: IntegrationResult = await performCommonIntegration(getShopifyProducts);
         setTransformedData(integrationData);
       } catch (error) {
         console.error('Error fetching and processing data:', error);
@@ -38,8 +37,8 @@ const Home: React.FC = () => {
       {transformedData && transformedData.length > 0 ? (
         <ul>
           {transformedData.map((product) => (
-            <li key={product.objectID}>
-              NAME: {product.product_name}, PRICE: ${product.product_price}, HANDLE: {product.handles}
+            <li key={product.id}>
+              NAME: {product.title}, PRICE: ${product.price}, HANDLE: {product.handle}
             </li>
           ))}
         </ul>
