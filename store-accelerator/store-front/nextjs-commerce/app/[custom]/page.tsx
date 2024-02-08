@@ -20,7 +20,9 @@ export function getSlug(params: any) {
 
 }
 
+
 function Page(params: any) {
+
 
   const currentEndpoint = getSlug(params)
   console.log("get", currentEndpoint);
@@ -78,11 +80,6 @@ function Page(params: any) {
       {transformedData.map((page: any) => (
         <div key={page._id} className="sections">
           <h1 className="title mb-8 text-5xl font-bold">{page?.title}</h1>
-          <Link href="/cart/cart">
-            <button type="button" onClick={handleButtonClick} className="btn btn-primary">
-              Add to cart
-            </button>
-          </Link>
           {page?.sections
             ?.sort((a: any, b: any) => a.order - b.order)
             .map((section: any) => (
