@@ -1,24 +1,44 @@
 export interface Configurations {
   shopify: {
-    apiEndpoint: string;
-    storefrontAccessToken: string;
+    type: any,
+    apiEndpoint: any;
+    storefrontAccessToken: any;
   };
+  sanity: {
+    type: any,
+    projectId: any;
+    dataset: any;
+    apiVersion: any;
+    perspective: any;
+    useCdn: any
+  }
 }
 
 export const configurations: Configurations = {
   shopify: {
-    apiEndpoint: 'https://mozanta-theme-store.myshopify.com/api/graphql.json',
-    storefrontAccessToken: '3a582815a77119eacfdd9d13abaa9e25',
+    type: process.env.NEXT_PUBLIC_SHOPIFY_TYPE,
+    apiEndpoint:process.env.NEXT_PUBLIC_SHOPIFY_API_ENDPOINT,
+    storefrontAccessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN
+  },
+  sanity: {
+    type: process.env.NEXT_PUBLIC_SANITY_TYPE,
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATA_SET,
+    apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+    perspective: process.env.NEXT_PUBLIC_SANITY_PERSPECTIVE,
+    useCdn: process.env.NEXT_PUBLIC_SANITY_USE_CDN
   },
 };
 
+//configuration
 export const getConfig = () => {
-  const integrationType: string = process.env.INTEGRATION_TYPE || 'shopify';
-  const config = configurations[integrationType];
+  
+  const commerceIntegrationType: string = process.env.NEXT_PUBLIC_COMMERCE_TYPE || 'shopify';
+  const cmsIntegrationType: string = process.env.NEXT_PUBLIC_CMS_TYPE || 'sanity';
 
-  if (!config) {
-    throw new Error(`Invalid integration type: ${integrationType}`);
-  }
+  return ({
+    cmsConfig: configurations[cmsIntegrationType],
+    commerceConfig: configurations[commerceIntegrationType],
+  })
 
-  return { integrationType, ...config };
 };

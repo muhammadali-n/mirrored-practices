@@ -11,11 +11,15 @@ interface TransformedProduct {
 }
 
 const Home: React.FC = () => {
+
+  
+  
   const [transformedData, setTransformedData] = useState<TransformedProduct[] | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+       console.log("pageLevel");
        
         const integrationData: IntegrationResult = await performCommonIntegration();
         console.log("integrationData",integrationData);

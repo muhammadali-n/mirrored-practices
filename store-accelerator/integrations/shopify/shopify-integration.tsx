@@ -1,7 +1,7 @@
 
 import { getConfig, Config } from '../../config';
 import { performTransformation, TransformationResult } from '../common-transformer';
-
+import transformShopify from "./shopify-transform-config.json"
 interface ShopifyProduct {
   id: string;
   title: string;
@@ -30,8 +30,12 @@ interface ShopifyProductsResponse {
   };
 }
 
-export const getShopifyProducts = async (): Promise<TransformationResult> => {
-  const { storefrontAccessToken, apiEndpoint }: Config = getConfig();
+export const getShopifyProducts = async (storefrontAccessToken: any,apiEndpoint:any): Promise<TransformationResult> => {
+  // const { storefrontAccessToken, apiEndpoint }: Config = getConfig();
+  console.log("storefrontAccessToken", storefrontAccessToken);
+  console.log("apiEndpoint", apiEndpoint);
+
+
   const query = `
     {
         products(first: 5) {
@@ -52,7 +56,7 @@ export const getShopifyProducts = async (): Promise<TransformationResult> => {
       }
   `;
 
-  
+
 
   try {
     const response = await fetch(apiEndpoint, {
@@ -76,7 +80,8 @@ export const getShopifyProducts = async (): Promise<TransformationResult> => {
       description: node.description,
       price: node.priceRange.maxVariantPrice.amount,
     }));
-    const { transformedData } = performTransformation(data);
+    console.log("data",data)
+    const { transformedData } = performTransformation(data,transformShopify);
 
     return transformedData;
   } catch (error) {

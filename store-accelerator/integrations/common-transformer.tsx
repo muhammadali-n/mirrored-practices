@@ -1,6 +1,12 @@
-import transformerConfig from '../integrations/shopify/shopify-transform-config.json';
+interface CustomPage {
+  id: string 
+  title: string 
+  type: string
+  sections: any[] 
+  locale: string 
+}
 
-const performTransformation = (data: any[]): { transformedData: any[] } => {
+const performTransformation = (data: any[], additionalArgs:any): { transformedData: any[] } => {
   if (!data) {
     throw new Error('Input data is undefined');
   }
@@ -8,7 +14,7 @@ const performTransformation = (data: any[]): { transformedData: any[] } => {
   const transformedData = data.map((item) => {
     const transformedItem: Record<string, any> = {};
 
-    transformerConfig.transformer.forEach((transform: TransformConfig) => {
+    additionalArgs.transformer.forEach((transform:any) => {
       const { inputFieldName, outputFieldName, convertTo } = transform;
       let value;
 
@@ -34,6 +40,26 @@ const performTransformation = (data: any[]): { transformedData: any[] } => {
     transformedData,
   };
 };
+
+
+// custom ui for storefront
+export const customUi = (getPageData: any[]): CustomPage | undefined => {
+  if (getPageData.length > 0) {
+    const page = getPageData[0];
+    const pageData: CustomPage = {
+      id: page?.id,
+      title: page?.title,
+      type: page?.type,
+      sections: page?.sections,
+      locale: page?.locale,
+    };
+
+    return pageData;
+  }
+
+  return undefined;
+};
+
 
 export { performTransformation };
 

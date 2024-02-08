@@ -1,0 +1,26 @@
+{
+    "transformer": [
+       {
+        "inputFieldName": "_id",
+        "outputFieldName": "id"
+       },
+       {
+        "inputFieldName": "title",
+        "outputFieldName": "title"
+       },
+       {
+        "inputFieldName": "_type",
+        "outputFieldName": "type"
+       },
+       {
+        "inputFieldName": "locale",
+        "outputFieldName": "locale"
+       },
+       {
+        "inputFieldName": "sections",
+        "outputFieldName": "sections"
+       }
+       
+    ]
+}
+

@@ -1,0 +1,109 @@
+.cart {
+    background-color:#000000;
+    color: #fff;
+    width: 30em;
+    padding: 20px;
+    border-radius: 5px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    /* overflow-y: auto; */
+}
+
+.close-button {
+    background: none;
+    color: #fff;
+    border: none;
+    float: right;
+    font-size: 20px;
+    border: 1px solid white;
+    display: block;
+    border-radius: 2px solid;
+    border-radius: 6px;
+    height: 3em;
+    width: 3em;
+}
+.close-button:hover{
+    background-color: #000000;
+}
+
+.cart-item {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px ;
+    padding-top: 10px;
+    margin-top: 3em;
+}
+.quantity-control{
+    /* padding: 2px; */
+    overflow-y: auto;
+}
+
+.quantity-control-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    /* font-size: 24px; */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 15px;
+}
+
+.quantity-control-btn:active {
+   background-color: #000000;
+  }
+
+.quantity-control-btn:hover {background-color:#000000}
+
+.proceed-checkout {
+    background-color:#3663EB;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 30px;
+    width: 100%;
+    height: 50px;
+    font-weight: 'bold' !important;
+}
+.proceed-checkout:hover{
+    background-color: #305BD5;
+
+}
+.quantity{
+    align-items: end;
+    justify-content: flex-end;
+   
+}
+.bottom{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: white;
+    padding: 2em;
+    width: 30em;
+}
+.taxes{
+    margin-top: 2em;
+    border-bottom: 1px solid #fff;
+    justify-content: center;
+}
+.shipping{
+    margin-top: 2em;
+    border-bottom: 1px solid #fff;
+}
+.total{
+    margin-top: 2em;
+    border-bottom: 1px solid #fff;
+}
+.muted{
+    color: rgb(163 163 163/var(--tw-text-opacity));
+}
+.product-card{
+    /* border: 2px solid white; */
+}
