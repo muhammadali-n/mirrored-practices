@@ -1,10 +1,11 @@
-import Title from "./Title";
-import button from "./button";
+import Title from "./documents/Title";
+import button from "./documents/button";
 import blockImages from "./documents/block-images";
-import column from "./documents/column";
 import localization from "./documents/localization";
 import richText from "./documents/rich-text";
-import section from "./documents/section";
-import customPage from "./custom-page";
+import customPage from "./documents/custom-page";
+import preDefinedPage from "./documents/pre-defined-pages";
+import productCard from "./documents/product-card";
+import localeString from "./documents/languages";
 
-export const schemaTypes = [Title,customPage,blockImages,richText,column,section,localization,button]
+export const schemaTypes = [Title,customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString]

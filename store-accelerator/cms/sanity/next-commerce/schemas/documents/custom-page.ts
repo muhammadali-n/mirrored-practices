@@ -11,6 +11,11 @@ export default {
       type: 'string',
     }),
     defineField({
+      title: 'translation',
+      name: 'translation',
+      type: 'localeString',
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -23,19 +28,12 @@ export default {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of:[
-        {title: "Hero image" , type :"image"} , 
-        {title: "Video" , type :"file"},
-        defineArrayMember({type: "blockImages"}),
-        defineArrayMember({type: "richText"}),
-        defineArrayMember({type:"column"})
+      of: [
+        { title: "Hero image", type: "image" },
+        { title: "Video", type: "file" },
+        defineArrayMember({ type: "blockImages" }),
+        defineArrayMember({ type: "richText" }),
       ]
     }),
-    {
-      title : "locale",
-      name: "locale",
-      type : 'localizaton'
-    }
-
   ],
 };
