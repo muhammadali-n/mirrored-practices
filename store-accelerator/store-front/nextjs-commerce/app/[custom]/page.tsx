@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getDataByQuery } from '@/integrations/sanity/sanity-integration';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import './module.css';
 
 //identify endpoint in common
 export function getSlug(params: any) {
