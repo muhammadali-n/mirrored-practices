@@ -5,8 +5,9 @@ import { Collection, Product } from '../../../lib/types';
 import { TransformationResult, getShopifyCollections,getProductByCollection } from '../../../integrations/shopify/shopify-integration';
 import ProductCard from '@/components/grid/productcard';
 import styles from '../../../styles/product.module.css';
-import { performCommonIntegration, IntegrationResult } from '@/integrations/common-integration';
+import { performCommonIntegration, IntegrationResult, getContent } from '@/integrations/common-integration';
 import { sorting } from '@/lib/constants';
+import { fetchAddButton } from '@/integrations/sanity/sanity-integration';
 
 export default function YourComponent() {
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -16,7 +17,7 @@ export default function YourComponent() {
   const [reverse, setReverse] = useState<boolean>(false);
   const [sortOption, setSortOption] = useState({ title: 'Relevance', slug: null, sortKey: 'RELEVANCE', reverse: false });
   const [title, setTitle] = useState<string>('Relevance');
-
+  const [button, setButton]=useState("")
 
 
   useEffect(() => {
@@ -26,6 +27,8 @@ export default function YourComponent() {
         setProducts(transformedData);
         const transCollectionData = await performCommonIntegration(getShopifyCollections);
         setCollections(transCollectionData);
+        const button =await getContent(fetchAddButton)
+        setButton(button)
       } catch (error) {
         setProducts(null);
         console.error('Error fetching collections:', error);
@@ -112,7 +115,7 @@ export default function YourComponent() {
           <div className={styles['center-container']}>
             <div className={styles['grid-container']}>
               {products.map((product) => (
-                <ProductCard key={product.id} product={product} className={styles['grid-item']} />
+                <ProductCard key={product.id} product={product} className={styles['grid-item']} button={button} />
               ))}
             </div>
 

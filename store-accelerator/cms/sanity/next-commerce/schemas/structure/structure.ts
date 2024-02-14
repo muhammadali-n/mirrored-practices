@@ -22,9 +22,15 @@ export default (S: StructureBuilder): ListBuilder =>
                     .title("Sections")
                     .items([
                       S.listItem()
-                        .title("plp")
+                        .title("PLP")
                         .child(
                           S.documentTypeList("ProductCard")
+                            .title('items')
+                        ),
+                        S.listItem()
+                        .title("Cart")
+                        .child(
+                          S.documentTypeList("cartItems")
                             .title('items')
                         ),
                     ]),

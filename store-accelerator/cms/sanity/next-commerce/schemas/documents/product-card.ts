@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineField, defineType } from "sanity";
 
 const productCard =defineType({
     title:"ProductCard",
@@ -13,11 +13,7 @@ const productCard =defineType({
         defineField({
             name: 'sections',
             title: 'Sections',
-            type: 'array',
-            of:[
-          
-              defineArrayMember({type:"button"})
-            ]
+            type: 'button',
           }),
       
     ]

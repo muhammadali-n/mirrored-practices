@@ -42,4 +42,14 @@
     align-items: flex-start; 
     padding: 20px; 
   }
-  
+  .add-to-cart {
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 30px;
+    width: 100%;
+    height: 50px;
+    font-weight: 'bold' !important;
+}
