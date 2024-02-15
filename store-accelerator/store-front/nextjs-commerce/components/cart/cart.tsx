@@ -19,7 +19,7 @@ interface LocaleString {
   en: string;
 }
 
-interface CheckoutButton {
+interface sanityContent {
   buttonName: string;
   _type: string;
   translation: LocaleString;
@@ -31,24 +31,22 @@ interface CheckoutButton {
 }
 interface CartProps {
   cartProducts: CartProduct;
-  CheckoutButton: CheckoutButton;
+  sanityContent: sanityContent;
   removeFromCart: (productId: string) => void;
   handleClick: () => void;
   totalPrice: number;
 }
 
 
-const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCart, handleClick, totalPrice }) => {
-  const contextValue= useContext(Context)
+const Cart: React.FC = ({ cartProducts, sanityContent, removeFromCart, handleClick, totalPrice }: any) => {
+  const contextValue = useContext(Context)
   const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
 
-  const addToCart=(product:any)=>{
+  const addToCart = (product: any) => {
 
     handleAddToCart(product)
     // router.push("/cart/cart");
   }
-  console.log("cartProducts", CheckoutButton);
-  
   return (
     <Row>
       <Row>
@@ -63,7 +61,9 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
           <div>
             <Button className='close-button' onClick={handleClick}>X </Button>
             <Col className='mt-3'>
-              <h4>My Cart</h4>
+              {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
+                <h4 key={item.id}>{item.title && item.title.ar || item.title.en}</h4>
+              ))}
             </Col>
           </div>
           <Row className='cart-items'>
@@ -97,7 +97,7 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
                       {cartItem.quantity}
                       <Button
                         className='quantity-control-btn'
-                        // onClick={() => addToCart(cartItem.id)}
+                      // onClick={() => addToCart(cartItem.id)}
                       >
                         +
                       </Button>
@@ -115,7 +115,9 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
                 <div className='bottom'>
                   <Row className='taxes'>
                     <Col md='6'>
-                      <p className='font-weight-bold muted'>Taxes:</p>
+                      {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
+                        <p className='font-weight-bold muted' key={item.id}>{item.taxes_fields && item.taxes_fields.ar}</p>
+                      ))}
                     </Col>
                     <Col md='6' className='text-end'>
                       <h5>$ 0.00 USD</h5>
@@ -124,14 +126,18 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
 
                   <Row className='shipping'>
                     <Col md='6'>
-                      <p className="font-weight-bold muted">Shipping:</p>
+                      {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
+                        <p className='font-weight-bold muted' key={item.id}>{item.shipping_fields && item.shipping_fields.ar}</p>
+                      ))}
                     </Col>
                     <Col md='6' className='text-end muted'><p> Calculated at checkout</p></Col>
                   </Row>
 
                   <Row className='total'>
                     <Col md='6'>
-                      <p className='font-weight-bold muted'> Total</p>
+                      {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
+                        <p className='font-weight-bold muted' key={item.id}>{item.total_fields && item.total_fields.ar}</p>
+                      ))}
                     </Col>
                     <Col md='6' className='text-end'>
                       <h5>$ {totalPrice} USD</h5>
@@ -140,7 +146,7 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
 
                   <Row className='text-center mt-4'>
                     <Col>
-                      {Array.isArray(CheckoutButton) && CheckoutButton.map((item: any, index: any) => (
+                      {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
                         <button key={index}
                           style={{ backgroundColor: item?.sections?.ButtonColor?.hex }}
                           className='proceed-checkout'

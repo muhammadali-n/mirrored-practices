@@ -20,7 +20,7 @@ export default function CartContainer({}: Props) {
     const [quantity, setQuantity] = useState(1);
     const { cartItems } = useContext(Context);
     const [totalPrice, setTotalPrice] = useState("")
-    const [CheckoutButton, setCheckoutButton] = useState("")
+    const [sanityContent, setSanityContent] = useState("")
     const [cartProducts, setCartProducts]= useState("")
     const contextValue = useContext(Context)
     const { handleRemoveFromCart } = contextValue as {
@@ -37,8 +37,8 @@ export default function CartContainer({}: Props) {
         ...cartItems
       });
       const fetchData = async () => {
-        const button = await getContent(fetchProceedToCheckoutButton)
-        setCheckoutButton(button)
+        const response = await getContent(fetchProceedToCheckoutButton)
+        setSanityContent(response)
       }
       if (cartItems) {
         const total = Object.values(cartItems).reduce((acc, item) => {
@@ -51,8 +51,6 @@ export default function CartContainer({}: Props) {
     console.log("cart", cartProducts);
     console.log("cartItems", cartItems);
 
-
-    console.log("CheckoutButton", CheckoutButton);
   
     const router = useRouter();
     const handleClick = () => {
@@ -65,7 +63,7 @@ export default function CartContainer({}: Props) {
 
     <Cart 
     cartProducts={cartProducts}
-    CheckoutButton={CheckoutButton}
+    sanityContent={sanityContent}
     removeFromCart={removeFromCart}
     handleClick={handleClick}
     totalPrice={totalPrice}
