@@ -7,39 +7,32 @@ const getDataByQuery = async (query: string) => {
   return await client.fetch(query);
 }
 
+export const fetchPageDataBySlug = async (slug: string) => {
+  try {
+    console.log('fetch data   ');
+    // creating page data using slug
+    const getPageData = await getDataByQuery(`*[_type == 'nav' && slug.current == "${slug}"]`);
 
-async function getSanity(params: any) {
+    const { transformedData } = performTransformation(getPageData, customPageTransformerConfig)
+    console.log("transformedData", transformedData);
+    
 
-  const slug = params
-  const fetchPageDataBySlug = async (slug: string) => {
-    try {
-      console.log('sanity');
-      // creating page data using slug
-      const getPageData = await getDataByQuery(`*[_type == 'nav' && slug.current == "${slug}"]`);
-
-      const { transformedData } = performTransformation(getPageData, customPageTransformerConfig)
-
-      //fixed custom ui
-      const result = customUi(transformedData);
-      return result
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  
-  const fetchButton = async () => {
-
-    const AddtoCart = await getDataByQuery("*[_type == 'button' && buttonName == 'Add to cart']")
-    console.log("AddtoCart", AddtoCart);
-    return AddtoCart
+    //fixed custom ui
+    const result = customUi(transformedData);
+    return result
+  } catch (error) {
+    console.error("Error fetching data:", error);
   }
+};
 
-  const addToCartButton = await fetchButton()
-  const customPageData = await fetchPageDataBySlug(slug);
-
-  return  [customPageData, addToCartButton] 
-
-}
-
-export { getSanity, getDataByQuery }
+export const fetchAddButton = async () => {
+    const AddtoCart = await getDataByQuery("*[_type == 'ProductCard'  && sections._type == 'button']")
+    const { transformedData } = performTransformation(AddtoCart, customPageTransformerConfig)
+    
+    return transformedData
+  }
+  export const fetchProceedToCheckoutButton = async () => {
+    const CheckoutButton = await getDataByQuery("*[_type == 'cartItems' && sections._type == 'button']")
+    const { transformedData } = performTransformation(CheckoutButton, customPageTransformerConfig)
+    return transformedData
+  }  

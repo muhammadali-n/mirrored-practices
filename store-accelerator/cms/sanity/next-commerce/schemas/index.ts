@@ -7,5 +7,6 @@ import customPage from "./documents/custom-page";
 import preDefinedPage from "./documents/pre-defined-pages";
 import productCard from "./documents/product-card";
 import localeString from "./documents/languages";
+import cartItems from "./documents/cart-items";
 
-export const schemaTypes = [Title,customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString]
+export const schemaTypes = [Title,customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems]

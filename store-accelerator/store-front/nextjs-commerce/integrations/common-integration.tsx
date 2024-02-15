@@ -1,21 +1,15 @@
 import { getConfig } from '../config';
-import { getShopifyProducts } from './shopify/shopify-integration';
-import { getSanity } from './sanity/sanity-integration'
-
 
 //for identify which type of CMS is configured
-export const getContent = async (params: any) => {
+export const getContent = async <T>(apiCall: GenericApiCall<T>, ...args: any[]): Promise<T[]> => {
   console.log("integration");
   const { cmsConfig } = getConfig()
-  console.log("cmsConfig", cmsConfig);
-
   switch (cmsConfig?.type) {
     case "sanity":
-      return await getSanity(params);
+      return await apiCall(...args);
     case 'strapi':
     //add more content cms
     default:
-      throw new Error(`Invalid integration type: ${cmsConfig?.type}`);
   }
 }
 
@@ -30,7 +24,6 @@ export const performCommonIntegration = async <T>(apiCall: GenericApiCall<T>, ..
       return await apiCall(...args); 
     case 'saleor':
     default:
-      throw new Error(`Invalid integration type: ${commerceConfig?.type}`);
   }
 };
 

@@ -19,6 +19,14 @@
        {
         "inputFieldName": "sections",
         "outputFieldName": "sections"
+       },
+       {
+        "inputFieldName": "ButtonColor",
+        "outputFieldName": "ButtonColor"
+       },
+       {
+        "inputFieldName": "buttonName",
+        "outputFieldName": "buttonName"
        }
        
     ]
