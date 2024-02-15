@@ -36,3 +36,15 @@ export const fetchAddButton = async () => {
     const { transformedData } = performTransformation(CheckoutButton, customPageTransformerConfig)
     return transformedData
   }  
+
+  export const fetchHeader = async () => {
+
+    const header = await getDataByQuery("*[_type == 'header']")
+    return header
+  }
+  
+  export const fetchFooter = async () => {
+  
+    const footer = await getDataByQuery("*[_type == 'footer']")
+    return footer
+  }
