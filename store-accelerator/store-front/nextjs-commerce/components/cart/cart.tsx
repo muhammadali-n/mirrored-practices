@@ -116,7 +116,7 @@ const Cart: React.FC = ({ cartProducts, sanityContent, removeFromCart, handleCli
                   <Row className='taxes'>
                     <Col md='6'>
                       {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
-                        <p className='font-weight-bold muted' key={item.id}>{item.taxes_fields && item.taxes_fields.ar}</p>
+                        <p className='font-weight-bold muted' key={item.id}>{item.taxes_fields && item.taxes_fields.ar ||  item.taxes_fields.en}</p>
                       ))}
                     </Col>
                     <Col md='6' className='text-end'>
@@ -127,7 +127,7 @@ const Cart: React.FC = ({ cartProducts, sanityContent, removeFromCart, handleCli
                   <Row className='shipping'>
                     <Col md='6'>
                       {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
-                        <p className='font-weight-bold muted' key={item.id}>{item.shipping_fields && item.shipping_fields.ar}</p>
+                        <p className='font-weight-bold muted' key={item.id}>{item.shipping_fields && item.shipping_fields.ar || item.shipping_fields.en}</p>
                       ))}
                     </Col>
                     <Col md='6' className='text-end muted'><p> Calculated at checkout</p></Col>
@@ -136,7 +136,7 @@ const Cart: React.FC = ({ cartProducts, sanityContent, removeFromCart, handleCli
                   <Row className='total'>
                     <Col md='6'>
                       {Array.isArray(sanityContent) && sanityContent.map((item: any, index: any) => (
-                        <p className='font-weight-bold muted' key={item.id}>{item.total_fields && item.total_fields.ar}</p>
+                        <p className='font-weight-bold muted' key={item.id}>{item.total_fields && item.total_fields.ar || item.total_fields.en}</p>
                       ))}
                     </Col>
                     <Col md='6' className='text-end'>
