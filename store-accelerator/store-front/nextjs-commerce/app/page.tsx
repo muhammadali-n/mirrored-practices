@@ -1,7 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { performCommonIntegration, IntegrationResult } from '../integrations/common-integration';
 import { getShopifyProducts } from '@/integrations/shopify/shopify-integration';
+import Footer from '@/components/layout/footer';
 
 
 interface TransformedProduct {
@@ -33,11 +34,11 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <h1>Integrated and Transformed Data</h1>
+      <h1 style={{ color: 'white' }}>Integrated and Transformed Data</h1>
       {transformedData && transformedData.length > 0 ? (
         <ul>
           {transformedData.map((product) => (
-            <li key={product.id}>
+            <li key={product.id} style={{ color: 'white' }}>
               NAME: {product.title}, PRICE: ${product.price}, HANDLE: {product.handle}
             </li>
           ))}
@@ -45,6 +46,9 @@ const Home: React.FC = () => {
       ) : (
         <p>No data available</p>
       )}
+      <Suspense>
+          <Footer />
+        </Suspense>
     </div>
   );
 };

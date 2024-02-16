@@ -35,6 +35,16 @@ export default (S: StructureBuilder): ListBuilder =>
                         ),
                     ]),
                 ),
+                S.listItem()
+                .title("header")
+                .child(
+                  S.documentTypeList("header")
+                ),
+                S.listItem()
+                .title("footer")
+                .child(
+                  S.documentTypeList("footer")
+                )
             ]),
         )
     ]);
