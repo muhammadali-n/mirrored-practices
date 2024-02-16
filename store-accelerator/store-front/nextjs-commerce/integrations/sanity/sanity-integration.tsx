@@ -37,11 +37,6 @@ export const fetchAddButton = async () => {
     const { transformedData } = performTransformation(cart, customPageTransformerConfig)
     return cart
   }  
-  export const fetchProceedToCheckoutButton = async () => {
-    const CheckoutButton = await getDataByQuery("*[_type == 'cartItems' && sections._type == 'button']")
-    const { transformedData } = performTransformation(CheckoutButton, customPageTransformerConfig)
-    return transformedData
-  }  
 
   export const fetchHeader = async () => {
 
