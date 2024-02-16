@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Context } from "../../app/context";
 import { useRouter } from 'next/navigation'
 import { getContent } from '@/integrations/common-integration'
-import { fetchProceedToCheckoutButton } from '@/integrations/sanity/sanity-integration';
+import { fetchCartPage } from '@/integrations/sanity/sanity-integration';
 import Cart from './cart';
 type Props = {}
 
@@ -37,7 +37,7 @@ export default function CartContainer({}: Props) {
         ...cartItems
       });
       const fetchData = async () => {
-        const response = await getContent(fetchProceedToCheckoutButton)
+        const response = await getContent(fetchCartPage)
         setSanityContent(response)
       }
       if (cartItems) {
