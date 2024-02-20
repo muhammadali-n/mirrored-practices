@@ -93,7 +93,7 @@ interface ShopifyProductResponse {
   };
 }
 
-export const getShopifyProducts = async (): Promise<TransformationResult> => {
+export const getProducts = async (): Promise<TransformationResult> => {
   const { commerceConfig } = getConfig();
   const storefrontAccessToken =commerceConfig.storefrontAccessToken
   const apiEndpoint= commerceConfig.apiEndpoint
@@ -162,7 +162,7 @@ export const getShopifyProducts = async (): Promise<TransformationResult> => {
 
 
 
-export const getShopifyCollections = async (): Promise<TransformationResult> => {
+export const getCollections = async (): Promise<TransformationResult> => {
   const { commerceConfig } = getConfig();
 
   const storefrontAccessToken =commerceConfig.storefrontAccessToken

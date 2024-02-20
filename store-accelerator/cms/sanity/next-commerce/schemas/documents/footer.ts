@@ -8,6 +8,11 @@ export default {
     type: 'document',
     fields: [
         {
+            name: 'itemName',
+            title: 'Name',
+            type: 'string',
+        },
+        {
             name: 'storeLogo',
             title: 'Store Logo',
             type: 'storeLogo',
@@ -15,7 +20,7 @@ export default {
         {
             name: 'storeName',
             title: 'Store Name',
-            type: 'string',
+            type: 'storeName',
         },
         defineField({
             name: 'button',
