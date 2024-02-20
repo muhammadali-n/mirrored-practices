@@ -24,15 +24,23 @@ export default {
         maxLength: 100,
       },
     }),
+    // defineField({
+    //   name: 'sections',
+    //   title: 'Sections',
+    //   type: 'array',
+    //   of: [
+    //     { title: "Hero image", type: "image" },
+    //     { title: "Video", type: "file" },
+    //     defineArrayMember({ type: "blockImages" }),
+    //     defineArrayMember({ type: "richText" }),
+    //   ]
+    // }),
     defineField({
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of: [
-        { title: "Hero image", type: "image" },
-        { title: "Video", type: "file" },
-        defineArrayMember({ type: "blockImages" }),
-        defineArrayMember({ type: "richText" }),
+      of:[
+        defineArrayMember({type: "sections"})    
       ]
     }),
   ],

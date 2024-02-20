@@ -17,6 +17,14 @@ interface ShopifyCollection {
  
 }
 
+interface ShopifyProductId {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  price: number;
+}
+
 
 interface ShopifyProductsResponse {
   data: {
@@ -92,6 +100,25 @@ interface ShopifyProductResponse {
     };
   };
 }
+
+interface ShopifyProductIdResponse {
+  data: {
+      edges: {
+        node: {
+          images: any;
+          id: string;
+          title: string;
+          handle: string;
+          description: string;
+          priceRange: {
+            maxVariantPrice: {
+              amount: number;
+            };
+          };
+        };
+      }[];
+    };
+  };
 
 export const getShopifyProducts = async (): Promise<TransformationResult> => {
   const { commerceConfig } = getConfig();
@@ -289,6 +316,67 @@ export const getProductByCollection = async (selectedCollection: string,sortKey:
     throw error;
   }
 };
+
+export const getProductById = async (productId: string): Promise<TransformationResult> => {
+  const { commerceConfig } = getConfig();
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
+  const query = `
+    {
+      product(id: "${productId}") {
+        id
+        title
+        handle
+        description
+        priceRange {
+          maxVariantPrice {
+            amount
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+      },
+      body: JSON.stringify({ query }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch Shopify product. Status: ${response.status}`);
+    }
+
+    const responseData: ShopifyProductIdResponse = await response.json();
+    const data: ShopifyProductId[] = responseData.data.edges.map(({ node }) => ({
+      id: node.id,
+      title: node.title,
+      handle: node.handle,
+      description: node.description,
+      price: node.priceRange.maxVariantPrice.amount,
+      imageSrc: node.images.edges[0]?.node.originalSrc,
+    }));
+    const { transformedData } = performTransformation(data , transformerConfig);
+    return transformedData;
+  } catch (error) {
+    console.error('Error fetching Shopify product:', error);
+    throw error;
+  }
+};
+
 
 export { TransformationResult };
 

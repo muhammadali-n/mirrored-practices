@@ -1,4 +1,4 @@
-import { client } from '@/app/lib/sanity';
+import { client } from '../../app/lib/sanity';
 import { customUi, performTransformation } from '../common-transformer';
 import customPageTransformerConfig from "./sanity-transform-config.json"
 
@@ -12,9 +12,14 @@ export const fetchPageDataBySlug = async (slug: string) => {
     console.log('fetch data   ');
     // creating page data using slug
     const getPageData = await getDataByQuery(`*[_type == 'nav' && slug.current == "${slug}"]`);
+    const homePageData = await getDataByQuery(`*[_type == 'nav' && title == 'Home']`);
+
 
     const { transformedData } = performTransformation(getPageData, customPageTransformerConfig)
     console.log("transformedData", transformedData);
+
+    const { transformedHomeData } = performTransformation(homePageData, customPageTransformerConfig)
+    console.log("transformedHomeData", transformedHomeData);
     
 
     //fixed custom ui
@@ -36,3 +41,11 @@ export const fetchAddButton = async () => {
     const { transformedData } = performTransformation(CheckoutButton, customPageTransformerConfig)
     return transformedData
   }  
+  export const fetchHomePage = async () => {
+    const HomePage = await getDataByQuery(`*[_type == 'nav' && title == 'Home']`);
+    const { transformedData } = performTransformation(HomePage, customPageTransformerConfig)
+    return transformedData
+  } 
+
+
+
