@@ -1,12 +1,12 @@
 'use client'
 import React, { Suspense, useEffect, useState } from 'react';
 import { performCommonIntegration, IntegrationResult } from '../integrations/common-integration';
-import { getShopifyProducts } from '../integrations/shopify/shopify-integration';
 import { getContent } from '../integrations/common-integration';
 
 import { fetchHomePage } from '../integrations/sanity/sanity-integration';
 import ProductGridItem from '../components/home/ProductGridItem';
 import Footer from '../components/layout/footer';
+import { getProducts } from '../integrations/shopify/shopify-integration';
 
 
 interface TransformedProduct {
@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         const pageData = await getContent(fetchHomePage);
         setHomePageContent(pageData)
         console.log("pageData", pageData)
-        const integrationData: IntegrationResult = await performCommonIntegration(getShopifyProducts);
+        const integrationData: IntegrationResult = await performCommonIntegration(getProducts);
         console.log("integrationData", integrationData)
         setTransformedData(integrationData);
       } catch (error) {

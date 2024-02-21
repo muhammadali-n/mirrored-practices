@@ -1,24 +1,19 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: 'menuItems',
-  title: 'menu Items',
+  name: 'storeName',
+  title: 'store Name',
   type: 'object',
   fields: [
     {
-      name: 'name',
-      title: 'Name',
-      type: 'text',
-    },
+        name: 'Name',
+        title: 'store name',
+        type: 'string',
+      },
     defineField({
       title: 'translation',
       name: 'translation',
       type: 'localeString',
   }),
-  defineField({
-            title: 'path',
-            name: 'path',
-            type: 'string',
-        }),
   ],
 });

@@ -17,3 +17,13 @@
 {
     margin-top: 20px;
 }
+.footer
+{
+  border-top : 0.1px solid rgb(162, 161, 161);
+}
+.copyright{
+  border-top: 0.1px solid rgb(193, 189, 189);
+  padding-top: 2em;
+  padding-bottom: 1em;
+
+}
