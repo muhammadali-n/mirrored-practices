@@ -20,6 +20,16 @@ export default defineType({
         name:'icon',
         title: 'searchIcon',
         type: 'image'
-    }
+    },
+    {
+      name: 'alt',
+      title: 'Alternative text',
+      type: 'text',
+    },
+    defineField({
+      title: 'translation',
+      name: 'altTranslation',
+      type: 'localeString',
+  }),
   ],
 });

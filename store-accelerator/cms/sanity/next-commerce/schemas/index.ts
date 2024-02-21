@@ -1,4 +1,3 @@
-import Title from "./documents/Title";
 import button from "./documents/button";
 import blockImages from "./documents/block-images";
 import localization from "./documents/localization";
@@ -14,4 +13,6 @@ import searchBar from "./documents/searchBar";
 import footer from "./documents/footer";
 import storeLogo from "./documents/storeLogo";
 import menuItems from "./documents/menuItems";
-export const schemaTypes = [Title,customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems]
+import storeName from "./documents/store-name";
+import plpData from "./documents/plp-data";
+export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems,storeName,plpData]
