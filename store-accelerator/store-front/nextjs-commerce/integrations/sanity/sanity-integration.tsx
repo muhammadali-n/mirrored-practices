@@ -48,4 +48,14 @@ export const fetchAddButton = async () => {
   } 
 
 
+  export const fetchHeader = async () => {
 
+    const header = await getDataByQuery("*[_type == 'header']")
+    return header
+  }
+  
+  export const fetchFooter = async () => {
+  
+    const footer = await getDataByQuery("*[_type == 'footer']")
+    return footer
+  }

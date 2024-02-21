@@ -8,6 +8,7 @@ import styles from '../../../styles/product.module.css';
 import { performCommonIntegration, IntegrationResult, getContent } from '@/integrations/common-integration';
 import { sorting } from '@/lib/constants';
 import { fetchAddButton } from '@/integrations/sanity/sanity-integration';
+import Footer from '@/components/layout/footer';
 
 export default function YourComponent() {
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -76,7 +77,7 @@ export default function YourComponent() {
   };
   // Render the component once products are available
   return (
-
+<>
     <div className={styles['page-container']}>
       {collections === null ? (
         <p>Loading collections...</p>
@@ -133,6 +134,8 @@ export default function YourComponent() {
       )}
 
     </div>
+    <Footer/>
+    </>
   );
 }
 
