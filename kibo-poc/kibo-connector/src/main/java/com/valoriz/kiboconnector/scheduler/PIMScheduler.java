@@ -24,7 +24,8 @@ public class PIMScheduler {
     public void exportProductInformation() {
         logger.info("starting PIMScheduler to pick and process xml files");
         try {
-            File folder = new File("C:\\dev\\Valoriz\\practices\\kibo-poc\\kibo-connector\\xml");
+            File folder = new File("xml_files");
+            logger.info("folder: " + folder.getAbsolutePath());
             if (folder.exists() && folder.isDirectory()) {
                 File[] files = folder.listFiles((dir, name) -> name.endsWith(".xml"));
                 logger.info("xml files in the given path: " + folder);
