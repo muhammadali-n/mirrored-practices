@@ -1,7 +1,7 @@
 
-import { getConfig} from '../../config';
-import { performTransformation, TransformationResult} from '../common-transformer';
-import {getCollectionProductsQuery, getProductsByCollectionQuery} from './shopify-query';
+import { getConfig } from '../../config';
+import { performTransformation, TransformationResult } from '../common-transformer';
+import { addToCartMutation, createCartMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -14,7 +14,6 @@ interface ShopifyProduct {
 interface ShopifyCollection {
   id: string;
   title: string;
- 
 }
 
 
@@ -61,6 +60,7 @@ interface ShopifyProducts {
   description: string;
   price: number;
   imageSrc?: string;
+  variants?: any;
 }
 
 interface ShopifyProductResponse {
@@ -69,6 +69,7 @@ interface ShopifyProductResponse {
       products: {
         edges: {
           node: {
+            variants: any;
             id: string;
             title: string;
             handle: string;
@@ -93,10 +94,11 @@ interface ShopifyProductResponse {
   };
 }
 
+
 export const getShopifyProducts = async (): Promise<TransformationResult> => {
   const { commerceConfig } = getConfig();
-  const storefrontAccessToken =commerceConfig.storefrontAccessToken
-  const apiEndpoint= commerceConfig.apiEndpoint
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken
+  const apiEndpoint = commerceConfig.apiEndpoint
 
   const query = `
     {
@@ -126,8 +128,6 @@ export const getShopifyProducts = async (): Promise<TransformationResult> => {
       }
   `;
 
-  
-
   try {
     const response = await fetch(apiEndpoint, {
       method: 'POST',
@@ -151,7 +151,7 @@ export const getShopifyProducts = async (): Promise<TransformationResult> => {
       price: node.priceRange.maxVariantPrice.amount,
       imageSrc: node.images.edges[0]?.node.originalSrc,
     }));
-    const { transformedData } = performTransformation(data , transformerConfig);
+    const { transformedData } = performTransformation(data, transformerConfig);
     return transformedData;
   } catch (error) {
     console.error('Error fetching Shopify products:', error);
@@ -165,8 +165,8 @@ export const getShopifyProducts = async (): Promise<TransformationResult> => {
 export const getShopifyCollections = async (): Promise<TransformationResult> => {
   const { commerceConfig } = getConfig();
 
-  const storefrontAccessToken =commerceConfig.storefrontAccessToken
-  const apiEndpoint= commerceConfig.apiEndpoint
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken
+  const apiEndpoint = commerceConfig.apiEndpoint
 
   const query = `
   {
@@ -209,7 +209,6 @@ export const getShopifyCollections = async (): Promise<TransformationResult> => 
   
   `;
 
-  
 
   try {
     const response = await fetch(apiEndpoint, {
@@ -237,7 +236,7 @@ export const getShopifyCollections = async (): Promise<TransformationResult> => 
     //   id: node.id,
     //   title: node.title,
     // }));
-   
+
     const { transformedData } = performTransformation(data, transformerConfig);
 
     return transformedData;
@@ -247,16 +246,18 @@ export const getShopifyCollections = async (): Promise<TransformationResult> => 
   }
 };
 
-export const getProductByCollection = async (selectedCollection: string,sortKey: string ,reverse:Boolean): Promise<ShopifyProduct[]> => {
+export const getProductByCollection = async (selectedCollection: string, sortKey: string, reverse: Boolean): Promise<ShopifyProduct[]> => {
   const { commerceConfig } = getConfig();
 
-  const storefrontAccessToken =commerceConfig.storefrontAccessToken
-  const apiEndpoint= commerceConfig.apiEndpoint
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken
+  const apiEndpoint = commerceConfig.apiEndpoint
 
   const query = {
     query: getCollectionProductsQuery,
-    variables: { handle: selectedCollection , sortKey: sortKey,
-      reverse: reverse }
+    variables: {
+      handle: selectedCollection, sortKey: sortKey,
+      reverse: reverse
+    }
   };
 
   try {
@@ -280,9 +281,8 @@ export const getProductByCollection = async (selectedCollection: string,sortKey:
       description: node.description,
       price: node.priceRange.maxVariantPrice.amount,
       imageSrc: node.images.edges[0]?.node.originalSrc,
+      variantId: node.variants.edges.map(({ node }: { node: any }) => node.id)
     }));
-    // const { transformedData } = performTransformation(products);
-
     return products;
   } catch (error) {
     console.error('Error fetching products by collection:', error);
@@ -292,3 +292,264 @@ export const getProductByCollection = async (selectedCollection: string,sortKey:
 
 export { TransformationResult };
 
+
+/*************************************
+******* shopify cart start ***********
+**************************************/
+
+export type ShopifyRemoveFromCartOperation = {
+  data: {
+    cartLinesRemove: {
+      cart: ShopifyCart;
+    };
+  };
+  variables: {
+    cartId: string;
+    lineIds: string[];
+  };
+};
+
+export type Edge<T> = {
+  node: T;
+};
+export type CartItem = {
+  id: string;
+  quantity: number;
+  cost: {
+    totalAmount: number;
+  };
+  merchandise: {
+    id: string;
+    title: string;
+    selectedOptions: {
+      name: string;
+      value: string;
+    }[];
+    product: any;
+  };
+};
+export type Connection<T> = {
+  edges: Array<Edge<T>>;
+};
+
+
+export type ShopifyCart = {
+  id: string;
+  checkoutUrl: string;
+  cost: {
+    subtotalAmount: any;
+    totalAmount: any;
+    totalTaxAmount: any;
+  };
+  lines: Connection<CartItem>;
+  totalQuantity: any;
+};
+
+
+const removeEdgesAndNodes = (array: Connection<any>) => {
+  return array.edges.map((edge) => edge?.node);
+};
+
+const reshapeCart = (cart: ShopifyCart): Cart => {
+  if (!cart.cost?.totalTaxAmount) {
+    cart.cost.totalTaxAmount = {
+      amount: '0.0',
+      currencyCode: 'USD'
+    };
+  }
+  return {
+    ...cart,
+    lines: removeEdgesAndNodes(cart.lines)
+  };
+};
+
+type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
+
+export async function shopifyFetch<T>({
+  cache = 'force-cache',
+  headers,
+  query,
+  tags,
+  variables
+}: {
+  cache?: RequestCache;
+  headers?: HeadersInit;
+  query: string;
+  tags?: string[];
+  variables?: ExtractVariables<T>;
+}): Promise<{
+  ok: any; status: number; body: T
+} | never> {
+  const { commerceConfig } = getConfig();
+
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken
+  const apiEndpoint = commerceConfig.apiEndpoint
+  try {
+    const result = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+        ...headers
+      },
+      body: JSON.stringify({
+        ...(query && { query }),
+        ...(variables && { variables })
+      }),
+      cache,
+      ...(tags && { next: { tags } })
+    });
+
+    const body = await result.json();
+    console.log("body", body);
+
+    if (body.errors) {
+      throw body.errors[0];
+    }
+
+    return {
+      status: result.status,
+      body
+    };
+  } catch (e) {
+    // if (isShopifyError(e)) {
+    //   throw {
+    //     cause: e.cause?.toString() || 'unknown',
+    //     status: e.status || 500,
+    //     message: e.message,
+    //     query
+    //   };
+    // }
+
+    throw {
+      error: e,
+      query
+    };
+  }
+}
+export type ShopifyCreateCartOperation = {
+  data: { cartCreate: { cart: ShopifyCart } };
+};
+export type Cart = Omit<ShopifyCart, 'lines'> & {
+  lines: CartItem[];
+};
+
+export async function createCart(): Promise<Cart> {
+
+  const res = await shopifyFetch<ShopifyCreateCartOperation>({
+    query: createCartMutation,
+    cache: 'no-store'
+  });
+  console.log("resresres", res);
+
+
+  return reshapeCart(res.body.data.cartCreate.cart);
+}
+
+
+
+// -----------shopify add to cart
+
+export type ShopifyAddToCartOperation = {
+  data: {
+    cartLinesAdd: {
+      cart: ShopifyCart;
+    };
+  };
+  variables: {
+    cartId: string;
+    lines: {
+      merchandiseId: string;
+      quantity: number;
+    }[];
+  };
+};
+
+
+export async function addToCart(
+  cartId: string,
+  lines: { merchandiseId: string; quantity: number }[]
+): Promise<Cart> {
+  try {
+    console.log("Adding to cart...", lines);
+
+    const res = await shopifyFetch<ShopifyAddToCartOperation>({
+      query: addToCartMutation,
+      variables: {
+        cartId,
+        lines,
+      },
+      cache: 'no-store',
+    });
+
+    console.log("Responsesssssssss:", res);
+
+    if (!res.ok) {
+      throw new Error(`Failed to add items to the cart. Status: ${res.status}`);
+    }
+
+    const data = reshapeCart(res.body.data.cartLinesAdd.cart);
+    return data
+  } catch (error) {
+    console.error("Error:", error.message);
+    throw error; // Rethrow the error to handle it at a higher level if needed
+  }
+}
+
+// ******* shopify remove Cart *********
+
+export async function removeFromCart(cartId: string, lineIds: string[]): Promise<Cart> {
+  const res = await shopifyFetch<ShopifyRemoveFromCartOperation>({
+    query: removeFromCartMutation,
+    variables: {
+      cartId,
+      lineIds
+    },
+    cache: 'no-store'
+  });
+
+  return reshapeCart(res.body.data.cartLinesRemove.cart);
+}
+
+// ************ shopify get cart **********  
+
+export const getCart = async (cartId: string) => {
+  try {
+    const { commerceConfig } = getConfig();
+
+    const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+    const apiEndpoint = commerceConfig.apiEndpoint;
+
+    const query = getCartMutation;
+
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+      },
+      body: JSON.stringify({ query, variables: { cartId } }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch Shopify cart. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const products = removeEdgesAndNodes(data.data.cart.lines)
+    const cost = data.data.cart.cost
+
+
+    console.log(" data from getcart", data);
+
+    return { products, cost };
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+};
+
+
+/*************************************
+******* shopify cart end ***********
+**************************************/
