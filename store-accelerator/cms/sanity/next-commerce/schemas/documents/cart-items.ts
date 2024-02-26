@@ -11,25 +11,30 @@ const cartItems =defineType({
             type: 'string',
         }),
         defineField({
+            title: 'Title',
+            name: 'title',
+            type: 'localeString',
+        }),
+        defineField({
             name: 'sections',
             title: 'field',
             type: 'button',
         }),
-        // defineField({
-        //     title: 'taxes',
-        //     name: 'taxes_fields',
-        //     type: 'localeString',
-        // }),
-        // defineField({
-        //     title: 'shipping',
-        //     name: 'shipping_fields',
-        //     type: 'localeString',
-        // }),
-        // defineField({
-        //     title: 'total',
-        //     name: 'total_fields',
-        //     type: 'localeString',
-        // }),
+        defineField({
+            title: 'taxes',
+            name: 'taxes_fields',
+            type: 'localeString',
+        }),
+        defineField({
+            title: 'shipping',
+            name: 'shipping_fields',
+            type: 'localeString',
+        }),
+        defineField({
+            title: 'total',
+            name: 'total_fields',
+            type: 'localeString',
+        }),
     ]
 })
 export default cartItems
