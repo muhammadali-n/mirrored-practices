@@ -1,7 +1,7 @@
 'use client'
 import React, { Suspense, useEffect, useState } from 'react';
 import { performCommonIntegration, IntegrationResult } from '../integrations/common-integration';
-import { getShopifyProducts } from '@/integrations/shopify/shopify-integration';
+import { getProducts } from '@/integrations/shopify/shopify-integration';
 import Footer from '@/components/layout/footer';
 
 
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
     const fetchData = async () => {
       try {
        
-       const integrationData: IntegrationResult = await performCommonIntegration(getShopifyProducts);
+       const integrationData: IntegrationResult = await performCommonIntegration(getProducts);
         setTransformedData(integrationData);
       } catch (error) {
         console.error('Error fetching and processing data:', error);

@@ -6,6 +6,7 @@ import { urlFor } from '../lib/sanity';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchPageDataBySlug } from '@/integrations/sanity/sanity-integration';
 import './module.css';
+import Footer from '@/components/layout/footer';
 
 //identify endpoint in common
 export function getSlug(params: any) {
@@ -66,7 +67,7 @@ function Page(params: any) {
   console.log("transformedDataPage", transformedData);
 
   return (
-
+<>
 
     <div className="container">
       <div key={transformedData.id} className="sections">
@@ -126,7 +127,8 @@ function Page(params: any) {
       </div>
       {/* ))} */}
     </div>
+   <Footer/>
+    </> 
   )
 }
-
 export default Page

@@ -20,6 +20,5 @@ export default defineType({
       name: 'translation',
       type: 'localeString',
   }),
-    // Add more fields as needed for cart functionality
   ],
 });

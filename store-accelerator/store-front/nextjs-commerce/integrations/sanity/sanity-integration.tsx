@@ -45,7 +45,11 @@ export const fetchAddButton = async () => {
   }
   
   export const fetchFooter = async () => {
-  
     const footer = await getDataByQuery("*[_type == 'footer']")
     return footer
+  }
+
+  export const fetchPlpData = async () => {
+    const plpData = await getDataByQuery("*[_type == 'plpData']")
+    return plpData
   }

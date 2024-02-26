@@ -7,6 +7,11 @@ export default{
   type: 'document',
   fields: [
     {
+      name: 'itemName',
+      title: 'Name',
+      type: 'string',
+  },
+    {
       name: 'storeLogo',
       title: 'store Logo',
       type: 'storeLogo',
@@ -14,7 +19,7 @@ export default{
     {
       name: 'storeName',
       title: 'Store Name',
-      type: 'string',
+      type: 'storeName',
     },
     {
         name: 'menuItems',
