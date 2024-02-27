@@ -25,18 +25,18 @@ export const fetchPageDataBySlug = async (slug: string) => {
   }
 };
 
-export const fetchAddButton = async () => {
-    const AddtoCart = await getDataByQuery("*[_type == 'ProductCard'  && sections._type == 'button']")
-    const { transformedData } = performTransformation(AddtoCart, customPageTransformerConfig)
-    
-    return transformedData
-  }
-  export const fetchCartPage = async () => {
-    const cart = await getDataByQuery("*[_type == 'cartItems']")
-    //TODO transform
-    const { transformedData } = performTransformation(cart, customPageTransformerConfig)
-    return cart
-  }  
+export const fetchProductCard = async () => {
+  const AddtoCart = await getDataByQuery("*[_type == 'ProductCard'  && sections._type == 'button']")
+  const { transformedData } = performTransformation(AddtoCart, customPageTransformerConfig)
+  return transformedData
+}
+
+export const fetchCartPage = async () => {
+  const cartItemsQuery = `*[_type == 'cartItems']`;
+  const cart = await getDataByQuery(cartItemsQuery)
+  const transformedData = transformSanityCartData(cart)
+  return transformedData
+}
 
   export const fetchHeader = async () => {
 
