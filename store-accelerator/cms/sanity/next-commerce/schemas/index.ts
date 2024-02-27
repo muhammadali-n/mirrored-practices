@@ -15,4 +15,5 @@ import storeLogo from "./documents/storeLogo";
 import menuItems from "./documents/menuItems";
 import storeName from "./documents/store-name";
 import plpData from "./documents/plp-data";
-export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems,storeName,plpData]
+import pdpData from "./documents/pdp-data";
+export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems,storeName,plpData,pdpData]

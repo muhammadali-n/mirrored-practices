@@ -289,6 +289,256 @@ export const getProductByCollection = async (selectedCollection: string, sortKey
   }
 };
 
+export const getProductsByHandle = async (handle: string): Promise<any> => {
+  const { commerceConfig } = getConfig();
+
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken
+  const apiEndpoint = commerceConfig.apiEndpoint
+
+  const query = `
+    query GetProductByHandle($handle: String!) {
+      productByHandle(handle: $handle) {
+        id
+        handle
+        availableForSale
+        title
+        description
+        descriptionHtml
+        options {
+          id
+          name
+          values
+        }
+        priceRange {
+          maxVariantPrice {
+            amount
+            currencyCode
+          }
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
+        variants(first: 250) {
+          edges {
+            node {
+              id
+              title
+              availableForSale
+              selectedOptions {
+                name
+                value
+              }
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+        featuredImage {
+          ...image
+        }
+        images(first: 20) {
+          edges {
+            node {
+              ...image
+            }
+          }
+        }
+        seo {
+          ...seo
+        }
+        tags
+        updatedAt
+      }
+    }
+    
+    fragment image on Image {
+      originalSrc
+      altText
+    }
+
+    fragment seo on SEO {
+      title
+      description
+    }
+  `;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+    },
+    body: JSON.stringify({ query, variables: { handle } }),
+  };
+
+  try {
+    const response = await fetch(apiEndpoint, requestOptions);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch product by handle. Status: ${response.status}`);
+    }
+    const responseData = await response.json();
+    const data = responseData.data.productByHandle;
+    
+    const transformProductData = (data) => {
+      return {
+        id: data.id,
+        handle: data.handle,
+        availableForSale: data.availableForSale,
+        title: data.title,
+        description: data.description,
+        descriptionHtml:data.descriptionHtml,
+        price: data.priceRange.maxVariantPrice.amount,
+        options: data.options.map(option => ({
+          id: option.id,
+          name: option.name,
+          values: option.values
+        })),
+        featuredImage: {
+          src: data.featuredImage.originalSrc,
+          altText: data.featuredImage.altText || ''
+        },
+        images: data.images.edges.map(edge => ({
+          src: edge.node.originalSrc,
+          altText: edge.node.altText || ''
+        })),
+        variants: data.variants.edges.map(edge => ({
+          id: edge.node.id,
+          title: edge.node.title,
+          availableForSale: edge.node.availableForSale,
+          selectedOptions: edge.node.selectedOptions,
+          price: edge.node.price.amount,
+          currencyCode: edge.node.price.currencyCode,
+
+        })),
+        currencyCode: data.priceRange.minVariantPrice.currencyCode,
+        highPrice: data.priceRange.maxVariantPrice.amount,
+        lowPrice: data.priceRange.minVariantPrice.amount,
+      };
+    };
+    const transformedData = transformProductData(data);
+
+
+    return transformedData;
+
+  } catch (error) {
+    console.error('Error fetching product by handle:', error);
+    throw error;
+  }
+};
+
+
+export const getRelatedProductsById = async (productId: string): Promise<any[]> => {
+  const { commerceConfig } = getConfig();
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
+  const query = `
+    query getProductRecommendations($productId: ID!) {
+      productRecommendations(productId: $productId)
+       {
+        id
+        handle
+        availableForSale
+        title
+        description
+        descriptionHtml
+        options {
+          id
+          name
+          values
+        }
+        priceRange {
+          maxVariantPrice {
+            amount
+            currencyCode
+          }
+          minVariantPrice {
+            amount
+            currencyCode
+          }
+        }
+        variants(first: 250) {
+          edges {
+            node {
+              id
+              title
+              availableForSale
+              selectedOptions {
+                name
+                value
+              }
+              price {
+                amount
+                currencyCode
+              }
+            }
+          }
+        }
+        featuredImage {
+          ...image
+        }
+        images(first: 20) {
+          edges {
+            node {
+              ...image
+            }
+          }
+        }
+        seo {
+          ...seo
+        }
+        tags
+        updatedAt
+      }
+    }
+    
+    fragment image on Image {
+      originalSrc
+      altText
+    }
+
+    fragment seo on SEO {
+      title
+      description
+    }
+  `;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+    },
+    body: JSON.stringify({ query, variables: { productId } }),
+  };
+
+  try {
+    const response = await fetch(apiEndpoint, requestOptions);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch related products. Status: ${response.status}`);
+    }
+    const responseData = await response.json();
+    const products = responseData.data.productRecommendations.map(({ id, title, handle, description, priceRange, featuredImage, currencyCode }) => ({
+      id,
+      title,
+      handle,
+      description,
+      price: priceRange?.maxVariantPrice?.amount,
+      imageSrc: featuredImage?.originalSrc,
+      currencyCode
+    }));
+
+    return products;
+  } catch (error) {
+    console.error('Error fetching related products:', error);
+    throw error;
+  }
+};
+
 export { TransformationResult };
 
 
