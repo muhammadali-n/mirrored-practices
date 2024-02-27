@@ -7,7 +7,7 @@ import ProductCard from '@/components/grid/productcard';
 import styles from '../../../styles/product.module.css';
 import { performCommonIntegration, IntegrationResult, getContent } from '@/integrations/common-integration';
 import { sorting } from '@/lib/constants';
-import { fetchAddButton, fetchPlpData } from '@/integrations/sanity/sanity-integration';
+import { fetchProductCard, fetchPlpData } from '@/integrations/sanity/sanity-integration';
 import Footer from '@/components/layout/footer';
 
 export default function YourComponent() {
@@ -31,7 +31,7 @@ export default function YourComponent() {
         setProducts(transformedData);
         const transCollectionData = await performCommonIntegration(getCollections);
         setCollections(transCollectionData);
-        const button = await getContent(fetchAddButton)
+        const button = await getContent(fetchProductCard)
         setButton(button)
       } catch (error) {
         setProducts(null);
