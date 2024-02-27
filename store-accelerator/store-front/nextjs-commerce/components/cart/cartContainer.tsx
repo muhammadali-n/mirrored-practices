@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Context } from "../../app/context";
 import { useRouter } from 'next/navigation'
-import { getContent } from '@/integrations/common-integration'
+import { getContent, performCommonIntegration } from '@/integrations/common-integration'
 import { fetchCartPage, fetchShipment } from '@/integrations/sanity/sanity-integration';
 import Cart from './cart';
-import { addItem, removeItem } from './handle';
+import { addItem, removeItem, updateItemQuantity } from './handle';
 import { getCookie } from '@/utils/cookieUtils';
 import { getCart } from '@/integrations/shopify/shopify-integration';
 interface Product {
@@ -47,36 +47,33 @@ interface CartItem {
   title: string;
 }
 
-export default async function CartContainer({ }: Props) {
-  const [quantity, setQuantity] = useState(1);
+export default async function CartContainer() {
   const { cartItems } = useContext<any>(Context);
-  const [totalPrice, setTotalPrice] = useState("")
   const [sanityContent, setSanityContent] = useState("")
-  const [cartProducts, setCartProducts] = useState("")
   const [Products, setProducts] = useState<any>()
   const [price, setPrice] = useState<any>()
-
-  // const contextValue = useContext(Context)
-
-  // const { handleRemoveFromCart } = contextValue as {
-  //   cartItems: any[];
-  //   handleRemoveFromCart: (itemId: string) => void;
-  // };
-  // const removeFromCart = useCallback((productId: string) => {
-  //   handleRemoveFromCart(productId);
-  // }, [handleRemoveFromCart]);
+  const [reload, setReload] = useState(false);
 
   let cartId = getCookie('cartId');
   let cart;
-  const removeItemFromCart = useCallback(async (lineId:string) => {
+  const removeItemFromCart = useCallback(async (lineId: string) => {
     await removeItem(lineId);
+    setReload(!reload);
   }, [removeItem]);
 
-  
+  const removeQuantityFromCart = useCallback(async (product: any) => {
+    const payload = {
+      lineId: product.id,
+      variantId: product.merchandise.id,
+      quantity: product.quantity - 1
+    };
+    await updateItemQuantity(payload);
+  }, [updateItemQuantity])
+
   useEffect(() => {
     const fetchData = async () => {
       if (cartId) {
-        cart = await getCart(cartId);
+        cart = await performCommonIntegration(getCart, cartId)
         const products = cart?.products
         const price = cart?.cost
         setProducts(products)
@@ -85,14 +82,8 @@ export default async function CartContainer({ }: Props) {
       const response = await getContent(fetchCartPage)
       setSanityContent(response)
     }
-    // if (cartItems) {
-    //   const total = Object.values(cartItems).reduce((acc, item) => {
-    //     return acc + item.price * item.quantity;
-    //   }, 0);
-    //   setTotalPrice(total);
-    // }
     fetchData()
-  }, [cartItems, cartId]);
+  }, [cartItems, cartId, reload]);
 
   const router = useRouter();
   const handleClick = () => {
@@ -103,13 +94,12 @@ export default async function CartContainer({ }: Props) {
   return (
 
     <Cart
-      cartProducts={cartProducts}
       sanityContent={sanityContent}
       removeItemFromCart={removeItemFromCart}
       handleClick={handleClick}
-      totalPrice={totalPrice}
       products={Products}
       price={price}
+      removeQuantityFromCart={removeQuantityFromCart}
     />
   )
 }
