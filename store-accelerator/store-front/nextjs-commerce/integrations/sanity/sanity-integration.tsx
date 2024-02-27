@@ -53,3 +53,8 @@ export const fetchAddButton = async () => {
     const plpData = await getDataByQuery("*[_type == 'plpData']")
     return plpData
   }
+
+  export const fetchPdpData = async () => {
+    const pdpData = await getDataByQuery("*[_type == 'pdpData']")
+    return pdpData
+  }

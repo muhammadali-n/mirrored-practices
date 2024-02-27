@@ -26,5 +26,7 @@ export type SortFilterItem = {
     cart: 'cart'
   };
   
+  export const HIDDEN_PRODUCT_TAG = 'nextjs-frontend-hidden';
+
   
   
