@@ -2,7 +2,8 @@ import Image from 'next/image'
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Col, Row } from 'reactstrap'
 import { Context } from '@/app/context';
-
+import { useRouter } from 'next/navigation';
+import { addItem, removeItem } from './handle';
 interface CartProduct {
   id: string;
   title: string;
@@ -19,7 +20,7 @@ interface LocaleString {
   en: string;
 }
 
-interface CheckoutButton {
+interface sanityContent {
   buttonName: string;
   _type: string;
   translation: LocaleString;
@@ -31,24 +32,28 @@ interface CheckoutButton {
 }
 interface CartProps {
   cartProducts: CartProduct;
-  CheckoutButton: CheckoutButton;
+  sanityContent: sanityContent;
   removeFromCart: (productId: string) => void;
   handleClick: () => void;
   totalPrice: number;
 }
 
 
-const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCart, handleClick, totalPrice }) => {
-  const contextValue= useContext(Context)
-  const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
+const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price,removeQuantityFromCart }: any) => {
+  const contextValue = useContext(Context)
+  // const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
+  const router = useRouter();
+  const checkout = async() => {
+    // createCheckout()
+    // const checkoutId= await performCommonIntegration(createCheckout);
+    // console.log("check",checkoutId);
 
-  const addToCart=(product:any)=>{
-
-    handleAddToCart(product)
-    // router.push("/cart/cart");
+    router.push('/checkout/checkout');
   }
-  console.log("cartProducts", CheckoutButton);
-  
+
+  const addToCart = (selectedVariantId: string) => {
+    addItem(selectedVariantId)
+  }
   return (
     <Row>
       <Row>
@@ -63,41 +68,41 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
           <div>
             <Button className='close-button' onClick={handleClick}>X </Button>
             <Col className='mt-3'>
-              <h4>My Cart</h4>
+                <h4 >{sanityContent?.title && sanityContent?.title?.ar || sanityContent?.title?.en}</h4>
             </Col>
           </div>
           <Row className='cart-items'>
-            {Object.keys(cartProducts).length > 0 ? (
-              Object.values(cartProducts).map((cartItem: any) => (
-                <Row className='cart-item' key={cartItem.id}>
+            {products &&
+              products.map((product: any) => (
+                <Row className='cart-item' key={product.id}>
                   <Col md='8'>
                     <Row>
                       <Col md='4' className='product-card'>
-                        <Image src={cartItem.imageSrc} alt={cartItem.title} width={80} height={80} />
-                        <Button className='remove-button' onClick={() => removeFromCart(cartItem.id)}>
+                        <Image src={product.merchandise.product.featuredImage.url} alt={product.merchandise.product.title} width={80} height={80} />
+                        <Button className='remove-button' onClick={() => removeItemFromCart(product.id)}>
                           X
                         </Button>
                         {/* <Button className='' >X</Button> */}
                       </Col>
                       <Col md='8' className=''>
-                        <h6 className='font-weight-800'>{cartItem.title}</h6>
-                        <p className='text-secondary'>{cartItem.description}</p>
+                        <h6 className='font-weight-800'>{product.merchandise.product.title}</h6>
+                        <p className='text-secondary'>{product.merchandise.product.description}</p>
                       </Col>
                     </Row>
                   </Col>
                   <Col md='4' className='quantity text-end'>
-                    <div className='price text-center'> $ {cartItem.price} USD</div>
+                    <div className='price text-center'>{product.merchandise.product.priceRange.maxVariantPrice.currencyCode}&nbsp; {product.merchandise.product.priceRange.maxVariantPrice.amount} </div>
                     <div className='quantity-control text-end'>
                       <Button
                         className='quantity-control-btn'
-                        onClick={() => removeFromCart(cartItem.id)}
+                      onClick={() => removeQuantityFromCart(product)}
                       >
                         -
                       </Button>
-                      {cartItem.quantity}
+                      {product.quantity}
                       <Button
                         className='quantity-control-btn'
-                        // onClick={() => addToCart(cartItem.id)}
+                        onClick={() => addToCart(product.merchandise.id)}
                       >
                         +
                       </Button>
@@ -105,56 +110,53 @@ const Cart: React.FC<CartProps> = ({ cartProducts, CheckoutButton, removeFromCar
                   </Col>
                 </Row>
               ))
-            ) : (
-              <p className="text-center d-grid">No items in the cart</p>
-            )}
+            }
           </Row>
-          {Object.keys(cartProducts).map((itemId) => (
-            <Row key={itemId}>
-              <Col md='12'>
-                <div className='bottom'>
-                  <Row className='taxes'>
-                    <Col md='6'>
-                      <p className='font-weight-bold muted'>Taxes:</p>
-                    </Col>
-                    <Col md='6' className='text-end'>
-                      <h5>$ 0.00 USD</h5>
-                    </Col>
-                  </Row>
+          <Row>
+              <Row >
+                <Col md='12'>
+                  <div className='bottom'>
+                    <Row className='taxes'>
+                      <Col md='6'>
+                          <p className='font-weight-bold muted'>{sanityContent?.taxField && sanityContent?.taxField?.ar || sanityContent?.taxField?.en}</p>
+                      </Col>
+                      <Col md='6' className='text-end'>
+                        <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5>
+                      </Col>
+                    </Row>
 
-                  <Row className='shipping'>
-                    <Col md='6'>
-                      <p className="font-weight-bold muted">Shipping:</p>
-                    </Col>
-                    <Col md='6' className='text-end muted'><p> Calculated at checkout</p></Col>
-                  </Row>
+                    <Row className='shipping'>
+                      <Col md='6'>
+                          <p className='font-weight-bold muted' >{sanityContent?.shippingField && sanityContent?.shippingField?.ar || sanityContent?.shippingField?.en}</p>
+                      </Col>
+                      <Col md='6' className='text-end muted'><p> Calculated at checkout</p></Col>
+                    </Row>
 
-                  <Row className='total'>
-                    <Col md='6'>
-                      <p className='font-weight-bold muted'> Total</p>
-                    </Col>
-                    <Col md='6' className='text-end'>
-                      <h5>$ {totalPrice} USD</h5>
-                    </Col>
-                  </Row>
+                    <Row className='total'>
+                      <Col md='6'>
+                          <p className='font-weight-bold muted' >{sanityContent?.totalField && sanityContent?.totalField?.ar || sanityContent?.totalField?.en}</p>
+                      </Col>
+                      <Col md='6' className='text-end'>
+                        <h5> {price && price?.totalAmount?.amount} {price && price?.totalAmount?.currencyCode} </h5>
+                      </Col>
+                    </Row>
 
-                  <Row className='text-center mt-4'>
-                    <Col>
-                      {Array.isArray(CheckoutButton) && CheckoutButton.map((item: any, index: any) => (
-                        <button key={index}
-                          style={{ backgroundColor: item?.sections?.ButtonColor?.hex }}
-                          className='proceed-checkout'
-                        >
-                          {item.sections?.translation?.ar || item.sections?.translation?.en}
-                        </button>
-                      ))}
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            </Row>
-          ))}
+                    <Row className='text-center mt-4'>
+                      <Col>
+                          <button
+                            style={{ backgroundColor: sanityContent?.buttonColor }}
+                            className='proceed-checkout'
+                            onClick={() => checkout()}
 
+                          >
+                            {sanityContent?.buttonName?.ar || sanityContent?.buttonName?.en}
+                          </button>
+                      </Col>
+                    </Row>
+                  </div>
+                </Col>
+              </Row>
+          </Row>
         </div>
       </Col>
 
