@@ -2,11 +2,15 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { performCommonIntegration, IntegrationResult } from '../integrations/common-integration';
 import { getContent } from '../integrations/common-integration';
-
 import { fetchHomePage } from '../integrations/sanity/sanity-integration';
-import ProductGridItem from '../components/home/ProductGridItem';
 import Footer from '../components/layout/footer';
 import { getProducts } from '../integrations/shopify/shopify-integration';
+import ProductGridCarousel from '../components/home/ProductGridCarousel';
+import { urlFor } from './lib/sanity';
+import ProductCard from '../components/home/ProductCard';
+import ProductImage from '../components/home/Image';
+import TextBlock from '../components/home/Text';
+import ProductVideo from '../components/home/Video';
 
 
 interface TransformedProduct {
@@ -32,6 +36,7 @@ const Home: React.FC = () => {
         setHomePageContent(pageData)
         console.log("pageData", pageData)
         const integrationData: IntegrationResult = await performCommonIntegration(getProducts);
+        console.log("Hi", getProducts)
         console.log("integrationData", integrationData)
         setTransformedData(integrationData);
       } catch (error) {
@@ -43,53 +48,60 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <h1 style={{ color: 'white' }}>Integrated and Transformed Data</h1>
-        {transformedData && transformedData.length > 0 ? (
-          <ul>
-            {transformedData.map((product) => (
-              <li key={product.id} style={{ color: 'white' }}>
-                NAME: {product.title}, PRICE: ${product.price}, HANDLE: {product.handle}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No data available</p>
-        )}
-        <Suspense>
-          <Footer />
-        </Suspense>
-      </div>
-      <div className="container">
-        {homePageContent?.map((page: any) => (
-          page?.sections?.length > 0 && page?.sections?.map((section: any) => (
-            <div key={section.id} className='row mt-3'>
-              {section?.columns?.length > 0 && section?.columns?.map((column: any) => (
-                <div className='col-6' key={column?._id}>
-                  {column?.widgets?.map((widget: any) => (
-                    <div className='row' key={widget?._id}>
-                      <div key={widget?._id} className='col-6'>
-                        {widget?._type === 'product' && (
-                          <div>
-                            <ProductGridItem product={transformedData} homePageContent={homePageContent} />
+    <>
+    <div className='container-fluid'>
+      {homePageContent?.[0]?.widgets?.map(widget => {
+        return (
+          <React.Fragment key={widget?._key}>
+            {widget?._type === 'productCarousel' &&
+              <div className='row my-2'>
+                <ProductGridCarousel productList={widget.products} homePageContent={homePageContent} />
+              </div>
+            }
+
+            {widget?._type === 'productBlocks' &&
+              <div className='row my-2' style={{ height: '800px' }}>
+                {widget?.columns?.map(column => {
+                  const heightPercentage = 100 / column.products.length;
+                  return (
+                    <div className={`col-${12 / widget?.columns?.length} h-100 `} key={column?._key}>
+                      <div className={`row h-100`}>
+                        {column?.products?.map(product =>
+                          <div className={`col-12 h-${heightPercentage}`} key={product?._key}>
+                            <ProductCard productId={product.productId} />
                           </div>
                         )}
-                        {/* {widget?._type === 'banner' && (
-                    <div>
-           <ProductGridItem product={transformedData} homePageContent={homePageContent}/>
-                    </div>
-                  )} */}
                       </div>
                     </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          ))
-        ))}
-      </div>
+                  );
+                })}
+              </div>
+            }
+            {widget?._type === 'productImage' && (
+              <div className='d-flex'>
+                {widget?.images?.map(image => (
+                  <ProductImage imageUrl={urlFor(image)?.url() || widget.imageUrl} key={image._key} />
+                ))}
+              </div>
+            )}
+             {widget?._type === 'textWithLink' && (
+              <div className='d-flex'>
+                  <TextBlock  text={widget.translation.ar||widget.translation.en} key={widget._key} />
+                  </div>
+                )}
+                   {widget?._type === 'video' && (
+              <div className='d-flex'>
+                  <ProductVideo videoUrl={widget.video || widget.videoUrl} key={widget._key} />
+                  </div>
+                )}
+
+          </React.Fragment>
+        );
+      })}
     </div>
+    <Suspense>
+       <Footer />
+    </Suspense></>
   );
 };
 

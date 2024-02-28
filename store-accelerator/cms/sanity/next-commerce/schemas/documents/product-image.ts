@@ -3,12 +3,23 @@ import { defineType } from "sanity";
 export default defineType({
   type: 'object',
   name: 'productImage',
-  title: 'Product Image',
+  title: 'ProductImage',
   fields: [
     {
-      name: 'image',
-      type: 'image',
-      title: 'Image',
-    }
+      name: 'images',
+      type: 'array',
+      title: 'Images',
+      of: [{ type: 'image' }],
+      options: {
+          layout: 'grid', 
+      },
+      validation: Rule => Rule.max(3)
+  },
+    {
+      name: 'imageUrl',
+      type: 'url',
+      title: 'Image URL',
+      description: 'URL of the image'
+        }
   ]
 });

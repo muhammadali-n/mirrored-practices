@@ -343,12 +343,13 @@
     grid-row: span 2 / span 2;
     grid-column: span 4 / span 4;
     box-sizing: border-box;
+    height: 100%;
     border: 0px solid rgb(229, 231, 235);
 }
 
 .style-35 {
     width: 100%;
-    height: 997.344px;
+    height: 100%;
     aspect-ratio: 1 / 1;
     display: block;
     position: relative;
@@ -367,7 +368,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 997.344px;
+    height: 100%;
     display: flex;
     position: relative;
     box-sizing: border-box;
@@ -392,10 +393,10 @@
     vertical-align: middle;
     box-sizing: border-box;
     border: 0px solid rgb(229, 231, 235);
+    object-fit: fill;
 }
 
 .style-38 {
-    padding-bottom: 348.359px;
     padding-left: 80px;
     padding-right: 80px;
     container: label / inline-size;
@@ -761,6 +762,7 @@
 }
 
 .style-66 {
+    object-fit: fill !important;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -772,7 +774,6 @@
     transition-duration: 0.3s;
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    object-fit: contain;
     max-width: 100%;
     display: block;
     vertical-align: middle;

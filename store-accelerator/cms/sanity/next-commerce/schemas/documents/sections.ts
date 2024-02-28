@@ -10,14 +10,5 @@ export default  defineType({
       type: 'string',
       title: 'Title',
     },
-    {
-      name: 'columns',
-      type: 'array',
-      title: 'Columns',
-      options: {
-        layout: 'grid',
-      },
-      of: [{ type: 'column' }],
-    },
   ],
 });

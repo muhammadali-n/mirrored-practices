@@ -39,8 +39,24 @@ export default {
       name: 'sections',
       title: 'Sections',
       type: 'array',
-      of:[
-        defineArrayMember({type: "sections"})    
+      of: [
+        defineArrayMember({ type: "sections" })
+      ]
+    }),
+    defineField({
+      name: 'widgets',
+      title: 'Widgets',
+      type: 'array',
+      of: [
+        defineArrayMember({ type: "productBlocks" }),
+        defineArrayMember({ type: "productCarousel" }),
+        defineArrayMember({ type: "textWithLink" }),
+        defineArrayMember({ type: "video" }),
+        defineArrayMember({ type: "productImage" }),
+        defineArrayMember({ type: "banner" })
+
+
+
       ]
     }),
   ],
