@@ -1,7 +1,7 @@
 import { defineField } from "sanity";
  
 export default {
-    name: 'product',
+    name: 'productItem',
     title: 'Product Item',
     type: 'object',
     fields: [

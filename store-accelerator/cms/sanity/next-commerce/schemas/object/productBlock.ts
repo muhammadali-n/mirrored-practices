@@ -37,7 +37,7 @@ const columns = defineType({
             title: 'Products',
             type: 'array',
             of: [
-                { type: "product" } // Corrected the type reference
+                { type: "productItem" } // Corrected the type reference
             ],
             options: {
                 layout: 'grid'

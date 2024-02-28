@@ -15,7 +15,7 @@ export default {
             title: 'Products',
             type: 'array',
             of: [
-                { type: "product" },
+                { type: "productItem" },
             ]
         }),
     ],
