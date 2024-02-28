@@ -43,10 +43,10 @@ interface ShopifyCollectionsResponse {
     collections: {
       edges: {
         node: {
-         
+
           id: string;
           title: string;
-         
+
         };
       }[];
     };
@@ -94,11 +94,7 @@ interface ShopifyProductResponse {
   };
 }
 
-export const getProducts = async (): Promise<TransformationResult> => {
-  const { commerceConfig } = getConfig();
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
-
+const getProductDetails = async (): Promise<TransformationResult> => {
   const query = `
     {
         products(first: 20) {
@@ -126,9 +122,8 @@ export const getProducts = async (): Promise<TransformationResult> => {
         }
       }
   `;
-
   try {
-    const response = await fetch(apiEndpoint, {
+    const response = await fetch(endPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -158,15 +153,7 @@ export const getProducts = async (): Promise<TransformationResult> => {
   }
 };
 
-
-
-
-export const getCollections = async (): Promise<TransformationResult> => {
-  const { commerceConfig } = getConfig();
-
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
-
+const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
   const query = `
   {
     collections(first: 10, sortKey: TITLE, reverse: false) {
@@ -210,7 +197,7 @@ export const getCollections = async (): Promise<TransformationResult> => {
 
 
   try {
-    const response = await fetch(apiEndpoint, {
+    const response = await fetch(endPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -245,12 +232,7 @@ export const getCollections = async (): Promise<TransformationResult> => {
   }
 };
 
-export const getProductByCollection = async (selectedCollection: string, sortKey: string, reverse: Boolean): Promise<ShopifyProduct[]> => {
-  const { commerceConfig } = getConfig();
-
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
-
+export const getCollectionProductDetails = async (endPoint, storefrontAccessToken, selectedCollection: string, sortKey: string, reverse: Boolean): Promise<ShopifyProduct[]> => {
   const query = {
     query: getCollectionProductsQuery,
     variables: {
@@ -260,7 +242,7 @@ export const getProductByCollection = async (selectedCollection: string, sortKey
   };
 
   try {
-    const response = await fetch(apiEndpoint, {
+    const response = await fetch(endPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -381,7 +363,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
     }
     const responseData = await response.json();
     const data = responseData.data.productByHandle;
-    
+
     const transformProductData = (data) => {
       return {
         id: data.id,
@@ -389,7 +371,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
         availableForSale: data.availableForSale,
         title: data.title,
         description: data.description,
-        descriptionHtml:data.descriptionHtml,
+        descriptionHtml: data.descriptionHtml,
         price: data.priceRange.maxVariantPrice.amount,
         options: data.options.map(option => ({
           id: option.id,
@@ -541,7 +523,6 @@ export const getRelatedProductsById = async (productId: string): Promise<any[]> 
 
 export { TransformationResult };
 
-
 /*************************************
 ******* shopify cart start ***********
 **************************************/
@@ -609,7 +590,6 @@ export type ShopifyUpdateCartOperation = {
     }[];
   };
 };
-
 
 const removeEdgesAndNodes = (array: Connection<any>) => {
   return array.edges.map((edge) => edge?.node);
@@ -700,18 +680,13 @@ export type Cart = Omit<ShopifyCart, 'lines'> & {
 };
 
 export async function createCart(): Promise<Cart> {
-
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
     cache: 'no-store'
   });
   console.log("resresres", res);
-
-
   return reshapeCart(res.body.data.cartCreate.cart);
 }
-
-
 
 // -----------shopify add to cart
 
@@ -729,7 +704,6 @@ export type ShopifyAddToCartOperation = {
     }[];
   };
 };
-
 
 export async function addToCart(
   cartId: string,
@@ -830,7 +804,27 @@ export async function updateCart(
   return reshapeCart(res.body.data.cartLinesUpdate.cart);
 }
 
-
 /*************************************
 ******* shopify cart end ***********
 **************************************/
+
+
+
+export const shopifyApi = async (endPoint, storefrontAccessToken, methodName, ...args) => {
+  if(shopifyMethods.hasOwnProperty(methodName)){
+    return await shopifyMethods[methodName](endPoint,storefrontAccessToken,...args);
+  }
+}
+
+const shopifyMethods = {
+  "getCollectionDetails":getCollectionDetails,
+  "getProductDetails":getProductDetails,
+  "getCollectionProductDetails": getCollectionProductDetails,
+  "getProductsByHandle": getProductsByHandle,
+  "getRelatedProductsById": getRelatedProductsById,
+  "createCart":createCart,
+  "addToCart":addToCart,
+  "removeFromCart":removeFromCart,
+  "getcart":getCart,
+  "updateCart":updateCart
+}
