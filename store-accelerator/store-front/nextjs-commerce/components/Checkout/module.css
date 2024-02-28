@@ -1,0 +1,188 @@
+.checkout-left{
+    color: white;
+    border-right: 2px solid gray;
+    padding-right: 4em;
+    height: 100%
+}
+.checkout{
+    margin-top: 9em;
+}
+.accordion{
+    column-gap: var(--x-spacing-small-200);
+}
+.contact-input{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+}
+.contact-input:focus-visible{
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 10px;
+}
+
+.selected-country {
+    width: 100%;
+    padding: 1em;
+    border: 1px solid grey;
+    border-radius: 6px;
+    background: black; /* Set transparent background */
+    color: white; /* Set text color */
+}
+
+.selected-country:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add a subtle box shadow on focus */
+}
+/* .form-fname{
+    width: 100%;
+    padding: 1em;
+    border: 1px solid grey;
+    background: black;
+}
+.form-lname{
+    width: 100%;
+    padding: 1em;
+    border: 1px solid grey;
+    background: black;
+} */
+.form-input{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+    width: calc(100% - .5em); 
+}
+.address{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+    width: 100%;
+    background-color: #000000;
+}
+.appartment{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+    width: 100%;
+}
+.city{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+    width: 100%; 
+}
+.state{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+    width: 100%;  
+}
+.zip-code{
+    border: 1px solid grey;
+    background: transparent;
+    padding: 1em;
+    height: 4em;
+    border-radius: 6px;
+    width: calc(100% - 1em); 
+}
+
+.return-to-cart{
+    border-bottom: 2px solid grey;
+    height: 8em;
+}
+.shopping-btn{
+    height: 4em;
+}
+
+.product-card > img {
+    border: 2px solid grey;
+}
+
+.remove-button {
+    position: absolute;
+    top: -21px;
+    right: -6px;
+    background-color:#000000;
+    border: none;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    border: 2px solid grey;
+    border-radius: 20px
+  }
+
+.remove-button:hover{
+    background-color: #000000;
+}  
+.price{
+    font-weight: 800;
+}
+.checkout-right{
+    padding-left: 4em;
+    height: 100%;    
+    color: white;
+    
+}
+.bottom{
+    bottom: 0
+}
+.product-card{
+    position: relative;
+    margin-bottom: 2px;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block; 
+}
+
+.label-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.label {
+    color: #ffffff;
+    padding: 5px;
+    background-color: grey;
+    border: none;
+    border-radius: 50%;
+    width: 20px; 
+    height: 20px; 
+    line-height: 20px; 
+    text-align: center;
+}
+.product-card > img {
+    border: 2px solid grey;
+}
+.shipping-contact{
+    border-bottom: 2px solid grey;
+    padding: 2px;
+    margin: 2px;
+}
+.shipping-ship-to{
+    padding: 2px;
+    margin: 2px;
+}
+.shipping-info{
+    border: 2px solid grey;
+    padding: 1em;
+}
+.shipping-method{
+    border: 2px solid grey;
+    padding: 1em;
+}

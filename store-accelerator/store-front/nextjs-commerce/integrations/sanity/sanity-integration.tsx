@@ -1,6 +1,7 @@
 import { client } from '@/app/lib/sanity';
 import { customUi, performTransformation } from '../common-transformer';
 import customPageTransformerConfig from "./sanity-transform-config.json"
+import transformSanityCartData from './sanity-transformer';
 
 const getDataByQuery = async (query: string) => {
 
@@ -52,4 +53,18 @@ export const fetchCartPage = async () => {
   export const fetchPlpData = async () => {
     const plpData = await getDataByQuery("*[_type == 'plpData']")
     return plpData
+  }
+
+  export const fetchCheckout = async () => {
+
+    const checkout = await getDataByQuery("*[_type == 'checkout']")
+    // const { transformedData } = performTransformation(checkout, sanityCheckoutTransform)
+  
+    return checkout
+  }
+  
+  export const fetchShipment = async () => {
+    const shipment = await getDataByQuery("*[_type == 'shipment']")
+    // const { transformedData } = performTransformation(shipment, sanityShipmentTransform)
+    return shipment
   }

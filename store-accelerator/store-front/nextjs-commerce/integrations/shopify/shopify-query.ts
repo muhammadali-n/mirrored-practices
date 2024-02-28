@@ -228,6 +228,7 @@ export const getCartMutation =`
 query($cartId: ID!) {
   cart(id: $cartId) {
     id
+    checkoutUrl
     createdAt
     updatedAt
     lines(first: 10) {

@@ -26,5 +26,6 @@ export type SortFilterItem = {
     cart: 'cart'
   };
   
-  
+  export const SANITY = 'sanity'
+  export const SHOPIFY = 'shopify'
   

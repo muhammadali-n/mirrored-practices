@@ -1,0 +1,30 @@
+{
+    "transformer": [
+       {
+        "inputFieldName": "shippingInfo",
+        "outputFieldName": "shippingInfo"
+       },
+       {
+        "inputFieldName": "change",
+        "outputFieldName": "change"
+       },
+       {
+        "inputFieldName": "shippingInfo",
+        "outputFieldName": "shippingInfo"
+       },
+       {
+        "inputFieldName": "contact",
+        "outputFieldName": "contact"
+       },
+       {
+        "inputFieldName": "shippingTo",
+        "outputFieldName": "shippingTo"
+       },
+       {
+        "inputFieldName": "shippingMethod",
+        "outputFieldName": "shippingMethod"
+       }
+       
+    ]
+}
+

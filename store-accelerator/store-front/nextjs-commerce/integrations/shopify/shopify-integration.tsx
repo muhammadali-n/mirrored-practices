@@ -1,7 +1,7 @@
 
 import { getConfig } from '../../config';
 import { performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, createCartMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
+import { addToCartMutation, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -43,10 +43,10 @@ interface ShopifyCollectionsResponse {
     collections: {
       edges: {
         node: {
-         
+
           id: string;
           title: string;
-         
+
         };
       }[];
     };
@@ -551,18 +551,21 @@ export const getCart = async (cartId: string) => {
     }
 
     const data = await response.json();
-
+    console.log("dddd", data);
+    const checkoutUrl = data.data.cart.checkoutUrl
     const products = removeEdgesAndNodes(data.data.cart.lines)
     const cost = data.data.cart.cost
 
+    console.log("checkoutUrl", checkoutUrl);
 
     console.log(" data from getcart", data);
 
-    return { products, cost };
+    return { products, cost, checkoutUrl };
   } catch (error) {
     console.error("Error:", error.message);
   }
 };
+
 
 export async function updateCart(
   cartId: string,
@@ -584,3 +587,412 @@ export async function updateCart(
 /*************************************
 ******* shopify cart end ***********
 **************************************/
+
+
+
+
+// export async function createCheckout() {
+//   console.log("createCheckout");
+  
+
+//   const { commerceConfig } = getConfig();
+
+//   const storefrontAccessToken = commerceConfig.storefrontAccessToken
+//   const apiEndpoint = commerceConfig.apiEndpoint
+//   const mutation = `
+//       mutation checkoutCreate($input: CheckoutCreateInput!) {
+//           checkoutCreate(input: $input) {
+//               checkout {
+//                   id
+//                   webUrl
+//               }
+//               checkoutUserErrors {
+//                   field
+//                   message
+//               }
+//               queueToken
+//           }
+//       }
+//   `;
+
+//   const input = {
+//     "allowPartialAddresses": true,
+//     "customAttributes": [
+//       {
+//         "key": "YourCustomAttributeKey",
+//         "value": "YourCustomAttributeValue"
+//       }
+//     ],
+//     "email": "customer@example.com",
+//     "lineItems": [
+//       {
+//         "customAttributes": [
+//           {
+//             "key": "LineItemCustomAttributeKey",
+//             "value": "LineItemCustomAttributeValue"
+//           }
+//         ],
+//         "quantity": 1,
+//         "variantId": "gid://shopify/ProductVariant/44673052934366"
+//       }
+//     ],
+//     "note": "Any additional notes or instructions",
+//     "presentmentCurrencyCode": "STD",
+//     "shippingAddress": {
+//       "address1": "123 Main St",
+//       "address2": "Apt 4",
+//       "city": "Cityville",
+//       "company": "ABC Inc",
+//       "country": "United States",
+//       "firstName": "John",
+//       "lastName": "Doe",
+//       "phone": "123-456-7890",
+//       "province": "CA",
+//       "zip": "12345"
+//     },
+//   };
+
+//   const variables = {
+//     input,
+//   };
+
+//   try {
+//     const response = await fetch(apiEndpoint, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+//       },
+//       body: JSON.stringify({
+//         query: mutation,
+//         variables,
+//       }),
+//     });
+    
+//     const data = await response.json();
+//     console.log("response", data);
+
+//     const checkout = data.data.checkoutCreate.checkout;
+//     console.log('Checkout ID:', checkout.id);
+//     console.log('Checkout URL:', checkout.webUrl);
+//   } catch (error) {
+//     console.error('Error:', error);
+//   }
+// }
+
+
+export const createCheckout = async (): Promise<CheckoutResult> => {
+  console.log("hiii");
+  const { commerceConfig } = getConfig();
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
+  const mutation = `
+    mutation checkoutCreate($input: CheckoutCreateInput!) {
+      checkoutCreate(input: $input) {
+        checkout {
+          id
+        }
+        userErrors {
+          field
+          message
+        }
+        checkoutUserErrors {
+          field
+          message
+          code
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+      },
+      body: JSON.stringify({ query: mutation }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to create Shopify checkout. Status: ${response.status}`);
+    }
+
+    const responseData: ShopifyCheckoutResponse = await response.json();
+    console.log("############",responseData);
+    const checkoutId: string = responseData.data.checkoutCreate.checkout.id;
+    console.log("@@@@@@@@@",checkoutId)
+
+    return { checkoutId };
+  } catch (error) {
+    console.error('Error creating Shopify checkout:', error);
+    throw error;
+  }
+};
+
+type CheckoutResult = {
+  checkoutId: string;
+};
+
+type ShopifyCheckoutResponse = {
+  data: {
+    checkoutCreate: {
+      checkout: {
+        id: string;
+      };
+    };
+  };
+};
+
+
+export const addProductToCheckout = async (checkoutId: string, productId: string, quantity: number = 1): Promise<AddToCheckoutResult> => {
+  const { commerceConfig } = getConfig();
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
+  const mutation = `
+    mutation checkoutLineItemsAdd($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
+      checkoutLineItemsAdd(checkoutId: $checkoutId, lineItems: $lineItems) {
+        checkout {
+          id
+          lineItems(first: 5) {
+            edges {
+              node {
+                title
+                variant {
+                  id
+                  priceV2 {
+                    amount
+                  }
+                }
+                quantity
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const variables = {
+    checkoutId,
+    lineItems: [{ variantId: productId, quantity }],
+  };
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+      },
+      body: JSON.stringify({ query: mutation, variables }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to add product to Shopify checkout. Status: ${response.status}`);
+    }
+
+    const responseData: ShopifyAddToCheckoutResponse = await response.json();
+    const updatedCheckout = responseData.data.checkoutLineItemsAdd.checkout;
+
+    return { updatedCheckout };
+  } catch (error) {
+    console.error('Error adding product to Shopify checkout:', error);
+    throw error;
+  }
+};
+
+// Define types for better clarity
+type AddToCheckoutResult = {
+  updatedCheckout: ShopifyCheckout;
+};
+
+type ShopifyAddToCheckoutResponse = {
+  data: {
+    checkoutLineItemsAdd: {
+      checkout: ShopifyCheckout;
+    };
+  };
+};
+
+type ShopifyCheckout = {
+  id: string;
+  lineItems: {
+    edges: {
+      node: {
+        title: string;
+        variant: {
+          id: string;
+          priceV2: {
+            amount: number;
+          };
+        };
+        quantity: number;
+      };
+    }[];
+  };
+};
+
+
+export const updateShippingAddress = async (
+  checkoutId: string,
+  shippingAddress: ShopifyShippingAddress
+): Promise<UpdateShippingAddressResult> => {
+  const { commerceConfig } = getConfig();
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
+  const mutation = `
+  mutation updateShippingAddress($checkoutId: ID!, $shippingAddress: MailingAddressInput!) {
+    checkoutShippingAddressUpdateV2(checkoutId: $checkoutId, shippingAddress: $shippingAddress) {
+      checkout {
+        shippingAddress {
+          address1
+          address2
+          city
+          company
+          country
+          firstName
+          lastName
+          province
+          zip
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+      checkoutUserErrors {
+        field
+        message
+        code
+      }
+    }
+  }
+`;
+
+  const variables = {
+    checkoutId,
+    shippingAddress,
+  };
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+      },
+      body: JSON.stringify({ query: mutation, variables }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to update shipping address in Shopify checkout. Status: ${response.status}`);
+    }
+ console.log("reddd",response);
+    const responseData: ShopifyUpdateShippingAddressResponse = await response.json();
+    console.log("oooo",responseData)
+    const updatedCheckout = responseData?.data?.checkoutShippingAddressUpdate?.checkout;
+
+    return { updatedCheckout };
+  } catch (error) {
+    console.error('Error updating shipping address in Shopify checkout:', error);
+    throw error;
+  }
+};
+
+type UpdateShippingAddressResult = {
+  updatedCheckout: ShopifyCheckout;
+};
+
+type ShopifyUpdateShippingAddressResponse = {
+  data: {
+    checkoutShippingAddressUpdate: {
+      checkout: ShopifyCheckout;
+    };
+  };
+};
+
+type ShopifyShippingAddress = {
+  firstName: string;
+  lastName: string;
+  address1: string;
+  city: string;
+  country: string;
+  province: string;
+  zip: string;
+};
+
+
+export const updateEmail = async (
+  checkoutId: string,
+  email: string
+): Promise<UpdateEmailResult> => {
+  const { commerceConfig } = getConfig();
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
+  const mutation = `
+    mutation updateEmail($checkoutId: ID!, $email: String!) {
+      checkoutEmailUpdateV2(checkoutId: $checkoutId, email: $email) {
+        checkout {
+          checkoutId,
+          email
+        }
+        checkoutUserErrors {
+          # CheckoutUserError fields
+        }
+      }
+    }
+  `;
+
+  const variables = {
+    checkoutId,
+    email,
+  };
+
+  try {
+    const response = await fetch(apiEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+      },
+      body: JSON.stringify({ query: mutation, variables }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to update email in Shopify checkout. Status: ${response.status}`);
+    }
+
+    const responseData: ShopifyUpdateEmailResponse = await response.json();
+    const updatedCheckout = responseData?.data?.checkoutEmailUpdateV2?.checkout;
+    console.log("updatedCheckout", updatedCheckout);
+    
+
+    return { updatedCheckout };
+  } catch (error) {
+    console.error('Error updating email in Shopify checkout:', error);
+    throw error;
+  }
+};
+
+type UpdateEmailResult = {
+  updatedCheckout: ShopifyCheckout;
+};
+
+type ShopifyUpdateEmailResponse = {
+  data: {
+    checkoutEmailUpdateV2: {
+      checkout: ShopifyCheckout;
+      checkoutUserErrors: CheckoutUserError[];
+    };
+  };
+};
+
+type CheckoutUserError = {
+  field: string;
+  message: string;
+};

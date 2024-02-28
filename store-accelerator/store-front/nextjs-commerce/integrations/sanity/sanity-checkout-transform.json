@@ -1,0 +1,31 @@
+{
+    "transformer": [
+       {
+        "inputFieldName": "Contact",
+        "outputFieldName": "Contact"
+       },
+       {
+        "inputFieldName": "bottomButtons",
+        "outputFieldName": "bottomButtons"
+       },
+       {
+        "inputFieldName": "checkoutProcess",
+        "outputFieldName": "checkoutProcess"
+       },
+       {
+        "inputFieldName": "copyrightNotice",
+        "outputFieldName": "copyrightNotice"
+       },
+       {
+        "inputFieldName": "quantityInfo",
+        "outputFieldName": "quantityInfo"
+       },
+       {
+        "inputFieldName": "shipping",
+        "outputFieldName": "shipping"
+       }
+       
+       
+    ]
+}
+

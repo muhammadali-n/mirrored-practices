@@ -41,20 +41,32 @@ export default (S: StructureBuilder): ListBuilder =>
                                 )
                             ])
                         ),
-                        S.listItem()
+                      S.listItem()
                         .title("Cart")
                         .child(
                           S.documentTypeList("cartItems")
                             .title('items')
                         ),
+                      S.listItem()
+                        .title("Checkout")
+                        .child(
+                          S.documentTypeList("checkout")
+                            .title('items')
+                        ),
+                      S.listItem()
+                        .title("Shipment")
+                        .child(
+                          S.documentTypeList("shipment")
+                            .title('items')
+                        ),
                     ]),
                 ),
-                S.listItem()
+              S.listItem()
                 .title("header")
                 .child(
                   S.documentTypeList("header")
                 ),
-                S.listItem()
+              S.listItem()
                 .title("footer")
                 .child(
                   S.documentTypeList("footer")
