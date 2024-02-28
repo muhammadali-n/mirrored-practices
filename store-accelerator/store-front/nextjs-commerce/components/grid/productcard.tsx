@@ -31,7 +31,7 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
 
   return (
     <div className={styles['product-card-container']}>
-      <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>     
+      <Link className="relative inline-block h-full w-full " href={`/product/${product.handle}`} style={{ textDecoration: 'none', color: 'inherit' }}>     
 
       <div className={styles['flex-container']}>
         <div>
