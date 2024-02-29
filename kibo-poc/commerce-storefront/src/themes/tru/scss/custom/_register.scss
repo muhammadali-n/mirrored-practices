@@ -1,0 +1,316 @@
+.register-page-outer {
+    position: relative;
+    border-bottom: $border-width solid $gray-300;
+
+    @include media-breakpoint-down(sm) {
+        border-bottom: 0;
+    }
+
+    &:before {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        background-image: url(/images/tru/svg/geoffrey.svg);
+        background-repeat: no-repeat;
+        background-size: 7.65625em 18.34375em;
+        content: "";
+        background-position: -4.5625em -11em;
+        width: 1.25em;
+        height: 3.65625em;
+        font-size: 16.562rem;
+        position: absolute;
+        right: 97%;
+        top: 0;
+        transform: rotate(50deg) scale(-1, 1);
+
+        @include media-breakpoint-down(md) {
+            display: none;
+        }
+    }
+}
+.register-header {
+    margin: 3rem auto 1.5rem;
+    max-width: 35rem;
+
+    @include media-breakpoint-down(sm) {
+        max-width: 100%;
+        margin: 1.5rem auto 1rem;
+        padding: 0 1rem;
+    }
+}
+.register-title {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-light;
+    line-height: 3.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+
+    @include media-breakpoint-down(sm) {
+        font-size: $h2-font-size;
+        line-height: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.register-subtitle {
+    font-size: $h2-font-size;
+    font-weight: $font-weight-light;
+    line-height: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+
+    @include media-breakpoint-down(sm) {
+        font-size: $h4-font-size;
+        line-height: 2rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.register-caption {
+    text-align: center;
+}
+
+.register-social {
+    margin: 0 1rem 1.5rem;
+
+    @include media-breakpoint-up(md) {
+        margin: 0 auto 3rem;
+        max-width: 35rem;
+        text-align: center;
+    }
+
+    .register-social-buttons {
+        .col-md-6 {
+            @include media-breakpoint-up(md) {
+                padding-right: 8px;
+                padding-left: 8px;
+            }
+            @include media-breakpoint-down(sm) {
+                &:first-child {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+        .register-caption {
+            margin-top: 2rem;
+
+            @include media-breakpoint-down(sm) {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+.register-main {
+    background-color: $gray-100;
+    padding-top: 2.5rem;
+    padding-bottom: 7.5rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 1.5rem;
+        padding-bottom: 2rem;
+        border-top: 0.5rem solid $gray-200;
+        background-color: $white;
+    }
+
+    &.register-page-2 {
+        padding-bottom: 2rem;
+
+        @include media-breakpoint-down(sm) {
+            padding-top: 0;
+        }
+    }
+}
+
+.register-block {
+    background-color: $white;
+    border-radius: $border-radius-lg;
+    margin: 0 auto;
+    max-width: 38.75rem;
+    padding: 1.5rem 0;
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+        max-width: 100%;
+        border-radius: 0;
+        padding: 1rem 0;
+    }
+}
+
+.register-form-outer {
+    .register-subtitle {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 0;
+
+        .register-subtitle {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.register-grid {
+    width: 100%;
+    max-width: 18.75rem;
+    margin: 0 auto;
+
+    @include media-breakpoint-down(sm) {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    &.register-grid-kids {
+        @include media-breakpoint-down(sm) {
+            max-width: 18.75rem;
+        }
+    }
+}
+
+.register-kids-outer {
+    padding: 4rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+
+    @include media-breakpoint-down(sm) {
+        padding: 3rem 0 1rem;
+    }
+
+    .register-kids-content {
+        &:before,
+        &:after {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            background-image: url(/images/tru/svg/sprite.svg);
+            background-repeat: no-repeat;
+            background-size: 51.390625em 49em;
+            font-size: 10.937rem;
+            position: absolute;
+        }
+
+        &:before {
+            content: "";
+            background-position: -7.51562em -6em;
+            width: 1em;
+            height: 1em;
+            bottom: -1.062rem;
+            left: 0;
+            -webkit-transform: rotate(28deg);
+            -ms-transform: rotate(28deg);
+            transform: rotate(28deg);
+
+            @include media-breakpoint-down(sm) {
+                bottom: auto;
+                left: -1.437rem;
+                top: 0.185rem;
+                font-size: 6.25rem;
+            }
+        }
+
+        &:after {
+            content: "";
+            background-position: -16.51562em -15em;
+            width: 1em;
+            height: 1em;
+            right: -1.875rem;
+            top: 1.25rem;
+            -webkit-transform: rotate(-30deg);
+            -ms-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+
+            @include media-breakpoint-down(sm) {
+                font-size: 6.25rem;
+                right: -2.562rem;
+                top: -1.562rem;
+            }
+        }
+    }
+
+    .register-subtitle {
+        font-family: $font-family-secondary;
+        font-weight: normal;
+        font-size: $font-size-xxl;
+        color: $red;
+
+        @include media-breakpoint-down(sm) {
+            font-size: $h2-font-size;
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.register-store-outer {
+    padding: 0;
+
+    @include media-breakpoint-down(sm) {
+        border-top: 0.5rem solid $gray-200;
+        border-bottom: 0.5rem solid $gray-200;
+    }
+}
+
+.register-store-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    font-size: $h4-font-size;
+    line-height: 1;
+    cursor: pointer;
+
+    @include media-breakpoint-down(sm) {
+        padding: 1rem;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    i {
+        border: $border-width solid $border-color;
+        border-radius: $border-radius;
+        padding: 0.25rem;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.register-store-locator {
+    padding: 0 2rem 2rem;
+
+    @include media-breakpoint-down(sm) {
+        padding: 0 1rem 1rem;
+    }
+}
+
+.register-store-select {
+    margin-top: 0.5rem;
+}
+
+.register-footer {
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 0;
+        padding-bottom: 3rem;
+    }
+}
+
+.register-gender-select {
+    display: flex;
+    justify-content: space-between;
+
+    .children-select {
+        width: calc(50% - .35rem);
+    }
+}

@@ -1,0 +1,106 @@
+.custom-tabs {
+    .nav-tabs {
+        .nav-item {
+            margin-bottom: 0;
+        }
+        .nav-link {
+            border: 0;
+            cursor: pointer;
+            padding: 1.25rem 2rem;
+            position: relative;
+
+            [dir="ltr"] & {
+                margin-right: 0.5rem;
+            }
+            [dir="rtl"] & {
+                margin-left: 0.5rem;
+            }
+
+            &:after {
+                -webkit-transition-property: -webkit-transform;
+                -o-transition-property: transform;
+                transition-property: transform;
+                transition-property: transform, -webkit-transform;
+                -webkit-transition-duration: 0.3s;
+                -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+                -webkit-transition-timing-function: ease-in;
+                -o-transition-timing-function: ease-in;
+                transition-timing-function: ease-in;
+                -webkit-transition-delay: 0s;
+                -o-transition-delay: 0s;
+                transition-delay: 0s;
+                background-color: $gray-300;
+                border-radius: 0.5rem 0.5rem 0 0;
+                height: 0.25rem;
+                margin: 0;
+                -webkit-transform: scale(1, 0);
+                -ms-transform: scale(1, 0);
+                transform: scale(1, 0);
+                -webkit-transform-origin: 0 100%;
+                -ms-transform-origin: 0 100%;
+                transform-origin: 0 100%;
+                bottom: 0;
+                content: "";
+                position: absolute;
+                right: 0;
+                width: 100%;
+                top: inherit;
+            }
+
+            &:hover {
+                &:after {
+                    -webkit-transform: scale(1);
+                    -ms-transform: scale(1);
+                    transform: scale(1);
+                }
+            }
+
+            &.active {
+                font-weight: $font-weight-bold;
+
+                &:after {
+                    -webkit-transition-property: -webkit-transform;
+                    -o-transition-property: transform;
+                    transition-property: transform;
+                    transition-property: transform, -webkit-transform;
+                    -webkit-transition-duration: 0.3s;
+                    -o-transition-duration: 0.3s;
+                    transition-duration: 0.3s;
+                    -webkit-transition-timing-function: ease-in;
+                    -o-transition-timing-function: ease-in;
+                    transition-timing-function: ease-in;
+                    -webkit-transition-delay: 0s;
+                    -o-transition-delay: 0s;
+                    transition-delay: 0s;
+                    background-color: $gray-300;
+                    border-radius: 0.5rem 0.5rem 0 0;
+                    height: 0.25rem;
+                    margin: 0;
+                    -webkit-transform: scale(1, 0);
+                    -ms-transform: scale(1, 0);
+                    transform: scale(1, 0);
+                    -webkit-transform-origin: 0 100%;
+                    -ms-transform-origin: 0 100%;
+                    transform-origin: 0 100%;
+                    bottom: 0;
+                    content: "";
+                    position: absolute;
+                    right: 0;
+                    width: 100%;
+                    top: inherit;
+                    -webkit-transform: none;
+                    -ms-transform: none;
+                    transform: none;
+                }
+            }
+        }
+    }
+    .tab-content {
+        padding-top: 1.5rem;
+
+        p {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

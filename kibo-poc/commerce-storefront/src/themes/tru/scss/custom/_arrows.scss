@@ -1,0 +1,300 @@
+.btn-arrow {
+    position: absolute;
+    top: 40%;
+    z-index: 10;
+    color: $white;
+    -webkit-transition-property: opacity, color;
+    -o-transition-property: opacity, color;
+    transition-property: opacity, color;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    -webkit-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+
+    &:before {
+        -webkit-transition-property: color;
+        -o-transition-property: color;
+        transition-property: color;
+        -webkit-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-in;
+        -o-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        -webkit-transition-delay: 0s;
+        -o-transition-delay: 0s;
+        transition-delay: 0s;
+        color: $light-blue;
+        content: "\ea23";
+        @include icon;
+        font-size: 3rem;
+    }
+    &:hover {
+        &:before {
+            color: $light-green;
+        }
+    }
+    .arrow-icon {
+        min-height: 1rem;
+        min-width: 1rem;
+        left: 50%;
+        margin: -0.5rem;
+        position: absolute;
+        top: 50%;
+
+        &:before,
+        &:after {
+            -webkit-transition-property: -webkit-transform;
+            -o-transition-property: transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-duration: 0.15s;
+            -o-transition-duration: 0.15s;
+            transition-duration: 0.15s;
+            -webkit-transition-timing-function: ease-in;
+            -o-transition-timing-function: ease-in;
+            transition-timing-function: ease-in;
+            -webkit-transition-delay: 0s;
+            -o-transition-delay: 0s;
+            transition-delay: 0s;
+            background-color: $white;
+            border-radius: 1rem;
+            content: "";
+            display: block;
+            font-size: 0;
+            height: 0.25rem;
+            left: 50%;
+            margin-left: -0.5rem;
+            margin-top: -0.125rem;
+            position: absolute;
+            top: 50%;
+            -webkit-transform-origin: 0.125rem 50%;
+            -ms-transform-origin: 0.125rem 50%;
+            transform-origin: 0.125rem 50%;
+            width: 1rem;
+        }
+
+        &:before {
+            -webkit-animation: arrow-bounce-top 0.6s;
+            animation: arrow-bounce-top 0.6s;
+            -webkit-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        &:after {
+            -webkit-animation: arrow-bounce-bottom 0.6s;
+            animation: arrow-bounce-bottom 0.6s;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+    &.arrow-left,
+    &.slick-prev {
+        left: 0;
+
+        .arrow-icon {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+    }
+    &.arrow-right,
+    &.slick-next {
+        right: 0;
+
+        .arrow-icon {
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+    }
+    &:active {
+        &:before {
+            color: $light-green;
+        }
+        .arrow-icon {
+            &:before {
+                -webkit-animation: unset;
+                animation: unset;
+                -webkit-transform: rotate(-15deg);
+                -ms-transform: rotate(-15deg);
+                transform: rotate(-15deg);
+            }
+            &:after {
+                -webkit-animation: unset;
+                animation: unset;
+                -webkit-transform: rotate(15deg);
+                -ms-transform: rotate(15deg);
+                transform: rotate(15deg);
+            }
+        }
+    }
+    &.sm {
+        &:before {
+            font-size: $h2-font-size;
+        }
+        .arrow-icon {
+            &:before,
+            &:after {
+                width: 0.75rem;
+                height: 0.2rem;
+                left: 10px;
+                transform-origin: 0.1rem 50%;
+            }
+        }
+    }
+}
+
+.btn-arrow-light {
+    position: relative;
+    z-index: 10;
+    color: $white;
+    height: 4.625rem;
+    width: 4.625rem;
+    background-color: $white;
+    border-radius: $border-radius;
+
+    &:hover {
+        &:before {
+            color: $light-green;
+        }
+    }
+    .arrow-icon {
+        height: 4.625rem;
+        width: 4.625rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &:before,
+        &:after {
+            -webkit-transition-property: -webkit-transform;
+            -o-transition-property: transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-duration: 0.15s;
+            -o-transition-duration: 0.15s;
+            transition-duration: 0.15s;
+            -webkit-transition-timing-function: ease-in;
+            -o-transition-timing-function: ease-in;
+            transition-timing-function: ease-in;
+            -webkit-transition-delay: 0s;
+            -o-transition-delay: 0s;
+            transition-delay: 0s;
+            background-color: $black;
+            border-radius: 1rem;
+            content: "";
+            display: block;
+            font-size: 0;
+            height: 0.25rem;
+            left: 50%;
+            margin-left: -0.5rem;
+            margin-top: -0.125rem;
+            position: absolute;
+            top: 50%;
+            -webkit-transform-origin: 0.125rem 50%;
+            -ms-transform-origin: 0.125rem 50%;
+            transform-origin: 0.125rem 50%;
+            width: 1rem;
+        }
+
+        &:before {
+            -webkit-animation: arrow-bounce-top 0.6s;
+            animation: arrow-bounce-top 0.6s;
+            -webkit-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+        &:after {
+            -webkit-animation: arrow-bounce-bottom 0.6s;
+            animation: arrow-bounce-bottom 0.6s;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+    &.arrow-prev {
+        [dir="ltr"] & {
+            left: 0;
+        }
+
+        [dir="rtl"] & {
+            right: 0;
+        }
+
+        .arrow-icon {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+
+            [dir="rtl"] & {
+                -webkit-transform: rotate(180deg);
+                -ms-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &.arrow-next {
+        [dir="ltr"] & {
+            right: 0;
+        }
+
+        [dir="rtl"] & {
+            left: 0;
+        }
+
+        .arrow-icon {
+            -webkit-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
+
+            [dir="rtl"] & {
+                -webkit-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+    }
+    &:active {
+        &:before {
+            color: $light-green;
+        }
+        .arrow-icon {
+            &:before {
+                -webkit-animation: unset;
+                animation: unset;
+                -webkit-transform: rotate(-15deg);
+                -ms-transform: rotate(-15deg);
+                transform: rotate(-15deg);
+            }
+            &:after {
+                -webkit-animation: unset;
+                animation: unset;
+                -webkit-transform: rotate(15deg);
+                -ms-transform: rotate(15deg);
+                transform: rotate(15deg);
+            }
+        }
+    }
+}
+
+.arrow-back {
+    color: $white;
+    font-size: $h4-font-size;
+
+    &:before {
+        content: "\ea06";
+        @include icon;
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: $white;
+    }
+}

@@ -21,7 +21,9 @@
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
       "@/hooks/*": ["hooks/*"],
-      "@/pages/*": ["src/pages/*"]
+      "@/pages/*": ["src/pages/*"],
+      "@core/*": ["components/core/*"],
+      "@themes/*": ["src/themes/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next-sitemap.config.js"],

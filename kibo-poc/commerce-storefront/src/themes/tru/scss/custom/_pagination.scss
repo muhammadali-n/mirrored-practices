@@ -1,0 +1,51 @@
+.pagination-outer {
+    padding-top: 2.5rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border-top: 1px solid $gray-300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include media-breakpoint-down(sm) {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .pagination-result {
+        padding: 0 2.5rem;
+
+        span {
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+.page-left,
+.page-right {
+    min-width: 64px;
+}
+.page-left {
+    &:before {
+        @include icon;
+
+        [dir="ltr"] & {
+            content: "\ea06";
+        }
+        [dir="rtl"] & {
+            content: "\ea07";
+        }
+    }
+}
+.page-right {
+    &:before {
+        @include icon;
+        content: "\ea07";
+
+        [dir="ltr"] & {
+            content: "\ea07";
+        }
+        [dir="rtl"] & {
+            content: "\ea06";
+        }
+    }
+}

@@ -1,0 +1,442 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 30px $white inset !important;
+    -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    border-color: $light-green;
+    @include transition-all;
+
+    &:hover {
+        box-shadow: 0 0 0 30px $green-tint inset !important;
+        -webkit-box-shadow: 0 0 0 30px $green-tint inset !important;
+    }
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.3rem;
+
+    label {
+        font-size: $font-size-sm;
+
+        &.label-justify {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+.valid-feedback,
+.invalid-feedback {
+    font-size: $font-size-sm;
+}
+.floating-label {
+    .form-group {
+        .floating-item {
+            position: absolute;
+            top: 13px;
+            margin: 0;
+            height: 21px;
+            padding: 0;
+            @include transition-all;
+            pointer-events: none;
+
+            [dir="ltr"] & {
+                left: 1rem;
+            }
+
+            [dir="rtl"] & {
+                right: 1rem;
+            }
+        }
+        .form-control.has-value,
+        .form-control:focus ~ .floating-item {
+            top: -10px;
+            background-color: $white;
+            padding: 0 0.5rem;
+            font-size: $font-size-xs;
+
+            [dir="ltr"] & {
+                left: 0.5rem;
+            }
+
+            [dir="rtl"] & {
+                right: 0.5rem;
+            }
+        }
+
+        .input-group ~ .floating-item {
+            [dir="ltr"] & {
+                left: 2rem;
+            }
+
+            [dir="rtl"] & {
+                right: 2rem;
+            }
+        }
+    }
+    textarea {
+        font-size: $font-size-sm;
+    }
+}
+.input-item {
+    position: relative;
+    width: 100%;
+}
+.form-control {
+    position: relative;
+    transition-property: border-color, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+    transition-delay: 0s;
+
+    &.required {
+        [dir="ltr"] & {
+            padding-right: 2.5rem;
+        }
+
+        [dir="rtl"] & {
+            padding-left: 2.5rem;
+        }
+    }
+    &.is-valid {
+        background-image: none;
+        border-color: $light-green;
+
+        &:hover {
+            background-color: $green-tint;
+        }
+    }
+    &.is-invalid {
+        background-image: none;
+        background-color: $red-tint;
+    }
+}
+.form-control ~ .validation-mark {
+    background-color: $white;
+    border-radius: 100%;
+    color: $white;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.75rem;
+    transform: scale(0);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transition-property: transform, background-color, -webkit-transform;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+    transition-delay: 0s;
+
+    [dir="ltr"] & {
+        right: 0;
+    }
+
+    [dir="rtl"] & {
+        left: 0;
+    }
+
+    &:after,
+    &:before {
+        transition-property: all;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in;
+        transition-delay: 0.3s;
+        bottom: 0.375rem;
+        left: 0.375rem;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        text-align: center;
+        width: 0.75rem;
+        @include icon;
+        font-size: $font-size-xs;
+    }
+    &:after {
+        height: 0;
+        content: "\ea0b";
+    }
+    &:before {
+        width: 0;
+        content: "\ea1b";
+    }
+}
+.form-control.is-valid ~ .validation-mark {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    background-color: $light-green;
+
+    &:before {
+        opacity: 1;
+        width: 0.75rem;
+    }
+}
+.form-control.is-invalid ~ .validation-mark {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    background-color: $red;
+
+    &:after {
+        height: 0.75rem;
+        opacity: 1;
+        content: "\ea0b";
+    }
+}
+.password.form-control ~ .validation-mark {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    background-color: transparent;
+    pointer-events: visible;
+    cursor: pointer;
+
+    &:before {
+        content: "\ea18";
+        color: $gray-300;
+        font-size: $h4-font-size;
+        opacity: 1;
+        width: 0.75rem;
+        top: 0;
+        width: 24px;
+        height: 24px;
+
+        [dir="ltr"] & {
+            left: 0;
+        }
+
+        [dir="rtl"] & {
+            right: 0;
+        }
+    }
+
+    &:after {
+        display: none;
+    }
+
+    &.active {
+        &:before {
+            color: $light-blue;
+        }
+    }
+}
+.form-prepend {
+    display: flex;
+    flex-direction: row;
+
+    .prepend-item {
+        padding: 0.5rem 0.75rem;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        border: $input-border-width solid $input-border-color;
+        font-family: $input-font-family;
+        @include font-size($input-font-size);
+        border-radius: $border-radius;
+
+        [dir="ltr"] & {
+            border-right: 0;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        [dir="rtl"] & {
+            border-left: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .flag {
+            margin-right: 0;
+
+            &:before {
+                transform: scale(1);
+            }
+        }
+    }
+
+    .prepend-input {
+        position: relative;
+        width: 100%;
+
+        .form-control {
+            [dir="ltr"] & {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            [dir="rtl"] & {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+    }
+}
+.form-sm {
+    width: 100%;
+    position: relative;
+
+    .form-sm-input {
+        width: 100%;
+        height: 48px;
+        font-size: 0.875rem;
+        display: inline-block;
+        vertical-align: middle;
+
+        [dir="ltr"] & {
+            padding-right: 100px;
+        }
+
+        [dir="rtl"] & {
+            padding-left: 100px;
+        }
+    }
+    .form-sm-btn {
+        position: absolute;
+        top: 3px;
+        bottom: 3px;
+        background: transparent;
+        border: 0;
+        color: $primary;
+        min-height: 42px;
+        height: 42px;
+        min-width: auto;
+        padding: 0.5rem 1rem;
+        font-weight: 700;
+        border-radius: $border-radius;
+        @include transition-all;
+
+        [dir="ltr"] & {
+            right: 0.2rem;
+        }
+
+        [dir="rtl"] & {
+            left: 0.2rem;
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        &:active {
+            background-color: $light-blue;
+            color: $white;
+        }
+    }
+}
+.card-cvv {
+    display: flex;
+    width: 100%;
+
+    .cvv-input {
+        width: 100%;
+        max-width: 165px;
+    }
+
+    .cvv-img {
+        [dir="ltr"] & {
+            margin-left: 0.5rem;
+        }
+
+        [dir="rtl"] & {
+            margin-right: 0.5rem;
+        }
+
+        img {
+            height: 48px;
+        }
+    }
+}
+.input-sm {
+    width: 100%;
+    max-width: 150px;
+}
+
+.form-sm-outer {
+    width: 100%;
+    max-width: 18.75rem;
+    margin: 0 auto;
+
+    @include media-breakpoint-down(sm) {
+        max-width: 100%;
+    }
+}
+
+.input-group-prepend {
+    padding: 0.5rem 0.75rem;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    border: $input-border-width solid $input-border-color;
+    font-family: $input-font-family;
+    @include font-size($input-font-size);
+    border-radius: $border-radius;
+
+    [dir="ltr"] & {
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    [dir="rtl"] & {
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .flag {
+        margin-right: 0;
+
+        &:before {
+            transform: scale(1);
+        }
+    }
+}
+
+.input-group-prepend + .input-item {
+    position: relative;
+    width: 100%;
+
+    .form-control {
+        [dir="ltr"] & {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        [dir="rtl"] & {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    }
+}
+.input-card {
+    .form-control {
+        [dir="ltr"] & {
+            padding-right: 4rem;
+        }
+
+        [dir="rtl"] & {
+            padding-left: 4rem;
+        }
+    }
+    .cardpay-img {
+        position: absolute;
+        top: 0.5rem;
+
+        [dir="ltr"] & {
+            right: 0.5rem;
+        }
+
+        [dir="rtl"] & {
+            left: 0.5rem;
+        }
+    }
+}
+.form-group {
+    small {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-light;
+    }
+}

@@ -1,5 +1,6 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
+import TRUHome from '../layouts/TRUHome';
 import { homePageResultMock } from '@/__mocks__/stories'
 import KiboHeroCarousel from '@/components/home/Carousel/KiboHeroCarousel'
 import getCategoryTree from '@/lib/api/operations/get-category-tree'
@@ -28,6 +29,7 @@ const Home: NextPageWithLayout<HomePageProps> = (props) => {
   return (
     <>
       <KiboHeroCarousel carouselItem={carouselItem || []}></KiboHeroCarousel>
+      <TRUHome />
     </>
   )
 }

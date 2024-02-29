@@ -18,6 +18,7 @@ import type { NextPageWithLayout } from '@/lib/types'
 
 import '@/styles/global.css'
 import '@splidejs/react-splide/css'
+import "@themes/tru/scss/main-scss/main.scss";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()

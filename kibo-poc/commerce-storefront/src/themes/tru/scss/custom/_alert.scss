@@ -1,0 +1,46 @@
+.alert {
+    font-size: $font-size-sm;
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+
+    i {
+        line-height: 0;
+        [dir="ltr"] & {
+            margin-right: 1rem;
+        }
+
+        [dir="rtl"] & {
+            margin-left: 1rem;
+        }
+    }
+}
+.alert-warning {
+    background-color: $yellow-tint;
+    border-color: $yellow;
+}
+.alert-dark {
+    background-color: $red-tint;
+    border-color: $red;
+}
+.alert-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    @include media-breakpoint-down(md) {
+        margin-right: -1rem;
+        margin-left: -1rem;
+        border-radius: 0;
+    }
+
+    figure {
+        [dir="ltr"] & {
+            margin-right: 1rem;
+        }
+
+        [dir="rtl"] & {
+            margin-left: 1rem;
+        }
+    }
+}
