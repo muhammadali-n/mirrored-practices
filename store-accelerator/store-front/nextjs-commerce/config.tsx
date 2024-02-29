@@ -45,7 +45,9 @@ const fetchProvider = {
   //API to fetch Collections
   "getCollectionDetails": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
   //API to fetch Products (image, name, price) for a give collection
-  "getCollectionProductDetails": type.TYPE_SPECIFICATION.SHOPIFY_TYPE
+  "getCollectionProductDetails": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to fetch Cart
+  "getCart" : type.TYPE_SPECIFICATION.SHOPIFY_TYPE
 }
 
 //configuration

@@ -73,7 +73,7 @@ export default async function CartContainer() {
   useEffect(() => {
     const fetchData = async () => {
       if (cartId) {
-        cart = await performCommonIntegration(getCart, cartId)
+        cart = await performCommonIntegration("getCart", cartId)
         const products = cart?.products
         const price = cart?.cost
         setProducts(products)
@@ -90,9 +90,7 @@ export default async function CartContainer() {
     router.push('/search/all');
   };
 
-
   return (
-
     <Cart
       sanityContent={sanityContent}
       removeItemFromCart={removeItemFromCart}
