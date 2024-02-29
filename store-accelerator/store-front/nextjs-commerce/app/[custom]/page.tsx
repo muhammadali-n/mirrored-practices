@@ -7,8 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchPageDataBySlug } from '@/integrations/sanity/sanity-integration';
 import './module.css';
 import Footer from '@/components/layout/footer';
-import HeroImage from '@/components/CustomPage/HeroImage';
-import BlockImages from '@/components/CustomPage/BlockImages';
 
 //identify endpoint in common
 export function getSlug(params: any) {
@@ -80,7 +78,7 @@ function Page(params: any) {
             <div key={section._id}>
               {section._type === 'image' && (
                 <div className="col-sm-12 d-flex justify-content-center">
-                  <HeroImage imageUrl={urlFor(section)?.url()} />
+                 <img src={urlFor(section)?.url()} alt="hero" />
                 </div>
               )}
 
@@ -96,7 +94,6 @@ function Page(params: any) {
                           alt={image.altText}
                           className="img-fluid"
                         />
-                     <BlockImages imageUrl={urlFor(image)?.url()} key={image._id} />
                       </div>
                     ))}
                   </div>

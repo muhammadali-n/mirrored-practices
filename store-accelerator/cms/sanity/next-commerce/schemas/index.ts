@@ -18,4 +18,5 @@ import shipment from "./documents/shipment";
 import storeName from "./documents/store-name";
 import plpData from "./documents/plp-data";
 import pdpData from "./documents/pdp-data";
-export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems, checkout, shipment, storeName,plpData,pdpData]
+import payment from "./documents/payment";
+export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems, checkout, shipment, storeName,plpData,pdpData,payment]

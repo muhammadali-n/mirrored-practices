@@ -801,7 +801,6 @@ export const getCart = async (cartId: string) => {
     }
 
     const data = await response.json();
-    console.log("dddd", data);
     const checkoutUrl = data.data.cart.checkoutUrl
     const products = removeEdgesAndNodes(data.data.cart.lines)
     const cost = data.data.cart.cost
@@ -839,96 +838,10 @@ export async function updateCart(
 **************************************/
 
 
+/*************************************
+******* shopify checkout start ***********
+**************************************/
 
-
-// export async function createCheckout() {
-//   console.log("createCheckout");
-  
-
-//   const { commerceConfig } = getConfig();
-
-//   const storefrontAccessToken = commerceConfig.storefrontAccessToken
-//   const apiEndpoint = commerceConfig.apiEndpoint
-//   const mutation = `
-//       mutation checkoutCreate($input: CheckoutCreateInput!) {
-//           checkoutCreate(input: $input) {
-//               checkout {
-//                   id
-//                   webUrl
-//               }
-//               checkoutUserErrors {
-//                   field
-//                   message
-//               }
-//               queueToken
-//           }
-//       }
-//   `;
-
-//   const input = {
-//     "allowPartialAddresses": true,
-//     "customAttributes": [
-//       {
-//         "key": "YourCustomAttributeKey",
-//         "value": "YourCustomAttributeValue"
-//       }
-//     ],
-//     "email": "customer@example.com",
-//     "lineItems": [
-//       {
-//         "customAttributes": [
-//           {
-//             "key": "LineItemCustomAttributeKey",
-//             "value": "LineItemCustomAttributeValue"
-//           }
-//         ],
-//         "quantity": 1,
-//         "variantId": "gid://shopify/ProductVariant/44673052934366"
-//       }
-//     ],
-//     "note": "Any additional notes or instructions",
-//     "presentmentCurrencyCode": "STD",
-//     "shippingAddress": {
-//       "address1": "123 Main St",
-//       "address2": "Apt 4",
-//       "city": "Cityville",
-//       "company": "ABC Inc",
-//       "country": "United States",
-//       "firstName": "John",
-//       "lastName": "Doe",
-//       "phone": "123-456-7890",
-//       "province": "CA",
-//       "zip": "12345"
-//     },
-//   };
-
-//   const variables = {
-//     input,
-//   };
-
-//   try {
-//     const response = await fetch(apiEndpoint, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-//       },
-//       body: JSON.stringify({
-//         query: mutation,
-//         variables,
-//       }),
-//     });
-    
-//     const data = await response.json();
-//     console.log("response", data);
-
-//     const checkout = data.data.checkoutCreate.checkout;
-//     console.log('Checkout ID:', checkout.id);
-//     console.log('Checkout URL:', checkout.webUrl);
-//   } catch (error) {
-//     console.error('Error:', error);
-//   }
-// }
 
 
 export const createCheckout = async (): Promise<CheckoutResult> => {
@@ -1246,3 +1159,6 @@ type CheckoutUserError = {
   field: string;
   message: string;
 };
+/*************************************
+******* shopify checkout end ***********
+**************************************/
