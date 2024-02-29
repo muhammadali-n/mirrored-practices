@@ -1,0 +1,885 @@
+.social-media {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include media-breakpoint-down(md) {
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    li {
+        margin-bottom: 0.5rem;
+
+        [dir="ltr"] & {
+            margin-right: 1rem;
+        }
+        [dir="rtl"] & {
+            margin-left: 1rem;
+        }
+
+        a {
+            transition: $transition-base;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            opacity: 1;
+            @include transition-opacity;
+
+            &:hover {
+                opacity: 0.75;
+            }
+
+            span {
+                &:before {
+                    content: "";
+                    width: 40px;
+                    height: 40px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 2.5rem;
+                    line-height: 1;
+                    background-image: url(/images/tru/svg/social-icons.svg);
+                    background-repeat: no-repeat;
+                    background-size: 9em 9em;
+                    @include transition-opacity;
+                }
+
+                &.i-fb {
+                    &:before {
+                        background-position: -1em -1em;
+                    }
+                }
+
+                &.i-twitter {
+                    &:before {
+                        background-position: -5em -5em;
+                    }
+                }
+
+                &.i-instagram {
+                    &:before {
+                        background-position: -3em -3em;
+                    }
+                }
+
+                &.i-youtube {
+                    &:before {
+                        background-position: -8em -8em;
+                    }
+                }
+
+                &.i-email {
+                    &:before {
+                        background-position: 0 0;
+                    }
+                }
+
+                &.i-pinterest {
+                    &:before {
+                        background-position: -4em -4em;
+                    }
+                }
+            }
+
+            &:hover {
+                color: $secondary;
+
+                span {
+                    &:before {
+                        opacity: 0.75;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.icon-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 1rem;
+
+    &:before {
+        content: "";
+        width: 2rem;
+        height: 2rem;
+        font-size: 2rem;
+        flex: 0 0 2rem;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        background-image: url(/images/tru/svg/sprite.svg);
+        background-repeat: no-repeat;
+        background-size: 51.390625em 49em;
+    }
+
+    &.icon-lg {
+        &:before {
+            width: 3rem;
+            height: 3rem;
+            font-size: 3rem;
+            flex: 0 0 3rem;
+        }
+    }
+
+    .icon-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        font-size: $font-size-sm;
+        margin: 0 0.75rem;
+
+        .ic-btns {
+            margin-top: 0.25rem;
+
+            .btn-link {
+                font-weight: $font-weight-light;
+
+                &.bold {
+                    font-weight: $font-weight-bold;
+                }
+
+                &:before {
+                    content: "\7c";
+                    margin: 0 0.5rem;
+                }
+
+                &:first-child {
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .icon-card-message {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        font-size: $font-size-sm;
+        margin: 0.25rem 0 0;
+        color: $gray-500;
+    }
+
+    &.svg-collect {
+        &:before {
+            background-position: -10.51562em -9em;
+        }
+    }
+
+    &.svg-delivery {
+        &:before {
+            background-position: -12.51562em -11em;
+        }
+    }
+
+    &.svg-tag {
+        &:before {
+            background-position: -43.39062em -41em;
+        }
+    }
+
+    &.svg-gift {
+        &:before {
+            background-position: -31.39062em -29em;
+        }
+
+        &.disabled {
+            &:before {
+                background-position: -32.39062em -30em;
+            }
+        }
+    }
+
+    &.svg-installation {
+        &:before {
+            background-position: -1em -1em;
+        }
+
+        .icon-card-content {
+            span {
+                font-weight: $font-weight-bold;
+            }
+            a {
+                font-weight: $font-weight-light;
+            }
+        }
+    }
+    &.svg-warranty {
+        &:before {
+            background-position: -50.39062em -48em;
+        }
+
+        .icon-card-content {
+            span {
+                font-weight: $font-weight-bold;
+            }
+            a {
+                font-weight: $font-weight-light;
+            }
+        }
+    }
+    &.svg-warranty-active {
+        &:before {
+            background-position: -49.39062em -47em;
+        }
+
+        .icon-card-content {
+            span {
+                font-weight: $font-weight-bold;
+            }
+            a {
+                font-weight: $font-weight-light;
+            }
+        }
+    }
+}
+
+/* Icon Font */
+.icon-lock {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea13";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+
+    &.primary {
+        color: $primary;
+    }
+    &.white {
+        color: $white;
+    }
+}
+.icon-phone {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea16";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+
+    &.black {
+        color: $black;
+    }
+}
+.icon-plus {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea28";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+
+    &.primary {
+        color: $primary;
+    }
+}
+.icon-map-pin {
+    width: 40px;
+    height: 40px;
+    color: $red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+
+    &:before {
+        content: "\ea24";
+        @include icon;
+        font-size: $h1-font-size;
+    }
+
+    span {
+        color: $white;
+        position: absolute;
+    }
+}
+.icon-map-marker {
+    width: 40px;
+    height: 40px;
+    color: $red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-style: normal;
+    font-weight: $font-weight-bold;
+
+    &:before {
+        content: "\ea25";
+        @include icon;
+        font-size: $h1-font-size;
+    }
+}
+.icon-close {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea09";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+}
+.icon-plus {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea28";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+
+    &.black {
+        color: $black;
+    }
+}
+.icon-zoom {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea1e";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+}
+.icon-right {
+    width: 16px;
+    height: 16px;
+
+    &:before {
+        content: "\ea07";
+        @include icon;
+        font-size: $font-size-base;
+
+        [dir="rtl"] & {
+            transform: rotate(180deg);
+        }
+    }
+}
+.icon-left {
+    width: 16px;
+    height: 16px;
+
+    &:before {
+        content: "\ea06";
+        @include icon;
+        font-size: $font-size-base;
+
+        [dir="rtl"] & {
+            transform: rotate(180deg);
+        }
+    }
+}
+.icon-direction {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea26";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+}
+.icon-envelope {
+    width: 24px;
+    height: 24px;
+
+    &:before {
+        content: "\ea0a";
+        @include icon;
+        font-size: $h4-font-size;
+    }
+}
+/* End Icon Font */
+
+/* Icon SVG */
+[class*="i-svg-"],
+[class*="i-svg-after-"] {
+    font-size: $h2-font-size;
+}
+
+[class*="i-svg-"]::before,
+[class*="i-svg-after-"]::after {
+    display: inline-block;
+    line-height: 1;
+    background-image: url(/images/tru/svg/sprite.svg);
+    background-repeat: no-repeat;
+    background-size: 51.390625em 49em;
+}
+
+.i-svg-returns::before,
+.i-svg-after-returns::after {
+    content: "";
+    background-position: -35.39062em -33em;
+    width: 1em;
+    height: 1em;
+}
+.i-svg-norton::before,
+.i-svg-after-norton::after {
+    content: "";
+    background-position: -23.51562em -22em;
+    width: 1.875em;
+    height: 1em;
+}
+.i-svg-creditcard {
+    &:before {
+        content: "";
+        background-position: -26.39062em -24em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-cod {
+    &:before {
+        content: "";
+        background-position: -9.51562em -8em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-gift {
+    &:before {
+        content: "";
+        background-position: -31.39062em -29em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-installation {
+    &:before {
+        content: "";
+        background-position: -1em -1em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-check {
+    &:before {
+        content: "";
+        background-position: -41.39062em -39em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-edit {
+    &:before {
+        content: "";
+        background-position: -28.39062em -26em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-card {
+    &:before {
+        content: "";
+        background-position: -26.39062em -24em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-info {
+    &:before {
+        content: "";
+        background-position: -20.51562em -19em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-person {
+    &:before {
+        content: "";
+        background-position: -47.39062em -45em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-delivery {
+    &:before {
+        content: "";
+        background-position: -12.51562em -11em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-book {
+    &:before {
+        content: "";
+        background-position: -6.51562em -5em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-card {
+    &:before {
+        content: "";
+        background-position: -11.51562em -10em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-telephone {
+    &:before {
+        content: "";
+        background-position: -29.39062em -27em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-heart {
+    &:before {
+        content: "";
+        background-position: -17.51562em -16em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-mail {
+    &:before {
+        content: "";
+        background-position: -13.51562em -12em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-map {
+    &:before {
+        content: "";
+        background-position: -30.39062em -28em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-girl {
+    &:before {
+        content: "";
+        background-position: -16.51562em -15em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-boy {
+    &:before {
+        content: "";
+        background-position: -7.51562em -6em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-warning {
+    &:before {
+        content: "";
+        background-position: -18.51562em -17em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-toy {
+    &:before {
+        content: "";
+        background-position: -42.39062em -40em;
+        width: 1em;
+        height: 1em;
+    }
+}
+.i-svg-battery {
+    &:before {
+        content: "";
+        background-position: -3em -3em;
+        width: 1em;
+        height: 1em;
+    }
+}
+/* End Icon SVG */
+
+.icon-social {
+    &:before {
+        content: "";
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 2.5rem;
+        line-height: 1;
+        background-image: url(/images/tru/svg/social-icons.svg);
+        background-repeat: no-repeat;
+        background-size: 9em 9em;
+        @include transition-opacity;
+    }
+
+    &.i-fb {
+        &:before {
+            background-position: -1em -1em;
+        }
+    }
+
+    &.i-twitter {
+        &:before {
+            background-position: -5em -5em;
+        }
+    }
+
+    &.i-instagram {
+        &:before {
+            background-position: -3em -3em;
+        }
+    }
+
+    &.i-youtube {
+        &:before {
+            background-position: -8em -8em;
+        }
+    }
+
+    &.i-email {
+        &:before {
+            background-position: 0 0;
+        }
+    }
+
+    &.i-pinterest {
+        &:before {
+            background-position: -4em -4em;
+        }
+    }
+
+    &.i-google {
+        &:before {
+            background-position: -2em -2em;
+        }
+    }
+}
+
+.flag {
+    &:before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        background-image: url(/images/tru/flags.png);
+        background-repeat: no-repeat;
+        background-size: 408px 384px;
+        transform: scale(0.66667);
+
+        [dir="ltr"] & {
+            margin-right: 0.5rem;
+        }
+
+        [dir="rtl"] & {
+            margin-left: 0.5rem;
+        }
+    }
+
+    &.flag-ae {
+        &:before {
+            background-position: -264px -168px;
+        }
+    }
+
+    &.flag-qa {
+        &:before {
+            background-position: -240px -312px;
+        }
+    }
+}
+
+.card-icon {
+    content: "";
+    background-image: url(/images/tru/svg/payment-icons.svg);
+    width: 60px;
+    height: 36px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 2.25rem;
+    line-height: 1;
+    background-color: $white;
+    background-repeat: no-repeat;
+    background-size: 18.333333333333332em 11em;
+    border-radius: 0.05em;
+
+    &.i-visa {
+        background-position: -16.66667em -10em;
+    }
+    &.i-mastercard {
+        background-position: -11.66667em -7em;
+    }
+    &.i-amex {
+        background-position: 0 0;
+    }
+    &.i-applepay {
+        background-position: -3.35em -2.08em;
+    }
+    &.i-cod {
+        background-position: -5em -3em;
+    }
+    &.i-samsungpay {
+        background-position: -8.4375em -5.0625em;
+    }
+
+    &.sm {
+        width: 46px;
+        height: 28px;
+        font-size: $h3-font-size !important;
+
+        &.i-applepay {
+            background-position: -3.35em -2em;
+        }
+    }
+}
+.icon-home-delivery {
+    position: relative;
+
+    &:before {
+        content: "";
+        background-position: -12.51562em -11em;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        background-image: url(/images/tru/svg/sprite.svg);
+        background-repeat: no-repeat;
+        background-size: 51.390625em 49em;
+        font-size: $h1-font-size;
+    }
+}
+
+.icon-click-collect {
+    position: relative;
+
+    &:before {
+        content: "";
+        background-position: -10.51562em -9em;
+        width: 1em;
+        height: 1em;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+        background-image: url(/images/tru/svg/sprite.svg);
+        background-repeat: no-repeat;
+        background-size: 51.390625em 49em;
+        font-size: $h1-font-size;
+    }
+}
+
+.icon-chev-down,
+.icon-chev-up {
+    position: relative;
+    width: 24px;
+    height: 24px;
+
+    &:before,
+    &:after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        transition-property: transform, opacity, -webkit-transform;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in;
+        transition-delay: 0s;
+        color: inherit;
+        position: absolute;
+        transform-origin: 50% 50%;
+        transform: rotate(0deg) scale(1);
+    }
+}
+.icon-chev-down {
+    &:before {
+        background-image: url("/images/tru/svg/chev-down.svg");
+        transform: rotate(0deg) scale(1);
+    }
+    &:after {
+        background-image: url("/images/tru/svg/chev-up.svg");
+        opacity: 0;
+        transform: rotate(0deg) scale(1);
+        transform: rotate(-90deg);
+    }
+}
+.icon-chev-up {
+    &:before {
+        background-image: url("/images/tru/svg/chev-down.svg");
+        transform: rotate(90deg) scale(0);
+    }
+    &:after {
+        background-image: url("/images/tru/svg/chev-up.svg");
+        opacity: 1;
+        transform: rotate(0);
+    }
+}
+
+[class*=i-shape-]::after, [class*=i-shape-]::before {
+    @include shape;
+}
+.i-shape-blast {
+    &:before {
+        content: "\ea01";
+    }
+}
+.i-shape-cloud {
+    &:before {
+        content: "\ea02";
+    }
+}
+.i-shape-splat {
+    &:before {
+        content: "\ea06";
+    }
+}
+.i-shape-pebble {
+    &:before {
+        content: "\ea03";
+    }
+}
+.i-shape-spiral {
+    &:before {
+        content: "\ea05";
+    }
+}
+.i-shape-scribble {
+    &:before {
+        content: "\ea04";
+    }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &.xxl {
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: 0 0 2.5rem;
+    background-size: 2.5rem;
+  }
+
+  &.plus-squircle {
+    background-image: url(/images/tru/svg/plus-squircle.svg);
+  }
+
+  &.minus-squircle {
+    background-image: url(/images/tru/svg/minus-squircle.svg);
+  }
+}

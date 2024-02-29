@@ -1,0 +1,879 @@
+.home-outer {
+    width: 100%;
+}
+.slider-home {
+    img {
+        width: 100%;
+    }
+    .btn-arrow.arrow-left {
+        left: 2.5rem;
+    }
+    .btn-arrow.arrow-right {
+        right: 2.5rem;
+    }
+    .slick-dots {
+        bottom: 20px;
+
+        li {
+            button {
+                &:before {
+                    font-size: 4rem;
+                    color: $light-blue;
+                }
+            }
+        }
+    }
+}
+
+.banner-sm {
+    @include media-breakpoint-down(sm) {
+        margin: 0 -1rem;
+        overflow: hidden;
+    }
+    
+    img {
+        width: 100%;
+        cursor: pointer;
+    }
+    .btn-arrow.arrow-left {
+        left: -1rem;
+    }
+    .btn-arrow.arrow-right {
+        right: -1rem;
+    }
+    .slick-dots {
+        position: static;
+        margin-top: -12px;
+        li {
+            width: auto;
+            height: auto;
+            button {
+                width: 8px;
+                height: 8px;
+                border: 2px solid $bright-blue;
+                border-radius: 100%;
+                padding: 0;
+                transition: $transition-base;
+                &:before {
+                    display: none;
+                }
+                &:hover {
+                    background: $bright-blue;
+                }
+            }
+            &.slick-active {
+                button {
+                    width: 24px;
+                    border-radius: $border-radius;
+                    background: $bright-blue;
+                }
+            }
+        }
+    }
+}
+
+.banner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 2.5rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-bottom: 0;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .bnr-left {
+        flex-basis: 100%;
+        width: 100%;
+        border-bottom: 0.01rem solid $white;
+
+        @include media-breakpoint-up(md) {
+            flex-basis: 66.66667%;
+            width: 66.66667%;
+            border-bottom: 0;
+        }
+    }
+    .bnr-right {
+        flex-basis: 100%;
+        max-width: 100%;
+
+        @include media-breakpoint-up(md) {
+            flex-basis: 33.33333%;
+            max-width: 33.33333%;
+        }
+    }
+}
+.carousel-outer {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    overflow-x: hidden;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .title-main {
+        margin-bottom: 1rem;
+    }
+
+    .carousel-col {
+        position: relative;
+    }
+}
+.offers-outer {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .card {
+        border: 0;
+        border-radius: 0;
+        background: $white;
+        transition-property: background-color, box-shadow, -webkit-box-shadow;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in;
+        transition-delay: 0s;
+        flex-direction: row;
+        border-bottom: 1px solid $gray-200;
+        padding: 1.5rem 0;
+
+        &.last-item {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        @include media-breakpoint-up(md) {
+            flex-direction: column;
+            border-bottom: 0;
+            padding: 0;
+
+            &:hover {
+                box-shadow: 0 0.375rem 1.875rem -0.5rem rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        figure {
+            margin: 0;
+            flex-basis: 5.5rem;
+
+            .card-img {
+                border-radius: $border-radius;
+            }
+
+            @include media-breakpoint-up(md) {
+                flex-basis: 100%;
+
+                .card-img {
+                    border-radius: 0;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 0 1rem;
+
+            [dir="ltr"] & {
+                text-align: left;
+            }
+            [dir="rtl"] & {
+                text-align: right;
+            }
+
+            @include media-breakpoint-up(md) {
+                padding: 1.5rem 1rem 2rem;
+
+                [dir="ltr"] & {
+                    text-align: center;
+                }
+                [dir="rtl"] & {
+                    text-align: center;
+                }
+            }
+
+            .card-title {
+                font-weight: $font-weight-bold;
+                font-size: $font-size-lg;
+                margin-bottom: 0.5rem;
+            }
+
+            .card-text {
+                font-size: $font-size-sm;
+            }
+        }
+    }
+}
+
+.toysfinder-outer {
+    background-color: $yellow-tint;
+
+    .toysfinder-title {
+        background-color: $violet;
+        background-image: url(/images/tru/svg/starburst-violet.svg);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: auto 49.125rem;
+        min-height: 6.25rem;
+        padding: 1rem;
+        position: relative;
+        text-align: center;
+
+        &:after {
+            background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMTAyMCA0NScgZmlsbD0nI2ZmZmRkYycgcHJlc2VydmVBc3BlY3RSYXRpbz0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTEwMjAsNDVIMGMyNC41LTEuMSw4Ni42LTIuNiwxMjItN3M0Ny42LTUuNyw5MS0xMXM4NC4zLTEzLjEsMTMzLTE3UzQ1OC44LDAsNTEwLDBjNTEuMiwwLDkxLjYsMy4xLDE0Miw3LHMxMDEuMSwxMy42LDE0NywxOWMzOC41LDQuNiw0My4yLDYsOTcsMTJDOTMzLDQyLDk5NC4zLDQ0LDEwMjAsNDV6Jy8+PC9zdmc+);
+            background-position: 50% 100%;
+            background-size: 100% 100%;
+            bottom: -1%;
+            content: "";
+            height: 2.8125rem;
+            left: 0;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+        }
+
+        .arrow-back {
+            color: $white;
+            cursor: pointer;
+        }
+
+        h3 {
+            font-size: $font-size-lg;
+            line-height: 1.5rem;
+            color: $white;
+            font-weight: $font-weight-normal;
+            margin: 0 auto;
+        }
+    }
+
+    .toysfinder-col {
+        margin-top: -1rem;
+
+        .toysfinder-col-top {
+            .toysfinder-indicator {
+                font-weight: $font-weight-bold;
+                position: relative;
+                text-align: center;
+                z-index: 1;
+            }
+            .toysfinder-subtitle {
+                font-size: $h4-font-size;
+                font-weight: $font-weight-light;
+                line-height: 2rem;
+                position: relative;
+                text-align: center;
+                z-index: 1;
+            }
+            .toysfinder-selectable {
+                min-height: 17rem;
+
+                @include media-breakpoint-down(sm) {
+                    min-height: auto;
+                }
+
+                .toysfinder-clear {
+                    line-height: 1rem;
+                    padding: 0 1rem;
+                    position: relative;
+                    text-align: center;
+                    z-index: 1;
+
+                    a {
+                        transition: background-color 0.15s ease-in 0s, border-color 0.15s ease-in 0s,
+                            color 0.15s ease-in 0s, box-shadow 0.18s ease-in 0s, transform 0.3s ease 0s;
+                        border-radius: $border-radius;
+                        font-size: $font-size-base;
+                        font-weight: $font-weight-bold;
+                        min-width: 9.5rem;
+                        padding: 0.5rem 0.75rem;
+                        user-select: none;
+                        min-height: 3rem;
+                        -webkit-appearance: none;
+                        align-items: center;
+                        border: 1px solid transparent;
+                        cursor: pointer;
+                        display: inline-flex;
+                        justify-content: center;
+                        outline: 0;
+                        text-align: center;
+                        text-decoration: none;
+                        vertical-align: top;
+                        background-color: transparent;
+                        border-color: transparent;
+                        color: $primary;
+                        background-color: $yellow-tint;
+
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.05);
+                            border-color: transparent;
+                            text-decoration: none;
+                        }
+                        &:active {
+                            background-color: $light-blue;
+                            color: $white;
+                        }
+                    }
+                }
+                .toysfinder-refinement {
+                    overflow: hidden;
+
+                    .toysfinder-refinement-col {
+                        text-align: center;
+                        width: 35rem;
+                        margin: 0 auto;
+                        max-width: 100%;
+
+                        .toysfinder-item {
+                            display: inline-flex;
+                            vertical-align: top;
+                            border-radius: $border-radius;
+                            color: $black;
+                            font-size: 1rem;
+                            font-weight: $font-weight-bold;
+                            justify-content: center;
+                            margin: 0.5rem 0.25rem;
+                            padding: 1rem;
+                            position: relative;
+                            cursor: pointer;
+
+                            &:before {
+                                background-repeat: repeat-x;
+                                background-size: 1.68rem 0.375rem;
+                                bottom: 99%;
+                                content: "";
+                                left: 0.375rem;
+                                position: absolute;
+                                right: 0.375rem;
+                                height: 0.375rem;
+                                margin-bottom: 0.01rem;
+                            }
+
+                            &:after {
+                                @include icon;
+                                content: "\ea1b";
+                                transition-property: transform, margin, -webkit-transform;
+                                transition-duration: 0.3s;
+                                transition-timing-function: ease-in;
+                                transition-delay: 0s;
+                                align-items: center;
+                                background-color: $green;
+                                border-radius: 50%;
+                                color: $white;
+                                display: flex;
+                                font-size: $font-size-xs;
+                                height: 1.5rem;
+                                justify-content: center;
+                                margin: 0 -0.75rem;
+                                transform: scale(0);
+                                width: 1.5rem;
+                            }
+
+                            &.color-1 {
+                                background-color: $pink;
+
+                                &:before {
+                                    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjggNicgZmlsbD0nI2Y1OTliOCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTIyLDZINlYzYzAtMS43LDEuMy0zLDMtM2gxMGMxLjcsMCwzLDEuMywzLDNWNnonLz48L3N2Zz4=);
+                                }
+                            }
+
+                            &.color-2 {
+                                background-color: $yellow;
+
+                                &:before {
+                                    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjggNicgZmlsbD0nI2ZlZDIwNCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTIyLDZINlYzYzAtMS43LDEuMy0zLDMtM2gxMGMxLjcsMCwzLDEuMywzLDNWNnonLz48L3N2Zz4=);
+                                }
+                            }
+
+                            &.color-3 {
+                                background-color: $teal;
+
+                                &:before {
+                                    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjggNicgZmlsbD0nIzQ1Y2FiOScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTIyLDZINlYzYzAtMS43LDEuMy0zLDMtM2gxMGMxLjcsMCwzLDEuMywzLDNWNnonLz48L3N2Zz4=);
+                                }
+                            }
+
+                            &.color-4 {
+                                background-color: $light-green;
+
+                                &:before {
+                                    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjggNicgZmlsbD0nI2JlZDczMScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTIyLDZINlYzYzAtMS43LDEuMy0zLDMtM2gxMGMxLjcsMCwzLDEuMywzLDNWNnonLz48L3N2Zz4=);
+                                }
+                            }
+
+                            &.color-5 {
+                                background-color: $light-blue;
+
+                                &:before {
+                                    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjggNicgZmlsbD0nIzJhYWNlMicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTIyLDZINlYzYzAtMS43LDEuMy0zLDMtM2gxMGMxLjcsMCwzLDEuMywzLDNWNnonLz48L3N2Zz4=);
+                                }
+                            }
+
+                            &.color-6 {
+                                background-color: $purple;
+
+                                &:before {
+                                    background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjggNicgZmlsbD0nI2I5ODZlZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTIyLDZINlYzYzAtMS43LDEuMy0zLDMtM2gxMGMxLjcsMCwzLDEuMywzLDNWNnonLz48L3N2Zz4=);
+                                }
+                            }
+
+                            .toysfinder-item-value {
+                                transition-property: margin;
+                                transition-duration: 0.3s;
+                                transition-timing-function: ease-in;
+                                transition-delay: 0s;
+                                margin: 0 1.25rem;
+                            }
+                            &.checked {
+                                &:after {
+                                    transform: scale(1);
+
+                                    [dir="ltr"] & {
+                                        margin: 0 0 0 1rem;
+                                    }
+                                    [dir="rtl"] & {
+                                        margin: 0 1rem 0 0;
+                                    }
+                                }
+                                .toysfinder-item-value {
+                                    margin: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .toysfinder-steps {
+                min-height: 17rem;
+
+                .toysfinder-price-col {
+                    margin: 0 auto;
+                    padding-top: 1.5rem;
+                    width: 18.875rem;
+
+                    .toysfinder-chest {
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 155px;
+                        line-height: 1;
+                        background-image: url(/images/tru/svg/chest.svg);
+                        background-repeat: no-repeat;
+                        background-size: 5.84516129032258em 3em;
+                        content: "";
+                        background-position: -3.89677em -2em;
+                        width: 1.9483870967741936em;
+                        height: 1em;
+
+                        &.medium {
+                            content: "";
+                            background-position: -1.94839em -1em;
+                            width: 1.9483870967741936em;
+                            height: 1em;
+                        }
+
+                        &.large {
+                            content: "";
+                            background-position: 0 0;
+                            width: 1.9483870967741936em;
+                            height: 1em;
+                        }
+                    }
+
+                    .toysfinder-price {
+                        font-weight: $font-weight-bold;
+                        margin-top: 1.25rem;
+                        text-align: center;
+
+                        .current-price {
+                            &.max {
+                                &:after {
+                                    content: "\2b";
+                                }
+                            }
+                        }
+                    }
+                    .toysfinder-price-slider {
+                        position: relative;
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+
+                        .price-selector {
+                            margin: auto;
+                            -webkit-appearance: none;
+                            position: relative;
+                            overflow: hidden;
+                            height: 4px;
+                            width: 100%;
+                            cursor: pointer;
+                            border-radius: 0;
+                            outline: 0;
+
+                            &:hover {
+                                outline: 0;
+                            }
+
+                            &::-webkit-slider-runnable-track {
+                                background-image: url(data:image/svg+xml;charset=utf8;base64,PHN2ZyB2aWV3Qm94PScwIDAgMTMgNCcgZmlsbD0nI2JlZDczMScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48cGF0aCBpZD0nYmFkZ2VzaGFwZScgZD0nTTExLDRIN0M1LjksNCw1LDMuMSw1LDJsMCwwYzAtMS4xLDAuOS0yLDItMmg0YzEuMSwwLDIsMC45LDIsMmwwLDBDMTMsMy4xLDEyLjEsNCwxMSw0eicvPjwvc3ZnPg==);
+                                background-position: 100% 50%;
+                                background-repeat: repeat-x;
+                                background-size: 0.812rem 0.25rem;
+                                border-radius: 1px;
+                                height: 0.25rem;
+                            }
+
+                            &::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                width: 20px;
+                                height: 4px;
+                                background: #fff;
+                                box-shadow: -100vw 0 0 100vw red;
+                                border: 2px solid #999;
+                                cursor: pointer;
+
+                                &:before {
+                                    transition-property: color;
+                                    transition-duration: 0.3s;
+                                    transition-timing-function: ease-in;
+                                    transition-delay: 0s;
+                                    color: #2aace2;
+                                    content: "\ea23";
+                                    @include icon;
+                                }
+                                &:after {
+                                    font-size: 0.5em;
+                                    line-height: 2em;
+                                    margin-left: -1.5em;
+                                    content: "\ea0d";
+                                    position: absolute;
+                                    z-index: 1;
+                                    @include icon;
+                                }
+                            }
+
+                            ::-moz-range-track {
+                                height: 4px;
+                                background: #ddd;
+                            }
+
+                            ::-moz-range-thumb {
+                                background: #fff;
+                                height: 4px;
+                                width: 20px;
+                                border: 3px solid #999;
+                                border-radius: 0 !important;
+                                box-shadow: -100vw 0 0 100vw dodgerblue;
+                                box-sizing: border-box;
+                            }
+
+                            ::-ms-fill-lower {
+                                background: dodgerblue;
+                            }
+
+                            ::-ms-thumb {
+                                background: #fff;
+                                border: 2px solid #999;
+                                height: 4px;
+                                width: 20px;
+                                box-sizing: border-box;
+                            }
+
+                            ::-ms-ticks-after {
+                                display: none;
+                            }
+
+                            ::-ms-ticks-before {
+                                display: none;
+                            }
+
+                            ::-ms-track {
+                                background: #ddd;
+                                color: transparent;
+                                height: 4px;
+                                border: none;
+                            }
+
+                            ::-ms-tooltip {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .toysfinder-btn-col {
+                padding: 1.5rem 1rem;
+                text-align: center;
+                .btn {
+                    min-width: 15.5rem;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+}
+.videos-outer {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .card {
+        border: 0;
+
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 2rem;
+
+            &.card-last {
+                margin-bottom: 0;
+            }
+        }
+
+        .card-body {
+            padding: 1.5rem 0 0;
+
+            a {
+                display: block;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .card-title {
+                margin-bottom: 0.25rem;
+                font-weight: $font-weight-bold;
+            }
+            .card-text {
+                font-size: $font-size-sm;
+            }
+        }
+    }
+}
+.divider-4 {
+    padding-right: 16px;
+    padding-left: 16px;
+    width: 100%;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+    margin: 0 auto;
+
+    span {
+        display: block;
+        height: 0.0625rem;
+        background-color: $gray-300;
+    }
+
+    @include media-breakpoint-down(sm) {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+.brands-outer {
+    padding-top: 2.5rem;
+    padding-bottom: 9rem;
+    margin-bottom: -4rem;
+    z-index: 100;
+    width: 100%;
+    overflow-x: hidden;
+
+    @include media-breakpoint-down(sm) {
+        padding-bottom: 2rem;
+        margin-bottom: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .brands-col {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 48rem;
+        min-width: 20rem;
+        width: 100%;
+        justify-content: center;
+        min-height: 1px;
+        position: relative;
+        padding: 0 2.5rem;
+
+        @include media-breakpoint-down(sm) {
+            padding: 0 1rem;
+            max-width: 31.25rem;
+        }
+
+        .brand-img-right,
+        .brand-img-left {
+            margin-bottom: 0;
+            position: absolute;
+            top: 3rem;
+            z-index: 1;
+
+            @include media-breakpoint-down(md) {
+                display: none;
+            }
+
+            figure {
+                margin: 0;
+                width: 315px;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+        .brand-img-right {
+            right: 0;
+            transform: translateX(90%);
+
+            @include media-breakpoint-up(xl) {
+                transform: translateX(100%);
+            }
+        }
+        .brand-img-left {
+            left: 0;
+            transform: translateX(-90%);
+
+            @include media-breakpoint-up(xl) {
+                transform: translateX(-100%);
+            }
+        }
+    }
+}
+.brands-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    li {
+        width: 25%;
+        flex: 0 0 25%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-bottom: 1rem;
+
+        @include media-breakpoint-down(sm) {
+            width: 33.3333%;
+            flex: 0 0 33.3333%;
+        }
+
+        a {
+            transition-property: box-shadow, background-color;
+            transition-property: box-shadow, background-color, -webkit-box-shadow;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in;
+            transition-delay: 0s;
+            align-items: center;
+            background-color: transparent;
+            border-radius: $border-radius;
+            display: flex;
+            overflow: hidden;
+            padding: 1rem;
+
+            @include media-breakpoint-down(sm) {
+                padding: 0;
+            }
+
+            &:hover {
+                background-color: $white;
+                box-shadow: 0 0.375rem 1.875rem -0.5rem rgba(0, 0, 0, 0.6);
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.popular-categories {
+    margin: 4rem 0;
+    @include media-breakpoint-down(sm) {
+        margin: 0.875rem 0 1.625rem;
+    }
+    .title {
+        font-weight: $font-weight-light;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        @include media-breakpoint-down(sm) {
+            font-size: $h5-font-size;
+            margin-bottom: 0.5rem;
+        }
+    }
+    .slick-slider {
+        margin: 0 -1.5rem;
+        
+        @include media-breakpoint-down(sm) {
+            margin: 0 -1rem;
+            padding: 0 0.25rem;
+            overflow: hidden;
+        }
+        .slick-list {
+            @include media-breakpoint-down(sm) {
+                overflow: visible;
+            }
+        }
+    }
+    .item {
+        text-align: center;
+        padding: 0 0.563rem;
+        picture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            background: $bright-red;
+            padding: 1.5rem;
+            aspect-ratio: 1/1;
+            box-shadow: 0 4px 0 $bright-blue;
+            transition: $transition-base;
+            @include media-breakpoint-down(lg) {
+                padding: 1.165rem;
+            }
+            @include media-breakpoint-down(sm) {
+                padding: 0.875rem;
+                box-shadow: 0 3px 0 $bright-blue;
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+        p {
+            font-weight: $font-weight-bold;
+            margin-top: 0.5rem;
+            margin-bottom: 0;
+            @include media-breakpoint-down(sm) {
+                font-size: $font-size-xs;
+            }
+        }
+        &:hover {
+            picture {
+                background: $bright-blue;
+                box-shadow: 0 6px 4px darken($bright-red, 10%);
+                @include media-breakpoint-down(sm) {
+                    box-shadow: 0 4px 3px darken($bright-red, 8%);
+                }
+            }
+        }
+
+        &.image-fill {
+            picture {
+                padding: 0;
+                overflow: hidden;
+            }
+        }
+    }
+}

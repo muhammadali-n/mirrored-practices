@@ -1,0 +1,120 @@
+.parallax-outer {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+
+    @include media-breakpoint-down(sm) {
+        margin-bottom: 0;
+    }
+
+    @include media-breakpoint-up(md) {
+        .breadcrumb-outer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 100;
+        }
+    }
+
+    .parallax-col {
+        position: relative;
+
+        .parallax-content-outer {
+            width: 100%;
+            max-width: 945px;
+            margin: 0 auto;
+            display: flex;
+
+            @include media-breakpoint-down(md) {
+                max-width: 80%;
+            }
+
+            @include media-breakpoint-down(sm) {
+                flex-direction: column;
+                max-width: 100%;
+            }
+
+            figure {
+                width: 100%;
+                max-width: 352px;
+                margin: 0;
+
+                img {
+                    -webkit-animation: bnr--hero-image-appear 1s 2s forwards 1;
+                    animation: bnr--hero-image-appear 1s 2s forwards 1;
+                    -webkit-transform: translateY(18%);
+                    -ms-transform: translateY(18%);
+                    transform: translateY(18%);
+                }
+
+                @include media-breakpoint-down(sm) {
+                    order: 2;
+                }
+            }
+
+            .parallax-content {
+                width: 100%;
+                max-width: 480px;
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+                justify-content: center;
+
+                [dir="ltr"] & {
+                    margin-left: 2.5rem;
+                }
+                [dir="rtl"] & {
+                    margin-right: 2.5rem;
+                }
+
+                @include media-breakpoint-down(md) {
+                    max-width: 100%;
+                }
+
+                @include media-breakpoint-down(sm) {
+                    order: 1;
+                    margin-left: 0;
+                    padding: 0 1.5rem;
+                    text-align: center;
+
+                    [dir="ltr"] & {
+                        margin-left: 0;
+                    }
+                    [dir="rtl"] & {
+                        margin-right: 0;
+                    }
+                }
+
+                h1 {
+                    font-family: $font-family-secondary;
+                    font-size: $font-size-xxl;
+                    font-weight: $font-weight-light;
+                    line-height: 3.5rem;
+                    margin-bottom: 1rem;
+                    color: $primary;
+                    width: 100%;
+
+                    @include media-breakpoint-down(sm) {
+                        font-size: $h2-font-size;
+                    }
+                }
+                p {
+                    font-weight: $font-weight-light;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.banner-shape {
+    &:before {
+        font-size: 28rem !important;
+        -webkit-animation: scale-bounce 1s 3s both;
+        animation: scale-bounce 1s 3s both;
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}

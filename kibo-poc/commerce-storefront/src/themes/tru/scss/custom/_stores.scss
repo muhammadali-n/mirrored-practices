@@ -1,0 +1,197 @@
+.stores-locations-outer {
+    width: 100%;
+    display: inline-block;
+    margin-top: 1rem;
+    margin-bottom: 7.5rem;
+
+    @include media-breakpoint-down(sm) {
+        margin-top: 0;
+        margin-bottom: 4rem;
+    }
+
+    .stores-content {
+        margin-top: 1rem;
+    }
+
+    .single-breadcrumb + .stores-content {
+        margin-top: 0;
+    }
+
+    .stores-select {
+        margin-bottom: 1.5rem;
+
+        @include media-breakpoint-up(md) {
+            width: 43%;
+
+            [dir="ltr"] & {
+                float: left;
+            }
+
+            [dir="rtl"] & {
+                float: right;
+            }
+        }
+    }
+
+    .stores-map {
+        .embed-responsive {
+            padding-bottom: 106.2963%;
+
+            & > div {
+                position: absolute !important;
+            }
+        }
+        
+        @include media-breakpoint-up(md) {
+            width: 57%;
+            min-height: 5rem;
+
+            [dir="ltr"] & {
+                float: right;
+                padding-left: 1.25rem;
+            }
+
+            [dir="rtl"] & {
+                float: left;
+                padding-right: 1.25rem;
+            }
+        }
+        @include media-breakpoint-down(sm) {
+            margin-right: -16px;
+            margin-left: -16px;
+        }
+    }
+    .stores-list {
+        @include media-breakpoint-up(md) {
+            width: 43%;
+
+            [dir="ltr"] & {
+                float: left;
+            }
+
+            [dir="rtl"] & {
+                float: right;
+            }
+        }
+        @include media-breakpoint-down(sm) {
+            margin-right: -16px;
+            margin-left: -16px;
+        }
+    }
+
+    .stores-list-item {
+        padding-bottom: 0 !important;
+
+        ul {
+            li {
+                border-bottom: $border-width solid $border-color;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .location-outer {
+        cursor: pointer;
+
+        @include media-breakpoint-down(sm) {
+            padding-left: 1rem;
+        }
+
+        .icon-map-pin, .icon-map-marker {
+            [dir="ltr"] & {
+                margin-right: 0.5rem;
+            }
+
+            [dir="rtl"] & {
+                margin-left: 0.5rem;
+            }
+        }
+
+        .icon-map-pin {
+            color: $blue;
+        }
+
+        .location-content {
+            padding-top: 0.25rem;
+            margin-bottom: 0;
+        }
+
+        .location-title,
+        p {
+            font-size: $font-size-sm;
+        }
+        .location-arrow {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+        }
+    }
+
+    .stores-data {
+        border: $border-width solid $border-color;
+        border-radius: $border-radius-lg;
+        padding: 1.5rem;
+
+        @include media-breakpoint-down(sm) {
+            padding: 2rem 1rem 0;
+            margin-right: -16px;
+            margin-left: -16px;
+            border: 0;
+            border-radius: 0;
+        }
+
+        .stores-data-content {
+            @include media-breakpoint-down(sm) {
+                padding-right: 1rem;
+                padding-left: 1rem;
+            }
+        }
+
+        .location-outer {
+            padding-top: 0;
+
+            .location-title {
+                font-size: $font-size-base;
+            }
+        }
+
+        p {
+            font-size: $font-size-sm;
+        }
+    }
+}
+
+.single-breadcrumb {
+    width: 100%;
+    display: flex;
+    flex: 0 0 100%;
+    margin: 0 0 1rem;
+
+    @include media-breakpoint-down(sm) {
+        background-color: $light-snow;
+        margin: 0;
+        padding: 1rem 0;
+    }
+
+    .single-breadcrumb-btn {
+        display: flex;
+        align-items: center;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-bold;
+
+        i {
+            color: $primary;
+
+            [dir="ltr"] & {
+                margin-right: 0.5rem;
+            }
+
+            [dir="rtl"] & {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}
