@@ -4,8 +4,10 @@ import Link from 'next/link';
 import { useRouter } from "next/navigation";
 import { Context } from '@/app/context';
 import { addItem } from '../cart/handle';
+import { performCommonIntegration } from '@/integrations/common-integration';
 
 interface Product {
+  handle:string;
   variantId: any;
   id: number;
   title: string;
@@ -24,11 +26,13 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
   const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
 
   const addToCart = (selectedVariantId:any) => {
-    addItem(selectedVariantId)
+   performCommonIntegration(addItem,selectedVariantId) 
   }
 
   return (
     <div className={styles['product-card-container']}>
+      <Link className="relative inline-block h-full w-full " href={`/product/${product.handle}`} style={{ textDecoration: 'none', color: 'inherit' }}>     
+
       <div className={styles['flex-container']}>
         <div>
           <img src={product.imageSrc} alt={product.title} className={styles['product-image']} />
@@ -51,6 +55,7 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
           ))}
         </div>
       </div>
+      </Link>
     </div>
   );
 };

@@ -68,3 +68,7 @@ export const fetchCartPage = async () => {
     // const { transformedData } = performTransformation(shipment, sanityShipmentTransform)
     return shipment
   }
+  export const fetchPdpData = async () => {
+    const pdpData = await getDataByQuery("*[_type == 'pdpData']")
+    return pdpData
+  }

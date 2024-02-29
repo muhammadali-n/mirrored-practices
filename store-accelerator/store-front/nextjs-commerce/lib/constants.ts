@@ -28,4 +28,7 @@ export type SortFilterItem = {
   
   export const SANITY = 'sanity'
   export const SHOPIFY = 'shopify'
+  export const HIDDEN_PRODUCT_TAG = 'nextjs-frontend-hidden';
+
+  
   

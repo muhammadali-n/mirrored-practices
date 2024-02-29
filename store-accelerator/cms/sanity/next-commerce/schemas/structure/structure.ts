@@ -57,6 +57,12 @@ export default (S: StructureBuilder): ListBuilder =>
                         .title("Shipment")
                         .child(
                           S.documentTypeList("shipment")
+                          .title('items')
+                        ),
+                        S.listItem()
+                        .title("PDP")
+                        .child(
+                          S.documentTypeList("pdpData")
                             .title('items')
                         ),
                     ]),
