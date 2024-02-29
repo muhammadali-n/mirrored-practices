@@ -1,6 +1,7 @@
-import { client } from '@/app/lib/sanity';
+import { client } from '../../app/lib/sanity';
 import { customUi, performTransformation } from '../common-transformer';
 import customPageTransformerConfig from "./sanity-transform-config.json"
+import transformSanityCartData from './sanity-transformer';
 
 const getDataByQuery = async (query: string) => {
 
@@ -12,9 +13,14 @@ export const fetchPageDataBySlug = async (slug: string) => {
     console.log('fetch data   ');
     // creating page data using slug
     const getPageData = await getDataByQuery(`*[_type == 'nav' && slug.current == "${slug}"]`);
+    const homePageData = await getDataByQuery(`*[_type == 'nav' && title == 'Home']`);
+
 
     const { transformedData } = performTransformation(getPageData, customPageTransformerConfig)
     console.log("transformedData", transformedData);
+
+    const { transformedHomeData } = performTransformation(homePageData, customPageTransformerConfig)
+    console.log("transformedHomeData", transformedHomeData);
     
 
     //fixed custom ui
@@ -24,6 +30,23 @@ export const fetchPageDataBySlug = async (slug: string) => {
     console.error("Error fetching data:", error);
   }
 };
+
+export const fetchAddButton = async () => {
+    const AddtoCart = await getDataByQuery("*[_type == 'ProductCard'  && sections._type == 'button']")
+    const { transformedData } = performTransformation(AddtoCart, customPageTransformerConfig)
+    
+    return transformedData
+  }
+  export const fetchProceedToCheckoutButton = async () => {
+    const CheckoutButton = await getDataByQuery("*[_type == 'cartItems' && sections._type == 'button']")
+    const { transformedData } = performTransformation(CheckoutButton, customPageTransformerConfig)
+    return transformedData
+  }  
+  export const fetchHomePage = async () => {
+    const HomePage = await getDataByQuery(`*[_type == 'nav' && title == 'Home']`);
+    const { transformedData } = performTransformation(HomePage, customPageTransformerConfig)
+    return transformedData
+  } 
 
 export const fetchProductCard = async () => {
   const AddtoCart = await getDataByQuery("*[_type == 'ProductCard'  && sections._type == 'button']")
