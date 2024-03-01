@@ -1,4 +1,4 @@
-import { getConfig } from "@/config";
+import { getConfig, getConfigForProvider } from "@/config";
 import { collectionList } from "@/queries/collection.query";
 import { ApolloClient,InMemoryCache } from "@apollo/client";
 import { productsList } from "@/queries/products.query";
@@ -6,9 +6,12 @@ import { collectionProductsList } from "@/queries/collectionProductsList.query";
 import { dataTransformer } from "./vendure-transformer";
 import transformerJsonConfig from './vendure-transform-config.json'
 
-const vendureApi = async (endPoint, methodName:String, ...args) => {
+const vendureApi = async (provider, methodName:String, ...args) => {
     if (vendureMethods.hasOwnProperty(methodName)) {
-        return await vendureMethods[methodName](endPoint,...args);
+      const {commerceConfig} = getConfigForProvider(provider);
+      const {apiEndpoint} = commerceConfig;
+      console.log(apiEndpoint)
+      return await vendureMethods[methodName](apiEndpoint,...args);
     }
 }
 const getCollectionDetails = async (endPoint : string) => {
@@ -64,7 +67,7 @@ const getCollectionProductDetails = async (endPoint:string,collectionName : Stri
             },
             body:JSON.stringify({
                 query:collectionProductsList,
-                variables:{slug:`${collectionName}`}
+                variables:{slug:`${collectionName.toLowerCase()}`}
             })
         })
         .then(response => response.json())

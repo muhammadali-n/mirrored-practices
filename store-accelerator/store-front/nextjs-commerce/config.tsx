@@ -51,14 +51,27 @@ const fetchProvider = {
 }
 
 //configuration
-export const getConfig = (providerType: String) => {
-  const commerceType: String = providerType || 'shopify';
+export const getConfigForProvider = (providerType: String) => {
+  const commerceType: string = providerType || 'shopify';
   const cmsType: string = process.env.NEXT_PUBLIC_CMS_TYPE || 'sanity';
   return ({
     cmsConfig: configurations[cmsType],
     commerceConfig: configurations[commerceType],
   }) 
 };
+
+/** @deprecated use getConfigForProvider instead */
+export const getConfig = () => {
+  const commerceIntegrationType: string = process.env.NEXT_PUBLIC_COMMERCE_TYPE || 'shopify';
+  const cmsIntegrationType: string = process.env.NEXT_PUBLIC_CMS_TYPE || 'sanity';
+  return ({
+    cmsConfig: configurations[cmsIntegrationType],
+    commerceConfig: configurations[commerceIntegrationType],
+  })
+
+};
+
+
 
 export const fetchProviderConfig = (methodName: String): String => {
   //based on the methodName we have to get the Provider

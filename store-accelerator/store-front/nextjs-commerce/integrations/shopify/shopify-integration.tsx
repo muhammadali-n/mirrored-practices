@@ -1,5 +1,5 @@
 
-import { getConfig } from '../../config';
+import { getConfig, getConfigForProvider } from '../../config';
 import { performTransformation, TransformationResult } from '../common-transformer';
 import { addToCartMutation, createCartMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
@@ -94,7 +94,7 @@ interface ShopifyProductResponse {
   };
 }
 
-const getProductDetails = async (): Promise<TransformationResult> => {
+const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
   const query = `
     {
         products(first: 20) {
@@ -195,7 +195,6 @@ const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<Tra
   
   `;
 
-
   try {
     const response = await fetch(endPoint, {
       method: 'POST',
@@ -240,7 +239,6 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
       reverse: reverse
     }
   };
-
   try {
     const response = await fetch(endPoint, {
       method: 'POST',
@@ -253,7 +251,6 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
     if (!response.ok) {
       throw new Error(`Failed to fetch products by collection. Status: ${response.status}`);
     }
-
     const responseData: ShopifyProductResponse = await response.json();
     const products: ShopifyProducts[] = responseData.data.collection.products.edges.map(({ node }) => ({
       id: node.id,
@@ -711,7 +708,6 @@ export async function addToCart(
 ): Promise<Cart> {
   try {
     console.log("Adding to cart...", lines);
-
     const res = await shopifyFetch<ShopifyAddToCartOperation>({
       query: addToCartMutation,
       variables: {
@@ -720,13 +716,10 @@ export async function addToCart(
       },
       cache: 'no-store',
     });
-
     console.log("Responsesssssssss:", res);
-
     if (!res.ok) {
       throw new Error(`Failed to add items to the cart. Status: ${res.status}`);
     }
-
     const data = reshapeCart(res.body.data.cartLinesAdd.cart);
     return data
   } catch (error) {
@@ -808,11 +801,11 @@ export async function updateCart(
 ******* shopify cart end ***********
 **************************************/
 
-
-
-export const shopifyApi = async (endPoint, storefrontAccessToken, methodName, ...args) => {
+export const shopifyApi = async (provider, methodName, ...args) => {
   if(shopifyMethods.hasOwnProperty(methodName)){
-    return await shopifyMethods[methodName](endPoint,storefrontAccessToken,...args);
+    const {commerceConfig} = getConfigForProvider(provider);
+    const {apiEndpoint , storefrontAccessToken} = commerceConfig
+    return await shopifyMethods[methodName](apiEndpoint,storefrontAccessToken,...args);
   }
 }
 

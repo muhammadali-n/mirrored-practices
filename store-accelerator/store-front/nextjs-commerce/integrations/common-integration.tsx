@@ -17,20 +17,26 @@ export const getContent = async<T>(apiCall: GenericApiCall<T>, ...args: any[]): 
 }
 
 //for identify which type of Commerce is configured 
-export const performCommonIntegration = async (methodName: String, ...args: any[]): Promise<T[]> => {
+export const performIntegration = async (methodName: String, ...args: any[]): Promise<T[]> => {
   const provider  = fetchProviderConfig(methodName);
   switch (provider) {
     case 'shopify':{
-      const {commerceConfig} = getConfig(provider);
-      const {apiEndpoint, storefrontAccessToken} = commerceConfig
-      return await shopifyApi(apiEndpoint, storefrontAccessToken,methodName,...args)
+      return await shopifyApi(provider,methodName,...args)
     }  
     case 'vendure': {
-      const {commerceConfig} = getConfig(provider);
-      const { apiEndpoint } = commerceConfig
-      return await vendureApi(apiEndpoint, methodName,...args);
+      return await vendureApi(provider, methodName,...args);
     } 
     default:
   }
 };
 
+/** @deprecated use performIntegration instead */
+export const performCommonIntegration = async <T>(apiCall: GenericApiCall<T>, ...args: any[]): Promise<T[]> => {
+  const { commerceConfig } = getConfig();
+  switch (commerceConfig?.type) {
+    case 'shopify':
+      return await apiCall(...args);
+    case 'saleor':
+    default:
+  }
+};

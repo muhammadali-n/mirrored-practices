@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Collection, Product } from '../../../lib/types';
 import ProductCard from '@/components/grid/productcard';
 import styles from '../../../styles/product.module.css';
-import { performCommonIntegration, IntegrationResult, getContent } from '@/integrations/common-integration';
+import { performCommonIntegration, IntegrationResult, getContent, performIntegration } from '@/integrations/common-integration';
 import { sorting } from '@/lib/constants';
 import { fetchProductCard, fetchPlpData } from '@/integrations/sanity/sanity-integration';
 import Footer from '@/components/layout/footer';
@@ -26,11 +26,12 @@ export default function YourComponent() {
       try {
         const response = await getContent(fetchPlpData);
         setPlpData(response);
-        const transCollectionData = await performCommonIntegration("getCollectionDetails");
+        const transCollectionData = await performIntegration("getCollectionDetails");
+        console.log(transCollectionData);
         setCollections(transCollectionData);
-        console.log(transCollectionData[0].title);
         setSelectedCollection(transCollectionData[0].title);
-        const transformedData = await performCommonIntegration("getCollectionProductDetails", selectedCollection, sortKey, reverse);
+        const transformedData = await performIntegration("getCollectionProductDetails", selectedCollection, sortKey, reverse);
+        console.log(transformedData);
         setProducts(transformedData);
         const button = await getContent(fetchProductCard)
         setButton(button)
@@ -49,7 +50,7 @@ export default function YourComponent() {
   const handleCategoryClick = async (collectionTitle: string) => {
     try {
       setProducts([])
-      const transformedData = await performCommonIntegration("getCollectionProductDetails", collectionTitle, sortKey, reverse);
+      const transformedData = await performIntegration("getCollectionProductDetails", collectionTitle, sortKey, reverse);
       setProducts(transformedData);
       setSelectedCollection(collectionTitle);
     } catch (errors) {
@@ -61,7 +62,7 @@ export default function YourComponent() {
 
   const handleSortChange = async (selectedSort: string, reverse: Boolean, title: string) => {
     try {
-      const transformedData = await performCommonIntegration("getCollectionProductDetails", selectedCollection, selectedSort, reverse);
+      const transformedData = await performIntegration("getCollectionProductDetails", selectedCollection, selectedSort, reverse);
       setProducts(transformedData);
       setSortKey(selectedSort);
       setTitle(title);
@@ -78,7 +79,6 @@ export default function YourComponent() {
   return (
     <>
       <div className={styles['page-container']}>
-
         {collections === null ? (
           <p>Loading collections...</p>
         ) : (
