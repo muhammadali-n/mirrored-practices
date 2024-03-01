@@ -24,6 +24,10 @@
         {
             "inputFieldName": "price",
             "outputFieldName": "price"
+        },
+        {
+            "inputFieldName": "imageSrc",
+            "outputFieldName": "imageSrc"
         }
     ]
 }

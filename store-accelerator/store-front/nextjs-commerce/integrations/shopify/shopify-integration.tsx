@@ -1,7 +1,7 @@
 
 import { getConfig, getConfigForProvider } from '../../config';
 import { performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, createCartMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
+import { addToCartMutation, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -16,9 +16,19 @@ interface ShopifyCollection {
   title: string;
 }
 
+interface ShopifyProductId {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  price: number;
+  imageSrc:any;
+}
+
 
 interface ShopifyProductsResponse {
   data: {
+    nodes: any;
     products: {
       edges: {
         node: {
@@ -93,6 +103,26 @@ interface ShopifyProductResponse {
     };
   };
 }
+
+interface ShopifyProductIdResponse {
+  data: {
+      product: any;
+      edges: {
+        node: {
+          images: any;
+          id: string;
+          title: string;
+          handle: string;
+          description: string;
+          priceRange: {
+            maxVariantPrice: {
+              amount: number;
+            };
+          };
+        };
+      }[];
+    };
+  };
 
 const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
   const query = `
@@ -519,6 +549,7 @@ export const getRelatedProductsById = async (productId: string): Promise<any[]> 
 };
 
 export { TransformationResult };
+
 
 /*************************************
 ******* shopify cart start ***********

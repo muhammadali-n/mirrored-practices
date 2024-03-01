@@ -1,0 +1,453 @@
+.custom-card {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+        border: 0;
+        padding: 0 0.6rem;
+        border-radius: 0;
+        cursor: pointer;
+
+        &:focus {
+            outline: 0;
+            box-shadow: none;
+        }
+
+        a {
+            position: relative;
+            outline: 0;
+        }
+
+        &:before {
+            -webkit-transition-property: opacity;
+            -o-transition-property: opacity;
+            transition-property: opacity;
+            -webkit-transition-duration: 0.3s;
+            -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease-in;
+            -o-transition-timing-function: ease-in;
+            transition-timing-function: ease-in;
+            -webkit-transition-delay: 0s;
+            -o-transition-delay: 0s;
+            transition-delay: 0s;
+            background: #fff;
+            border-radius: $border-radius;
+            bottom: -0.0625rem;
+            -webkit-box-shadow: 0 0.375rem 1.875rem -0.5rem rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0.375rem 1.875rem -0.5rem rgba(0, 0, 0, 0.6);
+            content: "";
+            left: -8px;
+            margin: 0;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            right: -8px;
+            top: -0.0625rem;
+        }
+
+        .card-outer {
+            width: 100%;
+            z-index: 2;
+
+            figure {
+                margin: 0;
+                padding: 1.5rem;
+                position: relative;
+
+                @include media-breakpoint-down(sm) {
+                    padding: 0.5rem;
+                }
+
+                .card-img,
+                img {
+                    border-radius: 0;
+                }
+
+                .badge {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    color: $white;
+
+                    &.bg1 {
+                        background-image: url(/images/tru/svg/badge-freeship.svg);
+                    }
+
+                    &.bg2 {
+                        background-image: url(/images/tru/svg/badge-newin.svg);
+                    }
+
+                    &.out-of-stock {
+                        background-color: $yellow;
+                        color: $black;
+                        border-radius: 0;
+
+                        span {
+                            padding: 0.625rem 0;
+                        }
+                    }
+
+                    span {
+                        padding: 0.85rem 0 0.5rem;
+                        display: block;
+                        font-family: $font-family-secondary;
+                        font-size: $font-size-sm;
+                        font-weight: normal;
+                        width: 100%;
+                        text-align: center;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+
+            .card-body {
+                padding: 1rem 0;
+
+                [dir="ltr"] & {
+                    text-align: left;
+                }
+
+                [dir="rtl"] & {
+                    text-align: right;
+                }
+
+                .card-title {
+                    font-weight: $font-weight-bold;
+                    margin-bottom: 0.875rem;
+                    display: -webkit-box;
+                    height: 52px;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .card-subtitle {
+                    height: 21px;
+                }
+            }
+        }
+
+        &:hover {
+            z-index: 1;
+
+            &:before {
+                opacity: 1;
+            }
+        }
+
+        &.item-outofstock {
+            .card-outer {
+                figure {
+                    img {
+                        opacity: 0.5;
+                    }
+                }
+                .card-body {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+    &.custom-card-list {
+        .card {
+            width: 25%;
+            flex: 0 0 25%;
+            border-top: 0.0625rem solid $gray-200;
+            padding-bottom: 2rem;
+            padding-top: 2rem;
+
+            .card-outer {
+                .card-body {
+                    .card-title {
+                        height: 48px;
+
+                        @include media-breakpoint-down(md) {
+                            height: auto;
+                            -webkit-line-clamp: inherit;
+                            overflow: visible;
+                        }
+                    }
+                }
+            }
+
+            .pricing-card {
+                .card-subtitle {
+                    height: 21px;
+                }
+            }
+
+            @include media-breakpoint-down(lg) {
+                max-width: 33.3333%;
+                flex: 0 0 33.3333%;
+            }
+
+            @include media-breakpoint-down(md) {
+                max-width: 50%;
+                flex: 0 0 50%;
+            }
+
+            @include media-breakpoint-down(sm) {
+                max-width: 100%;
+                flex: 0 0 100%;
+                padding: 1.5rem 0;
+
+                .card-outer {
+                    display: flex;
+                    align-items: flex-start;
+
+                    figure {
+                        flex: 0 0 50%;
+                        width: 50%;
+
+                        [dir="ltr"] & {
+                            margin-right: 1rem;
+                        }
+                        [dir="rtl"] & {
+                            margin-left: 1rem;
+                        }
+
+                        .badge.out-of-stock {
+                            height: 40px;
+                            top: 50%;
+                        }
+                    }
+
+                    .card-body {
+                        width: 50%;
+
+                        .card-title {
+                            height: auto;
+                        }
+                        .card-subtitle {
+                            height: auto;
+                        }
+                    }
+                }
+                .pricing-card {
+                    .card-subtitle {
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    &.custom-card-searchlist {
+        .card {
+            width: 25%;
+            flex: 0 0 25%;
+            background-color: transparent;
+            border-top: 0;
+            padding-top: 0;
+            padding-bottom: 1rem;
+
+            .card-outer {
+                .card-body {
+                    .card-title {
+                        height: 48px;
+
+                        @include media-breakpoint-down(md) {
+                            height: auto;
+                            -webkit-line-clamp: inherit;
+                            overflow: visible;
+                        }
+                    }
+                }
+                figure {
+                    background-color: $white;
+                }
+            }
+
+            .pricing-card {
+                .card-subtitle {
+                    height: 21px;
+                }
+            }
+
+            @include media-breakpoint-down(lg) {
+                max-width: 50%;
+                flex: 0 0 50%;
+                padding: 0;
+                padding-right: 1.25rem;
+            }
+
+            @include media-breakpoint-down(md) {
+                max-width: 100%;
+                flex: 0 0 100%;
+                padding-right: 0;
+                background-color: $white;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                overflow: hidden;
+                margin-bottom: 1.5rem;
+
+                .card-outer {
+                    display: flex;
+                    flex-direction: row;
+
+                    figure {
+                        width: 136px;
+                        flex: 0 0 136px;
+
+                        .badge {
+                            border-radius: 0;
+
+                            span {
+                                padding: 0.3rem 0 0.3rem;
+                            }
+
+                            &.bg1 {
+                                background-image: none;
+                                background-color: $teal;
+                            }
+
+                            &.bg2 {
+                                background-image: none;
+                                background-color: $light-green;
+                            }
+                        }
+                    }
+                    .card-body {
+                        padding-left: 1rem;
+                    }
+                }
+            }
+
+            @include media-breakpoint-down(sm) {
+                margin-bottom: 2px;
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            margin-right: -16px;
+            margin-left: -16px;
+        }
+    }
+
+    &.list-4 {
+        .card {
+            width: 25%;
+            flex: 0 0 25%;
+        }
+    }
+}
+.pricing-card {
+    display: flex;
+    flex-direction: column;
+
+    .card-subtitle {
+        color: $gray-500;
+        text-decoration: line-through;
+        font-weight: $font-weight-normal;
+        font-size: $font-size-sm;
+        display: block;
+    }
+
+    .card-text {
+        color: $black;
+        font-size: $h2-font-size;
+        font-family: $font-family-secondary;
+        font-weight: $font-weight-light;
+        line-height: 1;
+
+        span {
+            font-size: $font-size-sm;
+            vertical-align: top;
+            line-height: 1.5;
+
+            [dir="ltr"] & {
+                margin-left: 0.5rem;
+            }
+            [dir="rtl"] & {
+                margin-right: 0.5rem;
+            }
+        }
+
+        &.offer-price {
+            color: $orange;
+        }
+    }
+    .price-text {
+        display: flex;
+        flex-direction: row;
+
+        .card-text {
+            [dir="ltr"] & {
+                margin-right: 1rem;
+            }
+
+            [dir="rtl"] & {
+                margin-left: 1rem;
+            }
+        }
+        .offer-note {
+            line-height: 1rem;
+            font-size: $font-size-sm;
+        }
+    }
+}
+
+.register-card {
+    border-radius: $border-radius-lg;
+
+    @include media-breakpoint-down(sm) {
+        padding: 1rem;
+        margin-right: -16px;
+        margin-left: -16px;
+        margin-top: 1rem;
+        border-radius: 0;
+        border: 0;
+        border-top: $border-width solid $gray-300;
+    }
+
+    .card-title {
+        text-align: center;
+        font-size: $h4-font-size;
+    }
+
+    .card-body {
+        padding: 2rem 1.5rem;
+
+        @include media-breakpoint-down(sm) {
+            padding: 1rem 0;
+        }
+    }
+}
+
+.note-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: $primary;
+    font-weight: $font-weight-bold;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .btn-link {
+        font-weight: $font-weight-bold;
+    }
+
+    i {
+        [dir="ltr"] & {
+            margin-right: 1rem;
+        }
+
+        [dir="rtl"] & {
+            margin-left: 1rem;
+        }
+
+        &:before {
+            color: $primary;
+        }
+    }
+}

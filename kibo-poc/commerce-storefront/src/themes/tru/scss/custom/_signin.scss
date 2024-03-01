@@ -1,0 +1,36 @@
+.signin-page-outer {
+    padding-top: 2rem;
+    padding-bottom: 7.5rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-bottom: 4rem;
+    }
+}
+.signin-title {
+    font-weight: $font-weight-light;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.signin-center-panel {
+    min-width: 20rem;
+    flex-basis: 25%;
+    max-width: 25%;
+    margin: 0 auto;
+
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+.register-side-panel {
+    min-width: 20rem;
+    flex-basis: 25%;
+    max-width: 25%;
+
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}

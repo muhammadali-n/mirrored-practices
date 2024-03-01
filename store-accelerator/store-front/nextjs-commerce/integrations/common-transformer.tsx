@@ -6,7 +6,7 @@ interface CustomPage {
   locale: string 
 }
 
-const performTransformation = (data: any[], additionalArgs:any): { transformedData: any[] } => {
+const performTransformation = (data: any[], additionalArgs:any): { transformedData: any[] ,transformedHomeData: any[]} => {
   if (!data) {
     throw new Error('Input data is undefined');
   }

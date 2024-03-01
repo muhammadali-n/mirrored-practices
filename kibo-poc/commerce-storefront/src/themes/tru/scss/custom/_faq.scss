@@ -1,0 +1,61 @@
+.faq-layout-outer {
+    padding-top: 0;
+    padding-bottom: 7.5rem;
+
+    @include media-breakpoint-down(sm) {
+        padding-bottom: 4rem;
+        background-color: $white;
+    }
+
+    .title-main {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+    .faq-content-outer {
+        padding: 0 10%;
+
+        @include media-breakpoint-down(sm) {
+            padding: 0;
+        }
+    }
+
+    .faq-top-content {
+        @include media-breakpoint-down(sm) {
+            background-color: $white;
+            padding: 1.5rem 1rem 1rem;
+            margin-right: -16px;
+            margin-left: -16px;
+
+            .title-main {
+                margin-top: 0;
+            }
+        }
+    }
+}
+.accordion-outer {
+    @include media-breakpoint-down(sm) {
+        margin-right: -16px;
+        margin-left: -16px;
+    }
+
+    .accordion-item {
+        margin-bottom: 0.0625rem;
+    }
+    .collapse,
+    .collapsing {
+        .card {
+            border: 0;
+            padding: 0;
+            background-color: transparent;
+
+            .card-body {
+                padding: 2rem 0;
+
+                @include media-breakpoint-down(sm) {
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+}
