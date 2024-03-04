@@ -1,5 +1,5 @@
 
-import { getConfig } from '../../config';
+import { getConfig, getConfigForProvider } from '../../config';
 import { performTransformation, TransformationResult } from '../common-transformer';
 import { addToCartMutation, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
@@ -53,10 +53,10 @@ interface ShopifyCollectionsResponse {
     collections: {
       edges: {
         node: {
-         
+
           id: string;
           title: string;
-         
+
         };
       }[];
     };
@@ -124,11 +124,7 @@ interface ShopifyProductIdResponse {
     };
   };
 
-export const getProducts = async (): Promise<TransformationResult> => {
-  const { commerceConfig } = getConfig();
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
-
+const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
   const query = `
     {
         products(first: 20) {
@@ -156,9 +152,8 @@ export const getProducts = async (): Promise<TransformationResult> => {
         }
       }
   `;
-
   try {
-    const response = await fetch(apiEndpoint, {
+    const response = await fetch(endPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -188,15 +183,7 @@ export const getProducts = async (): Promise<TransformationResult> => {
   }
 };
 
-
-
-
-export const getCollections = async (): Promise<TransformationResult> => {
-  const { commerceConfig } = getConfig();
-
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
-
+const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
   const query = `
   {
     collections(first: 10, sortKey: TITLE, reverse: false) {
@@ -238,9 +225,8 @@ export const getCollections = async (): Promise<TransformationResult> => {
   
   `;
 
-
   try {
-    const response = await fetch(apiEndpoint, {
+    const response = await fetch(endPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -275,12 +261,7 @@ export const getCollections = async (): Promise<TransformationResult> => {
   }
 };
 
-export const getProductByCollection = async (selectedCollection: string, sortKey: string, reverse: Boolean): Promise<ShopifyProduct[]> => {
-  const { commerceConfig } = getConfig();
-
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
-
+export const getCollectionProductDetails = async (endPoint, storefrontAccessToken, selectedCollection: string, sortKey: string, reverse: Boolean): Promise<ShopifyProduct[]> => {
   const query = {
     query: getCollectionProductsQuery,
     variables: {
@@ -288,9 +269,8 @@ export const getProductByCollection = async (selectedCollection: string, sortKey
       reverse: reverse
     }
   };
-
   try {
-    const response = await fetch(apiEndpoint, {
+    const response = await fetch(endPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -301,7 +281,6 @@ export const getProductByCollection = async (selectedCollection: string, sortKey
     if (!response.ok) {
       throw new Error(`Failed to fetch products by collection. Status: ${response.status}`);
     }
-
     const responseData: ShopifyProductResponse = await response.json();
     const products: ShopifyProducts[] = responseData.data.collection.products.edges.map(({ node }) => ({
       id: node.id,
@@ -411,7 +390,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
     }
     const responseData = await response.json();
     const data = responseData.data.productByHandle;
-    
+
     const transformProductData = (data) => {
       return {
         id: data.id,
@@ -419,7 +398,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
         availableForSale: data.availableForSale,
         title: data.title,
         description: data.description,
-        descriptionHtml:data.descriptionHtml,
+        descriptionHtml: data.descriptionHtml,
         price: data.priceRange.maxVariantPrice.amount,
         options: data.options.map(option => ({
           id: option.id,
@@ -730,11 +709,11 @@ export const getProductById = async (productId: string): Promise<ShopifyProductI
       },
       body: JSON.stringify({ query }),
     });
-    
+
     if (!response.ok) {
       throw new Error(`Failed to fetch product from shopify. Status: ${response.status}`);
     }
-    
+
     const responseData: ShopifyProductsResponse = await response.json();
     console.log('Shopify API response:', responseData);
 
@@ -744,7 +723,6 @@ export const getProductById = async (productId: string): Promise<ShopifyProductI
     throw error;
   }
 };
-
 
 
 export { TransformationResult };
@@ -817,7 +795,6 @@ export type ShopifyUpdateCartOperation = {
     }[];
   };
 };
-
 
 const removeEdgesAndNodes = (array: Connection<any>) => {
   return array.edges.map((edge) => edge?.node);
@@ -908,18 +885,13 @@ export type Cart = Omit<ShopifyCart, 'lines'> & {
 };
 
 export async function createCart(): Promise<Cart> {
-
   const res = await shopifyFetch<ShopifyCreateCartOperation>({
     query: createCartMutation,
     cache: 'no-store'
   });
   console.log("resresres", res);
-
-
   return reshapeCart(res.body.data.cartCreate.cart);
 }
-
-
 
 // -----------shopify add to cart
 
@@ -938,14 +910,12 @@ export type ShopifyAddToCartOperation = {
   };
 };
 
-
 export async function addToCart(
   cartId: string,
   lines: { merchandiseId: string; quantity: number }[]
 ): Promise<Cart> {
   try {
     console.log("Adding to cart...", lines);
-
     const res = await shopifyFetch<ShopifyAddToCartOperation>({
       query: addToCartMutation,
       variables: {
@@ -954,13 +924,10 @@ export async function addToCart(
       },
       cache: 'no-store',
     });
-
     console.log("Responsesssssssss:", res);
-
     if (!res.ok) {
       throw new Error(`Failed to add items to the cart. Status: ${res.status}`);
     }
-
     const data = reshapeCart(res.body.data.cartLinesAdd.cart);
     return data
   } catch (error) {
@@ -1038,7 +1005,27 @@ export async function updateCart(
   return reshapeCart(res.body.data.cartLinesUpdate.cart);
 }
 
-
 /*************************************
 ******* shopify cart end ***********
 **************************************/
+
+export const shopifyApi = async (provider, methodName, ...args) => {
+  if(shopifyMethods.hasOwnProperty(methodName)){
+    const {commerceConfig} = getConfigForProvider(provider);
+    const {apiEndpoint , storefrontAccessToken} = commerceConfig
+    return await shopifyMethods[methodName](apiEndpoint,storefrontAccessToken,...args);
+  }
+}
+
+const shopifyMethods = {
+  "getCollectionDetails":getCollectionDetails,
+  "getProductDetails":getProductDetails,
+  "getCollectionProductDetails": getCollectionProductDetails,
+  "getProductsByHandle": getProductsByHandle,
+  "getRelatedProductsById": getRelatedProductsById,
+  "createCart":createCart,
+  "addToCart":addToCart,
+  "removeFromCart":removeFromCart,
+  "getcart":getCart,
+  "updateCart":updateCart
+}

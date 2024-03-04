@@ -90,9 +90,7 @@ export default async function CartContainer() {
     router.push('/search/all');
   };
 
-
   return (
-
     <Cart
       sanityContent={sanityContent}
       removeItemFromCart={removeItemFromCart}

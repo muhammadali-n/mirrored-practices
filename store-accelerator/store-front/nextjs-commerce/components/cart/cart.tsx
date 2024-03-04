@@ -86,7 +86,7 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                       </Col>
                       <Col md='8' className=''>
                         <h6 className='font-weight-800'>{product.merchandise.product.title}</h6>
-                        <p className='text-secondary'>{product.merchandise.product.description}</p>
+                        {/* <p className='text-secondary'>{product.merchandise.product.description}</p> */}
                       </Col>
                     </Row>
                   </Col>
