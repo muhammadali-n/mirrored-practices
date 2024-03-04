@@ -22,31 +22,31 @@ export function VariantSelector({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const hasNoOptionsOrJustOneOption =
-    !options.length || (options.length === 1 && options[0]?.values.length === 1);
+    !options?.length || (options?.length === 1 && options[0]?.values.length === 1);
 
   if (hasNoOptionsOrJustOneOption) {
     return null;
   }
 
   const combinations: Combination[] = variants.map((variant: any) => ({
-    id: variant.id,
-    availableForSale: variant.availableForSale,
-    ...variant.selectedOptions.reduce(
-      (accumulator: any, option: any) => ({ ...accumulator, [option.name.toLowerCase()]: option.value }),
+    id: variant?.id,
+    availableForSale: variant?.availableForSale,
+    ...variant?.selectedOptions.reduce(
+      (accumulator: any, option: any) => ({ ...accumulator, [option?.name?.toLowerCase()]: option?.value }),
       {}
     ),
-    price: variant.price,
-    currencyCode: variant.currencyCode
+    price: variant?.price,
+    currencyCode: variant?.currencyCode
   }));
 
 
   return options.map((option) => (
-    <dl className="mb-8 bg-black" key={option.id}>
+    <dl className="mb-8 bg-black" key={option?.id}>
 
-      <dt className="mb-4 text-sm uppercase tracking-wide">{option.name}</dt>
+      <dt className="mb-4 text-sm uppercase tracking-wide">{option?.name}</dt>
       <dd className="flex flex-wrap gap-3">
-        {option.values.map((value) => {
-          const optionNameLowerCase = option.name.toLowerCase();
+        {option?.values.map((value) => {
+          const optionNameLowerCase = option?.name.toLowerCase();
 
           const optionSearchParams = new URLSearchParams(searchParams.toString());
 
@@ -57,7 +57,7 @@ export function VariantSelector({
 
           const filtered = Array.from(optionSearchParams.entries()).filter(([key, value]) =>
             options.find(
-              (option) => option.name.toLowerCase() === key && option.values.includes(value)
+              (option) => option?.name.toLowerCase() === key && option?.values.includes(value)
             )
           );
           const isAvailableForSale = combinations.find((combination) =>
@@ -76,7 +76,7 @@ export function VariantSelector({
               onClick={() => {
                 router.replace(optionUrl, { scroll: false });
               }}
-              title={`${option.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
+              title={`${option?.name} ${value}${!isAvailableForSale ? ' (Out of Stock)' : ''}`}
               className={clsx(
                 'flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-3 py-2 text-sm dark:border-neutral-800 dark:bg-neutral-900 variant-selector',
                 {

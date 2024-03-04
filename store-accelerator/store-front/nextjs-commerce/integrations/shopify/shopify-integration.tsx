@@ -393,38 +393,38 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
 
     const transformProductData = (data) => {
       return {
-        id: data.id,
-        handle: data.handle,
-        availableForSale: data.availableForSale,
-        title: data.title,
-        description: data.description,
-        descriptionHtml: data.descriptionHtml,
-        price: data.priceRange.maxVariantPrice.amount,
-        options: data.options.map(option => ({
-          id: option.id,
-          name: option.name,
-          values: option.values
+        id: data?.id,
+        handle: data?.handle,
+        availableForSale: data?.availableForSale,
+        title: data?.title,
+        description: data?.description,
+        descriptionHtml:data?.descriptionHtml,
+        price: data?.priceRange?.maxVariantPrice?.amount,
+        options: data?.options?.map(option => ({
+          id: option?.id,
+          name: option?.name,
+          values: option?.values
         })),
         featuredImage: {
-          src: data.featuredImage.originalSrc,
-          altText: data.featuredImage.altText || ''
+          src: data?.featuredImage?.originalSrc,
+          altText: data?.featuredImage?.altText || ''
         },
-        images: data.images.edges.map(edge => ({
-          src: edge.node.originalSrc,
-          altText: edge.node.altText || ''
+        images: data?.images?.edges?.map(edge => ({
+          src: edge?.node?.originalSrc,
+          altText: edge?.node?.altText || ''
         })),
-        variants: data.variants.edges.map(edge => ({
-          id: edge.node.id,
-          title: edge.node.title,
-          availableForSale: edge.node.availableForSale,
-          selectedOptions: edge.node.selectedOptions,
-          price: edge.node.price.amount,
-          currencyCode: edge.node.price.currencyCode,
+        variants: data?.variants?.edges?.map(edge => ({
+          id: edge?.node?.id,
+          title: edge?.node?.title,
+          availableForSale: edge?.node?.availableForSale,
+          selectedOptions: edge?.node?.selectedOptions,
+          price: edge?.node?.price?.amount,
+          currencyCode: edge?.node?.price?.currencyCode,
 
         })),
-        currencyCode: data.priceRange.minVariantPrice.currencyCode,
-        highPrice: data.priceRange.maxVariantPrice.amount,
-        lowPrice: data.priceRange.minVariantPrice.amount,
+        currencyCode: data?.priceRange?.minVariantPrice?.currencyCode,
+        highPrice: data?.priceRange?.maxVariantPrice?.amount,
+        lowPrice: data?.priceRange?.minVariantPrice?.amount,
       };
     };
     const transformedData = transformProductData(data);

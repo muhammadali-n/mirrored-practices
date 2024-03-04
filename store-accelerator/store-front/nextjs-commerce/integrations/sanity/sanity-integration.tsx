@@ -1,7 +1,7 @@
 import { client } from '../../app/lib/sanity';
 import { customUi, performTransformation } from '../common-transformer';
 import customPageTransformerConfig from "./sanity-transform-config.json"
-import transformSanityCartData from './sanity-transformer';
+import transformSanityCartData, { transformFooterData, transformHeaderData, transformPdpData, transformPlpData } from './sanity-transformer';
 
 const getDataByQuery = async (query: string) => {
 
@@ -64,20 +64,24 @@ export const fetchCartPage = async () => {
   export const fetchHeader = async () => {
 
     const header = await getDataByQuery("*[_type == 'header']")
-    return header
+    const transformedData = transformHeaderData(header)
+    return transformedData
   }
   
   export const fetchFooter = async () => {
     const footer = await getDataByQuery("*[_type == 'footer']")
-    return footer
+    const transformedData= transformFooterData(footer);
+    return transformedData
   }
 
   export const fetchPlpData = async () => {
     const plpData = await getDataByQuery("*[_type == 'plpData']")
-    return plpData
+    const transformedData= transformPlpData(plpData);
+    return transformedData
   }
 
   export const fetchPdpData = async () => {
     const pdpData = await getDataByQuery("*[_type == 'pdpData']")
-    return pdpData
+    const transformedData= transformPdpData(pdpData);
+    return transformedData
   }

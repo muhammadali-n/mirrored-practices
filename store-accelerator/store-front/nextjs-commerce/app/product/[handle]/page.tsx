@@ -97,7 +97,7 @@ export default async function ProductPage({ params }: { params: { handle: string
 
 const RelatedProducts = async ({ id }: { id: string }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [pdpData, setPdpdata]=useState([])
+  const [pdpData, setPdpdata]=useState<any>([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -121,14 +121,11 @@ const RelatedProducts = async ({ id }: { id: string }) => {
     <>
       <div className='d-flex ml-3'>
         <Row>      
-          {Array.isArray(pdpData) && pdpData.map((item: any, index: any) => (
-
-          <h2 key={index}className="mb-4  text-2xl font-bold">{item.products?.translation?.ar || item.products?.translation?.en}</h2>
-          ))}
+          <h2 className="mb-4  text-2xl font-bold">{pdpData?.relatedProducts?.ar || pdpData?.relatedProducts?.en}</h2>
           {relatedProducts.map((product:Product) => (
 
             <Col key={product.id} className='mb-3' style={{ width: "auto", maxWidth: "300px" }}>
-              <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}>
+              <Link className="relative inline-block h-full w-full" href={`/product/${product.handle}`}style={{ textDecoration: 'none', color: 'inherit' }}>
 
                 <div className="card">
                   <div className='card-img'>
