@@ -53,11 +53,9 @@ export async function Gallery({ images }: { images: { src: string; altText: stri
                 className={buttonClassName}
                 scroll={false}
               >
-                {Array.isArray(pdpData) && pdpData.map((item: any, index: any) => (
-                  <span key={index}>
-                    <img src={urlFor(item?.leftArrow?.icon?.asset?._ref)?.url()} alt={item?.leftArrow?.translation?.ar || item?.leftArrow?.translation?.en} width={50} height={40} />
-                  </span>
-                ))}
+                <span>
+                  <img src={urlFor(pdpData?.leftArrow)?.url()} alt={pdpData?.leftArrowAltTranslation?.ar || pdpData?.leftArrowAltTranslation?.en} width={50} height={40} />
+                </span>
               </Link>
               {/* <div className="mx-1 h-6 w-px bg-neutral-500"></div> */}
               <Link
@@ -66,11 +64,9 @@ export async function Gallery({ images }: { images: { src: string; altText: stri
                 className={buttonClassName}
                 scroll={false}
               >
-                {Array.isArray(pdpData) && pdpData.map((item: any, index: any) => (
-                  <span key={index}>
-                    <img src={urlFor(item?.rightArrow?.icon?.asset?._ref)?.url()} alt={item?.rightArrow?.translation?.ar || item?.rightArrow?.translation?.en} width={50} height={40} />
-                  </span>
-                ))}
+                <span>
+                  <img src={urlFor(pdpData?.rightArrow)?.url()} alt={pdpData?.rightArrowAltTranslation?.ar || pdpData?.rightArrowAltTranslation?.en} width={50} height={40} />
+                </span>
               </Link>
             </div>
           </div>

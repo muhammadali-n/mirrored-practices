@@ -53,7 +53,7 @@ export default {
         defineArrayMember({ type: "textWithLink" }),
         defineArrayMember({ type: "video" }),
         defineArrayMember({ type: "productImage" }),
-        defineArrayMember({ type: "banner" })
+        // defineArrayMember({ type: "banner" })
 
 
 

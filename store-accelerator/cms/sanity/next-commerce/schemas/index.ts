@@ -18,7 +18,7 @@ import storeName from "./documents/store-name";
 import plpData from "./documents/plp-data";
 import productImage from "./documents/product-image";
 import { productBlocks, columns } from "./object/productBlock";
-import banner from "./object/banner";
+// import banner from "./object/banne";
 import video from "./object/video";
 import text from "./object/text";
 import product from "./object/product";
@@ -27,4 +27,4 @@ import pdpData from "./documents/pdp-data";
 
 
 
-export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems,storeName,plpData,sections,banner,productImage,video,text,product,productBlocks,columns,productCarousel,pdpData]
+export const schemaTypes = [customPage,blockImages,richText,localization,button, preDefinedPage,productCard,localeString, cartItems,header,cartIcon,searchBar,footer, storeLogo, menuItems,storeName,plpData,sections,productImage,video,text,product,productBlocks,columns,productCarousel,pdpData]

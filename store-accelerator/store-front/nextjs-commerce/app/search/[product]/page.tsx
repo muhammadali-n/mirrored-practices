@@ -79,25 +79,23 @@ export default function YourComponent() {
   return (
     <>
       <div className={styles['page-container']}>
+
         {collections === null ? (
           <p>Loading collections...</p>
         ) : (
             <div className={styles['collection-list']}>
-              {Array.isArray(plpData) && plpData.map((page: any, index: number) => (
-                <>
-                  <h2>{page?.collections?.translation?.ar || page?.collections?.translation?.en}</h2>
+                  <h2>{plpData?.collections?.ar || plpData?.collections?.en}</h2>
                   <ul className={styles['list']}>
-                    {collections?.map((collection) => (
+                    {collections.map((collection) => (
                       <li key={collection.id} onClick={() => handleCategoryClick(collection.title)} style={{ listStyleType: 'none' }} className={collection.title === selectedCollection ? styles['selected-option'] : ''}>
                         {collection.title}
                       </li>
                     ))}
-                  </ul>
-                </>
-              ))}
+                  </ul>      
             </div>
+         
         )}
-        {products === null || products?.length == 0 ? (
+        {products === null || products.length == 0 ? (
           <>
             <div className={styles['center-container']}>
               <div className={styles['grid-container']}>
@@ -106,45 +104,43 @@ export default function YourComponent() {
 
             </div>
             <div className={styles['filters']}>
-              {Array.isArray(plpData) && plpData.map((page: any, index: number) => (
                 <>
-                  <label>{page?.sortby?.translation?.ar||page?.sortby?.translation?.en}</label>
+                  <label>{plpData?.sortby?.ar||plpData?.sortby?.en}</label>
                   <ul className={styles['sort-options']}>
                     {sorting.map((option) => (
                       <li key={option.title} onClick={() => handleSortChange(option.sortKey, option.reverse, option.title)} style={{ listStyleType: 'none' }} className={option.title === title ? styles['selected-option'] : ''}>{option.title}</li>
                     ))}
                   </ul>
                 </>
-              ))}
             </div>
           </>
         ) : (
           <>
+
             <div className={styles['center-container']}>
               <div className={styles['grid-container']}>
-                {products?.map((product) => (
+                {products.map((product) => (
                   <ProductCard key={product.id} product={product} className={styles['grid-item']} button={button} />
                 ))}
               </div>
 
             </div>
               <div className={styles['filters']}>
-                {Array.isArray(plpData) && plpData.map((page: any, index: number) => (
                   <>
-                    <label>{page?.sortby?.translation?.ar || page?.sortby?.translation?.en}</label>
+                    <label>{plpData?.sortby?.ar || plpData?.sortby?.en}</label>
                     <ul className={styles['sort-options']}>
                       {sorting.map((option) => (
                         <li key={option.title} onClick={() => handleSortChange(option.sortKey, option.reverse, option.title)} style={{ listStyleType: 'none' }} className={option.title === title ? styles['selected-option'] : ''}>{option.title}</li>
                       ))}
                     </ul>
                   </>
-                ))}
               </div>
           </>
+
         )}
+
       </div>
       <Footer />
     </>
   );
 }
-
