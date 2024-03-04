@@ -27,10 +27,10 @@ export default function YourComponent() {
         const response = await getContent(fetchPlpData);
         setPlpData(response);
         const transCollectionData = await performIntegration("getCollectionDetails");
-        console.log(transCollectionData);
         setCollections(transCollectionData);
-        setSelectedCollection(transCollectionData[0].title);
-        const transformedData = await performIntegration("getCollectionProductDetails", selectedCollection, sortKey, reverse);
+        const firstCollectionTitle = transCollectionData?.[0]?.title
+        setSelectedCollection(firstCollectionTitle);
+        const transformedData = await performIntegration("getCollectionProductDetails", firstCollectionTitle, sortKey, reverse);
         console.log(transformedData);
         setProducts(transformedData);
         const button = await getContent(fetchProductCard)
@@ -41,7 +41,7 @@ export default function YourComponent() {
       }
     };
     fetchData();
-  }, [selectedCollection]);
+  }, []);
 
   if (collections === null && products === null) {
     return <p>Loading in Progress...</p>;
