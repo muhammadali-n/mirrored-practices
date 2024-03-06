@@ -5,7 +5,8 @@ import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import { ProductListingTemplate } from '@/components/page-templates'
+// import { ProductListingTemplate } from '@/components/page-templates'
+import ProductList from '@/components/page-templates/ProductListingTemplate/TRUListingTemplate'
 import { useGetSearchedProducts } from '@/hooks'
 import { productSearch } from '@/lib/api/operations'
 import { facetGetters, productSearchGetters } from '@/lib/getters'
@@ -114,7 +115,7 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
   }, [router.query])
   return (
     <>
-      <ProductListingTemplate
+      {/* <ProductListingTemplate
         productListingHeader={searchPageHeading as string}
         categoryFacet={categoryFacet}
         facetList={facetList}
@@ -129,7 +130,22 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
         appliedFilters={appliedFilters as FacetValue[]}
         onSortItemSelection={changeSorting}
         onPaginationChange={changePagination}
-      />
+      /> */}
+      <ProductList 
+        productListingHeader={searchPageHeading as string}
+        categoryFacet={categoryFacet}
+        facetList={facetList}
+        sortingValues={sortingValues}
+        products={products}
+        totalResults={searchPageResults?.totalCount}
+        pageSize={searchPageResults?.pageSize}
+        pageCount={searchPageResults?.pageCount}
+        startIndex={searchPageResults?.startIndex}
+        breadCrumbsList={breadcrumbs}
+        isLoading={isFetching}
+        appliedFilters={appliedFilters as FacetValue[]}
+        onSortItemSelection={changeSorting}
+        onPaginationChange={changePagination}/>
     </>
   )
 }
