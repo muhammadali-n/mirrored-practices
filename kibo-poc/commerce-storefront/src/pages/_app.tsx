@@ -18,7 +18,7 @@ import type { NextPageWithLayout } from '@/lib/types'
 
 import '@/styles/global.css'
 import '@splidejs/react-splide/css'
-import "@themes/tru/scss/main-scss/main.scss";
+import '@themes/tru/scss/main-scss/main.scss'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -28,7 +28,7 @@ type KiboAppProps = AppProps & {
   Component: NextPageWithLayout
 }
 
-NProgress.configure({ showSpinner: false })
+NProgress.configure({ showSpinner: true })
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())

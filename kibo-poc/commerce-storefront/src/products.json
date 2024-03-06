@@ -1,0 +1,734 @@
+{
+    "startIndex": 0,
+    "pageSize": 2,
+    "pageCount": 11,
+    "totalCount": 21,
+    "items": [
+        {
+            "productCode": "VALPRD001",
+            "productSequence": 1,
+            "productUsage": "Standard",
+            "fulfillmentTypesSupported": [
+                "DirectShip",
+                "InStorePickup",
+                "Delivery"
+            ],
+            "goodsType": "Physical",
+            "content": {
+                "productName": "LEGO Icons Flower Bouquet 10280 Building Blocks Toy Set; Flowers Botanical Collection; Valentine Gifts for Her (756 Pieces)",
+                "productFullDescription": "\u003Cul class=\u0022list-dots success\u0022 style=\u0022box-sizing: border-box; margin: 0px; list-style: none; padding: 0px; font-family: \u0026quot;Nunito Sans\u0026quot;, \u0026quot;El Messiri\u0026quot;, sans-serif; font-size: 16px;\u0022\u003E\u003Cli style=\u0022box-sizing: border-box; width: 748.703px; margin: 0px 0px 0.75rem; position: relative; padding: 0px 0px 0px 1.25rem;\u0022\u003ERelax, unplug and build a beautiful floral arrangement with the 10280 LEGO Creator Botanical Collection Flower Bouquet (756 Pieces),\u003C/li\u003E\u003Cli style=\u0022box-sizing: border-box; width: 748.703px; margin: 0px 0px 0.75rem; position: relative; padding: 0px 0px 0px 1.25rem;\u0022\u003EEach detailed flower is made of LEGO components which create a unique display\u003C/li\u003E\u003Cli style=\u0022box-sizing: border-box; width: 748.703px; margin: 0px 0px 0.75rem; position: relative; padding: 0px 0px 0px 1.25rem;\u0022\u003EMost flower petals can be repositioned to enjoy different arrangements\u003C/li\u003E\u003Cli style=\u0022box-sizing: border-box; width: 748.703px; margin: 0px 0px 0.75rem; position: relative; padding: 0px 0px 0px 1.25rem;\u0022\u003ETake the stems apart and recombine to adjust the height and shape of the flowers\u003C/li\u003E\u003Cli\u003E\u003C/li\u003E\u003C/ul\u003E",
+                "productShortDescription": "\u003Cul class=\u0022list-dots success\u0022 style=\u0022box-sizing: border-box; margin: 0px; list-style: none; padding: 0px; font-family: \u0026quot;Nunito Sans\u0026quot;, \u0026quot;El Messiri\u0026quot;, sans-serif; font-size: 16px;\u0022\u003E\u003Cli style=\u0022box-sizing: border-box; width: 748.703px; margin: 0px 0px 0.75rem; position: relative; padding: 0px 0px 0px 1.25rem;\u0022\u003ERelax, unplug and build a beautiful floral arrangement with the 10280 LEGO Creator Botanical Collection Flower Bouquet (756 Pieces)\u003C/li\u003E\u003C/ul\u003E",
+                "metaTagTitle": "LEGO Icons Flower Bouquet 10280 Building Blocks Toy Set; Flowers Botanical Collection; Valentine Gifts for Her (756 Pieces)",
+                "metaTagDescription": "Relax, unplug and build a beautiful floral arrangement with the 10280 LEGO Creator Botanical Collection Flower Bouquet (756 Pieces),Each detailed flower is made of LEGO components which create a unique displayMost flower petals can be repositioned to enjoy different arrangementsTake the stems apart and recombine to adjust the height and shape of the flowers",
+                "seoFriendlyUrl": "lego-icons-flower-bouquet-10280-building-blocks-toy-set-flowers-botanical-collection-valentine-gifts-for-her-756-pieces-",
+                "productImages": [
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/b4d74618-a964-4e26-be9c-e0a5054aaf7b",
+                        "cmsId": "b4d74618-a964-4e26-be9c-e0a5054aaf7b",
+                        "sequence": 1,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/1f9cd250-ea5f-4dff-bca5-4bdaad80387d",
+                        "cmsId": "1f9cd250-ea5f-4dff-bca5-4bdaad80387d",
+                        "sequence": 2,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/e7dda522-92c1-4e29-baa0-7c9405539483",
+                        "cmsId": "e7dda522-92c1-4e29-baa0-7c9405539483",
+                        "sequence": 3,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/35eb63c1-a9f7-41a3-9b71-e0481b36513e",
+                        "cmsId": "35eb63c1-a9f7-41a3-9b71-e0481b36513e",
+                        "sequence": 4,
+                        "productImageGroupId": "default"
+                    }
+                ]
+            },
+            "purchasableState": {
+                "isPurchasable": true
+            },
+            "isActive": true,
+            "publishState": "Live",
+            "price": {
+                "price": 299.0000,
+                "priceType": "List",
+                "salePrice": 229.0000,
+                "salePriceType": "CatalogSalePrice",
+                "catalogSalePrice": 229.0000,
+                "catalogListPrice": 299.0000
+            },
+            "productType": "toy",
+            "productTypeId": 17,
+            "isTaxable": true,
+            "isRecurring": false,
+            "pricingBehavior": {
+                "discountsRestricted": false
+            },
+            "inventoryInfo": {
+                "manageStock": true,
+                "outOfStockBehavior": "DisplayMessage",
+                "onlineStockAvailable": 20,
+                "onlineSoftStockAvailable": 20,
+                "onlineLocationCode": "64880",
+                "isSubstitutable": false
+            },
+            "createDate": "2024-02-15T09:30:44.049Z",
+            "updateDate": "2024-02-29T12:03:07.939Z",
+            "dateFirstAvailableInCatalog": "2024-02-16T12:00:00.000Z",
+            "daysAvailableInCatalog": 17,
+            "upc": "5702016913767",
+            "upCs": [
+                "5702016913767"
+            ],
+            "mfgPartNumber": "TUSKU0065032",
+            "mfgPartNumbers": [
+                "TUSKU0065032"
+            ],
+            "categories": [
+                {
+                    "categoryId": 6,
+                    "parentCategory": {
+                        "categoryId": 1,
+                        "categoryCode": "tru_toys",
+                        "content": {
+                            "name": "Toys",
+                            "description": "",
+                            "pageTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                            "metaTagTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                            "metaTagDescription": "Discover our collection of toys online today. Shop kids\u0027 toys from brands like Barbie \u0026 enjoy 20 - 50 % OFF. Start shopping now to enjoy our wide selection.",
+                            "metaTagKeywords": "Toys",
+                            "slug": "toys",
+                            "categoryImages": [
+                                {
+                                    "altText": "",
+                                    "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                    "cmsId": "6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                    "sequence": 1
+                                }
+                            ]
+                        },
+                        "sequence": 1,
+                        "isDisplayed": true,
+                        "count": 0,
+                        "updateDate": "0001-01-01T00:00:00.000Z",
+                        "shouldSlice": false
+                    },
+                    "categoryCode": "tru_lego_building_toys",
+                    "content": {
+                        "name": "LEGO \u0026 building toys",
+                        "description": "",
+                        "pageTitle": "Building Blocks | Shop Building Toys Online | Toys \u0027R\u0027 Us UAE",
+                        "metaTagTitle": "",
+                        "metaTagDescription": " Find the best building blocks at Toys \u0027R\u0027 Us. Shop our range of building toys from top brands \u0026 enjoy our wide selection.",
+                        "metaTagKeywords": "",
+                        "slug": "toys-lego-and-building-toys-",
+                        "categoryImages": [
+                            {
+                                "altText": "",
+                                "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/ef95d56d-2edc-4079-a3b4-97549d4d1609",
+                                "cmsId": "ef95d56d-2edc-4079-a3b4-97549d4d1609",
+                                "sequence": 1
+                            }
+                        ]
+                    },
+                    "sequence": 2,
+                    "isDisplayed": true,
+                    "count": 0,
+                    "updateDate": "0001-01-01T00:00:00.000Z",
+                    "shouldSlice": false
+                },
+                {
+                    "categoryId": 1,
+                    "categoryCode": "tru_toys",
+                    "content": {
+                        "name": "Toys",
+                        "description": "",
+                        "pageTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                        "metaTagTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                        "metaTagDescription": "Discover our collection of toys online today. Shop kids\u0027 toys from brands like Barbie \u0026 enjoy 20 - 50 % OFF. Start shopping now to enjoy our wide selection.",
+                        "metaTagKeywords": "Toys",
+                        "slug": "toys",
+                        "categoryImages": [
+                            {
+                                "altText": "",
+                                "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                "cmsId": "6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                "sequence": 1
+                            }
+                        ]
+                    },
+                    "sequence": 1,
+                    "isDisplayed": true,
+                    "count": 0,
+                    "updateDate": "0001-01-01T00:00:00.000Z",
+                    "shouldSlice": false
+                }
+            ],
+            "measurements": {
+                "packageHeight": {
+                    "unit": "in",
+                    "value": 1.000
+                },
+                "packageWidth": {
+                    "unit": "in",
+                    "value": 1.000
+                },
+                "packageLength": {
+                    "unit": "in",
+                    "value": 1.000
+                },
+                "packageWeight": {
+                    "unit": "lbs",
+                    "value": 1.000
+                }
+            },
+            "isPackagedStandAlone": true,
+            "properties": [
+                {
+                    "attributeFQN": "tenant~popularity",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "Number",
+                        "usageType": "Property",
+                        "dataTypeSequence": 1,
+                        "name": "Popularity",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": 5
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~rating",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "Number",
+                        "usageType": "Property",
+                        "dataTypeSequence": 2,
+                        "name": "Rating",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": 5
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~color-filter",
+                    "isHidden": true,
+                    "isMultiValue": true,
+                    "attributeDetail": {
+                        "valueType": "Predefined",
+                        "inputType": "List",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 0,
+                        "name": "color filter",
+                        "description": "",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "Green",
+                            "stringValue": "Green"
+                        },
+                        {
+                            "value": "Grey",
+                            "stringValue": "Grey"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~isrecommended",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "Predefined",
+                        "inputType": "List",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 0,
+                        "name": "isRecommended",
+                        "description": "",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "Employee",
+                            "stringValue": "Employee"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~bundle-extras-in-cart",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "YesNo",
+                        "dataType": "Bool",
+                        "usageType": "Property",
+                        "dataTypeSequence": 0,
+                        "name": "Bundle Extras In Cart",
+                        "description": "",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": true,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": false
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~availability",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "Predefined",
+                        "inputType": "List",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 1,
+                        "name": "Availability",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "24-72hrs",
+                            "stringValue": "Usually Ships in 24 to 72 Hours"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                }
+            ],
+            "slicingAttributeFQN": "",
+            "productImageGroups": [],
+            "productCollections": [],
+            "score": 0,
+            "personalizationScore": 0,
+            "costPriceMargin": 34.5
+        },
+        {
+            "productCode": "VALPRD002",
+            "productSequence": 2,
+            "productUsage": "Standard",
+            "fulfillmentTypesSupported": [
+                "DirectShip",
+                "InStorePickup",
+                "Delivery"
+            ],
+            "goodsType": "Physical",
+            "content": {
+                "productName": "LEGO Icons Bonsai Tree 10281 Building Blocks Toy Set",
+                "productFullDescription": "\u003Cfont face=\u0022roboto, sans-serif\u0022\u003E\u003Cspan style=\u0022font-size: 13px;\u0022\u003E\u200BThe LEGO Botanical Collection Bonsai Tree 10281 Building Toy Set is a unique gift or mindful project for anyone who loves bonsai trees plants or building creatively with LEGO pieces.Includes interchangeable pieces so you can style the bonsai tree model with classic green leaves or vibrant pink cherry blossom blooms.Check out the sweet frog design hidden in the pink blossom. With a rectangular pot and a slatted LEGO wood-effect stand, it\u2019s easy to display the elegant tree once built.\u0022,\u003C/span\u003E\u003C/font\u003E\u003Cbr\u003E",
+                "productShortDescription": "\u003Cfont face=\u0022roboto, sans-serif\u0022\u003E\u003Cspan style=\u0022font-size: 13px;\u0022\u003E\u200BThe LEGO Botanical Collection Bonsai Tree 10281 Building Toy Set is a unique gift or mindful project for anyone who loves bonsai trees, plants or building creatively with LEGO pieces.\u003C/span\u003E\u003C/font\u003E\u003Cbr\u003E",
+                "metaTagTitle": "LEGO Icons Bonsai Tree 10281 Building Blocks Toy Set",
+                "metaTagDescription": "\u200BThe LEGO Botanical Collection Bonsai Tree 10281 Building Toy Set is a unique gift or mindful project for anyone who loves bonsai trees, plants or building creatively with LEGO pieces.Includes interchangeable pieces so you can style the bonsai tree model with classic green leaves or vibrant pink cherry blossom blooms.Check out the sweet frog design hidden in the pink blossom. With a rectangular pot and a slatted LEGO wood-effect stand, it\u2019s easy to display the elegant tree once built.\u0022,",
+                "seoFriendlyUrl": "lego-icons-bonsai-tree-10281-building-blocks-toy-set",
+                "productImages": [
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/8e18e221-1407-4ab2-a07c-87b379553117",
+                        "cmsId": "8e18e221-1407-4ab2-a07c-87b379553117",
+                        "sequence": 1,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/9cb55695-8900-4e13-8d61-c98879246a31",
+                        "cmsId": "9cb55695-8900-4e13-8d61-c98879246a31",
+                        "sequence": 2,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/66548330-8e74-4c00-826a-35e3c3127e1d",
+                        "cmsId": "66548330-8e74-4c00-826a-35e3c3127e1d",
+                        "sequence": 3,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/30a6c4c4-5b5d-46a9-ad94-efab70edb04d",
+                        "cmsId": "30a6c4c4-5b5d-46a9-ad94-efab70edb04d",
+                        "sequence": 4,
+                        "productImageGroupId": "default"
+                    },
+                    {
+                        "altText": "",
+                        "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/bd7fc967-2b9b-4727-973d-2531f9da7a30",
+                        "cmsId": "bd7fc967-2b9b-4727-973d-2531f9da7a30",
+                        "sequence": 5,
+                        "productImageGroupId": "default"
+                    }
+                ]
+            },
+            "purchasableState": {
+                "isPurchasable": true
+            },
+            "isActive": true,
+            "publishState": "Live",
+            "price": {
+                "price": 379.0000,
+                "priceType": "List",
+                "salePrice": 379.0000,
+                "salePriceType": "CatalogSalePrice",
+                "catalogSalePrice": 379.0000,
+                "catalogListPrice": 379.0000
+            },
+            "productType": "toy",
+            "productTypeId": 17,
+            "isTaxable": true,
+            "isRecurring": false,
+            "pricingBehavior": {
+                "discountsRestricted": false
+            },
+            "inventoryInfo": {
+                "manageStock": true,
+                "outOfStockBehavior": "DisplayMessage",
+                "onlineStockAvailable": 20,
+                "onlineSoftStockAvailable": 20,
+                "onlineLocationCode": "64880",
+                "isSubstitutable": false
+            },
+            "createDate": "2024-02-15T09:37:57.709Z",
+            "updateDate": "2024-02-22T15:00:11.679Z",
+            "dateFirstAvailableInCatalog": "2024-02-16T12:00:00.000Z",
+            "daysAvailableInCatalog": 17,
+            "upc": "5702016914177",
+            "upCs": [
+                "5702016914177"
+            ],
+            "mfgPartNumber": "5702016914177",
+            "mfgPartNumbers": [
+                "5702016914177"
+            ],
+            "categories": [
+                {
+                    "categoryId": 6,
+                    "parentCategory": {
+                        "categoryId": 1,
+                        "categoryCode": "tru_toys",
+                        "content": {
+                            "name": "Toys",
+                            "description": "",
+                            "pageTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                            "metaTagTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                            "metaTagDescription": "Discover our collection of toys online today. Shop kids\u0027 toys from brands like Barbie \u0026 enjoy 20 - 50 % OFF. Start shopping now to enjoy our wide selection.",
+                            "metaTagKeywords": "Toys",
+                            "slug": "toys",
+                            "categoryImages": [
+                                {
+                                    "altText": "",
+                                    "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                    "cmsId": "6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                    "sequence": 1
+                                }
+                            ]
+                        },
+                        "sequence": 1,
+                        "isDisplayed": true,
+                        "count": 0,
+                        "updateDate": "0001-01-01T00:00:00.000Z",
+                        "shouldSlice": false
+                    },
+                    "categoryCode": "tru_lego_building_toys",
+                    "content": {
+                        "name": "LEGO \u0026 building toys",
+                        "description": "",
+                        "pageTitle": "Building Blocks | Shop Building Toys Online | Toys \u0027R\u0027 Us UAE",
+                        "metaTagTitle": "",
+                        "metaTagDescription": " Find the best building blocks at Toys \u0027R\u0027 Us. Shop our range of building toys from top brands \u0026 enjoy our wide selection.",
+                        "metaTagKeywords": "",
+                        "slug": "toys-lego-and-building-toys-",
+                        "categoryImages": [
+                            {
+                                "altText": "",
+                                "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/ef95d56d-2edc-4079-a3b4-97549d4d1609",
+                                "cmsId": "ef95d56d-2edc-4079-a3b4-97549d4d1609",
+                                "sequence": 1
+                            }
+                        ]
+                    },
+                    "sequence": 2,
+                    "isDisplayed": true,
+                    "count": 0,
+                    "updateDate": "0001-01-01T00:00:00.000Z",
+                    "shouldSlice": false
+                },
+                {
+                    "categoryId": 1,
+                    "categoryCode": "tru_toys",
+                    "content": {
+                        "name": "Toys",
+                        "description": "",
+                        "pageTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                        "metaTagTitle": "Buy Toys Online | Kids\u0027 Toys | Toys \u0027R\u0027 Us UAE",
+                        "metaTagDescription": "Discover our collection of toys online today. Shop kids\u0027 toys from brands like Barbie \u0026 enjoy 20 - 50 % OFF. Start shopping now to enjoy our wide selection.",
+                        "metaTagKeywords": "Toys",
+                        "slug": "toys",
+                        "categoryImages": [
+                            {
+                                "altText": "",
+                                "imageUrl": "//cdn-sb.mozu.com/42380-64880/cms/64880/files/6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                "cmsId": "6221e9ad-a5c1-4bd7-83b7-2fe2da34f3c6",
+                                "sequence": 1
+                            }
+                        ]
+                    },
+                    "sequence": 1,
+                    "isDisplayed": true,
+                    "count": 0,
+                    "updateDate": "0001-01-01T00:00:00.000Z",
+                    "shouldSlice": false
+                }
+            ],
+            "measurements": {
+                "packageHeight": {
+                    "unit": "in",
+                    "value": 1.000
+                },
+                "packageWidth": {
+                    "unit": "in",
+                    "value": 1.000
+                },
+                "packageLength": {
+                    "unit": "in",
+                    "value": 1.000
+                },
+                "packageWeight": {
+                    "unit": "lbs",
+                    "value": 1.000
+                }
+            },
+            "isPackagedStandAlone": true,
+            "properties": [
+                {
+                    "attributeFQN": "tenant~product-crosssell",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 2,
+                        "name": "Product Cross-Sells",
+                        "searchableInStorefront": false,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "VALPRD001",
+                            "stringValue": "VALPRD001"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~popularity",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "Number",
+                        "usageType": "Property",
+                        "dataTypeSequence": 1,
+                        "name": "Popularity",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": 4
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~rating",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "Number",
+                        "usageType": "Property",
+                        "dataTypeSequence": 2,
+                        "name": "Rating",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": 5
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~product-related",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 4,
+                        "name": "Related Products",
+                        "searchableInStorefront": false,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "VALPRD001",
+                            "stringValue": "VALPRD001"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~product-upsell",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "TextBox",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 7,
+                        "name": "Product Upsells",
+                        "searchableInStorefront": false,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "VALPRD001",
+                            "stringValue": "VALPRD001"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~bundle-extras-in-cart",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "AdminEntered",
+                        "inputType": "YesNo",
+                        "dataType": "Bool",
+                        "usageType": "Property",
+                        "dataTypeSequence": 0,
+                        "name": "Bundle Extras In Cart",
+                        "description": "",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": true,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": false
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                },
+                {
+                    "attributeFQN": "tenant~availability",
+                    "isHidden": false,
+                    "isMultiValue": false,
+                    "attributeDetail": {
+                        "valueType": "Predefined",
+                        "inputType": "List",
+                        "dataType": "String",
+                        "usageType": "Property",
+                        "dataTypeSequence": 1,
+                        "name": "Availability",
+                        "searchableInStorefront": true,
+                        "searchDisplayValue": false,
+                        "allowFilteringAndSortingInStorefront": true,
+                        "customWeightInStorefrontSearch": false,
+                        "availableForOrderRouting": false
+                    },
+                    "values": [
+                        {
+                            "value": "24-48hrs",
+                            "stringValue": "Usually Ships in 24 to 48 Hours"
+                        }
+                    ],
+                    "propertyType": "StandardProperty"
+                }
+            ],
+            "slicingAttributeFQN": "",
+            "productImageGroups": [],
+            "productCollections": [],
+            "score": 0,
+            "personalizationScore": 0,
+            "costPriceMargin": 60.42
+        }
+    ]
+}
