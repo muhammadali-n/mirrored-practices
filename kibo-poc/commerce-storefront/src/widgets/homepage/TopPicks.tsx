@@ -67,7 +67,6 @@ const TopPicks: React.FC<TopPicksProps> = ({ products }) => {
 
   return (
     <div className="top-picks-outer">
-        {console.info({ products })}
       <Container>
         <h2 className="title-main">Top Picks</h2>
         <Slider {...settings} className="custom-card slick-card-list">

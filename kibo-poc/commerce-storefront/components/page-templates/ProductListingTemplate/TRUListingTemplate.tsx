@@ -369,57 +369,25 @@ const ProductList = (props: ProductListingTemplateProps) => {
               </div>
               <div className="list-items-outer">
                 <div className="custom-card-list custom-card">
-                  <Card>
+                {Array.isArray(products) && products.length > 0 && products.map((product, index) => (
+                  <Card key={index+1}>
                     <div className="card-outer">
                       <figure>
-                        <CardImg width="100%" src="/images/tru/products/1924390_101.jpg" alt="" />
+                        <CardImg width="100%" src={product?.content?.productImages[0]?.imageUrl} alt="" />
                         <div className="badge bg1"><span>Free Shipping & Installation</span></div>
                         <div className="badge bg2 d-none"><span>New In</span></div>
                         <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
                       </figure>
                       <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
+                        <CardTitle>{product?.content?.productName}</CardTitle>
                         <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
+                          <CardSubtitle><span>{product?.priceRange?.lower?.salePrice || product?.price?.price} AED</span></CardSubtitle>
+                          <CardText className="offer-price">{product?.priceRange?.upper?.salePrice || product?.price?.salePrice}<span>AED</span></CardText>
                         </div>
                       </CardBody>
                     </div>
                   </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1924367_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span></span></CardSubtitle>
-                          <CardText>499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
+                  ))}
                   <Card className="item-outofstock">
                     <div className="card-outer">
                       <figure>
@@ -427,142 +395,6 @@ const ProductList = (props: ProductListingTemplateProps) => {
                         <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
                         <div className="badge bg2 d-none"><span>New In</span></div>
                         <div className="badge out-of-stock"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span></span></CardSubtitle>
-                          <CardText>499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span></span></CardSubtitle>
-                          <CardText>499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
-                  <Card>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
                       </figure>
                       <CardBody>
                         <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
