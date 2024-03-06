@@ -1,7 +1,7 @@
 
 import { getConfig, getConfigForProvider } from '../../config';
 import { performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
+import { addToCartMutation, createCartMutation, editCartItemsMutation, getArabicData, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -124,7 +124,7 @@ interface ShopifyProductIdResponse {
     };
   };
 
-const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
+const getProductDetails = async (endPoint, storefrontAccessToken): Promise<TransformationResult> => {
   const query = `
     {
         products(first: 20) {
@@ -298,15 +298,15 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
   }
 };
 
-export const getProductsByHandle = async (handle: string): Promise<any> => {
+export const getProductsByHandle = async (handle: string, language: string): Promise<any> => {
   const { commerceConfig } = getConfig();
 
   const storefrontAccessToken = commerceConfig.storefrontAccessToken
   const apiEndpoint = commerceConfig.apiEndpoint
 
   const query = `
-    query GetProductByHandle($handle: String!) {
-      productByHandle(handle: $handle) {
+  query productDetails($handle: String!) @inContext(language: ${language}) {
+    productByHandle(handle: $handle) {
         id
         handle
         availableForSale
@@ -362,7 +362,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
         updatedAt
       }
     }
-    
+
     fragment image on Image {
       originalSrc
       altText
@@ -388,7 +388,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
     if (!response.ok) {
       throw new Error(`Failed to fetch product by handle. Status: ${response.status}`);
     }
-    const responseData = await response.json();
+    const responseData = await response.json();     
     const data = responseData.data.productByHandle;
 
     const transformProductData = (data) => {

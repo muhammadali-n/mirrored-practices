@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Suspense, useEffect, useState } from 'react';
 import { urlFor } from '@/app/lib/sanity';
 import './navbar/module.css'
+import { useLanguageContext } from '@/app/context/languageContext';
 
 interface FooterData {
     storeLogo: string;
@@ -52,6 +53,7 @@ export default function Footer() {
 
         fetchFooterData();
     }, []);
+    const { language } = useLanguageContext();
 
     return (
         <footer className="bg-black text-sm text-neutral-500 dark:text-neutral-400 footer">
@@ -61,7 +63,7 @@ export default function Footer() {
                         <div className="col-auto margin">
                             <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
                                 <img src={urlFor(footerData?.storeLogo)?.url()} alt="Logo" width={40} height={40} className="mt-0 me-3" />
-                                <span className="uppercase text-white text-decoration-none">{footerData?.storeNameTranslation?.ar || footerData?.storeNameTranslation?.en}</span>
+                                <span className="uppercase text-white text-decoration-none">{footerData && language === 'ar' ? footerData.storeNameTranslation?.ar : footerData?.storeNameTranslation?.en}</span>
                             </Link>
                         </div>
                        
@@ -72,7 +74,7 @@ export default function Footer() {
                                     <li key={menuItemIndex} className="nav-item">
                                         <Link href={menuItem?.path} className="nav-link text-white">
                                             <span onMouseOver={(e) => e.currentTarget.style.textDecoration = 'underline'} onMouseOut={(e) => e.currentTarget.style.textDecoration = 'none'}>
-                                                {menuItem?.translation?.ar || menuItem?.translation?.en}
+                                                {menuItem&& language==='ar' && menuItem?.translation?.ar || menuItem?.translation?.en}
                                             </span>
                                         </Link>
                                     </li>
@@ -93,15 +95,15 @@ export default function Footer() {
                     <hr className="my-4 off-white-hr" />
                     <div className="row align-items-center copyright">
                         <div className="col-md-auto">
-                            <p className="text-white">{footerData?.copyrightTranslation?.ar|| footerData?.copyrightTranslation?.en} </p>
+                            <p className="text-white">{ language === 'ar' ? footerData?.copyrightTranslation?.ar : footerData?.copyrightTranslation?.en} </p>
                         </div>
                         <div className="col-md-auto">
-                            <p className="text-white">{footerData?.designCreditTranslation?.ar||footerData?.designCreditTranslation?.en}</p>
+                            <p className="text-white">{ language === 'ar' ? footerData?.designCreditTranslation?.ar : footerData?.designCreditTranslation?.en}</p>
                         </div>
                         <div className="col-md ml-auto text-end">
                             <p className="text-white">
                                 <a href="https://vercel.com" className="text-white text-decoration-none">
-                                    {footerData?.poweredByTranslation?.ar || footerData?.poweredByTranslation?.en}
+                                    { language === 'ar' ? footerData?.poweredByTranslation?.ar : footerData?.poweredByTranslation?.en}
                                 </a>
                             </p>
                         </div>

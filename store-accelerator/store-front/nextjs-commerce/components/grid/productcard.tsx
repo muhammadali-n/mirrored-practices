@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Context } from '@/app/context';
 import { addItem } from '../cart/handle';
 import { performCommonIntegration } from '@/integrations/common-integration';
+import { useLanguageContext } from '@/app/context/languageContext';
 
 interface Product {
   handle:string;
@@ -28,6 +29,7 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
   const addToCart = (selectedVariantId:any) => {
    performCommonIntegration(addItem,selectedVariantId) 
   }
+  const { language } = useLanguageContext();
 
   return (
     <div className={styles['product-card-container']}>
@@ -50,7 +52,7 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
               style={{ backgroundColor: item?.sections?.ButtonColor?.hex }} className={styles['add-to-cart']}
               onClick={() => addToCart(product.variantId[0])}
             >
-              {item.sections?.translation?.ar || item.sections?.translation?.en}
+              { language==='ar'? item.sections?.translation?.ar : item.sections?.translation?.en}
             </button>
           ))}
         </div>

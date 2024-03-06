@@ -11,6 +11,7 @@ import ProductCard from '../components/home/ProductCard';
 import ProductImage from '../components/home/Image';
 import TextBlock from '../components/home/Text';
 import ProductVideo from '../components/home/Video';
+import { useLanguageContext } from './context/languageContext';
 
 
 interface TransformedProduct {
@@ -28,6 +29,7 @@ const Home: React.FC = () => {
   const [transformedData, setTransformedData] = useState<TransformedProduct[] | null>(null);
   const [homePageContent, setHomePageContent] = useState<any[] | null>(null);
 
+  const { language } = useLanguageContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,7 +88,7 @@ const Home: React.FC = () => {
             )}
              {widget?._type === 'textWithLink' && (
               <div className='d-flex'>
-                  <TextBlock  text={widget.translation.ar||widget.translation.en} key={widget._key} />
+                  <TextBlock  text={language === 'ar'? widget.translation.ar : widget.translation.en} key={widget._key} />
                   </div>
                 )}
                    {widget?._type === 'video' && (

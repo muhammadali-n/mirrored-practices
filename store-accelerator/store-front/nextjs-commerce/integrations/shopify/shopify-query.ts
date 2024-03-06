@@ -224,7 +224,7 @@ export const addToCartMutation = /* GraphQL */ `
   ${cartFragment}
 `;
 
-export const getCartMutation =`
+export const getCartMutation = `
 query($cartId: ID!) {
   cart(id: $cartId) {
     id

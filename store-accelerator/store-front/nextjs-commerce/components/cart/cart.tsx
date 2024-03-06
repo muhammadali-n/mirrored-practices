@@ -4,6 +4,7 @@ import { Button, Col, Row } from 'reactstrap'
 import { Context } from '@/app/context';
 import { useRouter } from 'next/navigation';
 import { addItem, removeItem } from './handle';
+import { useLanguageContext } from '@/app/context/languageContext';
 interface CartProduct {
   id: string;
   title: string;
@@ -39,21 +40,23 @@ interface CartProps {
 }
 
 
-const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price,removeQuantityFromCart }: any) => {
+const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price, removeQuantityFromCart,addQuantityFromCart }: any) => {
   const contextValue = useContext(Context)
   // const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
   const router = useRouter();
-  const checkout = async() => {
+  const checkout = async () => {
     // createCheckout()
     // const checkoutId= await performCommonIntegration(createCheckout);
     // console.log("check",checkoutId);
 
     router.push('/checkout/checkout');
   }
+  console.log("sanityContentsanityContent", sanityContent);
 
   const addToCart = (selectedVariantId: string) => {
     addItem(selectedVariantId)
   }
+  const { language } = useLanguageContext();
   return (
     <Row>
       <Row>
@@ -68,7 +71,9 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
           <div>
             <Button className='close-button' onClick={handleClick}>X </Button>
             <Col className='mt-3'>
-                <h4 >{sanityContent?.title && sanityContent?.title?.ar || sanityContent?.title?.en}</h4>
+              <h4 >{sanityContent?.title && (
+                language === 'ar' ? sanityContent.title.ar : sanityContent.title.en
+              )}</h4>
             </Col>
           </div>
           <Row className='cart-items'>
@@ -95,14 +100,14 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                     <div className='quantity-control text-end'>
                       <Button
                         className='quantity-control-btn'
-                      onClick={() => removeQuantityFromCart(product)}
+                        onClick={() => removeQuantityFromCart(product)}
                       >
                         -
                       </Button>
                       {product.quantity}
                       <Button
                         className='quantity-control-btn'
-                        onClick={() => addToCart(product.merchandise.id)}
+                        onClick={() => addQuantityFromCart(product)}
                       >
                         +
                       </Button>
@@ -113,49 +118,49 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
             }
           </Row>
           <Row>
-              <Row >
-                <Col md='12'>
-                  <div className='bottom'>
-                    <Row className='taxes'>
-                      <Col md='6'>
-                          <p className='font-weight-bold muted'>{sanityContent?.taxField && sanityContent?.taxField?.ar || sanityContent?.taxField?.en}</p>
-                      </Col>
-                      <Col md='6' className='text-end'>
-                        <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5>
-                      </Col>
-                    </Row>
+            <Row >
+              <Col md='12'>
+                <div className='bottom'>
+                  <Row className='taxes'>
+                    <Col md='6'>
+                      <p className='font-weight-bold muted'>{sanityContent?.taxField && language === 'ar' ? sanityContent?.taxField?.ar : sanityContent?.taxField?.en}</p>
+                    </Col>
+                    <Col md='6' className='text-end'>
+                      <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5>
+                    </Col>
+                  </Row>
 
-                    <Row className='shipping'>
-                      <Col md='6'>
-                          <p className='font-weight-bold muted' >{sanityContent?.shippingField && sanityContent?.shippingField?.ar || sanityContent?.shippingField?.en}</p>
-                      </Col>
-                      <Col md='6' className='text-end muted'><p> Calculated at checkout</p></Col>
-                    </Row>
+                  <Row className='shipping'>
+                    <Col md='6'>
+                      <p className='font-weight-bold muted' >{sanityContent?.shippingField && language === 'ar' ? sanityContent?.shippingField?.ar : sanityContent?.shippingField?.en}</p>
+                    </Col>
+                    <Col md='6' className='text-end muted'><p> </p></Col>
+                  </Row>
 
-                    <Row className='total'>
-                      <Col md='6'>
-                          <p className='font-weight-bold muted' >{sanityContent?.totalField && sanityContent?.totalField?.ar || sanityContent?.totalField?.en}</p>
-                      </Col>
-                      <Col md='6' className='text-end'>
-                        <h5> {price && price?.totalAmount?.amount} {price && price?.totalAmount?.currencyCode} </h5>
-                      </Col>
-                    </Row>
+                  <Row className='total'>
+                    <Col md='6'>
+                      <p className='font-weight-bold muted' >{sanityContent?.totalField && language === 'ar' ? sanityContent?.totalField?.ar : sanityContent?.totalField?.en}</p>
+                    </Col>
+                    <Col md='6' className='text-end'>
+                      <h5> {price && price?.totalAmount?.amount} {price && price?.totalAmount?.currencyCode} </h5>
+                    </Col>
+                  </Row>
 
-                    <Row className='text-center mt-4'>
-                      <Col>
-                          <button
-                            style={{ backgroundColor: sanityContent?.buttonColor }}
-                            className='proceed-checkout'
-                            onClick={() => checkout()}
+                  <Row className='text-center mt-4'>
+                    <Col>
+                      <button
+                        style={{ backgroundColor: sanityContent?.buttonColor }}
+                        className='proceed-checkout'
+                        onClick={() => checkout()}
 
-                          >
-                            {sanityContent?.buttonName?.ar || sanityContent?.buttonName?.en}
-                          </button>
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-              </Row>
+                      >
+                        {language === 'ar' ? sanityContent?.buttonName?.ar : sanityContent?.buttonName?.en}
+                      </button>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+            </Row>
           </Row>
         </div>
       </Col>
