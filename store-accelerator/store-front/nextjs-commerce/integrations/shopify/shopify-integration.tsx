@@ -1,7 +1,7 @@
 
-import { getConfig, getConfigForProvider } from '../../config';
-import { performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
+import { getConfig, getConfigForProvider ,fetchApiConfig} from '../../config';
+import { dataTransformer, performTransformation, TransformationResult } from '../common-transformer';
+import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, productByIdsQuery, productDetails, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -124,43 +124,56 @@ interface ShopifyProductIdResponse {
     };
   };
 
-const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
-  const query = `
-    {
-        products(first: 20) {
-          edges {
-            node {
-              id
-              title
-              handle
-              description
-              priceRange {
-                maxVariantPrice {
-                  amount
-                }
-              }
-              images(first: 1) {
-                edges {
-                  node {
-                    originalSrc
-                    altText
-                  }
-                }
-              }
-            }
-          }
+ 
+  export const apiFetch = async (endPoint: string, storefrontAccessToken: string, options: any): Promise<Response> => {
+    const max_wait = 2000;
+  
+    async function wait(ms: number) {
+      return new Promise(resolve => {
+        setTimeout(resolve, ms);
+      });
+    }
+  
+    try {
+      let retry = 0, result;
+  
+      do {
+        if (retry !== 0) {
+          await wait(Math.pow(2, retry));
         }
-      }
-  `;
+        result = await fetch(endPoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
+            ...(options.headers || {})
+          },
+          body: JSON.stringify({
+            ...(options.query && { query: options.query }),
+            ...(options.variables && { variables: options.variables })
+          }),
+          cache: options.cache,
+          ...(options.tags && { next: { tags: options.tags } })
+        });
+        retry++;
+      } while (result.status === 429 || result.status === 400 || result.status=== 401 && (Math.pow(2, retry) <= max_wait));
+  
+      return result;
+    } catch (error) {
+      console.error('Error in API fetch:', error);
+      throw error;
+    }
+  };
+  
+  
+
+const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
+  const query = {
+    query: productDetails,
+  };
+
   try {
-    const response = await fetch(endPoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-      },
-      body: JSON.stringify({ query }),
-    });
+    const response = await apiFetch(endPoint, storefrontAccessToken, query); // Await apiFetch here
 
     if (!response.ok) {
       throw new Error(`Failed to fetch Shopify products. Status: ${response.status}`);
@@ -184,63 +197,21 @@ const getProductDetails = async (endPoint,storefrontAccessToken): Promise<Transf
 };
 
 const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
-  const query = `
-  {
-    collections(first: 10, sortKey: TITLE, reverse: false) {
-      edges {
-        node {
-          id
-          title
-          products(first: 5) {
-            edges {
-              node {
-                id
-                title
-                descriptionHtml
-                variants(first: 1) {
-                  edges {
-                    node {
-                      priceV2 {
-                        amount
-                        currencyCode
-                      }
-                    }
-                  }
-                }
-                images(first: 1) {
-                  edges {
-                    node {
-                      originalSrc
-                      altText
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  `;
+
+  const query = {
+    query: collectionDetails,
+  };
 
   try {
-    const response = await fetch(endPoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-      },
-      body: JSON.stringify({ query }),
-    });
+    const response = await apiFetch(endPoint, storefrontAccessToken, query); // Await apiFetch here
 
     if (!response.ok) {
       throw new Error(`Failed to fetch Shopify products. Status: ${response.status}`);
     }
 
     const responseData: ShopifyCollectionsResponse = await response.json();
-    const data: ShopifyCollection[] = responseData.data.collections.edges.map(({ node }) => ({
+    const data= responseData.data.collections.edges
+    .map(({ node }) => ({
       id: node.id,
       title: node.title,
     }));
@@ -270,18 +241,13 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
     }
   };
   try {
-    const response = await fetch(endPoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-      },
-      body: JSON.stringify(query),
-    });
+    const response = await apiFetch(endPoint, storefrontAccessToken, query); // Await apiFetch here
+
     if (!response.ok) {
       throw new Error(`Failed to fetch products by collection. Status: ${response.status}`);
     }
     const responseData: ShopifyProductResponse = await response.json();
+
     const products: ShopifyProducts[] = responseData.data.collection.products.edges.map(({ node }) => ({
       id: node.id,
       title: node.title,
@@ -302,89 +268,18 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
   const { commerceConfig } = getConfig();
 
   const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
+  const endPoint = commerceConfig.apiEndpoint
 
-  const query = `
-    query GetProductByHandle($handle: String!) {
-      productByHandle(handle: $handle) {
-        id
-        handle
-        availableForSale
-        title
-        description
-        descriptionHtml
-        options {
-          id
-          name
-          values
-        }
-        priceRange {
-          maxVariantPrice {
-            amount
-            currencyCode
-          }
-          minVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-        variants(first: 250) {
-          edges {
-            node {
-              id
-              title
-              availableForSale
-              selectedOptions {
-                name
-                value
-              }
-              price {
-                amount
-                currencyCode
-              }
-            }
-          }
-        }
-        featuredImage {
-          ...image
-        }
-        images(first: 20) {
-          edges {
-            node {
-              ...image
-            }
-          }
-        }
-        seo {
-          ...seo
-        }
-        tags
-        updatedAt
-      }
+  const query = {
+    query: getProductByHandle,
+    variables: {
+      handle: handle,
     }
-    
-    fragment image on Image {
-      originalSrc
-      altText
-    }
-
-    fragment seo on SEO {
-      title
-      description
-    }
-  `;
-
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-    },
-    body: JSON.stringify({ query, variables: { handle } }),
   };
 
   try {
-    const response = await fetch(apiEndpoint, requestOptions);
+    const response = await apiFetch(endPoint, storefrontAccessToken, query); // Await apiFetch here
+
     if (!response.ok) {
       throw new Error(`Failed to fetch product by handle. Status: ${response.status}`);
     }
@@ -429,7 +324,6 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
     };
     const transformedData = transformProductData(data);
 
-
     return transformedData;
 
   } catch (error) {
@@ -444,88 +338,15 @@ export const getRelatedProductsById = async (productId: string): Promise<any[]> 
   const storefrontAccessToken = commerceConfig.storefrontAccessToken;
   const apiEndpoint = commerceConfig.apiEndpoint;
 
-  const query = `
-    query getProductRecommendations($productId: ID!) {
-      productRecommendations(productId: $productId)
-       {
-        id
-        handle
-        availableForSale
-        title
-        description
-        descriptionHtml
-        options {
-          id
-          name
-          values
-        }
-        priceRange {
-          maxVariantPrice {
-            amount
-            currencyCode
-          }
-          minVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-        variants(first: 250) {
-          edges {
-            node {
-              id
-              title
-              availableForSale
-              selectedOptions {
-                name
-                value
-              }
-              price {
-                amount
-                currencyCode
-              }
-            }
-          }
-        }
-        featuredImage {
-          ...image
-        }
-        images(first: 20) {
-          edges {
-            node {
-              ...image
-            }
-          }
-        }
-        seo {
-          ...seo
-        }
-        tags
-        updatedAt
-      }
+  const query = {
+    query: getProductRecommendations,
+    variables: {
+      productId: productId,
     }
-    
-    fragment image on Image {
-      originalSrc
-      altText
-    }
-
-    fragment seo on SEO {
-      title
-      description
-    }
-  `;
-
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-    },
-    body: JSON.stringify({ query, variables: { productId } }),
   };
 
   try {
-    const response = await fetch(apiEndpoint, requestOptions);
+    const response = await apiFetch(apiEndpoint, storefrontAccessToken, query); // Await apiFetch here
 
     if (!response.ok) {
       throw new Error(`Failed to fetch related products. Status: ${response.status}`);
@@ -611,42 +432,13 @@ export const getProductByIds = async (productIds: string[]): Promise<ShopifyProd
   const { commerceConfig } = getConfig();
   const storefrontAccessToken = commerceConfig.storefrontAccessToken;
   const apiEndpoint = commerceConfig.apiEndpoint;
-
-  const query = `
-    query {
-      nodes(ids: [${productIds.map(id => `"${id}"`).join(',')}]) {
-        ... on Product {
-          id
-          title
-          handle
-          description
-          priceRange {
-            maxVariantPrice {
-              amount
-            }
-          }
-          images(first: 1) {
-            edges {
-              node {
-                originalSrc
-                altText
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
+  const query = {
+    query: productByIdsQuery(productIds),
+  
+  };
 
   try {
-    const response = await fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-      },
-      body: JSON.stringify({ query }),
-    });
+    const response = await apiFetch(apiEndpoint, storefrontAccessToken, query); // Await apiFetch here
 
     if (!response.ok) {
       throw new Error(`Failed to fetch Shopify products. Status: ${response.status}`);
@@ -677,38 +469,15 @@ export const getProductById = async (productId: string): Promise<ShopifyProductI
   const storefrontAccessToken = commerceConfig.storefrontAccessToken;
   const apiEndpoint = commerceConfig.apiEndpoint;
 
-  const query =`    {
-    product(id: "${productId}") {
-      id
-      title
-      handle
-      description
-      priceRange {
-        maxVariantPrice {
-          amount
-        }
-      }
-      images(first: 1) {
-        edges {
-          node {
-            originalSrc
-            altText
-          }
-        }
-      }
-    }
-  }
-  `;
+  const query = {
+    query: getProductByIdQuery(productId),
+   
+  };
 
   try {
-    const response = await fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-      },
-      body: JSON.stringify({ query }),
-    });
+   
+    const response = await apiFetch(apiEndpoint, storefrontAccessToken, query); // Await apiFetch here
+
 
     if (!response.ok) {
       throw new Error(`Failed to fetch product from shopify. Status: ${response.status}`);
@@ -832,23 +601,11 @@ export async function shopifyFetch<T>({
 } | never> {
   const { commerceConfig } = getConfig();
 
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const apiEndpoint = commerceConfig.apiEndpoint
+  const storefrontAccessToken = commerceConfig.storefrontAccessToken;
+  const apiEndpoint = commerceConfig.apiEndpoint;
+
   try {
-    const result = await fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-        ...headers
-      },
-      body: JSON.stringify({
-        ...(query && { query }),
-        ...(variables && { variables })
-      }),
-      cache,
-      ...(tags && { next: { tags } })
-    });
+    const result = await apiFetch(apiEndpoint, storefrontAccessToken, { query, variables, cache, headers, tags });
 
     const body = await result.json();
     console.log("body", body);
@@ -862,15 +619,6 @@ export async function shopifyFetch<T>({
       body
     };
   } catch (e) {
-    // if (isShopifyError(e)) {
-    //   throw {
-    //     cause: e.cause?.toString() || 'unknown',
-    //     status: e.status || 500,
-    //     message: e.message,
-    //     query
-    //   };
-    // }
-
     throw {
       error: e,
       query
@@ -924,7 +672,6 @@ export async function addToCart(
       },
       cache: 'no-store',
     });
-    console.log("Responsesssssssss:", res);
     if (!res.ok) {
       throw new Error(`Failed to add items to the cart. Status: ${res.status}`);
     }
@@ -960,16 +707,15 @@ export const getCart = async (cartId: string) => {
     const storefrontAccessToken = commerceConfig.storefrontAccessToken;
     const apiEndpoint = commerceConfig.apiEndpoint;
 
-    const query = getCartMutation;
+    const query = {
+      query: getCartMutation,
+      variables: {
+        cartId: cartId,
+      }
+    };
 
-    const response = await fetch(apiEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': storefrontAccessToken,
-      },
-      body: JSON.stringify({ query, variables: { cartId } }),
-    });
+    const response = await apiFetch(apiEndpoint, storefrontAccessToken, query); // Await apiFetch here
+
 
     if (!response.ok) {
       throw new Error(`Failed to fetch Shopify cart. Status: ${response.status}`);

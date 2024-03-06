@@ -78,3 +78,7 @@ export const fetchProviderConfig = (methodName: String): String => {
   const providerType : String = fetchProvider[methodName];
   return providerType;
 }
+
+export const fetchApiConfig={
+  "max_wait":2000,
+}
