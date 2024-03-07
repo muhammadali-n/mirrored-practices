@@ -59,10 +59,10 @@ export default async function CartContainer() {
   const updateCart = useCallback(async () => {
     if (cartId) {
       const cart = await performCommonIntegration(getCart, cartId);
-      const products = cart?.products;
-      const price = cart?.cost;
-      setProducts(products);
-      setPrice(price);
+      // const products = cart?.products;
+      // const price = cart?.cost;
+      setProducts(cart);
+      // setPrice(price);
     }
   }, [cartId]);
   

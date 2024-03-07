@@ -1,0 +1,24 @@
+{
+    "transformer": [
+        {
+            "inputFieldName": "merchandise.product.title",
+            "outputFieldName": "title"
+        },
+        {
+            "inputFieldName": "merchandise.product.featuredImage.url",
+            "outputFieldName": "image"
+        },
+        {
+            "inputFieldName": "merchandise.product.priceRange.maxVariantPrice.amount",
+            "outputFieldName": "price"
+        },
+        {
+            "inputFieldName": "quantity",
+            "outputFieldName": "quantity"
+        },
+        {
+            "inputFieldName": "id",
+            "outputFieldName": "id"
+        }
+    ]
+}

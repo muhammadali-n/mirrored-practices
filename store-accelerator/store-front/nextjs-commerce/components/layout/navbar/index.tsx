@@ -128,7 +128,7 @@ export default function Navbar() {
                             {/* Render cart icon */}
                             <Link href={`/cart/cart`} className="nav-link text-white">
 
-                                <img src={urlFor(headerData?.cartIcon)?.url()} alt={language ==='ar'? headerData?.cartIconAltTranslation?.ar : headerData?.cartIconAltTranslation?.en} width={30} height={30} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+                                <img src={urlFor(headerData?.cartIcon)?.url()} alt={language ==='ar'? headerData?.cartIconAltTranslation?.ar : headerData?.cartIconAltTranslation?.en} width={60} height={60} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} />
                             </Link>
                         </div>
                     </div>

@@ -25,6 +25,8 @@ export async function addItem(selectedVariantId: string | undefined) {
     if (!selectedVariantId) {
       return 'Missing product variant ID';
     }
+    console.log("&&&&&&&&&&&&&&&&&&&");
+    
     await addToCart(cartId, [{ merchandiseId: selectedVariantId, quantity: 1 }]);
     revalidateTag(TAGS.cart);
 

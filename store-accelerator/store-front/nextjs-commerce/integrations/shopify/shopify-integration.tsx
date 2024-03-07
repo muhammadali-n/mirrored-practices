@@ -1,8 +1,10 @@
 
 import { getConfig, getConfigForProvider } from '../../config';
-import { performTransformation, TransformationResult } from '../common-transformer';
+import { dataTransformer, performTransformation, TransformationResult } from '../common-transformer';
 import { addToCartMutation, createCartMutation, editCartItemsMutation, getArabicData, getCartMutation, getCollectionProductsQuery, getProductsByCollectionQuery, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
+import transformCartConfig from './shopify-cart.json'
+import { removeEdgesAndNodes, reshapeCart } from './shopify-transformer';
 
 interface ShopifyProduct {
   id: string;
@@ -765,6 +767,8 @@ export type CartItem = {
 };
 export type Connection<T> = {
   edges: Array<Edge<T>>;
+  lines: any;
+  cost:any
 };
 
 
@@ -796,22 +800,22 @@ export type ShopifyUpdateCartOperation = {
   };
 };
 
-const removeEdgesAndNodes = (array: Connection<any>) => {
-  return array.edges.map((edge) => edge?.node);
-};
+// const removeEdgesAndNodes = (array: Connection<any>) => {
+//   return array.edges.map((edge) => edge?.node);
+// };
 
-const reshapeCart = (cart: ShopifyCart): Cart => {
-  if (!cart.cost?.totalTaxAmount) {
-    cart.cost.totalTaxAmount = {
-      amount: '0.0',
-      currencyCode: 'USD'
-    };
-  }
-  return {
-    ...cart,
-    lines: removeEdgesAndNodes(cart.lines)
-  };
-};
+// const reshapeCart = (cart: ShopifyCart): Cart => {
+//   if (!cart.cost?.totalTaxAmount) {
+//     cart.cost.totalTaxAmount = {
+//       amount: '0.0',
+//       currencyCode: 'USD'
+//     };
+//   }
+//   return {
+//     ...cart,
+//     lines: removeEdgesAndNodes(cart.lines)
+//   };
+// };
 
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
@@ -976,14 +980,28 @@ export const getCart = async (cartId: string) => {
     }
 
     const data = await response.json();
+    console.log(" data from getcart", data);
+    
 
-    const products = removeEdgesAndNodes(data.data.cart.lines)
+    const products = removeEdgesAndNodes(data.data.cart)
     const cost = data.data.cart.cost
 
+    console.log("products", products);
+    
+    const transformedData = dataTransformer(products, transformCartConfig)
+    const shopifyData={
+     ...transformedData,
+     totalAmount:cost.totalAmount.amount,
+     subtotalAmount:cost.subtotalAmount.amount,
+     totalTaxAmount:cost.totalTaxAmount.amount,
+     currencyCode:cost.totalAmount.currencyCode,
 
-    console.log(" data from getcart", data);
 
-    return { products, cost };
+    }
+    console.log("shopifyData",shopifyData );
+    
+
+    return shopifyData;
   } catch (error) {
     console.error("Error:", error.message);
   }

@@ -40,7 +40,11 @@ interface CartProps {
 }
 
 
-const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price, removeQuantityFromCart,addQuantityFromCart }: any) => {
+const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price, removeQuantityFromCart, addQuantityFromCart }: any) => {
+  // console.log("productsproducts", products.map((pro)=>(pro.title)));
+  console.log("products.title", products);
+  let productsArray = products ? Object.values(products) : [];
+
   const contextValue = useContext(Context)
   // const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
   const router = useRouter();
@@ -77,26 +81,24 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
             </Col>
           </div>
           <Row className='cart-items'>
-            {products &&
-              products.map((product: any) => (
+            {products && productsArray &&
+              productsArray.map((product: any) => (
                 <Row className='cart-item' key={product.id}>
                   <Col md='8'>
                     <Row>
                       <Col md='4' className='product-card'>
-                        <Image src={product.merchandise.product.featuredImage.url} alt={product.merchandise.product.title} width={80} height={80} />
+                        <Image src={product?.image} alt={product?.title} width={80} height={80} />
                         <Button className='remove-button' onClick={() => removeItemFromCart(product.id)}>
                           X
                         </Button>
-                        {/* <Button className='' >X</Button> */}
                       </Col>
                       <Col md='8' className=''>
-                        <h6 className='font-weight-800'>{product.merchandise.product.title}</h6>
-                        {/* <p className='text-secondary'>{product.merchandise.product.description}</p> */}
+                        <h6 className='font-weight-800'>{product?.title}</h6>
                       </Col>
                     </Row>
                   </Col>
                   <Col md='4' className='quantity text-end'>
-                    <div className='price text-center'>{product.merchandise.product.priceRange.maxVariantPrice.currencyCode}&nbsp; {product.merchandise.product.priceRange.maxVariantPrice.amount} </div>
+                    <div className='price text-center'>{product?.countryCode}&nbsp; {product?.price} </div>
                     <div className='quantity-control text-end'>
                       <Button
                         className='quantity-control-btn'
@@ -126,7 +128,9 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                       <p className='font-weight-bold muted'>{sanityContent?.taxField && language === 'ar' ? sanityContent?.taxField?.ar : sanityContent?.taxField?.en}</p>
                     </Col>
                     <Col md='6' className='text-end'>
-                      <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5>
+                      {/* <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5> */}
+                      <h5>{products && products?.totalTaxAmount} {products && products?.currencyCode} </h5>
+
                     </Col>
                   </Row>
 
@@ -142,7 +146,7 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                       <p className='font-weight-bold muted' >{sanityContent?.totalField && language === 'ar' ? sanityContent?.totalField?.ar : sanityContent?.totalField?.en}</p>
                     </Col>
                     <Col md='6' className='text-end'>
-                      <h5> {price && price?.totalAmount?.amount} {price && price?.totalAmount?.currencyCode} </h5>
+                      <h5> {products && products?.totalAmount} {products && products?.currencyCode}</h5>
                     </Col>
                   </Row>
 
