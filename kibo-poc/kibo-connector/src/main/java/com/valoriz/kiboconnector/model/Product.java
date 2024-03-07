@@ -11,6 +11,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
+    @JacksonXmlProperty(localName = "product-id", isAttribute = true)
+    private String productId;
+
     @JacksonXmlProperty(localName = "ean")
     private String ean;
 
@@ -26,6 +29,12 @@ public class Product {
 
     @JacksonXmlProperty(localName = "searchable-flag")
     private boolean searchableFlag;
+
+    @JacksonXmlProperty(localName = "list-price")
+    private String listPrice;
+
+    @JacksonXmlProperty(localName = "sales-price")
+    private String salesPrice;
 
     @JacksonXmlProperty(localName = "images")
     private Images images;

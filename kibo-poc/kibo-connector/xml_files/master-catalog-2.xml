@@ -624,6 +624,8 @@
   <display-name xml:lang="en-QA">Fastlane RC Boat Wave King</display-name>
   <online-flag site-id="toysrus-UAE">true</online-flag>
   <searchable-flag>true</searchable-flag>
+  <list-price>1100</list-price>
+  <sales-price>1000</sales-price>
   <images merge-mode="replace">
    <image-group view-type="medium">
     <image path="2224711_101.jpg"/>
@@ -1007,6 +1009,8 @@
   <display-name xml:lang="en-QA">Na! Na! Na! Surprise Camping Sierra Foxtail 2-In-1 Fox &amp; Doll Playset</display-name>
   <online-flag site-id="toysrus-UAE">true</online-flag>
   <searchable-flag>true</searchable-flag>
+  <list-price>1100</list-price>
+  <sales-price>1000</sales-price>
   <images merge-mode="replace">
    <image-group view-type="medium">
     <image path="2237441_101.jpg"/>
@@ -1395,6 +1399,8 @@
   <display-name xml:lang="en-QA">Bestway Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
   <online-flag site-id="toysrus-UAE">true</online-flag>
   <searchable-flag>true</searchable-flag>
+  <list-price>1100</list-price>
+  <sales-price>1000</sales-price>
   <images merge-mode="replace">
    <image-group view-type="medium">
     <image path="926040_101.jpg"/>

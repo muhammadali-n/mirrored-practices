@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-class Image {
+public class Image {
 
     @JacksonXmlProperty(localName = "path", isAttribute = true)
     private String path;
