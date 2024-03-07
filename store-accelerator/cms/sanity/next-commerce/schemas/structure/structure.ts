@@ -47,6 +47,12 @@ export default (S: StructureBuilder): ListBuilder =>
                           S.documentTypeList("cartItems")
                             .title('items')
                         ),
+                        S.listItem()
+                        .title("PDP")
+                        .child(
+                          S.documentTypeList("pdpData")
+                            .title('items')
+                        ),
                     ]),
                 ),
                 S.listItem()

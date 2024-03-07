@@ -1,0 +1,7 @@
+.container {
+    @include make-container(32px);
+
+    @include media-breakpoint-up(md) {
+        @include make-container(80px);
+    }
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <clipPath id="clip-Custom_Size_2">
+      <rect width="40" height="40"/>
+    </clipPath>
+  </defs>
+  <g id="Custom_Size_2" data-name="Custom Size – 2" clip-path="url(#clip-Custom_Size_2)">
+    <path id="x-twitter" d="M58.142,48h6.106L50.912,63.238,66.6,83.977H54.319L44.694,71.4l-11,12.575H27.578l14.261-16.3L26.8,48H39.392l8.692,11.494ZM56,80.328h3.382L37.55,51.459H33.918Z" transform="translate(-26.7 -45.989)"/>
+  </g>
+</svg>

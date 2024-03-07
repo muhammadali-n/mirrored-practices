@@ -1,0 +1,123 @@
+.brands-layout-outer {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+
+    .brands-col {
+        width: 100%;
+        max-width: 60rem;
+        margin: 0 auto 3.5rem;
+    }
+
+    .grid-brands-outer {
+        overflow: hidden;
+
+        .grid-brands-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 0 -0.0625rem -0.0625rem;
+
+            .grid-brands-item {
+                border: solid $gray-200;
+                border-width: 0 0 0.0625rem 0.0625rem;
+                width: 25%;
+
+                @include media-breakpoint-down(md) {
+                    width: 50%;
+                }
+
+                @include media-breakpoint-down(sm) {
+                    width: 100%;
+                }
+
+                .grid-brands-link {
+                    transition-property: background-color;
+                    transition-duration: 0.3s;
+                    transition-timing-function: ease-in;
+                    transition-delay: 0s;
+                    align-items: center;
+                    display: flex;
+                    font-size: $font-size-lg;
+                    font-weight: $font-weight-bold;
+                    height: 4rem;
+                    justify-content: center;
+                    line-height: 1.5rem;
+                    padding: 0 1.25rem;
+                    text-align: center;
+                    color: $primary;
+
+                    &:hover {
+                        background-color: $blue-tint;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.grid-search-outer {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .grid-search-label {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        line-height: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .grid-search-input-col {
+        margin: 0 auto;
+        position: relative;
+        width: 18.75rem;
+
+        @include media-breakpoint-down(sm) {
+            width: 100%;
+        }
+
+        &:before {
+            @include icon;
+            content: "\ea17";
+            font-size: $h4-font-size;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+
+            [dir="ltr"] & {
+                right: 0.5rem;
+            }
+
+            [dir="rtl"] & {
+                left: 0.5rem;
+            }
+        }
+    }
+    .grid-search-error {
+        color: $red;
+        font-size: $font-size-sm;
+        line-height: 1.25rem;
+        margin-top: 0.5rem;
+    }
+    .grid-search-alphabets {
+        color: $gray-300;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 1rem auto;
+        max-width: 30rem;
+        text-transform: uppercase;
+
+        .grid-search-alphabets-item {
+            cursor: pointer;
+            margin: 0.25rem;
+            padding: 0.25rem;
+            pointer-events: none;
+
+            &.active {
+                color: $black;
+                font-weight: $font-weight-bold;
+                pointer-events: auto;
+            }
+        }
+    }
+}

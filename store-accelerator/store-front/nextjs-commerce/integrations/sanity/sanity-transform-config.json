@@ -21,6 +21,10 @@
         "outputFieldName": "sections"
        },
        {
+        "inputFieldName": "widgets",
+        "outputFieldName": "widgets"
+       },
+       {
         "inputFieldName": "ButtonColor",
         "outputFieldName": "ButtonColor"
        },

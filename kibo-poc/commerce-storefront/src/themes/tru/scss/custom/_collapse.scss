@@ -1,0 +1,131 @@
+.custom-collapse {
+    .collapse-item {
+        margin-bottom: 0.0625rem;
+    }
+    .btn-toggle {
+        width: 100%;
+        background-color: $gray-100;
+        padding: 0.75rem 1rem;
+        font-weight: $font-weight-bold;
+        @include transition-bg-color;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 0;
+
+        [dir="ltr"] & {
+            text-align: left;
+        }
+
+        [dir="rtl"] & {
+            text-align: right;
+        }
+
+        &:hover {
+            background-color: $gray-200;
+        }
+
+        span {
+            margin-left: 0;
+        }
+
+        i:not(.icon-map-pin) {
+            width: 1rem;
+            height: 1rem;
+            position: relative;
+
+            [dir="ltr"] & {
+                margin-left: auto;
+            }
+            [dir="rtl"] & {
+                margin-right: auto;
+            }
+
+            &:after,
+            &:before {
+                @include icon;
+                font-size: $font-size-base;
+                transition-property: transform, opacity, -webkit-transform;
+                transition-duration: 0.3s;
+                transition-timing-function: ease-in;
+                transition-delay: 0s;
+                color: $black;
+                margin-top: -0.5rem;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                -webkit-transform-origin: 50% 50%;
+                -ms-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+                margin-left: auto;
+            }
+
+            &:before {
+                content: "\ea01";
+                -webkit-transform: rotate(0deg) scale(1);
+                -ms-transform: rotate(0deg) scale(1);
+                transform: rotate(0deg) scale(1);
+            }
+
+            &:after {
+                content: "\ea15";
+                opacity: 0;
+                -webkit-transform: rotate(-90deg);
+                -ms-transform: rotate(-90deg);
+                transform: rotate(-90deg);
+            }
+        }
+
+        &.expanded {
+            i:not(.icon-map-pin) {
+                &:before {
+                    -webkit-transform: rotate(90deg) scale(0);
+                    -ms-transform: rotate(90deg) scale(0);
+                    transform: rotate(90deg) scale(0);
+                }
+                &:after {
+                    opacity: 1;
+                    -webkit-transform: rotate(0);
+                    -ms-transform: rotate(0);
+                    transform: rotate(0);
+                }
+            }
+        }
+        .collapse-card {
+            display: flex;
+            width: 100%;
+
+            [dir="ltr"] & {
+                margin-right: 0.5rem;
+            }
+
+            [dir="rtl"] & {
+                margin-left: 0.5rem;
+            }
+
+            i {
+                [dir="ltr"] & {
+                    margin-right: 0.5rem;
+                }
+
+                [dir="rtl"] & {
+                    margin-left: 0.5rem;
+                }
+            }
+
+            h6 {
+                margin: 0 0 0.25rem;
+                font-weight: $font-weight-normal;
+            }
+
+            p {
+                font-size: $font-size-sm;
+                font-weight: $font-weight-light;
+            }
+        }
+    }
+    .card {
+        border: 0;
+    }
+}

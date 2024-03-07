@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <clipPath id="clip-Web_1920_2">
+      <rect width="40" height="40"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_2" data-name="Web 1920 – 2" clip-path="url(#clip-Web_1920_2)">
+    <g id="Squircle">
+      <path id="Path_1" data-name="Path 1" d="M35.124,4.875c6.335,6.336,6.663,23.906,0,30.347-6.513,6.3-23.9,6.443-30.347,0s-6.3-23.835,0-30.348C11.219-1.788,28.789-1.46,35.124,4.875Z" fill="#2aace2" fill-rule="evenodd"/>
+      <path id="Path_2" data-name="Path 2" d="M21.25,14a1.25,1.25,0,0,0-2.5,0v4.75H14a1.25,1.25,0,0,0,0,2.5h4.75V26a1.25,1.25,0,0,0,2.5,0V21.25H26a1.25,1.25,0,0,0,0-2.5H21.25Z" fill="#fff" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

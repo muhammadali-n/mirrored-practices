@@ -5,7 +5,6 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 3rem;
     padding: 3 3rem;
-    width: 100%;
     align-content:center;
     max-width: 800px;
     height: auto; /* Set a maximum width for the grid container */
@@ -31,7 +30,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      max-width: 60%; /* Set maximum width to 60% of the window */
+      max-width: 40%; /* Set maximum width to 60% of the window */
       margin: 0 auto; /* Automatically center the container horizontally */
       padding-top: 4em;
     }
@@ -50,7 +49,6 @@
   .filters {
     width: 20%; /* Set the desired width */
     padding: 2em;
-    margin-right: 4em;
     box-sizing: border-box; /* Include padding in the width calculation */
     align-items: rigth;
   }
@@ -95,5 +93,10 @@
   .collection-list,
   .product-grid {
     padding: 2em;
-    margin-left: 4em;
   }
+.list{
+  padding-left: 1rem;
+}
+.sort-options{
+  padding-right:1rem;
+}

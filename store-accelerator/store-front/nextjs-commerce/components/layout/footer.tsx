@@ -6,8 +6,38 @@ import { Suspense, useEffect, useState } from 'react';
 import { urlFor } from '@/app/lib/sanity';
 import './navbar/module.css'
 
+interface FooterData {
+    storeLogo: string;
+    storeNameTranslation: {
+      ar: string;
+      en: string;
+    };
+    menuItems: MenuItem[];
+    copyrightTranslation: {
+      ar: string;
+      en: string;
+    };
+    designCreditTranslation: {
+      ar: string;
+      en: string;
+    };
+    poweredByTranslation: {
+      ar: string;
+      en: string;
+    };
+    // Add other properties as needed
+  }
+  
+  interface MenuItem {
+    path: string;
+    translation: {
+      ar: string;
+      en: string;
+    };
+  }
+
 export default function Footer() {
-    const [footerData, setFooterData] = useState([]);
+    const [footerData, setFooterData] = useState<FooterData | null>(null);
 
     useEffect(() => {
         const fetchFooterData = async () => {
@@ -25,21 +55,20 @@ export default function Footer() {
 
     return (
         <footer className="bg-black text-sm text-neutral-500 dark:text-neutral-400 footer">
-            {footerData.map((page: any, index: number) => (
-                <div key={index} className="container-fluid">
+                <div className="container-fluid">
                     <div className="row">
                         {/* Left side */}
                         <div className="col-auto margin">
                             <Link className="flex items-center gap-2 text-black dark:text-white md:pt-1" href="/">
-                                <img src={urlFor(page?.storeLogo?.logo?.asset?._ref)?.url()} alt="Logo" width={40} height={40} className="mt-0 me-3" />
-                                <span className="uppercase text-white text-decoration-none">{page?.storeName?.translation?.ar || page?.storeName?.translation?.en}</span>
+                                <img src={urlFor(footerData?.storeLogo)?.url()} alt="Logo" width={40} height={40} className="mt-0 me-3" />
+                                <span className="uppercase text-white text-decoration-none">{footerData?.storeNameTranslation?.ar || footerData?.storeNameTranslation?.en}</span>
                             </Link>
                         </div>
                        
                         {/* Middle side */}
                         <div className="col-md-auto mt-100 margin" style={{ marginTop: '70px!important', marginLeft: '75px' }}>
                             <ul className="navbar-nav">
-                                {page?.menuItems.map((menuItem: any, menuItemIndex: number) => (
+                            {Array.isArray(footerData?.menuItems) && footerData.menuItems.map((menuItem: any, menuItemIndex: number) => (
                                     <li key={menuItemIndex} className="nav-item">
                                         <Link href={menuItem?.path} className="nav-link text-white">
                                             <span onMouseOver={(e) => e.currentTarget.style.textDecoration = 'underline'} onMouseOut={(e) => e.currentTarget.style.textDecoration = 'none'}>
@@ -64,21 +93,20 @@ export default function Footer() {
                     <hr className="my-4 off-white-hr" />
                     <div className="row align-items-center copyright">
                         <div className="col-md-auto">
-                            <p className="text-white">{page?.copyright?.translation?.ar|| page?.copyright?.translation?.en} </p>
+                            <p className="text-white">{footerData?.copyrightTranslation?.ar|| footerData?.copyrightTranslation?.en} </p>
                         </div>
                         <div className="col-md-auto">
-                            <p className="text-white">{page?.designCredit?.translation?.ar||page?.designCredit?.translation?.en}</p>
+                            <p className="text-white">{footerData?.designCreditTranslation?.ar||footerData?.designCreditTranslation?.en}</p>
                         </div>
                         <div className="col-md ml-auto text-end">
                             <p className="text-white">
                                 <a href="https://vercel.com" className="text-white text-decoration-none">
-                                    {page?.poweredBy?.translation?.ar || page?.poweredBy?.translation?.en}
+                                    {footerData?.poweredByTranslation?.ar || footerData?.poweredByTranslation?.en}
                                 </a>
                             </p>
                         </div>
                     </div>
                 </div>
-            ))}
         </footer>
     );
 }

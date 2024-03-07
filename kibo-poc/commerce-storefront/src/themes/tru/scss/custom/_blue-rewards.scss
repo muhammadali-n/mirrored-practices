@@ -1,0 +1,233 @@
+//my-blue-reward style priyanka
+.blue-rewards-layout-outer {
+	background: $gray-100;
+	padding-bottom: 0;
+	.blue-rewards-banner {
+		padding: 0 0 20px;
+		.blue-rewards-logo {
+			margin-bottom: 10px;
+		}
+	}
+	.work-sec {
+		margin: 4rem 0;
+	}
+	.video-sec {
+		video {
+			width: 100%;
+		}
+	}
+	.title-blue {
+		color: #004f9f;
+		font-size: $h2-font-size;
+	}
+	.advantage-sec {
+		background-color: #e4f5fd;
+		padding: 40px;
+		text-align: center;
+		margin: 3rem 0;
+		p {
+			margin-bottom: 3rem;
+		}
+		img {
+			height: 160px;
+		}
+	}
+	.entertained-sec {
+		position: relative;
+		.entertainment-text {
+			width: 30%;
+			position: absolute;
+			top: 40%;
+			left: 0;
+		}
+		img {
+			width: 100%;
+		}
+	}
+	.brands-sec {
+		margin: 3rem 0;
+		padding: 3rem 0;
+	}
+	.blue-brand-title {
+		font-size: $h2-font-size;
+		color: $white;
+	}
+	.blue-brand-sub-title {
+		color: $white;
+		margin-bottom: 2rem;
+	}
+	.brands-tabs {
+		padding-bottom: 2rem;
+		.nav {
+			width: 80%;
+			margin: 0 auto;
+			justify-content: center;
+			.nav-item {
+				width: 14%;
+				margin: 0;
+				text-align: center;
+				border-bottom: 1px solid #4fa4f4;
+				a {
+					color: #4fa4f4;
+					&:hover {
+						color: $white;
+					}
+				}
+				.active {
+					border-bottom: 1px solid $white;
+				}
+			}
+		}
+		.brand-logo {
+			height: 70px;
+			width: 17%;
+			padding: 45px 40px;
+			img {
+				width: 100%;
+				max-width: 100%;
+			}
+		}
+	}
+	.cardless-sec {
+		margin: 40px 0;
+		border: 2px solid #014e9f;
+		border-radius: 5px;
+		.mobile-img {
+			height: 140px;
+			img {
+				position: relative;
+				top: -26px;
+				left: 0;
+				height: 165px;
+				width: 100%;
+			}
+			.qr-code {
+				img {
+					max-height: 93px;
+				}
+			}
+		}
+		.cardless-content {
+			a {
+				color: theme-color($key: "info");
+				&:hover {
+					color: theme-color($key: "info");
+					text-decoration: underline;
+				}
+			}
+			h5 {
+				font-size: $h6-font-size;
+			}
+		}
+		.app-btn {
+			padding: 20px 0;
+			p {
+				color: theme-color($key: "info");
+				margin-bottom: 0.5rem;
+			}
+			a {
+				padding: 0 10px;
+			}
+			img {
+				width: 100%;
+			}
+		}
+		.qr-code {
+			font-size: 12px;
+			text-align: center;
+			img {
+				max-height: 93px;
+			}
+		}
+	}
+}
+@include media-breakpoint-down(md) {
+	.blue-rewards-layout-outer {
+		.cardless-sec {
+			border: none;
+			.mobile-img {
+				img {
+					width: 37%;
+					top: -35px;
+				}
+			}
+			.cardless-content {
+				text-align: center;
+				h5 {
+					font-size: $h2-font-size;
+				}
+			}
+			.qr-code {
+				text-align: center;
+			}
+		}
+		.brands-tabs {
+			.nav {
+				width: 100%;
+				justify-content: center;
+				.nav-item {
+					width: 18%;
+				}
+			}
+			.brand-logo {
+				height: 70px;
+				width: 40%;
+				padding: 20px;
+				margin-bottom: 3rem;
+				img {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+@include media-breakpoint-down(sm) {
+	.blue-rewards-layout-outer {
+		.entertained-sec {
+			.entertainment-text {
+				width: 100%;
+				position: static;
+			}
+		}
+		.title-blue {
+			font-size: $h5-font-size;
+		}
+		.brands-tabs {
+			.nav {
+				width: 100%;
+				justify-content: center;
+				.nav-item {
+					width: 18%;
+				}
+			}
+			.brand-logo {
+				height: 70px;
+				width: 40%;
+				padding: 20px;
+				margin-bottom: 3rem;
+				img {
+					width: 100%;
+				}
+			}
+		}
+		.advantage-sec {
+			img {
+				height: 80px;
+			}
+		}
+		.cardless-sec {
+			border: none;
+		}
+		.app-btn {
+			padding: 20px 40px;
+		}
+		.cardless-sec {
+			.cardless-content {
+				text-align: center;
+				h5 {
+					font-size: $h2-font-size;
+				}
+			}
+		}
+	}
+}
