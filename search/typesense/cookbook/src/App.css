@@ -1,0 +1,143 @@
+.search-bar {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.container {
+  display: flex;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.card {
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.card button {
+  margin-top: auto; /* Ensure button sticks to the bottom */
+}
+
+.facet {
+  width: 300px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.facet-options {
+  list-style: none;
+  padding: 0;
+}
+
+.facet-option {
+  margin-bottom: 5px;
+  list-style-type: none;
+}
+
+.facet-option input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 60%;
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.scrollable-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.small-card {
+  flex: 0 0 auto;
+  width: 150px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.small-card img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.small-card-content {
+  padding: 10px;
+}
+
+.small-card-button {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.small-card img {
+  width: 100px; /* Set the width to your desired fixed size */
+  height: 100px; /* Set the height to your desired fixed size */
+  object-fit: cover; /* Maintain aspect ratio and crop if needed */
+  border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+}

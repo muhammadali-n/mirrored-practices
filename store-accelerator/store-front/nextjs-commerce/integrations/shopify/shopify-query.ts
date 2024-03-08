@@ -69,6 +69,274 @@ export const getCollectionProductsQuery = /* GraphQL */ `
   }
 `;
 
+export const getProductByHandle = (language: string): string => {
+  return `
+    query productDetails($handle: String!) @inContext(language: ${language}) {
+      productByHandle(handle: $handle) {
+      id
+      handle
+      availableForSale
+      title
+      description
+      descriptionHtml
+      options {
+        id
+        name
+        values
+      }
+      priceRange {
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+      variants(first: 250) {
+        edges {
+          node {
+            id
+            title
+            availableForSale
+            selectedOptions {
+              name
+              value
+            }
+            price {
+              amount
+              currencyCode
+            }
+          }
+        }
+      }
+      featuredImage {
+        ...image
+      }
+      images(first: 20) {
+        edges {
+          node {
+            ...image
+          }
+        }
+      }
+      seo {
+        ...seo
+      }
+      tags
+      updatedAt
+    }
+  }
+
+  fragment image on Image {
+    originalSrc
+    altText
+  }
+
+fragment seo on SEO {
+  title
+  description
+}
+`;
+}
+
+export const getProductRecommendations=`
+query getProductRecommendations($productId: ID!) {
+  productRecommendations(productId: $productId)
+   {
+    id
+    handle
+    availableForSale
+    title
+    description
+    descriptionHtml
+    options {
+      id
+      name
+      values
+    }
+    priceRange {
+      maxVariantPrice {
+        amount
+        currencyCode
+      }
+      minVariantPrice {
+        amount
+        currencyCode
+      }
+    }
+    variants(first: 250) {
+      edges {
+        node {
+          id
+          title
+          availableForSale
+          selectedOptions {
+            name
+            value
+          }
+          price {
+            amount
+            currencyCode
+          }
+        }
+      }
+    }
+    featuredImage {
+      ...image
+    }
+    images(first: 20) {
+      edges {
+        node {
+          ...image
+        }
+      }
+    }
+    seo {
+      ...seo
+    }
+    tags
+    updatedAt
+  }
+}
+
+fragment image on Image {
+  originalSrc
+  altText
+}
+
+fragment seo on SEO {
+  title
+  description
+}
+`;
+
+export const productDetails= `
+{
+    products(first: 20) {
+      edges {
+        node {
+          id
+          title
+          handle
+          description
+          priceRange {
+            maxVariantPrice {
+              amount
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                originalSrc
+                altText
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export const collectionDetails= 
+  `
+  {
+    collections(first: 10, sortKey: TITLE, reverse: false) {
+      edges {
+        node {
+          id
+          title
+          products(first: 5) {
+            edges {
+              node {
+                id
+                title
+                descriptionHtml
+                variants(first: 1) {
+                  edges {
+                    node {
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      originalSrc
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  `;
+
+  export const productByIdsQuery = (productIds: string[]): string => {
+    return `
+      query {
+        nodes(ids: [${productIds.map(id => `"${id}"`).join(',')}]) {
+          ... on Product {
+            id
+            title
+            handle
+            description
+            priceRange {
+              maxVariantPrice {
+                amount
+              }
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  originalSrc
+                  altText
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+  };
+
+  // productQueries.ts
+
+export const getProductByIdQuery = (productId: string): string => {
+  return `
+    {
+      product(id: "${productId}") {
+        id
+        title
+        handle
+        description
+        priceRange {
+          maxVariantPrice {
+            amount
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  `;
+};
+
 
 /*************************************
 ******* shopify cart start ***********

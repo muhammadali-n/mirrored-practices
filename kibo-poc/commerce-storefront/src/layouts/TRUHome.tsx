@@ -31,6 +31,7 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
+import TopPicks from "../widgets/homepage/TopPicks";
 
 // import VideoPlayer from "@components/videoplayer";
 
@@ -48,7 +49,8 @@ function SamplePrevArrow(props) {
   );
 }
 
-const Home = (props) => {
+const Home = (props: { products: []; }) => {
+  const { products } = props;
 
   //slick slider
   const settings = {
@@ -117,115 +119,7 @@ const Home = (props) => {
         {/* <BannerSm /> */}
         {/* <PopularCategories /> */}
 
-        <div className="carousel-outer">
-          <Container>
-            <h2 className="title-main">Top Picks</h2>
-            <Slider {...settings} className="custom-card slick-card-list">
-              <Card>
-                <div className="card-outer">
-                  <figure>
-                    <CardImg width="100%" src="/images/tru/products/1924390_101.jpg" alt="" />
-                    <div className="badge bg1"><span>Free Shipping & Installation</span></div>
-                    <div className="badge bg2 d-none"><span>New In</span></div>
-                    <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                  </figure>
-                  <CardBody>
-                    <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                    <div className="pricing-card">
-                      <CardSubtitle><span>599 AED</span></CardSubtitle>
-                      <CardText className="offer-price">499<span>AED</span></CardText>
-                    </div>
-                  </CardBody>
-                </div>
-              </Card>
-              <Card>
-                <div className="card-outer">
-                  <figure>
-                    <CardImg width="100%" src="/images/tru/products/1924367_101.jpg" alt="" />
-                    <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                    <div className="badge bg2"><span>New In</span></div>
-                    <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                  </figure>
-                  <CardBody>
-                    <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                    <div className="pricing-card">
-                      <CardSubtitle><span></span></CardSubtitle>
-                      <CardText>499<span>AED</span></CardText>
-                    </div>
-                  </CardBody>
-                </div>
-              </Card>
-              <Card>
-                <div className="card-outer">
-                  <figure>
-                    <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                    <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                    <div className="badge bg2 d-none"><span>New In</span></div>
-                    <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                  </figure>
-                  <CardBody>
-                    <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                    <div className="pricing-card">
-                      <CardSubtitle><span>599 AED</span></CardSubtitle>
-                      <CardText className="offer-price">499<span>AED</span></CardText>
-                    </div>
-                  </CardBody>
-                </div>
-              </Card>
-              <Card className="item-outofstock">
-                <div className="card-outer">
-                  <figure>
-                    <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                    <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                    <div className="badge bg2 d-none"><span>New In</span></div>
-                    <div className="badge out-of-stock"><span>Out of stock‎</span></div>
-                  </figure>
-                  <CardBody>
-                    <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                    <div className="pricing-card">
-                      <CardSubtitle><span>599 AED</span></CardSubtitle>
-                      <CardText className="offer-price">499<span>AED</span></CardText>
-                    </div>
-                  </CardBody>
-                </div>
-              </Card>
-              <Card>
-                <div className="card-outer">
-                  <figure>
-                    <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                    <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                    <div className="badge bg2 d-none"><span>New In</span></div>
-                    <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                  </figure>
-                  <CardBody>
-                    <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                    <div className="pricing-card">
-                      <CardSubtitle><span>599 AED</span></CardSubtitle>
-                      <CardText className="offer-price">499<span>AED</span></CardText>
-                    </div>
-                  </CardBody>
-                </div>
-              </Card>
-              <Card className="item-outofstock">
-                <div className="card-outer">
-                  <figure>
-                    <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                    <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                    <div className="badge bg2 d-none"><span>New In</span></div>
-                    <div className="badge out-of-stock"><span>Out of stock‎</span></div>
-                  </figure>
-                  <CardBody>
-                    <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                    <div className="pricing-card">
-                      <CardSubtitle><span>599 AED</span></CardSubtitle>
-                      <CardText className="offer-price">499<span>AED</span></CardText>
-                    </div>
-                  </CardBody>
-                </div>
-              </Card>
-            </Slider>
-          </Container>
-        </div>
+        <TopPicks products={products} />
 
         <div className="offers-outer">
           <Container>
@@ -270,13 +164,13 @@ const Home = (props) => {
           </Container>
         </div>
 
-        {/* <div className="category-list-outer">
+        <div className="category-list-outer">
           <Container>
-            <h2 class="title-main">Most popular categories</h2>
+            <h2 className="title-main">Most popular categories</h2>
 
             <Row className="category-card">
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item left yellow">
+                <div className="cg-item left yellow">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6690_HP_LEGO.png" alt="" /></figure>
                     <div className="cg-content">
@@ -288,7 +182,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item right green">
+                <div className="cg-item right green">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6917_HP_Blume.png" alt="" /></figure>
                     <div className="cg-content">
@@ -300,7 +194,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item left teal">
+                <div className="cg-item left teal">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6690_HP_dolls & doll play.png" alt="" /></figure>
                     <div className="cg-content">
@@ -312,7 +206,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item right blue">
+                <div className="cg-item right blue">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6690_HP_guns, blasters.png" alt="" /></figure>
                     <div className="cg-content">
@@ -324,7 +218,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item left purple">
+                <div className="cg-item left purple">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6690_HP_action figures.png" alt="" /></figure>
                     <div className="cg-content">
@@ -336,7 +230,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item right pink">
+                <div className="cg-item right pink">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6907_HP_pools & water fun.png" alt="" /></figure>
                     <div className="cg-content">
@@ -348,7 +242,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item left yellow">
+                <div className="cg-item left yellow">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6690_HP_scooters.png" alt="" /></figure>
                     <div className="cg-content">
@@ -360,7 +254,7 @@ const Home = (props) => {
                 </div>
               </Col>
               <Col xs="12" md="4" lg="3">
-                <div class="cg-item right green">
+                <div className="cg-item right green">
                   <div className="cg-col">
                     <figure><img src="images/tru/DUX-6907_HP_DXT Electric Drift Trike.png" alt="" /></figure>
                     <div className="cg-content">
@@ -373,7 +267,7 @@ const Home = (props) => {
               </Col>
             </Row>
           </Container>
-        </div> */}
+        </div>
 
         <div className="toysfinder-outer">
           <div className="toysfinder-title">
@@ -429,7 +323,7 @@ const Home = (props) => {
         </div>
         <div className="videos-outer">
           <Container>
-            <h2 class="title-main">Latest from YouTube</h2>
+            <h2 className="title-main">Latest from YouTube</h2>
             <Row>
               <Col xs="12" md="4">
                 <Card>

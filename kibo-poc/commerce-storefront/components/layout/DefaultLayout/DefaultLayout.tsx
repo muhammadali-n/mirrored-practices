@@ -7,6 +7,7 @@ import { HydrationBoundary } from '@tanstack/react-query'
 import creditCardType from 'credit-card-type'
 import Router from 'next/router'
 
+import LanguageSwitcher from './LanguageSwitcher'
 import { GlobalFetchingIndicator } from '@/components/common'
 import { Footer, KiboHeader } from '@/components/layout'
 import {
@@ -17,6 +18,7 @@ import {
   SnackbarRoot,
 } from '@/context'
 import theme from '@/styles/theme'
+import QuickNav from './QuickNav'
 
 creditCardType.updateCard('mastercard', {
   niceType: 'MC',
@@ -54,6 +56,7 @@ const DefaultLayout = ({ pageProps, children }: { pageProps: any; children: Reac
             <HeaderContextProvider>
               <GlobalFetchingIndicator />
               <Stack sx={{ minHeight: '100vh' }}>
+                <LanguageSwitcher />
                 <KiboHeader
                   navLinks={[
                     {
@@ -70,6 +73,7 @@ const DefaultLayout = ({ pageProps, children }: { pageProps: any; children: Reac
                 />
                 <DialogRoot />
                 <SnackbarRoot />
+                <QuickNav />
                 <Container maxWidth={'xl'} sx={{ py: 2, flex: '1 0 auto' }}>
                   {children}
                 </Container>

@@ -97,7 +97,7 @@ export default function YourComponent() {
             </div>
          
         )}
-        {products === null || products.length == 0 ? (
+        {products === null || products===undefined|| products?.length == 0 ? (
           <>
             <div className={styles['center-container']}>
               <div className={styles['grid-container']}>
