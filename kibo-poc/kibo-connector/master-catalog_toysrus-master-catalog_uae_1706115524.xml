@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="http://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="toysrus-master-catalog_uae">
+ <header></header>
+ <category category-id="root">
+  <display-name xml:lang="x-default">Root category</display-name>
+ </category>
+ <category category-id="tru_toys">
+  <display-name xml:lang="en-AE">TOYS [TRU]</display-name>
+  <display-name xml:lang="ar-AE">TOYS [TRU]</display-name>
+  <parent>root</parent>
+  <attribute-groups>
+   <attribute-group group-id="pdp_tab2">
+    <display-name xml:lang="ar-AE">PDP Tab2</display-name>
+    <display-name xml:lang="en-AE">PDP Tab2</display-name>
+    <attribute attribute-id="product_type" system="false"/>
+    <attribute attribute-id="model_year" system="false"/>
+    <attribute attribute-id="display_technology" system="false"/>
+   </attribute-group>
+  </attribute-groups>
+ </category>
+ <product product-id="2224711">
+  <ean>4897005687482</ean>
+  <unit>EA</unit>
+  <display-name xml:lang="ar-AE">قارب ويف كينج بريموت كونترول من فاست لاين</display-name>
+  <display-name xml:lang="ar-BH">قارب ويف كينج بريموت كونترول من فاست لاين</display-name>
+  <display-name xml:lang="en-QA">Fastlane RC Boat Wave King</display-name>
+  <online-flag site-id="toysrus-UAE">true</online-flag>
+  <searchable-flag>true</searchable-flag>
+  <images merge-mode="replace">
+   <image-group view-type="medium">
+    <image path="2224711_101.jpg"/>
+    <image path="2224711_102.jpg"/>
+   </image-group>
+  </images>
+  <custom-attributes>
+   <custom-attribute attribute-id="ATTYP" xml:lang="ar-AE">00</custom-attribute>
+   <custom-attribute attribute-id="GEWEI" xml:lang="ar-AE">KGM</custom-attribute>
+   <custom-attribute attribute-id="keyFeature4" xml:lang="ar-AE">يأتي مع شاحن لشحن القارب والاستعداد للمغامرة</custom-attribute>
+   <custom-attribute attribute-id="keyFeature4" xml:lang="en-AE">Comes with charger to charge the boat and be ready for adventure </custom-attribute>
+   <custom-attribute attribute-id="ADDITIONAL_EAN" xml:lang="ar-AE">803516230929</custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox9" xml:lang="ar-AE"></custom-attribute>
+  </custom-attributes>
+  <options>
+   <shared-option option-id="optionGiftWrapping"/>
+  </options>
+  <classification-category>tru_toys</classification-category>
+ </product>
+ <product product-id="2237441">
+  <ean>35051579397</ean>
+  <unit>EA</unit>
+  <display-name xml:lang="ar-AE">دمية تخييم سيرا فوكستيل والثعلب 2 في 1 من نا! نا! نا! سربرايز</display-name>
+  <display-name xml:lang="en-QA">Na! Na! Na! Surprise Camping Sierra Foxtail 2-In-1 Fox &amp; Doll Playset</display-name>
+  <online-flag site-id="toysrus-UAE">true</online-flag>
+  <searchable-flag>true</searchable-flag>
+    <list-price>1100</list-price>
+  <sales-price>1000</sales-price>
+  <images merge-mode="replace">
+   <image-group view-type="medium">
+    <image path="2237441_101.jpg"/>
+    <image path="2237441_102.jpg"/>
+    <image path="2237441_105.jpg"/>
+   </image-group>
+  </images>
+  <custom-attributes>
+   <custom-attribute attribute-id="ATTYP" xml:lang="ar-AE">00</custom-attribute>
+   <custom-attribute attribute-id="EANTP" xml:lang="ar-AE">UC</custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox9" xml:lang="ar-AE"></custom-attribute>
+  </custom-attributes>
+  <options>
+   <shared-option option-id="optionGiftWrapping"/>
+  </options>
+  <classification-category>tru_toys</classification-category>
+ </product>
+ <product product-id="926040">
+  <ean>6941607306277</ean>
+  <unit>EA</unit>
+  <display-name xml:lang="ar-AE">سترة سباحة سبايدر مان قابلة للنفخ (51 × 46 سم)</display-name>
+  <display-name xml:lang="en-QA">Bestway Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <online-flag site-id="toysrus-UAE">true</online-flag>
+  <searchable-flag>true</searchable-flag>
+  <images merge-mode="replace">
+   <image-group view-type="medium">
+    <image path="926040_101.jpg"/>
+    <image path="926040_102.jpg"/>
+    <image path="926040_103.jpg"/>
+   </image-group>
+  </images>
+  <custom-attributes>
+   <custom-attribute attribute-id="ATTYP" xml:lang="ar-AE">00</custom-attribute>
+   <custom-attribute attribute-id="ATTYP" xml:lang="en-AE">00</custom-attribute>
+   <custom-attribute attribute-id="EANTP" xml:lang="en-AE">I6</custom-attribute>   
+   <custom-attribute attribute-id="whatsInTheBox9" xml:lang="ar-AE"></custom-attribute>
+  </custom-attributes>
+  <options>
+   <shared-option option-id="optionGiftWrapping"/>
+  </options>
+  <classification-category>tru_toys</classification-category>
+ </product>
+</catalog>
