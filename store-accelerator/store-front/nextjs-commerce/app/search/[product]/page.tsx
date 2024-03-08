@@ -4,13 +4,26 @@ import { useEffect, useState } from 'react';
 import { Collection, Product } from '../../../lib/types';
 import ProductCard from '@/components/grid/productcard';
 import styles from '../../../styles/product.module.css';
-import { performCommonIntegration, IntegrationResult, getContent, performIntegration } from '@/integrations/common-integration';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { performCommonIntegration, getContent, performIntegration } from '@/integrations/common-integration';
 import { sorting } from '@/lib/constants';
 import { fetchProductCard, fetchPlpData } from '@/integrations/sanity/sanity-integration';
 import Footer from '@/components/layout/footer';
 import { json } from 'stream/consumers';
 import { useLanguageContext } from '@/app/context/languageContext';
 
+interface PlpData {
+  collections: {
+    ar: string;
+    en: string;
+  };
+  sortby: {
+    ar: string;
+    en: string;
+  };
+  // Add other properties as needed
+}
 export default function YourComponent() {
   const [products, setProducts] = useState<Product[] | null>(null);
   const [collections, setCollections] = useState<Collection[] | null>(null);
@@ -20,7 +33,7 @@ export default function YourComponent() {
   const [sortOption, setSortOption] = useState({ title: 'Relevance', slug: null, sortKey: 'RELEVANCE', reverse: false });
   const [title, setTitle] = useState<string>('Relevance');
   const [button, setButton] = useState("");
-  const [plpData, setPlpData] = useState([]);
+  const [plpData, setPlpData] = useState<PlpData | null>(null);
   const { language } = useLanguageContext();
 
   useEffect(() => {
@@ -39,9 +52,17 @@ export default function YourComponent() {
         setButton(button)
       } catch (error) {
         setProducts(null);
-        console.error('Error fetching collections:', error);
+        if (error.message.includes('Status: 401')) {
+          toast.error('Unauthorized access.');
+        } if (error.message.includes(`Status:500`)) {
+          toast.error('Internal server Error.');
+        }
+        else {
+          toast.error('Error fetching data');
+        }
       }
     };
+
     fetchData();
   }, []);
 
@@ -55,10 +76,18 @@ export default function YourComponent() {
       const transformedData = await performIntegration("getCollectionProductDetails", collectionTitle, sortKey, reverse);
       setProducts(transformedData);
       setSelectedCollection(collectionTitle);
-    } catch (errors) {
+    } catch (error) {
       setProducts(null);
       setSelectedCollection(collectionTitle);
-      console.error('Error fetching products for collection:', errors);
+      if (error.message.includes('Status: 401')) {
+        toast.error('Unauthorized access.');
+      } if (error.message.includes(`Status:500`)) {
+        toast.error('Internal server Error.');
+      }
+      else {
+        toast.error('Error in fetching data');
+      }
+
     }
   };
 
@@ -69,17 +98,23 @@ export default function YourComponent() {
       setSortKey(selectedSort);
       setTitle(title);
     }
-    catch (errors) {
+    catch (error) {
       setProducts(null);
       setSortKey(selectedSort);
       setTitle(title);
-      console.error('Error fetching products for collection:', errors);
-    }
+      if (error.message.includes('Status: 401')) {
+        toast.error('Unauthorized access.');
+      } if (error.message.includes(`Status:500`)) {
+        toast.error('Internal server Error.');
+      }
+      else {
+        toast.error('Error in fetching data');
+      }    }
 
   };
-  // Render the component once products are available
   return (
     <>
+
       <div className={styles['page-container']}>
 
         {collections === null ? (
@@ -88,9 +123,9 @@ export default function YourComponent() {
             <div className={styles['collection-list']}>
                   <h2>{language === 'ar' ? plpData?.collections?.ar : plpData?.collections?.en}</h2>
                   <ul className={styles['list']}>
-                    {collections.map((collection) => (
-                      <li key={collection.id} onClick={() => handleCategoryClick(collection.title)} style={{ listStyleType: 'none' }} className={collection.title === selectedCollection ? styles['selected-option'] : ''}>
-                        {collection.title}
+                    {collections?.map((collection) => (
+                      <li key={collection?.id} onClick={() => handleCategoryClick(collection?.title)} style={{ listStyleType: 'none' }} className={collection?.title === selectedCollection ? styles['selected-option'] : ''}>
+                        {collection?.title}
                       </li>
                     ))}
                   </ul>      
@@ -110,7 +145,7 @@ export default function YourComponent() {
                   <label>{language ==='ar'? plpData?.sortby?.ar : plpData?.sortby?.en}</label>
                   <ul className={styles['sort-options']}>
                     {sorting.map((option) => (
-                      <li key={option.title} onClick={() => handleSortChange(option.sortKey, option.reverse, option.title)} style={{ listStyleType: 'none' }} className={option.title === title ? styles['selected-option'] : ''}>{option.title}</li>
+                      <li key={option?.title} onClick={() => handleSortChange(option?.sortKey, option?.reverse, option?.title)} style={{ listStyleType: 'none' }} className={option?.title === title ? styles['selected-option'] : ''}>{option?.title}</li>
                     ))}
                   </ul>
                 </>
@@ -121,7 +156,7 @@ export default function YourComponent() {
 
             <div className={styles['center-container']}>
               <div className={styles['grid-container']}>
-                {products.map((product) => (
+                {products?.map((product) => (
                   <ProductCard key={product.id} product={product} className={styles['grid-item']} button={button} />
                 ))}
               </div>
@@ -132,7 +167,7 @@ export default function YourComponent() {
                     <label>{language ==='ar'? plpData?.sortby?.ar : plpData?.sortby?.en}</label>
                     <ul className={styles['sort-options']}>
                       {sorting.map((option) => (
-                        <li key={option.title} onClick={() => handleSortChange(option.sortKey, option.reverse, option.title)} style={{ listStyleType: 'none' }} className={option.title === title ? styles['selected-option'] : ''}>{option.title}</li>
+                        <li key={option?.title} onClick={() => handleSortChange(option?.sortKey, option?.reverse, option?.title)} style={{ listStyleType: 'none' }} className={option?.title === title ? styles['selected-option'] : ''}>{option?.title}</li>
                       ))}
                     </ul>
                   </>
