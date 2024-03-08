@@ -69,75 +69,77 @@ export const getCollectionProductsQuery = /* GraphQL */ `
   }
 `;
 
-export const getProductByHandle=`
-query GetProductByHandle($handle: String!) {
-  productByHandle(handle: $handle) {
-    id
-    handle
-    availableForSale
-    title
-    description
-    descriptionHtml
-    options {
+export const getProductByHandle = (language: string): string => {
+  return `
+    query productDetails($handle: String!) @inContext(language: ${language}) {
+      productByHandle(handle: $handle) {
       id
-      name
-      values
-    }
-    priceRange {
-      maxVariantPrice {
-        amount
-        currencyCode
+      handle
+      availableForSale
+      title
+      description
+      descriptionHtml
+      options {
+        id
+        name
+        values
       }
-      minVariantPrice {
-        amount
-        currencyCode
+      priceRange {
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
+        minVariantPrice {
+          amount
+          currencyCode
+        }
       }
-    }
-    variants(first: 250) {
-      edges {
-        node {
-          id
-          title
-          availableForSale
-          selectedOptions {
-            name
-            value
-          }
-          price {
-            amount
-            currencyCode
+      variants(first: 250) {
+        edges {
+          node {
+            id
+            title
+            availableForSale
+            selectedOptions {
+              name
+              value
+            }
+            price {
+              amount
+              currencyCode
+            }
           }
         }
       }
-    }
-    featuredImage {
-      ...image
-    }
-    images(first: 20) {
-      edges {
-        node {
-          ...image
+      featuredImage {
+        ...image
+      }
+      images(first: 20) {
+        edges {
+          node {
+            ...image
+          }
         }
       }
+      seo {
+        ...seo
+      }
+      tags
+      updatedAt
     }
-    seo {
-      ...seo
-    }
-    tags
-    updatedAt
   }
-}
 
-fragment image on Image {
-  originalSrc
-  altText
-}
+  fragment image on Image {
+    originalSrc
+    altText
+  }
 
 fragment seo on SEO {
   title
   description
 }
 `;
+}
 
 export const getProductRecommendations=`
 query getProductRecommendations($productId: ID!) {
@@ -490,7 +492,7 @@ export const addToCartMutation = /* GraphQL */ `
   ${cartFragment}
 `;
 
-export const getCartMutation =`
+export const getCartMutation = `
 query($cartId: ID!) {
   cart(id: $cartId) {
     id

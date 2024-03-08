@@ -264,16 +264,17 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
   }
 };
 
-export const getProductsByHandle = async (handle: string): Promise<any> => {
+export const getProductsByHandle = async (handle: string, language: string): Promise<any> => {
   const { commerceConfig } = getConfig();
 
   const storefrontAccessToken = commerceConfig.storefrontAccessToken
   const endPoint = commerceConfig.apiEndpoint
 
   const query = {
-    query: getProductByHandle,
+    query: getProductByHandle(language),
     variables: {
       handle: handle,
+      language:language
     }
   };
 
@@ -283,7 +284,7 @@ export const getProductsByHandle = async (handle: string): Promise<any> => {
     if (!response.ok) {
       throw new Error(`Failed to fetch product by handle. Status: ${response.status}`);
     }
-    const responseData = await response.json();
+    const responseData = await response.json();     
     const data = responseData.data.productByHandle;
 
     const transformProductData = (data) => {

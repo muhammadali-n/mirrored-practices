@@ -15,6 +15,7 @@ import { GridTileImage } from '@/components/grid/tile';
 import './style.css';
 import { Col, Row } from 'reactstrap';
 import { fetchPdpData } from '@/integrations/sanity/sanity-integration';
+import { useLanguageContext } from '@/app/context/languageContext';
 
 type Product = {
   handle: any;
@@ -29,7 +30,9 @@ type Product = {
 export const runtime = 'edge';
 
 export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = await performCommonIntegration(getProductsByHandle, params.handle);
+  const {language} = useLanguageContext()
+  const uppercaseLanguage = language.toUpperCase();
+  const product = await performCommonIntegration(getProductsByHandle, params.handle, uppercaseLanguage);
   const images = product.images && Array.isArray(product.images)
     ? product.images.map((image: any) => ({
       src: image.src,

@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { fetchPageDataBySlug } from '@/integrations/sanity/sanity-integration';
 import './module.css';
 import Footer from '@/components/layout/footer';
+import { useLanguageContext } from '../context/languageContext';
 
 //identify endpoint in common
 export function getSlug(params: any) {
