@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { ProductDetailTemplate, ProductDetailSkeleton } from '@/components/page-templates'
+import TRUProductDetailTemplate from '@/components/page-templates/ProductDetail/TRUProductDetailTemplate'
 import { getProduct, getCategoryTree, productSearch } from '@/lib/api/operations'
 import { productGetters } from '@/lib/getters'
 import { buildProductPath } from '@/lib/helpers'
@@ -75,7 +76,7 @@ const ProductDetailPage: NextPage<ProductPageType> = (props) => {
   const breadcrumbs = product ? productGetters.getBreadcrumbs(product) : []
   return (
     <>
-      <ProductDetailTemplate product={product as ProductCustom} breadcrumbs={breadcrumbs} />
+      <TRUProductDetailTemplate product={product as ProductCustom} breadcrumbs={breadcrumbs} />
     </>
   )
 }

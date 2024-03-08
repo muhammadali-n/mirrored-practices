@@ -66,6 +66,9 @@ const HeaderActionArea = (props: HeaderActionAreaProps) => {
           ...topHeaderStyles.container,
           justifyContent: 'space-between',
         }}
+        style={{
+          "background-colour": "blue"
+        }}
       >
         {showSearchBarInLargeHeader && (
           <Box sx={headerActionAreaStyles.searchSuggestionsWrapper} data-testid="Search-container">
