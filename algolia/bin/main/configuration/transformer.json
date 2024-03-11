@@ -1,0 +1,56 @@
+{
+    "transformer": [
+        {
+            "inputFieldName": "weight",
+            "outputFieldName": "product_weight",
+            "convertTo": "integerToString"
+        },
+        {
+            "inputFieldName": "productBrand",
+            "outputFieldName": "brand_id"
+        },
+        {
+            "inputFieldName": "parentCategories",
+            "outputFieldName": "ParentCategory Ids"
+        },
+        {
+            "inputFieldName": "medias",
+            "outputFieldName": "parent_category_ids"
+        },
+        {
+            "inputFieldName": "numberOfReviewers",
+            "outputFieldName": "product_reviewers",
+            "convertTo": "integerToBoolean"
+        },
+        {
+            "inputFieldName": "totalRatings",
+            "outputFieldName": "product_ratings",
+            "convertTo": "integerToBoolean"
+        },
+        {
+            "inputFieldName": "_id",
+            "outputFieldName": "objectID"
+        },
+        {
+            "inputFieldName": "id",
+            "outputFieldName": "objectID"
+        },
+        {
+            "inputFieldName": "rank",
+            "outputFieldName": "product_rank",
+            "convertTo": "integerToBoolean"
+        },
+        {
+            "inputFieldName": "name",
+            "outputFieldName": "product_name"
+        },
+        {
+            "inputFieldName": "price",
+            "outputFieldName": "product_price"
+        },
+        {
+            "inputFieldName": "images",
+            "convertTo": "jsonArrayToList"
+        }
+    ]
+}
