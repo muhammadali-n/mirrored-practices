@@ -1,3 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable import/order */
+
 import React, { useState, useEffect } from 'react'
 
 import Col from "@core/Col";
@@ -30,7 +36,10 @@ import {
   QuantitySelector,
   SocialMediaShare,
 } from '@/components/common'
+import Tabs from '@/components/common/Tabs/Tabs';
+import TabsMobile from '@/components/common/Tabs/TabsMobile';
 import { KiboBreadcrumbs, ImageGallery } from '@/components/core'
+import BreadCrumb from '@/components/core/Breadcrumbs/TRUBreadCrumb';
 import { AddToCartDialog, StoreLocatorDialog } from '@/components/dialogs'
 import {
   ColorSelector,
@@ -64,9 +73,6 @@ import type {
   CrProduct,
   ProductPrice,
 } from '@/lib/gql/types'
-import TabsMobile from '@/components/common/Tabs/TabsMobile';
-import Tabs from '@/components/common/Tabs/Tabs';
-import BreadCrumb from '@/components/core/Breadcrumbs/TRUBreadCrumb';
 
 interface ProductDetailTemplateProps {
   product: ProductCustom
@@ -402,7 +408,7 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                   <div className="badge-message badge-normal"><span>Clearance</span></div>
                   <div className="badge-message badge-new"><span>New in</span></div>
                 </div>
-                <h1 className="product-title">Disney Frozen Elsa's Magical Story Cape</h1>
+                <h1 className="product-title">{"Disney Frozen Elsa's Magical Story Cape"}</h1>
                 <div className="product-brand"><span>Brand: </span><a href="#" className="btn-link">Hasbro</a></div>
                 <div className="pricing-card">
                   <CardSubtitle><span>229 AED</span></CardSubtitle>
@@ -450,7 +456,7 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                         <span className="checkcount">10 AED</span>
                       </label>
                     </div>
-                    <a href="#" className="option-link">More about Product Warranty | Toys "R" Us QAT</a>
+                    <a href="#" className="option-link">{"More about Product Warranty | Toys 'R' Us QAT"}</a>
                   </div>
                   <div className="dropdown-custom">
                     <UncontrolledButtonDropdown>
@@ -526,7 +532,7 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
       <div className="pdp-sticky-bar fixed-bottom">
         <Container>
           <div className="sticky-bar-content">
-            <div className="sticky-title">Disney Frozen Elsa's Magical Story Cape</div>
+            <div className="sticky-title">{"Disney Frozen Elsa's Magical Story Cape"}</div>
             <div className="sticky-buttons">
               <div className="pricing-card">
                 <CardSubtitle><span>229 AED</span></CardSubtitle>

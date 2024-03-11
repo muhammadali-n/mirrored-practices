@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
-import classnames from 'classnames';
 
-const Tabs = (props) => {
+import classnames from 'classnames';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+
+const Tabs = () => {
   const [activeTab, setActiveTab] = useState('1');
 
-  const toggle = tab => {
+  const toggle = (tab: React.SetStateAction<string>) => {
     if (activeTab !== tab) setActiveTab(tab);
   }
 
@@ -80,7 +81,7 @@ const Tabs = (props) => {
 
               <ul className="list-dots">
                 <li>Add a little bit of magic to storytelling time with the Disney Frozen Elsa’s Magical Story Cape Doll</li>
-                <li>Gather round, it’s time for you to tell stories of Elsa, Anna and Olaf with a touch of magic on Elsa's cape!</li>
+                <li>{"Gather round, it’s time for you to tell stories of Elsa, Anna and Olaf with a touch of magic on Elsa's cape!"}</li>
                 <li>Whip out the water wand (included), brush the cape with it and with a bibbidi bobbidi boo, Anna and Olaf magically appear on the cape!</li>
                 <li>Your little lady will never tire of brushing and revealing her Frozen friends over and over and over again!</li>
               </ul>
@@ -88,7 +89,7 @@ const Tabs = (props) => {
             </div>
             <div className="product-overview-composition">
               <div className="composition-product">
-                <h3 className="composition-product-title">What's in the box?‎</h3>
+                <h3 className="composition-product-title">{"What's in the box?"}</h3>
                 <ul className="list-check">
                   <li><span>1 doll with cape and shoes</span></li>
                   <li><span>Water wand</span></li>

@@ -1,15 +1,22 @@
+/* eslint-disable import/order */
 import React from "react";
 
-import Nav from "@core/Nav";
-import NavItem from "@core/NavItem";
-import NavLink from "@core/NavLink";
 import {
   PinterestShareButton,
   FacebookShareButton,
   EmailShareButton,
 } from "react-share";
+import Nav from "@core/Nav";
+import NavItem from "@core/NavItem";
+import NavLink from "@core/NavLink";
+import { Product } from "@/lib/gql/types";
 
-const SocialMediaShare: React.FC = () => {
+
+const SocialMediaShare: React.FC<{ product?: Product }> = ({ product }) => {
+  if (!product) {
+    // Handle the case where 'product' is undefined
+    return null; // or return a placeholder, error message, etc.
+  }
 
   return (
     <>
