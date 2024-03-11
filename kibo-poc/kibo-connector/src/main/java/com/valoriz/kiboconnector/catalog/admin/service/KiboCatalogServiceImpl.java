@@ -31,7 +31,7 @@ public class KiboCatalogServiceImpl implements KiboCatalogService {
     @Override
     public void addProducts(MasterCatalog masterCatalog) {
         try {
-
+            logger.info("Request received to add or update products to Kibo.");
             // Build API Instance
             ProductsApi api = ProductsApi.builder().withConfig(kiboConfigurationUtils.getKiboConfiguration()).build();
             List<Product> masterCatalogProducts = masterCatalog.getProducts();
@@ -112,6 +112,7 @@ public class KiboCatalogServiceImpl implements KiboCatalogService {
     @Override
     public void updateProductsPrice(PriceBooks priceBooks) {
         try {
+            logger.info("Request received to update product's price to Kibo.");
             // Build API Instance
             ProductsApi api = ProductsApi.builder().withConfig(kiboConfigurationUtils.getKiboConfiguration()).build();
             List<PriceTable> priceTables = priceBooks.getPriceBook().getPriceTables();
