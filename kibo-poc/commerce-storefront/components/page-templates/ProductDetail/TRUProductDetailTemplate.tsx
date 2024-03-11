@@ -6,27 +6,34 @@
 
 import React, { useState, useEffect } from 'react'
 
-import Col from "@core/Col";
-import Container from "@core/Container";
-import Row from "@core/Row";
+import Col from '@core/Col'
+import Container from '@core/Container'
+import Row from '@core/Row'
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded'
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded'
 import StarRounded from '@mui/icons-material/StarRounded'
 import { LoadingButton } from '@mui/lab'
-import {
-  Typography,
-  styled,
-  Theme,
-} from '@mui/material'
+import { Typography, styled, Theme, Box, MenuItem } from '@mui/material'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
-import { Form, FormGroup, FormFeedback, FormText, Input, UncontrolledCollapse, Media } from 'reactstrap';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, UncontrolledButtonDropdown } from 'reactstrap';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+  Form,
+  FormGroup,
+  FormFeedback,
+  FormText,
+  Input,
+  UncontrolledCollapse,
+  Media,
+} from 'reactstrap'
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap'
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledButtonDropdown,
+} from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 import {
   FulfillmentOptions,
@@ -36,10 +43,10 @@ import {
   QuantitySelector,
   SocialMediaShare,
 } from '@/components/common'
-import Tabs from '@/components/common/Tabs/Tabs';
-import TabsMobile from '@/components/common/Tabs/TabsMobile';
+import Tabs from '@/components/common/Tabs/Tabs'
+import TabsMobile from '@/components/common/Tabs/TabsMobile'
 import { KiboBreadcrumbs, ImageGallery } from '@/components/core'
-import BreadCrumb from '@/components/core/Breadcrumbs/TRUBreadCrumb';
+import BreadCrumb from '@/components/core/Breadcrumbs/TRUBreadCrumb'
 import { AddToCartDialog, StoreLocatorDialog } from '@/components/dialogs'
 import {
   ColorSelector,
@@ -131,7 +138,6 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
     getCurrentProduct,
   } = props
   const { t } = useTranslation('common')
-  console.info({ breadcrumbs })
 
   const isDigitalFulfillment = product.fulfillmentTypesSupported?.some(
     (type) => type === FulfillmentOptionsConstant.DIGITAL
@@ -192,6 +198,8 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
     },
     productPriceResponse?.price as ProductPrice
   )
+  console.info('properties', properties[2])
+
   const { data: locationInventory } = useGetProductInventory(
     (variationProductCode || productCode) as string,
     selectedFulfillmentOption?.location?.code as string
@@ -379,53 +387,114 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
     }
   }, [isB2B, isValidForAddToCart(), isValidForAddToWishlist, JSON.stringify(addToCartPayload)])
 
-  const [modal, setModal] = useState(false);
-  const ModalBasket = () => setModal(!modal);
-  const giftModal = () => setModal(!modal);
+  const [modal, setModal] = useState(false)
+  const ModalBasket = () => setModal(!modal)
+  const giftModal = () => setModal(!modal)
 
-
-  const [modalProduct, setModalProduct] = useState(false);
+  const [modalProduct, setModalProduct] = useState(false)
 
   return (
     <main className="pdp-outer">
       {/* <FeedBack /> */}
-      <div className="breadcrumb-outer"><Container>
-        <BreadCrumb breadcrumbs={breadcrumbs}/>
-        {/* <KiboBreadcrumbs breadcrumbs={breadcrumbs} /> */}
-        </Container></div>
+      <div className="breadcrumb-outer">
+        <Container>
+          <BreadCrumb breadcrumbs={breadcrumbs} />
+          {/* <KiboBreadcrumbs breadcrumbs={breadcrumbs} /> */}
+        </Container>
+      </div>
       <div className="product-view-section">
         <Container>
           <Row>
             <Col xs="12" md="7" lg="8" xl="9">
               {/* <SliderPDP /> */}
               {/* <div className="product-sharing d-lg-none"> */}
-                <ImageGallery images={productGallery as ProductImage[]} title={''} />
+              <ImageGallery images={productGallery as ProductImage[]} title={''} />
               {/* </div> */}
             </Col>
             <Col xs="12" md="5" lg="4" xl="3">
               <div className="pdp-content-outer">
                 <div className="product-badge">
-                  <div className="badge-message badge-normal"><span>Clearance</span></div>
-                  <div className="badge-message badge-new"><span>New in</span></div>
-                </div>
-                <h1 className="product-title">{"Disney Frozen Elsa's Magical Story Cape"}</h1>
-                <div className="product-brand"><span>Brand: </span><a href="#" className="btn-link">Hasbro</a></div>
-                <div className="pricing-card">
-                  <CardSubtitle><span>229 AED</span></CardSubtitle>
-                  <CardText className="offer-price">99<span>AED</span>
-                  </CardText>
-                  <div className="offer-note">This item is on <a className="btn-link" href="#">special offer</a> right now.</div>
-                  <div className="price-text">
-                    <CardText>99<span>AED</span></CardText>
+                  <div className="badge-message badge-normal">
+                    <span>Clearance</span>
+                  </div>
+                  <div className="badge-message badge-new">
+                    <span>New in</span>
                   </div>
                 </div>
+                <h1 className="product-title">{productName}</h1>
+                <div className="product-brand">
+                  <span>Brand: </span>
+                  <a href="#" className="btn-link">
+                    Hasbro
+                  </a>
+                </div>
+                <div className="pricing-card">
+                  <CardSubtitle>
+                    <span>{t('currency', { val: productPrice?.regular })}</span>
+                  </CardSubtitle>
+                  <CardText className="offer-price">
+                    {t('currency', { val: productPrice?.regular })}
+                  </CardText>
+                  <div className="offer-note">
+                    This item is on{' '}
+                    <a className="btn-link" href="#">
+                      special offer
+                    </a>{' '}
+                    right now.
+                  </div>
+                  <div className="price-text">
+                    <CardText>{t('currency', { val: productPrice?.special })}</CardText>
+                  </div>
+                </div>
+                <Box paddingY={1}>
+                  <QuantitySelector
+                    label="Qty"
+                    quantity={quantity}
+                    onIncrease={() =>
+                      setQuantity((prevQuantity: number) => Number(prevQuantity) + 1)
+                    }
+                    onDecrease={() =>
+                      setQuantity((prevQuantity: number) => Number(prevQuantity) - 1)
+                    }
+                  />
+                </Box>
+                {isSubscriptionModeAvailable && (
+                  <Box paddingY={1}>
+                    <KiboRadio
+                      radioOptions={purchaseTypeRadioOptions}
+                      selected={purchaseType}
+                      onChange={handlePurchaseTypeSelection}
+                    />
+                  </Box>
+                )}
+                <Box paddingY={1}>
+                  {purchaseType === PurchaseTypes.SUBSCRIPTION && (
+                    <KiboSelect
+                      name={t('subscription-frequency')}
+                      onChange={handleFrequencyChange}
+                      placeholder={t('select-subscription-frequency')}
+                      value={selectedFrequency}
+                      label={t('subscription-frequency')}
+                    >
+                      {subscriptionFrequency?.map((property) => {
+                        return (
+                          <MenuItem key={property?.stringValue} value={`${property?.stringValue}`}>
+                            {`${property?.stringValue}`}
+                          </MenuItem>
+                        )
+                      })}
+                    </KiboSelect>
+                  )}
+                </Box>
                 <div className="product-actions">
-                  <div className="product-option-message">
+                  <div className="product-option-message d-none">
                     <div className="option-check">
                       <label className="checkbox light-green">
                         <input type="checkbox" />
                         <span className="checkmark"></span>
-                        <span className="checklabel option-installation">Add professional assembly</span>
+                        <span className="checklabel option-installation">
+                          Add professional assembly
+                        </span>
                         <span className="checkcount">Free</span>
                       </label>
                     </div>
@@ -445,7 +514,9 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                         <span className="checkcount">Free</span>
                       </label>
                     </div>
-                    <a href="#" className="option-link">More about our assembly service | toys “r” us</a>
+                    <a href="#" className="option-link">
+                      More about our assembly service | toys “r” us
+                    </a>
                   </div>
                   <div className="product-option-message">
                     <div className="option-check">
@@ -456,7 +527,9 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                         <span className="checkcount">10 AED</span>
                       </label>
                     </div>
-                    <a href="#" className="option-link">{"More about Product Warranty | Toys 'R' Us QAT"}</a>
+                    <a href="#" className="option-link">
+                      {"More about Product Warranty | Toys 'R' Us QAT"}
+                    </a>
                   </div>
                   <div className="dropdown-custom">
                     <UncontrolledButtonDropdown>
@@ -472,25 +545,39 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                       </DropdownMenu>
                     </UncontrolledButtonDropdown>
                   </div>
-                  <Button color="success" onClick={() => handleAddToCart()}>Add to basket</Button>
+                  <Button color="success" onClick={() => handleAddToCart()}>
+                    Add to basket
+                  </Button>
                   <Button color="light" className="btn-wishlist"></Button>
-                  <div className="product-action-message">Only 999 items could be added in the basket</div>
+                  <div className="product-action-message">
+                    Only 999 items could be added in the basket
+                  </div>
                 </div>
                 <div className="product-attributes">
                   <div className="gift-suit">
                     <div className="icon-card svg-gift">
                       <div className="icon-card-content">
                         <span>Free gift wrapping service</span>
-                        <div className="ic-btns"><span className="btn-link bold" onClick={giftModal}><strong>More about</strong></span></div>
+                        <div className="ic-btns">
+                          <span className="btn-link bold" onClick={giftModal}>
+                            <strong>More about</strong>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="product-suit svg-girl"><span>Suitable for age 3 years+</span></div>
+                  <div className="product-suit svg-girl">
+                    <span>Suitable for age 3 years+</span>
+                  </div>
                   <div className="product-status">
                     <div className="icon-card svg-collect">
                       <div className="icon-card-content">
                         <span>Click & Collect available</span>
-                        <div className="ic-btns"><Link href="#"><span className="btn-link bold">See stores</span></Link></div>
+                        <div className="ic-btns">
+                          <Link href="#">
+                            <span className="btn-link bold">See stores</span>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                     <div className="icon-card svg-delivery">
@@ -503,9 +590,15 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                 <div className="product-tags">
                   <h5>Recommended for‎</h5>
                   <ul className="tag-list">
-                    <li><span>Independent Play</span></li>
-                    <li><span>Creative Play</span></li>
-                    <li><span>Role Play</span></li>
+                    <li>
+                      <span>Independent Play</span>
+                    </li>
+                    <li>
+                      <span>Creative Play</span>
+                    </li>
+                    <li>
+                      <span>Role Play</span>
+                    </li>
                   </ul>
                 </div>
                 <div className="product-sharing d-none d-lg-flex">
@@ -519,8 +612,12 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
       </div>
       <div className="product-data-section">
         <Container>
-          <div className="pdp-tabs"><Tabs /></div>
-          <div className="pdp-tabs-mobile"><TabsMobile /></div>
+          <div className="pdp-tabs">
+            <Tabs />
+          </div>
+          <div className="pdp-tabs-mobile">
+            <TabsMobile />
+          </div>
         </Container>
       </div>
       <div className="product-recommendations">
@@ -535,8 +632,12 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
             <div className="sticky-title">{"Disney Frozen Elsa's Magical Story Cape"}</div>
             <div className="sticky-buttons">
               <div className="pricing-card">
-                <CardSubtitle><span>229 AED</span></CardSubtitle>
-                <CardText className="offer-price">99<span>AED</span></CardText>
+                <CardSubtitle>
+                  <span>229 AED</span>
+                </CardSubtitle>
+                <CardText className="offer-price">
+                  99<span>AED</span>
+                </CardText>
               </div>
               <div className="product-actions">
                 <div className="dropdown-custom">
@@ -553,7 +654,9 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                     </DropdownMenu>
                   </UncontrolledButtonDropdown>
                 </div>
-                <Button color="success" onClick={() => handleAddToCart()}>Add to basket</Button>
+                <Button color="success" onClick={() => handleAddToCart()}>
+                  Add to basket
+                </Button>
                 <Button color="light" className="btn-wishlist"></Button>
               </div>
             </div>
@@ -582,7 +685,7 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
         </ModalBody>
       </Modal> */}
     </main>
-  );
+  )
 }
 
 export default TRUProductDetailTemplate

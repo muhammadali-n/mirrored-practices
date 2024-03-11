@@ -60,7 +60,7 @@ export interface ProductListingTemplateProps {
   onInfiniteScroll?: () => void
 }
 
-const ProductList = (props: ProductListingTemplateProps) => {
+const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
   const {
     breadCrumbsList,
     productListingHeader,
@@ -495,5 +495,5 @@ const ProductList = (props: ProductListingTemplateProps) => {
     </main>
   );
 };
-ProductList.propTypes = {};
-export default ProductList;
+TRUProductListingTemplate.propTypes = {};
+export default TRUProductListingTemplate;
