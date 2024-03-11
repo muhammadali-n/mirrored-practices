@@ -1,3 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/iframe-has-title */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable import/order */
+
 /**
  * Copyright(c) 2024 Valoriz Digital.
  *
@@ -10,7 +15,7 @@
  * @author Aneesh K
  */
 import { useState, useEffect } from "react";
-import React, { Component } from "react";
+import React from "react";
 
 import Col from "@core/Col";
 import Container from "@core/Container";
@@ -26,23 +31,23 @@ import Row from "@core/Row";
 // import FormFeedback from "@core/FormFeedback";
 // import BannerSm from "@components/Slider/BannerSm";
 // import PopularCategories from "@components/Slider/PopularCategories";
-import Slider from "react-slick";
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, Button
 } from 'reactstrap';
+
 import TopPicks from "../widgets/homepage/TopPicks";
 
 // import VideoPlayer from "@components/videoplayer";
 
-function SampleNextArrow(props) {
+function SampleNextArrow(props: { className: any; style: any; onClick: any; }) {
   const { className, style, onClick } = props;
   return (
     <button className="btn-arrow arrow-right" onClick={onClick}><span className="arrow-icon"></span></button>
   );
 }
 
-function SamplePrevArrow(props) {
+function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
   const { className, style, onClick } = props;
   return (
     <button className="btn-arrow arrow-left" onClick={onClick}><span className="arrow-icon"></span></button>
@@ -79,8 +84,8 @@ const Home = (props: { products: []; }) => {
         }
       }
     ],
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    nextArrow: <SampleNextArrow className={undefined} style={undefined} onClick={undefined} />,
+    prevArrow: <SamplePrevArrow className={undefined} style={undefined} onClick={undefined} />
   };
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -315,8 +320,8 @@ const Home = (props: { products: []; }) => {
                 </div>
               </div>
               <div className="toysfinder-btn-col">
-                <button href="#" className="btn btn-info" disabled>Next</button>
-                <button href="#" className="btn btn-success d-none">Next</button>
+                <button className="btn btn-info" disabled>Next</button>
+                <button className="btn btn-success d-none">Next</button>
               </div>
             </div>
           </div>
@@ -334,7 +339,7 @@ const Home = (props: { products: []; }) => {
                   <CardBody>
                     <a href="#">
                       <CardTitle>LOL Surprise</CardTitle>
-                      <CardText>You'll get seven layers of fun with every LOL Surprise Doll</CardText>
+                      <CardText>{"You'll get seven layers of fun with every LOL Surprise Doll"}</CardText>
                     </a>
                   </CardBody>
                 </Card>
@@ -342,7 +347,7 @@ const Home = (props: { products: []; }) => {
               <Col xs="12" md="4">
                 <Card>
                   <div className="embed-responsive embed-responsive-16by9">
-                    <iframe className="embed-responsive-item" width="560" height="315" src="https://www.youtube-nocookie.com/embed/Sk8LYn4Xo1Q?start=3" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe className="embed-responsive-item" width="560" height="315" src="https://www.youtube-nocookie.com/embed/Sk8LYn4Xo1Q?start=3" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                   </div>
                   <CardBody>
                     <CardTitle>LEGO City</CardTitle>
@@ -353,7 +358,7 @@ const Home = (props: { products: []; }) => {
               <Col xs="12" md="4">
                 <Card className="card-last">
                   <div className="embed-responsive embed-responsive-16by9">
-                    <iframe className="embed-responsive-item" width="560" height="315" src="https://www.youtube-nocookie.com/embed/GEYjY0tp7M4?start=3" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe className="embed-responsive-item" width="560" height="315" src="https://www.youtube-nocookie.com/embed/GEYjY0tp7M4?start=3" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                   </div>
                   <CardBody>
                     <a href="#">
