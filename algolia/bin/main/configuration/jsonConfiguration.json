@@ -1,0 +1,44 @@
+{
+  "algoliaApplicationId": "C9ZBDTVH9V",
+  "algoliaAdminApiKey": "9ac5c97da1c7616ffce7dca25d794a78",
+  "algoliaIndexName": "iPhone",
+  "sourceConfiguration": {
+    "type": "jsonConnector",
+    "filePaths": {
+      "inventoryJsonFile": "json-input/inventory.json",
+      "priceJsonFile": "json-input/price.json",
+      "productJsonFile": "json-input/product.json"
+    },
+    "collectionConfiguration": [
+      {
+        "collectionType": "product",
+        "collectionName": "product",
+        "fieldsToFetch": [
+          "id",
+          "title",
+          "description",
+          "images"
+        ]
+      },
+      {
+        "collectionType": "inventory",
+        "collectionName": "inventory",
+        "fieldsToFetch": [
+          "id",
+          "storeId",
+          "quantity"
+        ]
+      },
+      {
+        "collectionType": "price",
+        "collectionName": "price",
+        "fieldsToFetch": [
+          "id",
+          "priceType",
+          "price",
+          "enabled"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "algoliaApplicationId": "C9ZBDTVH9V",
+  "algoliaAdminApiKey": "9ac5c97da1c7616ffce7dca25d794a78",
+  "algoliaIndexName": "oppo",
+  "sourceConfiguration": {
+    "type": "apiConnecto",
+    "source": {
+      "urls": [
+        "https://global.occtoo.com/valoriz/algolia/v1/products"
+      ],
+      "tokenCredentials": {
+        "dynamicId": "12b3beec-dd46-49bc-a25b-61e4dc237f1a",
+        "clientId": "98bf3158-926e-4b1b-b932-9cd4d7557ef5",
+        "clientSecret": "7qNYMEbig+oW9wYXkTBPiWz5F4StmtXXeYfWwTogmMg="
+      }
+    },
+    "collectionConfiguration": [
+      {
+        "collectionType": "product",
+        "collectionName": "product",
+        "fieldsToFetch": [
+          "id",
+          "title",
+          "images"
+        ]
+      },
+      {
+        "collectionType": "inventory",
+        "collectionName": "inventory",
+        "fieldsToFetch": [
+          "id",
+          "quantity"
+        ]
+      },
+      {
+        "collectionType": "price",
+        "collectionName": "price",
+        "fieldsToFetch": [
+          "id",
+          "productPrice"
+        ]
+      }
+    ]
+  }
+}

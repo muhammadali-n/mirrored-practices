@@ -1,4 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable import/order */
+
 import { useState } from "react";
 
 import Col from "@core/Col";
@@ -177,7 +180,7 @@ const ProductList = (props: ProductListingTemplateProps) => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  const [filteropen, setFilteropen] = useState();
+  const [filteropen, setFilteropen] = useState<boolean | undefined>(false);
 
   return (
     <main className="plp-outer">
@@ -199,9 +202,9 @@ const ProductList = (props: ProductListingTemplateProps) => {
       </div> */}
       <Container className="plp-banner-outer d-none">
         <Row>
-          <Col xs="12" md="4"><img src="/images/tru/PRODUCTDES-8007-TRU-Back-to-school-Backpacks-Banner-Desktop-Eng.png" className="img-fluid" alt /></Col>
-          <Col xs="12" md="4"><img src="/images/tru/PRODUCTDES-8007-TRU-Back-to-school-Lunchboxes-Banner-Desktop-Eng.png" className="img-fluid" alt /></Col>
-          <Col xs="12" md="4"><img src="/images/tru/PRODUCTDES-8007-TRU-Back-to-school-Stationery-Banner-Desktop-Eng.png" className="img-fluid" alt /></Col>
+          <Col xs="12" md="4"><img src="/images/tru/PRODUCTDES-8007-TRU-Back-to-school-Backpacks-Banner-Desktop-Eng.png" className="img-fluid" alt="" /></Col>
+          <Col xs="12" md="4"><img src="/images/tru/PRODUCTDES-8007-TRU-Back-to-school-Lunchboxes-Banner-Desktop-Eng.png" className="img-fluid" alt="" /></Col>
+          <Col xs="12" md="4"><img src="/images/tru/PRODUCTDES-8007-TRU-Back-to-school-Stationery-Banner-Desktop-Eng.png" className="img-fluid" alt="" /></Col>
         </Row>
       </Container>
 

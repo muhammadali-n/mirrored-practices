@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 // import { ProductListingTemplate } from '@/components/page-templates'
+import { ProductListingTemplate } from '@/components/page-templates'
 import ProductList from '@/components/page-templates/ProductListingTemplate/TRUListingTemplate'
 import { useGetSearchedProducts } from '@/hooks'
 import { productSearch } from '@/lib/api/operations'
@@ -101,6 +102,7 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
   }
 
   const changePagination = (value: any) => {
+    console.info({ value })
     router.push({
       pathname: router?.pathname,
       query: {
@@ -115,7 +117,7 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
   }, [router.query])
   return (
     <>
-      {/* <ProductListingTemplate
+      <ProductListingTemplate
         productListingHeader={searchPageHeading as string}
         categoryFacet={categoryFacet}
         facetList={facetList}
@@ -130,8 +132,8 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
         appliedFilters={appliedFilters as FacetValue[]}
         onSortItemSelection={changeSorting}
         onPaginationChange={changePagination}
-      /> */}
-      <ProductList 
+      />
+      {/* <ProductList 
         productListingHeader={searchPageHeading as string}
         categoryFacet={categoryFacet}
         facetList={facetList}
@@ -145,7 +147,7 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
         isLoading={isFetching}
         appliedFilters={appliedFilters as FacetValue[]}
         onSortItemSelection={changeSorting}
-        onPaginationChange={changePagination}/>
+        onPaginationChange={changePagination}/> */}
     </>
   )
 }

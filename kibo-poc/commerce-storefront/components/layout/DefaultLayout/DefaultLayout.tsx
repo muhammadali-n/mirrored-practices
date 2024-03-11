@@ -4,10 +4,10 @@ import { Container, Stack } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 import { HydrationBoundary } from '@tanstack/react-query'
-import creditCardType from 'credit-card-type'
 import Router from 'next/router'
 
 import LanguageSwitcher from './LanguageSwitcher'
+import QuickNav from './QuickNav'
 import { GlobalFetchingIndicator } from '@/components/common'
 import { Footer, KiboHeader } from '@/components/layout'
 import {
@@ -18,15 +18,14 @@ import {
   SnackbarRoot,
 } from '@/context'
 import theme from '@/styles/theme'
-import QuickNav from './QuickNav'
 
-creditCardType.updateCard('mastercard', {
-  niceType: 'MC',
-})
+// creditCardType.updateCard('mastercard', {
+//   niceType: 'MC',
+// })
 
-creditCardType.updateCard('american-express', {
-  niceType: 'AMEX',
-})
+// creditCardType.updateCard('american-express', {
+//   niceType: 'AMEX',
+// })
 
 const DefaultLayout = ({ pageProps, children }: { pageProps: any; children: ReactElement }) => {
   useEffect(() => {

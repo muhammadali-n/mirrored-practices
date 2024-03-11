@@ -1,0 +1,12 @@
+configuration-file-paths:
+  db-configuration: "src/main/resources/configuration/dbConfiguration.json"
+  json-configuration: "src/main/resources/configuration/jsonConfiguration.json"
+  xml-configuration: "src/main/resources/configuration/xmlConfiguration.json"
+  api-configuration: "src/main/resources/configuration/apiConfiguration.json"
+  transformer: "src/main/resources/configuration/transformer.json"
+
+
+mongodb:
+  connection-url: "mongodb://mozanta_commerce_app_user:30oct2019**@localhost:18401/mozantacommerce"
+  database-name: "mozantacommerce"
+

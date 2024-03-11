@@ -1,0 +1,55 @@
+{
+  "algoliaApplicationId": "C9ZBDTVH9V",
+  "algoliaAdminApiKey": "9ac5c97da1c7616ffce7dca25d794a78",
+  "algoliaIndexName": "Samsung",
+  "sourceConfiguration": {
+    "type": "mongoConnector",
+    "clientId": "6527a3423a3d023f8bfe642c",
+    "active": true,
+    "collectionConfiguration": [
+      {
+        "collectionType": "product",
+        "collectionName": "commerce_product",
+        "fieldsToFetch": [
+          "name",
+          "productBrand",
+          "parentCategories",
+          "rank",
+          "numberOfReviewers",
+          "weight",
+          "medias",
+          "totalRatings"
+        ]
+      },
+      {
+        "collectionType": "category",
+        "collectionName": "commerce_category",
+        "fieldsToFetch": [
+          "name",
+          "description",
+          "translations",
+          "navPosition"
+        ]
+      },
+      {
+        "collectionType": "brand",
+        "collectionName": "commerce_brand",
+        "fieldsToFetch": [
+          "name",
+          "longDescription"
+        ]
+      },
+      {
+        "priceType": "SalePrice",
+        "collectionType": "price",
+        "collectionName": "commerce_price_table",
+        "fieldsToFetch": [
+          "price",
+          "priceType",
+          "pKey",
+          "timeZone"
+        ]
+      }
+    ]
+  }
+}

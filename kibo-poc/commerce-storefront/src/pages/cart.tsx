@@ -2,6 +2,7 @@ import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { CartTemplate } from '@/components/page-templates'
+import TRUCartTemplate from '@/components/page-templates/CartTemplate/TRUCartTemplate'
 import { getCart } from '@/lib/api/operations/'
 import { MetaData, PageWithMetaData } from '@/lib/types'
 
@@ -40,7 +41,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 const CartPage: NextPage<CartPageType> = (props: any) => {
   return (
     <>
-      <CartTemplate {...props} />
+      {/* <CartTemplate {...props} /> */}
+      <TRUCartTemplate {...props} />
     </>
   )
 }
