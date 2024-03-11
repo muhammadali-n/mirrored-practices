@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.valoriz.kiboconnector.catalog.admin.service.KiboCatalogService;
+import com.valoriz.kiboconnector.inventory.service.KiboInventoryService;
 import com.valoriz.kiboconnector.model.Inventory;
 import com.valoriz.kiboconnector.model.MasterCatalog;
 import com.valoriz.kiboconnector.model.PriceBooks;
@@ -19,6 +20,9 @@ public class PIMServiceImpl implements PIMService {
 
     @Autowired
     KiboCatalogService kiboCatalogService;
+
+    @Autowired
+    KiboInventoryService kiboInventoryService;
 
     Logger logger = Logger.getLogger(PIMServiceImpl.class.getName());
 
@@ -63,7 +67,7 @@ public class PIMServiceImpl implements PIMService {
             ObjectMapper objectMapper = new ObjectMapper();
             String jsonString = objectMapper.writeValueAsString(inventory);
             logger.info("xml content converted to json format: " + jsonString);
-//            kiboCatalogService.updateProductsPrice(priceBooks);
+            kiboInventoryService.updateProductsInventory(inventory);
         } catch (StreamReadException ex) {
             logger.severe("Exception occurred while processing the xml: " + xmlFile
                     + "exception: " + ex.getMessage());
