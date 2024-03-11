@@ -108,3 +108,10 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.language-switcher{
+  padding: 0.5em;
+  background-color: black;
+  font-weight: 500;
+  border: 1px solid grey;
+  border-radius: 20px;
+}

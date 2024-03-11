@@ -8,6 +8,7 @@ import Row from "@core/Row";
 // import FeedBack from "@components/Modal/FeedBack";
 // import Banner from "@components/Banner";
 import getConfig from 'next/config'
+import { useTranslation } from "next-i18next";
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
@@ -15,7 +16,12 @@ import {
 import { UncontrolledCollapse } from "reactstrap";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
+import TRUProductCard from "@/components/product/ProductCard/TRUProductCard";
+import { ProductCardListViewProps } from "@/components/product/ProductCardListView/ProductCardListView";
 import { CategoryFacetData } from "@/components/product-listing/CategoryFacet/CategoryFacet";
+import { useProductCardActions, useUpdateRoutes } from "@/hooks";
+import { productGetters } from "@/lib/getters";
+import { uiHelpers } from "@/lib/helpers";
 import type {
   BreadCrumb as BreadCrumbType,
   CategorySearchParams,
@@ -73,8 +79,81 @@ const ProductList = (props: ProductListingTemplateProps) => {
   const { publicRuntimeConfig } = getConfig()
   const productsPerPageArray = publicRuntimeConfig.productListing.pageSize
   const productPerPage = pageSize || productsPerPageArray[0]
-  console.info({ products })
+  const handleProductPerPage = (size: number) =>
+    onPaginationChange?.({
+      pageSize: Number(size),
+    })
 
+  const { getProductLink } = uiHelpers()
+  const { updateRoute } = useUpdateRoutes()
+  // const { addToCart } = useAddCartItem()
+
+  const {
+    checkProductInWishlist,
+    handleAddToCart,
+    handleWishList,
+    isATCLoading,
+    openProductQuickViewModal,
+  } = useProductCardActions()
+
+  const [showFilterBy, setFilterBy] = useState<boolean>(false)
+  const [isListView, setIsListView] = useState<boolean>(false)
+
+  const { t } = useTranslation('common')
+  // const { showModal } = useModalContext()
+
+  const handleFilterBy = () => setFilterBy(!showFilterBy)
+
+  const showCategoryFacet =
+    categoryFacet.header ||
+    (categoryFacet?.childrenCategories && categoryFacet?.childrenCategories?.length > 0)
+
+  const handleClearAllFilters = () => {
+    updateRoute('')
+  }
+
+  const handleSelectedTileRemoval = (selectedTile: string) => {
+    updateRoute(selectedTile)
+  }
+
+  const productCardProps = (product: Product): ProductCardListViewProps => {
+    const properties = productGetters.getProperties(product) as ProductProperties[]
+    const productCode = productGetters.getProductId(product)
+    const variationProductCode = productGetters.getVariationProductCode(product)
+    return {
+      productCode,
+      variationProductCode,
+      productDescription: productGetters.getShortDescription(product),
+      showQuickViewButton: showQuickViewButton,
+      badge: productGetters.getBadgeAttribute(properties),
+      imageUrl:
+        productGetters.getCoverImage(product) &&
+        productGetters.handleProtocolRelativeUrl(productGetters.getCoverImage(product)),
+      link: getProductLink(productCode, product?.content?.seoFriendlyUrl as string),
+      price: t<string>('currency', {
+        val: productGetters.getPrice(product).regular,
+      }),
+      ...(productGetters.getPrice(product).special && {
+        salePrice: t<string>('currency', {
+          val: productGetters.getPrice(product).special,
+        }),
+      }),
+      priceRange: productGetters.getPriceRange(product),
+      title: productGetters.getName(product),
+      rating: productGetters.getRating(product),
+      isInWishlist: checkProductInWishlist({
+        productCode,
+        variationProductCode,
+      }),
+      isShowWishlistIcon: !productGetters.isVariationProduct(product),
+      isLoading: isLoading,
+      isATCLoading,
+      fulfillmentTypesSupported: product?.fulfillmentTypesSupported as string[],
+      onAddOrRemoveWishlistItem: () => handleWishList(product as ProductCustom),
+      onClickQuickViewModal: () => openProductQuickViewModal({ product: product as ProductCustom }),
+      onClickAddToCart: (payload: any) => handleAddToCart(payload),
+    }
+  }
 
   const bannerProps = {
     style: {
@@ -103,11 +182,11 @@ const ProductList = (props: ProductListingTemplateProps) => {
   return (
     <main className="plp-outer">
       {/* <FeedBack />
-      <div class="parallax-outer">
+      <div className="parallax-outer">
         <div className="breadcrumb-outer"><Container><BreadCrumb /></Container></div>
         <Banner {...bannerProps} />
       </div> */}
-      {/* <div class="parallax-outer bg-yellow-tint">
+      {/* <div className="parallax-outer bg-yellow-tint">
         <div className="parallax-col">
           <div className="parallax-content-outer">
             <figure><img src="/images/tru/Dolls.png" alt="" className="img-fluid" /></figure>
@@ -337,7 +416,7 @@ const ProductList = (props: ProductListingTemplateProps) => {
             </Col>
             <Col xs="12" md="8" lg="9">
               <div className="list-data-outer">
-                <div className="data-quantity">381 products found</div>
+                <div className="data-quantity">{totalResults} products found</div>
                 <div className="data-count"></div>
                 <div className="data-sort">
                   <div className="filter-options-mobile">
@@ -347,9 +426,9 @@ const ProductList = (props: ProductListingTemplateProps) => {
                     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                       <DropdownToggle caret color="light">
                         <span>Sort by</span>
-                        <svg class="sort-by-icon" version="1.1" viewBox="0 0 10.2 8.4" xmlns="http://www.w3.org/2000/svg">
-                          <path class="sort-by-icon-arrow-1" d="M2,5.9v-5c0-0.3,0.3-0.6,0.6-0.6s0.6,0.3,0.6,0.6v5l0.6-0.6c0.2-0.2,0.6-0.2,0.9,0c0.2,0.2,0.2,0.6,0,0.9L3.1,7.8c-0.2,0.2-0.6,0.2-0.9,0L0.6,6.2C0.3,6,0.3,5.6,0.6,5.3c0.2-0.2,0.6-0.2,0.9,0L2,5.9z"></path>
-                          <path class="sort-by-icon-arrow-2" d="M2,5.9v-5c0-0.3,0.3-0.6,0.6-0.6s0.6,0.3,0.6,0.6v5l0.6-0.6c0.2-0.2,0.6-0.2,0.9,0c0.2,0.2,0.2,0.6,0,0.9L3.1,7.8c-0.2,0.2-0.6,0.2-0.9,0L0.6,6.2C0.3,6,0.3,5.6,0.6,5.3c0.2-0.2,0.6-0.2,0.9,0L2,5.9z"></path>
+                        <svg className="sort-by-icon" version="1.1" viewBox="0 0 10.2 8.4" xmlns="http://www.w3.org/2000/svg">
+                          <path className="sort-by-icon-arrow-1" d="M2,5.9v-5c0-0.3,0.3-0.6,0.6-0.6s0.6,0.3,0.6,0.6v5l0.6-0.6c0.2-0.2,0.6-0.2,0.9,0c0.2,0.2,0.2,0.6,0,0.9L3.1,7.8c-0.2,0.2-0.6,0.2-0.9,0L0.6,6.2C0.3,6,0.3,5.6,0.6,5.3c0.2-0.2,0.6-0.2,0.9,0L2,5.9z"></path>
+                          <path className="sort-by-icon-arrow-2" d="M2,5.9v-5c0-0.3,0.3-0.6,0.6-0.6s0.6,0.3,0.6,0.6v5l0.6-0.6c0.2-0.2,0.6-0.2,0.9,0c0.2,0.2,0.2,0.6,0,0.9L3.1,7.8c-0.2,0.2-0.6,0.2-0.9,0L0.6,6.2C0.3,6,0.3,5.6,0.6,5.3c0.2-0.2,0.6-0.2,0.9,0L2,5.9z"></path>
                           <path d="M6.5,4.8c-0.3,0-0.6-0.3-0.6-0.6s0.3-0.6,0.6-0.6H9c0.3,0,0.6,0.3,0.6,0.6S9.3,4.8,9,4.8H6.5z"></path>
                           <path d="M6.5,8C6.2,8,5.9,7.8,5.9,7.4c0-0.3,0.3-0.6,0.6-0.6H9c0.3,0,0.6,0.3,0.6,0.6C9.6,7.8,9.3,8,9,8H6.5z"></path>
                           <path d="M5,1.5c-0.3,0-0.6-0.3-0.6-0.6S4.7,0.3,5,0.3h4c0.3,0,0.6,0.3,0.6,0.6S9.3,1.5,9,1.5H5z"></path>
@@ -370,41 +449,9 @@ const ProductList = (props: ProductListingTemplateProps) => {
               <div className="list-items-outer">
                 <div className="custom-card-list custom-card">
                 {Array.isArray(products) && products.length > 0 && products.map((product, index) => (
-                  <Card key={index+1}>
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src={product?.content?.productImages[0]?.imageUrl} alt="" />
-                        <div className="badge bg1"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock d-none"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>{product?.content?.productName}</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>{product?.priceRange?.lower?.salePrice || product?.price?.price} AED</span></CardSubtitle>
-                          <CardText className="offer-price">{product?.priceRange?.upper?.salePrice || product?.price?.salePrice}<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
+                  // eslint-disable-next-line react/jsx-key
+                  <TRUProductCard {...productCardProps(product)} />
                   ))}
-                  <Card className="item-outofstock">
-                    <div className="card-outer">
-                      <figure>
-                        <CardImg width="100%" src="/images/tru/products/1333311_101.jpg" alt="" />
-                        <div className="badge bg1 d-none"><span>Free Shipping & Installation</span></div>
-                        <div className="badge bg2 d-none"><span>New In</span></div>
-                        <div className="badge out-of-stock"><span>Out of stock‎</span></div>
-                      </figure>
-                      <CardBody>
-                        <CardTitle>Steel Pro Above Ground Rectangular Pool (300 x 201 x 66 cm)</CardTitle>
-                        <div className="pricing-card">
-                          <CardSubtitle><span>599 AED</span></CardSubtitle>
-                          <CardText className="offer-price">499<span>AED</span></CardText>
-                        </div>
-                      </CardBody>
-                    </div>
-                  </Card>
                 </div>
                 <div className="pagination-outer">
                   <Button color="info" className="page-left" disabled></Button>

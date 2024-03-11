@@ -9,6 +9,7 @@ import { sorting } from '@/lib/constants';
 import { fetchProductCard, fetchPlpData } from '@/integrations/sanity/sanity-integration';
 import Footer from '@/components/layout/footer';
 import { json } from 'stream/consumers';
+import { useLanguageContext } from '@/app/context/languageContext';
 
 export default function YourComponent() {
   const [products, setProducts] = useState<Product[] | null>(null);
@@ -20,6 +21,7 @@ export default function YourComponent() {
   const [title, setTitle] = useState<string>('Relevance');
   const [button, setButton] = useState("");
   const [plpData, setPlpData] = useState([]);
+  const { language } = useLanguageContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +32,7 @@ export default function YourComponent() {
         setCollections(transCollectionData);
         const firstCollectionTitle = transCollectionData?.[0]?.title
         setSelectedCollection(firstCollectionTitle);
-        const transformedData = await performIntegration("getCollectionProductDetails", firstCollectionTitle, sortKey, reverse);
+        const transformedData = await performIntegration("getCollectionProductDetails", firstCollectionTitle, sortKey, reverse );
         console.log(transformedData);
         setProducts(transformedData);
         const button = await getContent(fetchProductCard)
@@ -84,7 +86,7 @@ export default function YourComponent() {
           <p>Loading collections...</p>
         ) : (
             <div className={styles['collection-list']}>
-                  <h2>{plpData?.collections?.ar || plpData?.collections?.en}</h2>
+                  <h2>{language === 'ar' ? plpData?.collections?.ar : plpData?.collections?.en}</h2>
                   <ul className={styles['list']}>
                     {collections.map((collection) => (
                       <li key={collection.id} onClick={() => handleCategoryClick(collection.title)} style={{ listStyleType: 'none' }} className={collection.title === selectedCollection ? styles['selected-option'] : ''}>
@@ -95,7 +97,7 @@ export default function YourComponent() {
             </div>
          
         )}
-        {products === null || products.length == 0 ? (
+        {products === null || products===undefined|| products?.length == 0 ? (
           <>
             <div className={styles['center-container']}>
               <div className={styles['grid-container']}>
@@ -105,7 +107,7 @@ export default function YourComponent() {
             </div>
             <div className={styles['filters']}>
                 <>
-                  <label>{plpData?.sortby?.ar||plpData?.sortby?.en}</label>
+                  <label>{language ==='ar'? plpData?.sortby?.ar : plpData?.sortby?.en}</label>
                   <ul className={styles['sort-options']}>
                     {sorting.map((option) => (
                       <li key={option.title} onClick={() => handleSortChange(option.sortKey, option.reverse, option.title)} style={{ listStyleType: 'none' }} className={option.title === title ? styles['selected-option'] : ''}>{option.title}</li>
@@ -127,7 +129,7 @@ export default function YourComponent() {
             </div>
               <div className={styles['filters']}>
                   <>
-                    <label>{plpData?.sortby?.ar || plpData?.sortby?.en}</label>
+                    <label>{language ==='ar'? plpData?.sortby?.ar : plpData?.sortby?.en}</label>
                     <ul className={styles['sort-options']}>
                       {sorting.map((option) => (
                         <li key={option.title} onClick={() => handleSortChange(option.sortKey, option.reverse, option.title)} style={{ listStyleType: 'none' }} className={option.title === title ? styles['selected-option'] : ''}>{option.title}</li>

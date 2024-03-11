@@ -8,6 +8,7 @@ import { getContent } from '@/integrations/common-integration';
 import { fetchPdpData } from '@/integrations/sanity/sanity-integration';
 import { ProductVariant } from '@/lib/types';
 import { addItem } from '../cart/handle';
+import { useLanguageContext } from '@/app/context/languageContext';
 
 
 export async function AddToCart({
@@ -26,7 +27,7 @@ export async function AddToCart({
       (option: any) => option?.value === searchParams.get(option?.name.toLowerCase())
     )
   );
-
+  const { language } = useLanguageContext()
   const pdpData = await getContent(fetchPdpData)
 
   const selectedVariantId = variant?.id || defaultVariantId;
@@ -39,21 +40,21 @@ export async function AddToCart({
 
   return (
 
-      <button
-        style={{ backgroundColor: pdpData?.buttonColor }}
-        className={!availableForSale || !selectedVariantId ? styles['add-to-cart-disabled'] : styles['add-to-cart']}
-        onClick={() => addToCart(selectedVariantId)}
-        disabled={!availableForSale || !selectedVariantId}
-      >
-        {/* {item.sections?.translation?.ar || item.sections?.translation?.en} */}
-        {availableForSale ? (
-          <>
-            {pdpData?.buttonName?.ar || pdpData?.buttonName?.en}
-          </>
-        ) : (
-          <>
-            {pdpData?.outOfStock?.ar || pdpData?.outOfStock?.en}            </>
-        )}
-      </button>
+    <button
+      style={{ backgroundColor: pdpData?.buttonColor }}
+      className={!availableForSale || !selectedVariantId ? styles['add-to-cart-disabled'] : styles['add-to-cart']}
+      onClick={() => addToCart(selectedVariantId)}
+      disabled={!availableForSale || !selectedVariantId}
+    >
+      {/* {item.sections?.translation?.ar || item.sections?.translation?.en} */}
+      {availableForSale ? (
+        <>
+          {language === 'ar' ? pdpData?.buttonName?.ar : pdpData?.buttonName?.en}
+        </>
+      ) : (
+        <>
+          {pdpData?.outOfStock?.ar || pdpData?.outOfStock?.en}            </>
+      )}
+    </button>
   );
 }

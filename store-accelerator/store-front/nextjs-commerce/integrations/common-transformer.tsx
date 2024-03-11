@@ -35,12 +35,42 @@ const performTransformation = (data: any[], additionalArgs:any): { transformedDa
 
     return transformedItem;
   });
-
+  const transformedHomeData: any[] = []; 
   return {
-    transformedData,
+    transformedData,transformedHomeData
   };
 };
 
+
+export function dataTransformer(data: any, transformerJsonConfig: any) {
+console.log("hiii")
+
+function findProp(obj: any, prop: (string | string[]), defval: any) {
+  if (typeof defval === 'undefined') defval = null;
+  if (!Array.isArray(prop)) prop = [prop]; 
+  for (var i = 0; i < prop.length; i++) {
+      if (typeof obj[prop[i]] === 'undefined') return defval;
+      obj = obj[prop[i]];
+      if (Array.isArray(obj)) {
+          return obj.map(item => findProp(item, prop.slice(i + 1), defval));
+      }
+  }
+  return obj;
+}
+
+
+  const newItems = data.map((item: any) => {
+    var transformItem: Record<string, any> = {};
+    transformerJsonConfig.transformer.forEach((field: any) => {
+      const { inputFieldName, outputFieldName } = field;
+      const inputValue = findProp(item, inputFieldName.split('.'), null);
+      transformItem[outputFieldName] = inputValue;
+    });
+    return transformItem;
+  });
+
+  return newItems;
+}
 
 // custom ui for storefront
 export const customUi = (getPageData: any[]): CustomPage | undefined => {

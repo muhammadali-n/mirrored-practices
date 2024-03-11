@@ -5,6 +5,8 @@ import { urlFor } from '@/app/lib/sanity';
 import { getContent } from '@/integrations/common-integration';
 import { fetchHeader } from '@/integrations/sanity/sanity-integration';
 import './module.css'
+import LanguageSwitcher from '../../LanguageSwitcher';
+import { useLanguageContext } from '@/app/context/languageContext';
 
 interface MenuItem {
     _key: string;
@@ -58,6 +60,7 @@ export default function Navbar() {
 
     fetchHeaderData();
   }, []);
+  const { language } = useLanguageContext();
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-black">
@@ -67,12 +70,12 @@ export default function Navbar() {
                             <div className="col-sm-12 d-flex justify-content-center">
                                 {/* Render the logo using the Image component */}
 
-                                <img src={urlFor(headerData?.storeLogo)?.url()} alt={headerData?.storeLogoTranslation?.ar||headerData?.storeLogoTranslation?.en} width={50} height={40} />
+                                <img src={urlFor(headerData?.storeLogo)?.url()} alt={language ==='ar'? headerData?.storeLogoTranslation?.ar : headerData?.storeLogoTranslation?.en} width={50} height={40} />
                             </div>
                             {/* Render store name next to the logo */}
                             <div className="ml-2" style={{ marginLeft: '-20px' }}> {/* Adjust margin here */}
                             <span className="text-sm font-medium text-uppercase d-none d-lg-inline">
-                                {headerData?.storeNameTranslation?.ar || headerData?.storeNameTranslation?.en}
+                                {language ==='ar'? headerData?.storeNameTranslation?.ar: headerData?.storeNameTranslation?.en}
                             </span>
                         </div>
                         </div>
@@ -94,7 +97,7 @@ export default function Navbar() {
                         {Array.isArray(headerData?.menuItems) && headerData.menuItems.map((menuItem: any, menuItemIndex: number) => (
                             <li key={menuItem._key} className="nav-item">
                                 <Link href={menuItem.path} className="nav-link menu-item">
-                                    {menuItem.translation?.ar || menuItem.translation?.en}
+                                    {menuItem && language ==='ar'? menuItem.translation?.ar: menuItem.translation?.en}
                                 </Link>
                             </li>
                         ))}
@@ -104,7 +107,7 @@ export default function Navbar() {
                             <input
                                 type="text"
                                 name="search"
-                                placeholder={headerData?.searchBarAltTranslation?.ar || headerData?.searchBarAltTranslation?.en}
+                                placeholder={language ==='ar'? headerData?.searchBarAltTranslation?.ar : headerData?.searchBarAltTranslation?.en}
                                 autoComplete="off"
                                 className="form-control bg-black text-white search-input"
                                 style={{ width: '400px'
@@ -112,18 +115,20 @@ export default function Navbar() {
                             />
                             <img
                                 src={urlFor(headerData?.searchBar)?.url()}
-                                alt={headerData?.placeholder?.ar||headerData?.placeholder?.en}
+                                alt={language ==='ar'? headerData?.placeholder?.ar : headerData?.placeholder?.en}
                                 width={20}
                                 height={20}
                                 style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} // Position search icon
                             />
                         </form>
-
+                        <div>
+                        <LanguageSwitcher />
+                        </div>
                         <div className="d-flex align-items-center">
                             {/* Render cart icon */}
                             <Link href={`/cart/cart`} className="nav-link text-white">
 
-                                <img src={urlFor(headerData?.cartIcon)?.url()} alt={headerData?.cartIconAltTranslation?.ar||headerData?.cartIconAltTranslation?.en} width={30} height={30} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} />
+                                <img src={urlFor(headerData?.cartIcon)?.url()} alt={language ==='ar'? headerData?.cartIconAltTranslation?.ar : headerData?.cartIconAltTranslation?.en} width={30} height={30} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} />
                             </Link>
                         </div>
                     </div>
