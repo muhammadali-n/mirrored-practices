@@ -1,7 +1,7 @@
 import { client } from '../../app/lib/sanity';
 import { customUi, performTransformation } from '../common-transformer';
 import customPageTransformerConfig from "./sanity-transform-config.json"
-import transformSanityCartData, { transformFooterData, transformHeaderData, transformPdpData, transformPlpData } from './sanity-transformer';
+import { transformFooterData, transformHeaderData, transformPdpData, transformPlpData, transformSanityCartData} from './sanity-transformer';
 
 const getDataByQuery = async (query: string) => {
 
@@ -21,7 +21,6 @@ export const fetchPageDataBySlug = async (slug: string) => {
 
     const { transformedHomeData } = performTransformation(homePageData, customPageTransformerConfig)
     console.log("transformedHomeData", transformedHomeData);
-    
 
     //fixed custom ui
     const result = customUi(transformedData);
@@ -54,12 +53,65 @@ export const fetchProductCard = async () => {
   return transformedData
 }
 
-export const fetchCartPage = async () => {
-  const cartItemsQuery = `*[_type == 'cartItems']`;
+export const fetchCartPage = async (language: any) => {
+  const en = `*[_type == 'cartItems']{
+    itemName,
+    sections {
+      ButtonColor,
+      buttonName,
+      translation {
+        en
+      }
+    },
+    shipping_fields {
+      en
+    },
+    taxes_fields {
+      en
+    },
+    title {
+      en
+    },
+    total_fields {
+      en
+    }
+  }`;
+
+  const ar = `*[_type == 'cartItems']{
+    itemName,
+    sections {
+      ButtonColor,
+      buttonName,
+      translation {
+        ar
+      }
+    },
+    shipping_fields {
+      ar
+    },
+    taxes_fields {
+      ar
+    },
+    title {
+      ar
+    },
+    total_fields {
+      ar
+    }
+  }`;
+
+  const cartItemsQuery = language === 'ar' ? ar : en;
   const cart = await getDataByQuery(cartItemsQuery)
   const transformedData = transformSanityCartData(cart)
   return transformedData
 }
+
+  export const fetchCart = async () => {
+    const cart = await getDataByQuery("*[_type == 'cartItems']")
+    console.log("cart", cart);
+    const transformedData = transformSanityCartData(cart)
+    return transformedData
+  }
 
   export const fetchHeader = async () => {
 

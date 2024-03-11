@@ -1,4 +1,4 @@
-const transformSanityCartData = (data: any) => {
+export const transformSanityCartData = (data: any) => {
     const transformedData = {
         buttonName: data[0]?.sections?.translation,
         buttonColor: data[0]?.sections?.ButtonColor.hex,
