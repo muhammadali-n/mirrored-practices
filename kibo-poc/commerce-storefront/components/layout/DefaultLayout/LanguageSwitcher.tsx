@@ -8,11 +8,11 @@ const LanguageSwitcher: React.FC = () => {
           <div className="language-switcher-list">
             <div className="language-switcher-item">
               <span className="pr-1">Stay in</span>
-              <a>English</a>
+              <a href="/en">English</a>
             </div>
             <div className="language-switcher-item">
               <span> التبديل إلى</span>
-              <a> اللغة العربية</a>
+              <a href="/ar"> اللغة العربية</a>
             </div>
           </div>
         </div>
