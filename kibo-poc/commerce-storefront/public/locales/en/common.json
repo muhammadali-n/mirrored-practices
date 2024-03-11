@@ -58,7 +58,7 @@
   "tax": "Tax",
   "estimated-order-total": "Estimated Order Total",
   "standard-shopping": "Standard Shipping",
-  "currency": "{{val, currency(USD)}}",
+  "currency": "{{val, currency(AED)}}",
   "count": "count",
   "cart-total": "{{cartTotalLabel}} of {{numberOfItems}}",
   "suggestions": "Suggestions",

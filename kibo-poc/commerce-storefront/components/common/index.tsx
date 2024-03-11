@@ -33,3 +33,5 @@ export { default as PaymentBillingCard } from './PaymentBillingCard/PaymentBilli
 export { default as Address } from './PaymentBillingCard/PaymentBillingCard'
 export { default as KeyValueDisplay } from './KeyValueDisplay/KeyValueDisplay'
 export { default as SocialMediaShare } from './SocialShare/SocialMediaShare'
+export { default as ResponsiveWrapper } from './ResponsiveWrapper/ResponsiveWrapper'
+
