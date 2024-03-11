@@ -13,7 +13,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MasterCatalog {
 
-
     @JacksonXmlProperty(localName = "xmlns", isAttribute = true)
     private String xmlns;
 

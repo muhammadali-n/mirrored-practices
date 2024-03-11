@@ -4,6 +4,7 @@ import com.kibocommerce.sdk.catalogadministration.models.*;
 import com.valoriz.kiboconnector.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Optional;
 @Component
 public class KiboHelper {
 
-    public CatalogAdminsProduct transformToCatalogAdminAddProductRequest(Product productData, String productSequence, String catalogId, List<String> imageSequenceIds) {
+    public CatalogAdminsProduct transformToCatalogAdminsProduct(Product productData, String productSequence, String catalogId, List<String> imageSequenceIds) {
         CatalogAdminsProduct catalogAdminsProduct = new CatalogAdminsProduct();
         catalogAdminsProduct.setProductCode(productData.getProductId());
         catalogAdminsProduct.productUsage("Configurable");
@@ -71,8 +72,8 @@ public class KiboHelper {
         productInCatalogInfo.setPrice(getPriceInfo(productData.getSalesPrice(), productData.getListPrice()));
         productInCatalogInfo.setIsSeoContentOverridden(Boolean.TRUE);
         productInCatalogInfo.setSeoContent(getSeoContent(productData));
-        productInCatalogInfo.setProductCategories(null);
-        productInCatalogInfo.setPrimaryProductCategory(getPrimaryProductCategory(productData));
+//        productInCatalogInfo.setProductCategories(null);
+//        productInCatalogInfo.setPrimaryProductCategory(getPrimaryProductCategory(productData));
         productInCatalogInfo.setDateFirstAvailableInCatalog(OffsetDateTime.now());
         productInCatalogInfo.setActiveDateRange(getActiveDateRange(productData));
         productInCatalogInfo.setAuditInfo(getAdminUserAuditInfo(productData));
@@ -141,21 +142,15 @@ public class KiboHelper {
         pricingBehavior.setVariationPricingMethod("Fixed");
         return pricingBehavior;
     }
-    private CatalogAdminsProductPrice getPriceInfo(String salesPrice, String listPrice) {
+    private CatalogAdminsProductPrice getPriceInfo(Double salesPrice, Double listPrice) {
         CatalogAdminsProductPrice catalogAdminsProductPrice = new CatalogAdminsProductPrice();
-        if(StringUtils.isNotBlank(listPrice)){
-            catalogAdminsProductPrice.setPrice(Double.parseDouble(listPrice));
-        }
+        catalogAdminsProductPrice.setPrice(listPrice);
         catalogAdminsProductPrice.setCreditValue(null);
         catalogAdminsProductPrice.setIsoCurrencyCode("AED");
         catalogAdminsProductPrice.setMap(null);
         catalogAdminsProductPrice.setMapStartDate(null);
         catalogAdminsProductPrice.setMapEndDate(null);
-//        catalogAdminsProductPrice.setMapEndDate(OffsetDateTime.now().plusYears(10));
-//        catalogAdminsProductPrice.setMapStartDate(OffsetDateTime.now());
-        if(StringUtils.isNotBlank(salesPrice)){
-            catalogAdminsProductPrice.setSalePrice(Double.parseDouble(salesPrice));
-        }
+        catalogAdminsProductPrice.setSalePrice(salesPrice);
         return catalogAdminsProductPrice;
     }
     private ProductLocalizedContent getLocalizationContent(Product productData, List<String> imageSequenceIds) {
@@ -168,60 +163,44 @@ public class KiboHelper {
         return productLocalizedContent;
     }
 
-    private String constructProductDescription(Product productData){
-        String productDescription = "";
-        Optional<CustomAttribute> optionalKeyFeature1 = productData.getCustomAttributes().stream()
-                .filter(attribute -> "en-US".equals(attribute.getLang()) && "keyFeature1".equals(attribute.getAttributeId()))
-                .findFirst();
+    private String constructProductDescription(Product productData) {
+        List<String> keyFeatureIds = Arrays.asList("keyFeature1", "keyFeature2", "keyFeature3", "keyFeature4");
+        StringBuilder productDescriptionBuilder = new StringBuilder();
+        for (String keyFeatureId : keyFeatureIds) {
+            Optional<CustomAttribute> optionalKeyFeature = productData.getCustomAttributes().stream()
+                    .filter(attribute -> "en-AE".equals(attribute.getLang()) && keyFeatureId.equals(attribute.getAttributeId()))
+                    .findFirst();
 
-        Optional<CustomAttribute> optionalKeyFeature2 = productData.getCustomAttributes().stream()
-                .filter(attribute -> "en-US".equals(attribute.getLang()) && "keyFeature2".equals(attribute.getAttributeId()))
-                .findFirst();
+            optionalKeyFeature.ifPresent(attribute -> {
+                if (productDescriptionBuilder.length() > 0) {
+                    productDescriptionBuilder.append(", ");
+                }
+                productDescriptionBuilder.append(attribute.getValue());
+            });
+        }
 
-        Optional<CustomAttribute> optionalKeyFeature3 = productData.getCustomAttributes().stream()
-                .filter(attribute -> "en-US".equals(attribute.getLang()) && "keyFeature3".equals(attribute.getAttributeId()))
-                .findFirst();
-
-        Optional<CustomAttribute> optionalKeyFeature4 = productData.getCustomAttributes().stream()
-                .filter(attribute -> "en-US".equals(attribute.getLang()) && "keyFeature4".equals(attribute.getAttributeId()))
-                .findFirst();
-
-        if (optionalKeyFeature1.isPresent()) {
-            CustomAttribute keyFeature1 = optionalKeyFeature1.get();
-            productDescription = productDescription + keyFeature1;
-        }
-        if (optionalKeyFeature2.isPresent()) {
-            CustomAttribute keyFeature2 = optionalKeyFeature2.get();
-            productDescription = productDescription + keyFeature2;
-        }
-        if (optionalKeyFeature3.isPresent()) {
-            CustomAttribute keyFeature3 = optionalKeyFeature3.get();
-            productDescription = productDescription + keyFeature3;
-        }
-        if (optionalKeyFeature4.isPresent()) {
-            CustomAttribute keyFeature4 = optionalKeyFeature4.get();
-            productDescription = productDescription + keyFeature4;
-        }
-        return productDescription;
+        // Append full stop at the end
+        productDescriptionBuilder.append(".");
+        return productDescriptionBuilder.toString();
     }
 
     private String getProductName(List<DisplayName> displayNames){
         String productName = "";
         Optional<DisplayName> displayNameOptional = displayNames.stream()
-                .filter(displayName -> "en-US".equals(displayName.getLang()))
+                .filter(displayName -> "en-AE".equals(displayName.getLang()))
                 .findFirst();
 
         // Check if the value is present
         if (displayNameOptional.isPresent()) {
-            DisplayName enUsDisplayName = displayNameOptional.get();
-            productName = enUsDisplayName.getValue();
+            DisplayName displayName = displayNameOptional.get();
+            productName = displayName.getValue();
         }
         return productName;
     }
 
     private List<ProductLocalizedImage> getProductImages(Images images, List<String> imageSequenceIds) {
         List<ProductLocalizedImage> productLocalizedImages = new ArrayList<>();
-        if (images != null){
+        if (images != null && !CollectionUtils.isEmpty(imageSequenceIds)){
             List<ImageGroup> imageGroup = images.getImageGroup();
             for(ImageGroup image : imageGroup){
                 List<Image> imageList = image.getImageList();
@@ -239,5 +218,17 @@ public class KiboHelper {
             }
         }
         return productLocalizedImages;
+    }
+
+    public CatalogAdminsProduct transformToUpdateProductRequest(PriceTable priceTable, String productName){
+        CatalogAdminsProduct catalogAdminsProduct = new CatalogAdminsProduct();
+        catalogAdminsProduct.setProductCode(priceTable.getProductId());
+        ProductLocalizedContent content = new ProductLocalizedContent();
+        content.setProductName(productName);
+        catalogAdminsProduct.setContent(content);
+        CatalogAdminsProductPrice price = new CatalogAdminsProductPrice();
+        price.setPrice(priceTable.getAmount());
+        catalogAdminsProduct.setPrice(price);
+        return catalogAdminsProduct;
     }
 }

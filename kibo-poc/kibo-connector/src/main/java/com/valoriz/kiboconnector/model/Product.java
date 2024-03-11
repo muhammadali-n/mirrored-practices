@@ -31,10 +31,10 @@ public class Product {
     private boolean searchableFlag;
 
     @JacksonXmlProperty(localName = "list-price")
-    private String listPrice;
+    private Double listPrice;
 
     @JacksonXmlProperty(localName = "sales-price")
-    private String salesPrice;
+    private Double salesPrice;
 
     @JacksonXmlProperty(localName = "images")
     private Images images;

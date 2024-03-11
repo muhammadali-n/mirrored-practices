@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory xmlns="http://www.demandware.com/xml/impex/inventory/2007-05-31">
+    <inventory-list>
+        <header list-id="kiabitrans-inventory-uae-KB07">
+            <default-instock>false</default-instock>
+            <description>Inventory List updated : 20240305150151950Z</description>
+        </header>
+        <records>
+
+
+  <record product-id="KI-AJH19-BMD4-A353">
+    <allocation>1.0</allocation>
+    <allocation-timestamp>2024-03-05T17:14:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="KI-AME84-BCJ1-A296">
+    <allocation>9.0</allocation>
+    <allocation-timestamp>2024-03-05T17:14:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="KI-BCP24-DAO7-A441">
+    <allocation>18.0</allocation>
+    <allocation-timestamp>2024-03-05T17:14:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="KI-BCP24-DAP2-A062">
+    <allocation>23.0</allocation>
+    <allocation-timestamp>2024-03-05T17:14:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="KI-BFB92-F473-L">
+    <allocation>1.0</allocation>
+    <allocation-timestamp>2024-03-05T17:14:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="KI-YX380-J122-A261">
+    <allocation>0.0</allocation>
+    <allocation-timestamp>2024-03-05T17:14:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+
+    </records>
+    </inventory-list>
+</inventory>

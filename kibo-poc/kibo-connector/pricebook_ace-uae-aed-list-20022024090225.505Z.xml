@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pricebooks xmlns="http://www.demandware.com/xml/impex/pricebook/2006-10-31">
+<pricebook>
+<header pricebook-id="ace-uae-aed-list">
+<currency>AED</currency>
+<display-name xml:lang="x-default">ace-uae-aed-list prices</display-name>
+<description>Last update:20022024090225.508Z</description>
+<online-flag>true</online-flag>
+</header>
+<price-tables>
+
+<price-table product-id="1305234">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">299.00</amount>
+</price-table>
+<price-table product-id="1305235">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>9999-12-31T19:59:59.000</online-to>
+  <amount quantity="1">249.00</amount>
+</price-table>
+<price-table product-id="1305236">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">169.00</amount>
+</price-table>
+<price-table product-id="2042880">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>9999-12-31T19:59:59.000</online-to>
+  <amount quantity="1">179.00</amount>
+</price-table>
+<price-table product-id="2117691">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">19.00</amount>
+</price-table>
+<price-table product-id="2117692">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">17.00</amount>
+</price-table>
+<price-table product-id="2117695">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">34.00</amount>
+</price-table>
+<price-table product-id="2117696">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">34.00</amount>
+</price-table>
+<price-table product-id="2141484">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>9999-12-31T19:59:59.000</online-to>
+  <amount quantity="1">31.00</amount>
+</price-table>
+<price-table product-id="2141500">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">59.00</amount>
+</price-table>
+<price-table product-id="2147083">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">79.00</amount>
+</price-table>
+<price-table product-id="2147086">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>9999-12-31T19:59:59.000</online-to>
+  <amount quantity="1">89.00</amount>
+</price-table>
+<price-table product-id="2147155">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">29.00</amount>
+</price-table>
+<price-table product-id="2147157">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>9999-12-31T19:59:59.000</online-to>
+  <amount quantity="1">29.00</amount>
+</price-table>
+<price-table product-id="2147158">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">32.00</amount>
+</price-table>
+<price-table product-id="2147161">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">39.00</amount>
+</price-table>
+<price-table product-id="2147162">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2147163">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2147165">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2147168">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2147169">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">59.00</amount>
+</price-table>
+<price-table product-id="2147170">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2147172">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">59.00</amount>
+</price-table>
+<price-table product-id="2147368">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">199.00</amount>
+</price-table>
+<price-table product-id="2147370">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">99.00</amount>
+</price-table>
+<price-table product-id="2147372">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">99.00</amount>
+</price-table>
+<price-table product-id="2147381">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">59.00</amount>
+</price-table>
+<price-table product-id="2147382">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2212107">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">19.00</amount>
+</price-table>
+<price-table product-id="2219158">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2219159">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">99.00</amount>
+</price-table>
+<price-table product-id="2225949">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2226026">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2226298">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">89.00</amount>
+</price-table>
+<price-table product-id="2260921">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">1519.00</amount>
+</price-table>
+<price-table product-id="2260926">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">1929.00</amount>
+</price-table>
+<price-table product-id="2261352">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">89.00</amount>
+</price-table>
+<price-table product-id="2261368">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">99.00</amount>
+</price-table>
+<price-table product-id="2261369">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">59.00</amount>
+</price-table>
+<price-table product-id="2261370">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2261372">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">69.00</amount>
+</price-table>
+<price-table product-id="2261377">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2261379">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">39.00</amount>
+</price-table>
+<price-table product-id="2261382">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2261383">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2261390">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">119.00</amount>
+</price-table>
+<price-table product-id="2261396">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">119.00</amount>
+</price-table>
+<price-table product-id="2261397">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">35.00</amount>
+</price-table>
+<price-table product-id="2261398">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">49.00</amount>
+</price-table>
+<price-table product-id="2261399">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">39.00</amount>
+</price-table>
+<price-table product-id="2261428">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">22.00</amount>
+</price-table>
+<price-table product-id="2261429">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">59.00</amount>
+</price-table>
+<price-table product-id="2261431">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">119.00</amount>
+</price-table>
+<price-table product-id="2261433">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">179.00</amount>
+</price-table>
+<price-table product-id="2261434">
+  <online-from>2024-02-19T20:00:00.000Z</online-from>
+  <online-to>2030-12-31T19:59:59.000</online-to>
+  <amount quantity="1">179.00</amount>
+</price-table></price-tables>
+</pricebook>
+</pricebooks>
