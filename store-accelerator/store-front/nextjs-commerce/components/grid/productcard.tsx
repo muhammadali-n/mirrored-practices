@@ -6,13 +6,14 @@ import { Context } from '@/app/context';
 import { addItem } from '../cart/handle';
 import { performCommonIntegration } from '@/integrations/common-integration';
 import { useLanguageContext } from '@/app/context/languageContext';
+import { toast } from 'react-toastify';
 
 interface Product {
   handle:string;
   variantId: any;
-  id: number;
+  id: string;
   title: string;
-  price: number;
+  price: string;
   imageSrc: string;
 }
 
@@ -20,7 +21,7 @@ interface Product {
 // ProductCard.tsx
 
 
-const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, button }) => {
+const ProductCard: React.FC<{ product: Product,className:any, button: any }> = ({ product, button }) => {
   const [cart, setCart] = useState([]);
   const contextValue = useContext(Context)
   const router = useRouter();
@@ -28,6 +29,7 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
 
   const addToCart = (selectedVariantId:any) => {
    performCommonIntegration(addItem,selectedVariantId) 
+   
   }
   const { language } = useLanguageContext();
 

@@ -93,4 +93,5 @@ export const customUi = (getPageData: any[]): CustomPage | undefined => {
 
 export { performTransformation };
 
-  
+export interface TransformationResult {
+}

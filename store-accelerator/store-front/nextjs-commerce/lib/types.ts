@@ -39,6 +39,9 @@ export type Product={
   seo: SEO;
   tags: string[];
   updatedAt: string;
+  price:string;
+  imageSrc:string;
+  variantId:string;
 };
 
 export type ProductOption = {

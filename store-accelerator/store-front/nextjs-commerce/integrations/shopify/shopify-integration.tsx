@@ -126,7 +126,6 @@ interface ShopifyProductIdResponse {
 
  
   export const apiFetch = async (endPoint: string, storefrontAccessToken: string, options: any): Promise<Response> => {
-    const max_wait = 2000;
   
     async function wait(ms: number) {
       return new Promise(resolve => {
@@ -156,7 +155,7 @@ interface ShopifyProductIdResponse {
           ...(options.tags && { next: { tags: options.tags } })
         });
         retry++;
-      } while (result.status === 429 || result.status === 400 || result.status=== 401 && (Math.pow(2, retry) <= max_wait));
+      } while (result.status === 429 || result.status === 400 || result.status=== 401 && (Math.pow(2, retry) <= fetchApiConfig.max_wait));
   
       return result;
     } catch (error) {
@@ -165,9 +164,7 @@ interface ShopifyProductIdResponse {
     }
   };
   
-  
-
-const getProductDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
+const getProductDetails = async (endPoint,storefrontAccessToken): Promise<any> => {
   const query = {
     query: productDetails,
   };
@@ -196,7 +193,7 @@ const getProductDetails = async (endPoint,storefrontAccessToken): Promise<Transf
   }
 };
 
-const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
+const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<any> => {
 
   const query = {
     query: collectionDetails,
@@ -287,7 +284,10 @@ export const getProductsByHandle = async (handle: string, language: string): Pro
     const responseData = await response.json();     
     const data = responseData.data.productByHandle;
 
-    const transformProductData = (data) => {
+    if (data == null) {
+      throw Error;
+    }
+      const transformProductData = (data) => {
       return {
         id: data?.id,
         handle: data?.handle,
@@ -324,12 +324,11 @@ export const getProductsByHandle = async (handle: string, language: string): Pro
       };
     };
     const transformedData = transformProductData(data);
-
     return transformedData;
 
-  } catch (error) {
-    console.error('Error fetching product by handle:', error);
-    throw error;
+  } catch (e) {
+    console.error('Error fetching product by handle:', Error);
+    throw Error;
   }
 };
 
@@ -353,7 +352,7 @@ export const getRelatedProductsById = async (productId: string): Promise<any[]> 
       throw new Error(`Failed to fetch related products. Status: ${response.status}`);
     }
     const responseData = await response.json();
-    const products = responseData.data.productRecommendations.map(({ id, title, handle, description, priceRange, featuredImage, currencyCode }) => ({
+    const products = responseData?.data?.productRecommendations.map(({ id, title, handle, description, priceRange, featuredImage, currencyCode }) => ({
       id,
       title,
       handle,
@@ -495,8 +494,6 @@ export const getProductById = async (productId: string): Promise<ShopifyProductI
 };
 
 
-export { TransformationResult };
-
 
 /*************************************
 ******* shopify cart start ***********
@@ -607,7 +604,10 @@ export async function shopifyFetch<T>({
 
   try {
     const result = await apiFetch(apiEndpoint, storefrontAccessToken, { query, variables, cache, headers, tags });
-
+    
+    if (!result.ok) {
+      throw new Error(`Failed to fetch Shopify cart. Status: ${result.status}`);
+    }
     const body = await result.json();
     console.log("body", body);
 
@@ -673,7 +673,7 @@ export async function addToCart(
       },
       cache: 'no-store',
     });
-    if (!res.ok) {
+    if (res.status!=200) {
       throw new Error(`Failed to add items to the cart. Status: ${res.status}`);
     }
     const data = reshapeCart(res.body.data.cartLinesAdd.cart);
@@ -717,7 +717,6 @@ export const getCart = async (cartId: string) => {
 
     const response = await apiFetch(apiEndpoint, storefrontAccessToken, query); // Await apiFetch here
 
-
     if (!response.ok) {
       throw new Error(`Failed to fetch Shopify cart. Status: ${response.status}`);
     }
@@ -732,7 +731,7 @@ export const getCart = async (cartId: string) => {
 
     return { products, cost };
   } catch (error) {
-    console.error("Error:", error.message);
+    throw error;
   }
 };
 
