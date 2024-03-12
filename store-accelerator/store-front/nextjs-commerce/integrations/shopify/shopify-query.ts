@@ -616,7 +616,6 @@ export const getCollectionsQuery = /* GraphQL */ `
   ${collectionFragment}
 `;
 
-
 /*************************************
 ******* shopify cart end ***********
 **************************************/

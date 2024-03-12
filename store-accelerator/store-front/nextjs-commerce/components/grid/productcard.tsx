@@ -34,7 +34,6 @@ const ProductCard: React.FC<{ product: Product,className:any, button: any }> = (
   }
   const { language } = useLanguageContext();
 
-  console.log("qqq",product)
 
   return (
     <div className={styles['product-card-container']}>

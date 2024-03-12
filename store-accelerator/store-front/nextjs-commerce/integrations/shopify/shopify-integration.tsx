@@ -1,7 +1,8 @@
 
+import { HIDDEN_PRODUCT_TAG, TAGS } from '@/lib/constants';
 import { getConfig, getConfigForProvider ,fetchApiConfig} from '../../config';
 import { dataTransformer, performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, productByIdsQuery, productDetails, removeFromCartMutation } from './shopify-query';
+import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getCollectionsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, getProductsQuery, productByIdsQuery, productDetails, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
