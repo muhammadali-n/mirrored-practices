@@ -12,6 +12,14 @@
 
 package com.valoriz.kiboconnector.inventory.service;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.kibocommerce.sdk.common.ApiException;
 import com.kibocommerce.sdk.inventory.api.InventoryJobApi;
 import com.kibocommerce.sdk.inventory.api.ModifyInventoryApi;
@@ -24,13 +32,6 @@ import com.valoriz.kiboconnector.model.InventoryList;
 import com.valoriz.kiboconnector.model.InventoryListHeader;
 import com.valoriz.kiboconnector.model.InventoryRecord;
 import com.valoriz.kiboconnector.utils.KiboConfigurationUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.logging.Logger;
 
 @Service
 public class KiboInventoryServiceImpl implements KiboInventoryService {
@@ -49,16 +50,16 @@ public class KiboInventoryServiceImpl implements KiboInventoryService {
         try {
 
             // Build API Instance
-            ModifyInventoryApi api = ModifyInventoryApi.builder()
+            ModifyInventoryApi api = ModifyInventoryApi
+                    .builder()
                     .withConfig(kiboConfigurationUtils.getKiboConfiguration())
                     .build();
             if (inventory.getInventoryList() != null) {
                 String locationCode = extractLocationCode(inventory.getInventoryList());
                 if (StringUtils.isNotBlank(locationCode)) {
                     List<InventoryRecord> inventoryRecords = inventory.getInventoryList().getRecords();
-                    RefreshRequest inventoryUpdateRequest = kiboHelper.transformToRefreshRequest(
-                            inventoryRecords,
-                            "VALLOC003");
+                    RefreshRequest inventoryUpdateRequest = kiboHelper
+                            .transformToRefreshRequest(inventoryRecords, "VALLOC003");
                     try {
                         logger.info("Calling Kibo - inventory refresh API with request: " + inventoryUpdateRequest);
                         JobIDResponse inventoryUpdateResponse = api.refresh(42366, inventoryUpdateRequest);
@@ -66,11 +67,12 @@ public class KiboInventoryServiceImpl implements KiboInventoryService {
 
                         String inventoryJobStatus;
 
-                        //Checking the status of inventory job every 2 seconds until job status becomes success.
+                        // Checking the status of inventory job every 2 seconds until job status becomes success.
                         long interval = 2000;
                         do {
                             long startTime = System.currentTimeMillis();
-                            inventoryJobStatus = getInventoryJobStatus(Objects.requireNonNull(inventoryUpdateResponse.getJobID()).longValue());
+                            inventoryJobStatus = getInventoryJobStatus(
+                                    Objects.requireNonNull(inventoryUpdateResponse.getJobID()).longValue());
                             long elapsedTime = System.currentTimeMillis() - startTime;
 
                             // Calculate the remaining time to sleep
@@ -84,9 +86,15 @@ public class KiboInventoryServiceImpl implements KiboInventoryService {
                                 }
                             }
                         } while (!"SUCCESS".equals(inventoryJobStatus));
-                        logger.info("inventory job with jobId: " + inventoryUpdateResponse.getJobID() + " have been completed");
+                        logger
+                                .info(
+                                        "inventory job with jobId: " + inventoryUpdateResponse.getJobID()
+                                                + " have been completed");
                     } catch (ApiException ex) {
-                        logger.severe("Exception occurred while calling inventory refresh API in Kibo, exception: " + ex.getMessage());
+                        logger
+                                .severe(
+                                        "Exception occurred while calling inventory refresh API in Kibo, exception: "
+                                                + ex.getMessage());
                     }
                 } else {
                     logger.severe("inventory location id is blank or empty, hence inventory update failed ");
@@ -100,12 +108,13 @@ public class KiboInventoryServiceImpl implements KiboInventoryService {
     }
 
     @Override
-    public String getInventoryJobStatus(long jobId){
+    public String getInventoryJobStatus(long jobId) {
         String status = "PENDING";
         try {
 
             // Build API Instance
-            InventoryJobApi api = InventoryJobApi.builder()
+            InventoryJobApi api = InventoryJobApi
+                    .builder()
                     .withConfig(kiboConfigurationUtils.getKiboConfiguration())
                     .build();
             try {
@@ -114,10 +123,12 @@ public class KiboInventoryServiceImpl implements KiboInventoryService {
                 logger.info("inventory get job API response: " + getInventoryJobResponse);
                 status = Objects.requireNonNull(getInventoryJobResponse.getStatus()).toString();
             } catch (ApiException ex) {
-                logger.severe("Exception occurred while calling inventory get job API in Kibo, exception: " + ex.getMessage());
+                logger
+                        .severe(
+                                "Exception occurred while calling inventory get job API in Kibo, exception: "
+                                        + ex.getMessage());
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             logger.severe("Exception occurred while inventory job status from kibo: " + ex.getMessage());
         }
         return status;

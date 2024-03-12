@@ -1,23 +1,24 @@
 package com.valoriz.kiboconnector.helper;
 
-import com.kibocommerce.sdk.catalogadministration.models.*;
-import com.kibocommerce.sdk.inventory.models.RefreshItem;
-import com.kibocommerce.sdk.inventory.models.RefreshRequest;
-import com.valoriz.kiboconnector.model.*;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
-
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
+import com.kibocommerce.sdk.catalogadministration.models.*;
+import com.kibocommerce.sdk.inventory.models.RefreshItem;
+import com.kibocommerce.sdk.inventory.models.RefreshRequest;
+import com.valoriz.kiboconnector.model.*;
+
 @Component
 public class KiboHelper {
 
-    public CatalogAdminsProduct transformToCatalogAdminsProduct(Product productData, String productSequence, String catalogId, List<String> imageSequenceIds) {
+    public CatalogAdminsProduct transformToCatalogAdminsProduct(Product productData, String productSequence,
+            String catalogId, List<String> imageSequenceIds) {
         CatalogAdminsProduct catalogAdminsProduct = new CatalogAdminsProduct();
         catalogAdminsProduct.setProductCode(productData.getProductId());
         catalogAdminsProduct.productUsage("Configurable");
@@ -57,11 +58,11 @@ public class KiboHelper {
         return catalogAdminsProduct;
     }
 
-     private SlicingSettings getSlicingSettings(Product productData) {
-         SlicingSettings slicingSettings = new SlicingSettings();
-         slicingSettings.setSlicingAttributeFqn(null);
-         return slicingSettings;
-     }
+    private SlicingSettings getSlicingSettings(Product productData) {
+        SlicingSettings slicingSettings = new SlicingSettings();
+        slicingSettings.setSlicingAttributeFqn(null);
+        return slicingSettings;
+    }
 
     private List<ProductInCatalogInfo> getCatalogs(Product productData, List<String> imageSequenceIds) {
         List<ProductInCatalogInfo> catalogs = new ArrayList<>();
@@ -74,8 +75,8 @@ public class KiboHelper {
         productInCatalogInfo.setPrice(getPriceInfo(productData.getSalesPrice(), productData.getListPrice()));
         productInCatalogInfo.setIsSeoContentOverridden(Boolean.TRUE);
         productInCatalogInfo.setSeoContent(getSeoContent(productData));
-//        productInCatalogInfo.setProductCategories(null);
-//        productInCatalogInfo.setPrimaryProductCategory(getPrimaryProductCategory(productData));
+        // productInCatalogInfo.setProductCategories(null);
+        // productInCatalogInfo.setPrimaryProductCategory(getPrimaryProductCategory(productData));
         productInCatalogInfo.setDateFirstAvailableInCatalog(OffsetDateTime.now());
         productInCatalogInfo.setActiveDateRange(getActiveDateRange(productData));
         productInCatalogInfo.setAuditInfo(getAdminUserAuditInfo(productData));
@@ -124,18 +125,21 @@ public class KiboHelper {
         productPublishingInfo.setPublishSetCode(null);
         return productPublishingInfo;
     }
+
     private CommerceRuntimeMeasurement getPAckageDimension(double value, String unit) {
         CommerceRuntimeMeasurement commerceRuntimeMeasurement = new CommerceRuntimeMeasurement();
         commerceRuntimeMeasurement.setUnit(unit);
         commerceRuntimeMeasurement.setValue(value);
         return commerceRuntimeMeasurement;
     }
+
     private CatalogAdminsProductInventoryInfo getInventoryInfo() {
         CatalogAdminsProductInventoryInfo inventoryInfo = new CatalogAdminsProductInventoryInfo();
         inventoryInfo.setManageStock(Boolean.TRUE);
         inventoryInfo.setOutOfStockBehavior("DisplayMessage");
         return inventoryInfo;
     }
+
     private CatalogAdminsProductPricingBehaviorInfo getPricingBehavior() {
         CatalogAdminsProductPricingBehaviorInfo pricingBehavior = new CatalogAdminsProductPricingBehaviorInfo();
         pricingBehavior.discountsRestricted(Boolean.FALSE);
@@ -144,6 +148,7 @@ public class KiboHelper {
         pricingBehavior.setVariationPricingMethod("Fixed");
         return pricingBehavior;
     }
+
     private CatalogAdminsProductPrice getPriceInfo(Double salesPrice, Double listPrice) {
         CatalogAdminsProductPrice catalogAdminsProductPrice = new CatalogAdminsProductPrice();
         catalogAdminsProductPrice.setPrice(listPrice);
@@ -155,6 +160,7 @@ public class KiboHelper {
         catalogAdminsProductPrice.setSalePrice(salesPrice);
         return catalogAdminsProductPrice;
     }
+
     private ProductLocalizedContent getLocalizationContent(Product productData, List<String> imageSequenceIds) {
         ProductLocalizedContent productLocalizedContent = new ProductLocalizedContent();
         productLocalizedContent.setLocaleCode("en-US");
@@ -169,8 +175,12 @@ public class KiboHelper {
         List<String> keyFeatureIds = Arrays.asList("keyFeature1", "keyFeature2", "keyFeature3", "keyFeature4");
         StringBuilder productDescriptionBuilder = new StringBuilder();
         for (String keyFeatureId : keyFeatureIds) {
-            Optional<CustomAttribute> optionalKeyFeature = productData.getCustomAttributes().stream()
-                    .filter(attribute -> "en-AE".equals(attribute.getLang()) && keyFeatureId.equals(attribute.getAttributeId()))
+            Optional<CustomAttribute> optionalKeyFeature = productData
+                    .getCustomAttributes()
+                    .stream()
+                    .filter(
+                            attribute -> "en-AE".equals(attribute.getLang())
+                                    && keyFeatureId.equals(attribute.getAttributeId()))
                     .findFirst();
 
             optionalKeyFeature.ifPresent(attribute -> {
@@ -186,9 +196,10 @@ public class KiboHelper {
         return productDescriptionBuilder.toString();
     }
 
-    private String getProductName(List<DisplayName> displayNames){
+    private String getProductName(List<DisplayName> displayNames) {
         String productName = "";
-        Optional<DisplayName> displayNameOptional = displayNames.stream()
+        Optional<DisplayName> displayNameOptional = displayNames
+                .stream()
                 .filter(displayName -> "en-AE".equals(displayName.getLang()))
                 .findFirst();
 
@@ -202,12 +213,12 @@ public class KiboHelper {
 
     private List<ProductLocalizedImage> getProductImages(Images images, List<String> imageSequenceIds) {
         List<ProductLocalizedImage> productLocalizedImages = new ArrayList<>();
-        if (images != null && !CollectionUtils.isEmpty(imageSequenceIds)){
+        if (images != null && !CollectionUtils.isEmpty(imageSequenceIds)) {
             List<ImageGroup> imageGroup = images.getImageGroup();
-            for(ImageGroup image : imageGroup){
+            for (ImageGroup image : imageGroup) {
                 List<Image> imageList = image.getImageList();
                 int index = 0;
-                for (Image item : imageList){
+                for (Image item : imageList) {
                     ProductLocalizedImage productLocalizedImage = new ProductLocalizedImage();
                     productLocalizedImage.setCmsId("");
                     productLocalizedImage.setLocaleCode("en-US");
@@ -222,7 +233,7 @@ public class KiboHelper {
         return productLocalizedImages;
     }
 
-    public CatalogAdminsProduct transformToUpdateProductRequest(PriceTable priceTable, String productName){
+    public CatalogAdminsProduct transformToUpdateProductRequest(PriceTable priceTable, String productName) {
         CatalogAdminsProduct catalogAdminsProduct = new CatalogAdminsProduct();
         catalogAdminsProduct.setProductCode(priceTable.getProductId());
         ProductLocalizedContent content = new ProductLocalizedContent();
@@ -234,14 +245,14 @@ public class KiboHelper {
         return catalogAdminsProduct;
     }
 
-    public RefreshRequest transformToRefreshRequest(List<InventoryRecord> inventoryRecords, String locationCode){
+    public RefreshRequest transformToRefreshRequest(List<InventoryRecord> inventoryRecords, String locationCode) {
         RefreshRequest refreshRequest = new RefreshRequest();
         List<RefreshItem> refreshItems = new ArrayList<>();
         refreshRequest.setLocationCode(locationCode);
         for (InventoryRecord inventoryRecord : inventoryRecords) {
             RefreshItem refreshItem = new RefreshItem();
             refreshItem.setUpc(inventoryRecord.getProductId());
-            refreshItem.setQuantity( (int) inventoryRecord.getAllocation());
+            refreshItem.setQuantity((int) inventoryRecord.getAllocation());
             refreshItems.add(refreshItem);
         }
         refreshRequest.setItems(refreshItems);

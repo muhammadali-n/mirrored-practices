@@ -12,6 +12,13 @@
 
 package com.valoriz.kiboconnector.catalog.admin.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.kibocommerce.sdk.catalogadministration.api.ProductsApi;
 import com.kibocommerce.sdk.catalogadministration.models.CatalogAdminsProduct;
 import com.kibocommerce.sdk.catalogadministration.models.CatalogAdminsProductPrice;
@@ -22,12 +29,6 @@ import com.valoriz.kiboconnector.helper.KiboHelper;
 import com.valoriz.kiboconnector.model.*;
 import com.valoriz.kiboconnector.service.SequenceService;
 import com.valoriz.kiboconnector.utils.KiboConfigurationUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class KiboCatalogServiceImpl implements KiboCatalogService {
@@ -47,6 +48,7 @@ public class KiboCatalogServiceImpl implements KiboCatalogService {
     public void addProducts(MasterCatalog masterCatalog) {
         try {
             logger.info("Request received to add or update products to Kibo.");
+
             // Build API Instance
             ProductsApi api = ProductsApi.builder().withConfig(kiboConfigurationUtils.getKiboConfiguration()).build();
             List<Product> masterCatalogProducts = masterCatalog.getProducts();
@@ -54,42 +56,45 @@ public class KiboCatalogServiceImpl implements KiboCatalogService {
             for (Product product : masterCatalogProducts) {
                 String productCode = product.getProductId();
 
-                //calling getProduct API to fetch product details
+                // calling getProduct API to fetch product details
                 CatalogAdminsProduct productDetails = getProductDetails(productCode, api);
                 if (productDetails == null) {
-                    //product doesn't exist in Kibo, hence we need to add the product.
+
+                    // product doesn't exist in Kibo, hence we need to add the product.
                     String productSequence = generateProductSequence();
                     int totalImagesCount = getTotalImagesCountInProduct(product.getImages());
                     List<String> imageSequenceIds = generateImageSequenceIds(totalImagesCount);
-                    CatalogAdminsProduct addProductRequest = kiboHelper.transformToCatalogAdminsProduct(product,
-                            productSequence,
-                            catalogId,
-                            imageSequenceIds);
+                    CatalogAdminsProduct addProductRequest = kiboHelper
+                            .transformToCatalogAdminsProduct(product, productSequence, catalogId, imageSequenceIds);
                     try {
                         logger.info("Calling Kibo - add product API with request: " + addProductRequest);
                         CatalogAdminsProduct addProductResponse = api.addProduct(addProductRequest);
-//                        logger.info("addProduct API response: " + addProductResponse);
+                        // logger.info("addProduct API response: " + addProductResponse);
                     } catch (ApiException ex) {
-                        logger.severe("Exception occurred while calling add product API in Kibo, exception: " + ex.getMessage());
+                        logger
+                                .severe(
+                                        "Exception occurred while calling add product API in Kibo, exception: "
+                                                + ex.getMessage());
                     }
-                }
-                else {
-                    //product already exist in Kibo, hence we need to update product instead of adding product.
+                } else {
+                    // product already exist in Kibo, hence we need to update product instead of adding product.
                     String productSequence = String.valueOf(productDetails.getProductSequence());
                     List<String> imageSequenceIds = new ArrayList<>();
-                    CatalogAdminsProduct updateProductRequest = kiboHelper.transformToCatalogAdminsProduct(product,
-                            productSequence,
-                            catalogId,
-                            imageSequenceIds);
+                    CatalogAdminsProduct updateProductRequest = kiboHelper
+                            .transformToCatalogAdminsProduct(product, productSequence, catalogId, imageSequenceIds);
                     ProductLocalizedContent content = productDetails.getContent();
                     List<ProductLocalizedImage> productImages = content.getProductImages();
                     updateProductRequest.getContent().setProductImages(productImages);
                     try {
                         logger.info("Calling Kibo - update product API with request: " + updateProductRequest);
-                        CatalogAdminsProduct updateProductResponse = api.updateProduct(productCode, updateProductRequest);
-//                        logger.info("updateProduct API response: " + updateProductResponse);
+                        CatalogAdminsProduct updateProductResponse = api
+                                .updateProduct(productCode, updateProductRequest);
+                        logger.info("updateProduct API response: " + updateProductResponse);
                     } catch (ApiException ex) {
-                        logger.severe("Exception occurred while calling updating product API in Kibo, exception: " + ex.getMessage());
+                        logger
+                                .severe(
+                                        "Exception occurred while calling updating product API in Kibo, exception: "
+                                                + ex.getMessage());
                     }
                 }
             }
@@ -134,24 +139,25 @@ public class KiboCatalogServiceImpl implements KiboCatalogService {
             for (PriceTable priceTable : priceTables) {
                 String productCode = priceTable.getProductId();
 
-                //calling getProduct API to fetch product details
+                // calling getProduct API to fetch product details
                 CatalogAdminsProduct productDetails = getProductDetails(productCode, api);
                 if (productDetails != null) {
-                    CatalogAdminsProduct updateProductRequest = updateProductDetailsWithPrice(productDetails, priceTable);
+                    CatalogAdminsProduct updateProductRequest = updateProductDetailsWithPrice(
+                            productDetails,
+                            priceTable);
                     try {
                         CatalogAdminsProduct addProductResponse = api.updateProduct(productCode, updateProductRequest);
                         logger.info("updateProduct API response: " + addProductResponse);
                     } catch (ApiException ex) {
-                        logger.severe("Exception occurred while calling updating product API in Kibo, exception: " + ex.getMessage());
+                        logger
+                                .severe(
+                                        "Exception occurred while calling updating product API in Kibo, exception: "
+                                                + ex.getMessage());
                     }
                 } else {
                     logger.warning("Product details not found for the product with productCode: " + productCode);
                 }
             }
-            //            CatalogAdminsProduct product = api.getProduct("VALPRD001","");
-            //            ObjectMapper objectMapper = new ObjectMapper();
-            //            String jsonString = objectMapper.writeValueAsString(product);
-            //            logger.info("product: " + product);
         } catch (Exception ex) {
             logger.severe("Exception occurred while updating products in Kibo, exception: " + ex.getMessage());
         }
@@ -166,7 +172,8 @@ public class KiboCatalogServiceImpl implements KiboCatalogService {
         }
     }
 
-    private CatalogAdminsProduct updateProductDetailsWithPrice(CatalogAdminsProduct productDetails, PriceTable priceTable) {
+    private CatalogAdminsProduct updateProductDetailsWithPrice(CatalogAdminsProduct productDetails,
+            PriceTable priceTable) {
         CatalogAdminsProductPrice price = productDetails.getPrice();
         price.setPrice(priceTable.getAmount());
         return productDetails;

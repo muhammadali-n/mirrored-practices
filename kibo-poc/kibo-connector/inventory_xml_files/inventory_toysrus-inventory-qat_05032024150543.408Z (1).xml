@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory xmlns="http://www.demandware.com/xml/impex/inventory/2007-05-31">
+    <inventory-list>
+        <header list-id="toysrus-inventory-qat-1805">
+            <default-instock>false</default-instock>
+            <description>Inventory List updated : 20240305150543393Z</description>
+        </header>
+        <records>
+
+
+  <record product-id="2229584">
+    <allocation>2.0</allocation>
+    <allocation-timestamp>2024-03-05T15:09:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="2261473">
+    <allocation>21.0</allocation>
+    <allocation-timestamp>2024-03-05T16:41:58.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+  <record product-id="2294484">
+    <allocation>4.0</allocation>
+    <allocation-timestamp>2024-03-05T15:09:24.000Z</allocation-timestamp>
+    <preorder-backorder-handling>none</preorder-backorder-handling>
+    <preorder-backorder-allocation>0</preorder-backorder-allocation>
+  </record>
+
+    </records>
+    </inventory-list>
+</inventory>
