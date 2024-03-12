@@ -5,6 +5,13 @@ export type Collection ={
   title : string;
 };
 
+export type Connection<T> = {
+  edges: Array<Edge<T>>;
+};
+
+export type Edge<T> = {
+  node: T;
+};
 
 export type Image = {
   url: string;
@@ -39,6 +46,9 @@ export type Product={
   seo: SEO;
   tags: string[];
   updatedAt: string;
+  price:string;
+  imageSrc:string;
+  variantId:string;
 };
 
 export type ProductOption = {
@@ -63,6 +73,32 @@ export type SEO = {
   title: string;
   description: string;
 };
+
+export type Products = Omit<ShopifyProduct, 'variants' | 'images'> & {
+  variants: ProductVariant[];
+  images: Image[];
+};
+
+export type ShopifyProduct = {
+  id: string;
+  handle: string;
+  availableForSale: boolean;
+  title: string;
+  description: string;
+  descriptionHtml: string;
+  options: ProductOption[];
+  priceRange: {
+    maxVariantPrice: Money;
+    minVariantPrice: Money;
+  };
+  variants: Connection<ProductVariant>;
+  featuredImage: Image;
+  images: Connection<Image>;
+  seo: SEO;
+  tags: string[];
+  updatedAt: string;
+};
+
 
 
 

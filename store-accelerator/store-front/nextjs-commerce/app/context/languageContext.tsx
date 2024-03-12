@@ -13,7 +13,7 @@ const defaultValue: LanguageContextProps = {
 
 const LanguageContext = createContext<LanguageContextProps>(defaultValue);
 
-export const LanguageProvider: React.FC = ({ children }) => {
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState('en');
 
   const changeLanguage = (newLanguage: string) => {

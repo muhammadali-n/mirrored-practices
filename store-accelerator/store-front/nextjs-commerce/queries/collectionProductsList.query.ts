@@ -8,6 +8,9 @@ export const collectionProductsList = `
                     name
                     price
                     product{
+                        slug
+                        id
+                        name
                         featuredAsset{
                             preview
                         }

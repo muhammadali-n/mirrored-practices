@@ -1,14 +1,16 @@
 package com.valoriz.kiboconnector.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.valoriz.kiboconnector.utils.ObjectIdSerializer;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.*;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Map;
+
+import org.springframework.data.annotation.*;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.valoriz.kiboconnector.utils.ObjectIdSerializer;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -20,15 +22,20 @@ public abstract class BaseEntity<PK extends Serializable> {
     @JsonSerialize(using = ObjectIdSerializer.class)
     private PK id;
 
-    @CreatedDate private LocalDateTime createdDate;
+    @CreatedDate
+    private LocalDateTime createdDate;
 
-    @CreatedBy private String createdBy;
+    @CreatedBy
+    private String createdBy;
 
-    @LastModifiedDate private LocalDateTime updatedDate;
+    @LastModifiedDate
+    private LocalDateTime updatedDate;
 
-    @LastModifiedBy private String updatedBy;
+    @LastModifiedBy
+    private String updatedBy;
 
-    @Version private Integer version;
+    @Version
+    private Integer version;
 
     private String uniqueId;
 

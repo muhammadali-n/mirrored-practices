@@ -6,13 +6,15 @@ import { Context } from '@/app/context';
 import { addItem } from '../cart/handle';
 import { performCommonIntegration } from '@/integrations/common-integration';
 import { useLanguageContext } from '@/app/context/languageContext';
+import { toast } from 'react-toastify';
 
 interface Product {
+  featuredImage: any;
   handle:string;
   variantId: any;
-  id: number;
+  id: string;
   title: string;
-  price: number;
+  price: string;
   imageSrc: string;
 }
 
@@ -20,7 +22,7 @@ interface Product {
 // ProductCard.tsx
 
 
-const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, button }) => {
+const ProductCard: React.FC<{ product: Product,className:any, button: any }> = ({ product, button }) => {
   const [cart, setCart] = useState([]);
   const contextValue = useContext(Context)
   const router = useRouter();
@@ -28,8 +30,10 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
 
   const addToCart = (selectedVariantId:any) => {
    performCommonIntegration(addItem,selectedVariantId) 
+   
   }
   const { language } = useLanguageContext();
+
 
   return (
     <div className={styles['product-card-container']}>
@@ -37,7 +41,7 @@ const ProductCard: React.FC<{ product: Product, button: any }> = ({ product, but
 
       <div className={styles['flex-container']}>
         <div>
-          <img src={product.imageSrc} alt={product.title} className={styles['product-image']} />
+          <img src={product.imageSrc || product?.featuredImage?.url} alt={product.title} className={styles['product-image']} />
         </div>
         <div className={styles['product-title']}>
           {product.title}
