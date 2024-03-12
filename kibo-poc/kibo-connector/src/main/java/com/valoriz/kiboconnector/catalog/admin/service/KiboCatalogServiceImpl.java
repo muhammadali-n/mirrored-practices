@@ -1,3 +1,15 @@
+/**
+ * Copyright(c) 2024 Valoriz Digital Private Ltd.
+ *
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of Valoriz ("Confidential
+ * Information"). You shall not disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the contract agreement you entered into with Valoriz.
+ *
+ * @author Saajid
+ */
+
 package com.valoriz.kiboconnector.catalog.admin.service;
 
 import com.kibocommerce.sdk.catalogadministration.api.ProductsApi;
@@ -20,11 +32,14 @@ import java.util.logging.Logger;
 @Service
 public class KiboCatalogServiceImpl implements KiboCatalogService {
 
-    @Autowired KiboHelper kiboHelper;
+    @Autowired
+    KiboHelper kiboHelper;
 
-    @Autowired SequenceService sequenceService;
+    @Autowired
+    SequenceService sequenceService;
 
-    @Autowired KiboConfigurationUtils kiboConfigurationUtils;
+    @Autowired
+    KiboConfigurationUtils kiboConfigurationUtils;
 
     Logger logger = Logger.getLogger(KiboCatalogServiceImpl.class.getName());
 

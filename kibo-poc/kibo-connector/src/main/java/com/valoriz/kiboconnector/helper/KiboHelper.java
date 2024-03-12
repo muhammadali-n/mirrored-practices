@@ -1,6 +1,8 @@
 package com.valoriz.kiboconnector.helper;
 
 import com.kibocommerce.sdk.catalogadministration.models.*;
+import com.kibocommerce.sdk.inventory.models.RefreshItem;
+import com.kibocommerce.sdk.inventory.models.RefreshRequest;
 import com.valoriz.kiboconnector.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -230,5 +232,19 @@ public class KiboHelper {
         price.setPrice(priceTable.getAmount());
         catalogAdminsProduct.setPrice(price);
         return catalogAdminsProduct;
+    }
+
+    public RefreshRequest transformToRefreshRequest(List<InventoryRecord> inventoryRecords, String locationCode){
+        RefreshRequest refreshRequest = new RefreshRequest();
+        List<RefreshItem> refreshItems = new ArrayList<>();
+        refreshRequest.setLocationCode(locationCode);
+        for (InventoryRecord inventoryRecord : inventoryRecords) {
+            RefreshItem refreshItem = new RefreshItem();
+            refreshItem.setUpc(inventoryRecord.getProductId());
+            refreshItem.setQuantity( (int) inventoryRecord.getAllocation());
+            refreshItems.add(refreshItem);
+        }
+        refreshRequest.setItems(refreshItems);
+        return refreshRequest;
     }
 }
