@@ -241,168 +241,38 @@ const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
                   </div>
                 </div>
                 <div className="filter-collapse-outer">
-                  <div className="filter-item">
-                    <h3 className="filter-item-title" id="fc1">
-                      <div className="ft-top">
-                        <span>Shop by age</span>
-                        <i></i>
-                      </div>
-                      <div className="ft-bottom">0-18 months</div>
-                    </h3>
-                    <UncontrolledCollapse toggler="#fc1" defaultOpen={true}>
-                      <ul className="filter-item-select">
-                        <li>
-                          <label className="checkbox light-green">
-                            <input type="checkbox" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">0-18 months</span>
-                            <span className="checkcount">1</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="checkbox light-green selected">
-                            <input type="checkbox" checked />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">18-36 months</span>
-                            <span className="checkcount">32</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="checkbox light-green">
-                            <input type="checkbox" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">3-5 years</span>
-                            <span className="checkcount">46</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="checkbox light-green">
-                            <input type="checkbox" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">6-8 years</span>
-                            <span className="checkcount">3</span>
-                          </label>
-                        </li>
-                      </ul>
-                    </UncontrolledCollapse>
-                  </div>
-                  <div className="filter-item">
-                    <h3 className="filter-item-title expanded" id="fc2">
-                      <div className="ft-top">
-                        <span>Price</span>
-                        <i></i>
-                      </div>
-                    </h3>
-                    <UncontrolledCollapse toggler="#fc2" defaultOpen={true}>
-                      <ul className="filter-item-select">
-                        <li>
-                          <label className="radio light-green">
-                            <input type="radio" name="radio" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">Show all</span>
-                            <span className="checkcount">16</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="radio light-green selected">
-                            <input type="radio" name="radio" checked />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">0-49 AED</span>
-                            <span className="checkcount">1</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="radio light-green">
-                            <input type="radio" name="radio" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">49-99 AED</span>
-                            <span className="checkcount">7</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="radio light-green">
-                            <input type="radio" name="radio" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">99-149 AED</span>
-                            <span className="checkcount">2</span>
-                          </label>
-                        </li>
-                        <li>
-                          <label className="radio light-green">
-                            <input type="radio" name="radio" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">149-249 AED</span>
-                            <span className="checkcount">6</span>
-                          </label>
-                        </li>
-                      </ul>
-                    </UncontrolledCollapse>
-                  </div>
-                  <div className="filter-item">
-                    <h3 className="filter-item-title expanded" id="fc3">
-                      <div className="ft-top">
-                        <span>Shop by brand</span>
-                        <i></i>
-                      </div>
-                      <div className="ft-bottom d-none"></div>
-                    </h3>
-                    <UncontrolledCollapse toggler="#fc3" defaultOpen={true}>
-                      <ul className="filter-item-select">
-                        <li>
-                          <label className="checkbox light-green">
-                            <input type="checkbox" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">IMC Toys</span>
-                            <span className="checkcount">1</span>
-                          </label>
-                        </li>
-                      </ul>
-                      <Button color="link">Show more</Button>
-                    </UncontrolledCollapse>
-                  </div>
-                  <div className="filter-item">
-                    <h3 className="filter-item-title expanded" id="fc4">
-                      <div className="ft-top">
-                        <span>Gender</span>
-                        <i></i>
-                      </div>
-                      <div className="ft-bottom d-none"></div>
-                    </h3>
-                    <UncontrolledCollapse toggler="#fc4" defaultOpen={true}>
-                      <ul className="filter-item-select">
-                        <li>
-                          <label className="checkbox light-green">
-                            <input type="checkbox" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">Girls</span>
-                            <span className="checkcount">1</span>
-                          </label>
-                        </li>
-                      </ul>
-                    </UncontrolledCollapse>
-                  </div>
-                  <div className="filter-item">
-                    <h3 className="filter-item-title expanded" id="fc5">
-                      <div className="ft-top">
-                        <span>Recommended for</span>
-                        <i></i>
-                      </div>
-                      <div className="ft-bottom d-none"></div>
-                    </h3>
-                    <UncontrolledCollapse toggler="#fc5" defaultOpen={true}>
-                      <ul className="filter-item-select">
-                        <li>
-                          <label className="checkbox light-green">
-                            <input type="checkbox" />
-                            <span className="checkmark"></span>
-                            <span className="checklabel">Independent Play</span>
-                            <span className="checkcount">1</span>
-                          </label>
-                        </li>
-                      </ul>
-                      <Button color="link">Show more</Button>
-                    </UncontrolledCollapse>
-                  </div>
+                  {facetList &&
+                    facetList
+                      .filter(
+                        (facet) => facet?.facetType === 'Value' || facet?.facetType === 'RangeQuery'
+                      )
+                      .map((facet, index) => (
+                        <div className="filter-item" key={`facet_${index}`}>
+                          <h3 className="filter-item-title" id="fc1">
+                            <div className="ft-top">
+                              <span>{facet?.label}</span>
+                              <i></i>
+                            </div>
+                            <div className="ft-bottom">{facet?.label}</div>
+                          </h3>
+                          <UncontrolledCollapse toggler="#fc1" defaultOpen={true}>
+                            <ul className="filter-item-select">
+                              {facet?.values
+                                ?.filter((item) => item?.isDisplayed)
+                                .map((item, index) => (
+                                  <li key={`facet_values_${index}`}>
+                                    <label className="checkbox light-green">
+                                      <input type="checkbox" />
+                                      <span className="checkmark"></span>
+                                      <span className="checklabel">{item?.label}</span>
+                                      <span className="checkcount">{item?.count}</span>
+                                    </label>
+                                  </li>
+                                ))}
+                            </ul>
+                          </UncontrolledCollapse>
+                        </div>
+                      ))}
                   <div className="filter-item">
                     <h3 className="filter-item-title expanded" id="fc2">
                       <div className="ft-top">
@@ -459,10 +329,12 @@ const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
             </Col>
             <Col xs="12" md="8" lg="9">
               <div className="list-data-outer">
-                <div className="data-quantity">{t('products-to-show', {
-                      m: `${pageSize < totalResults ? pageSize : totalResults}`,
-                      n: `${totalResults}`,
-                    })}</div>
+                <div className="data-quantity">
+                  {t('products-to-show', {
+                    m: `${pageSize < totalResults ? pageSize : totalResults}`,
+                    n: `${totalResults}`,
+                  })}
+                </div>
                 <div className="data-count"></div>
                 <div className="data-sort">
                   <div className="filter-options-mobile">
@@ -495,7 +367,12 @@ const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
                       </DropdownToggle>
                       <DropdownMenu right>
                         {sortingValues?.options?.map((sortingVal, index) => (
-                          <DropdownItem onClick={() => onSortItemSelection(sortingVal?.value)} key={`menu_${index}`}>{sortingVal?.value}</DropdownItem>
+                          <DropdownItem
+                            onClick={() => onSortItemSelection(sortingVal?.value)}
+                            key={`menu_${index}`}
+                          >
+                            {sortingVal?.value}
+                          </DropdownItem>
                         ))}
                       </DropdownMenu>
                     </Dropdown>
@@ -512,7 +389,7 @@ const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
                     ))}
                 </div>
                 <div className="pagination-outer">
-                {!isLoading && onPaginationChange && (
+                  {!isLoading && onPaginationChange && (
                     <Box display={'flex'} justifyContent={'center'} width="100%" py={10}>
                       <KiboPagination
                         count={pageCount}
