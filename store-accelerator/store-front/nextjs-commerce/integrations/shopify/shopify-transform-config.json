@@ -1,33 +1,72 @@
 {
     "transformer": [
-       
         {
-            "inputFieldName": "handle",
+            "inputField": "handle",
             "outputFieldName": "handle"
         },
         {
-            "inputFieldName": "description",
-            "outputFieldName": " description"
+            "inputField": "description",
+            "outputField": " description"
         },
         {
-            "inputFieldName": "_id",
-            "outputFieldName": "objectID"
+            "inputField": "_id",
+            "outputField": "objectID"
         },
         {
-            "inputFieldName": "id",
-            "outputFieldName": "id"
+            "inputField": "id",
+            "outputField": "id"
         },
         {
-            "inputFieldName": "title",
-            "outputFieldName": "title"
+            "inputField": "title",
+            "outputField": "title"
         },
         {
-            "inputFieldName": "price",
-            "outputFieldName": "price"
+            "inputField": "price",
+            "outputField": "price"
         },
         {
-            "inputFieldName": "imageSrc",
-            "outputFieldName": "imageSrc"
+            "inputField": "imageSrc",
+            "outputField": "imageSrc"
+        },
+        {
+            "inputField": "cost.subtotalAmount.amount",
+            "outputField": "totalCost"   
+        },
+        {
+            "inputField":"cost.subtotalAmount.currencyCode",
+            "outputField":"currencyCode"
+        },
+        {
+            "inputField": "cost.totalAmount.amount",
+            "outputField": "totalCostWithTax"
+        },
+        {
+            "inputField":"lines.edges",
+            "outputField":"items"
+        },
+        {
+            "inputField":"node.id",
+            "outputField":"cartId"
+        },
+        {
+            "inputField":"node.quantity",
+            "outputField":"quantity"
+        },
+        {
+            "inputField":"node.merchandise.id",
+            "outputField":"variantId"
+        },
+        {
+            "inputField":"node.merchandise.product.title",
+            "outputField":"title"
+        },
+        {
+            "inputField":"node.merchandise.product.priceRange.maxVariantPrice.amount",
+            "outputField":"unitCost"
+        },
+        {
+            "inputField":"node.merchandise.product.featuredImage.url",
+            "outputField":"imageSrc"
         }
     ]
 }

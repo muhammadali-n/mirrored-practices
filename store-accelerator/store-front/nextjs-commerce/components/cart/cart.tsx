@@ -39,8 +39,7 @@ interface CartProps {
   totalPrice: number;
 }
 
-
-const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price, removeQuantityFromCart,addQuantityFromCart }: any) => {
+const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, products, price, removeQuantityFromCart,addQuantityFromCart, transformedCart }: any) => {
   const contextValue = useContext(Context)
   // const { handleAddToCart } = contextValue as { cartItems: any[]; handleAddToCart: (getCurrectItem: any) => void };
   const router = useRouter();
@@ -48,15 +47,13 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
     // createCheckout()
     // const checkoutId= await performCommonIntegration(createCheckout);
     // console.log("check",checkoutId);
-
     router.push('/checkout/checkout');
   }
-  console.log("sanityContentsanityContent", sanityContent);
-
   const addToCart = (selectedVariantId: string) => {
     addItem(selectedVariantId)
   }
   const { language } = useLanguageContext();
+
   return (
     <Row>
       <Row>
@@ -77,37 +74,37 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
             </Col>
           </div>
           <Row className='cart-items'>
-            {products &&
-              products.map((product: any) => (
+            {transformedCart?.items &&
+              transformedCart?.items.map((product: any) => (
                 <Row className='cart-item' key={product.id}>
                   <Col md='8'>
                     <Row>
                       <Col md='4' className='product-card'>
-                        <Image src={product.merchandise.product.featuredImage.url} alt={product.merchandise.product.title} width={80} height={80} />
-                        <Button className='remove-button' onClick={() => removeItemFromCart(product.id)}>
+                        <Image src={product?.imageSrc} alt="" width={80} height={80} />
+                        <Button className='remove-button' onClick={() => removeItemFromCart(product?.cartId)}>
                           X
                         </Button>
                         {/* <Button className='' >X</Button> */}
                       </Col>
                       <Col md='8' className=''>
-                        <h6 className='font-weight-800'>{product.merchandise.product.title}</h6>
+                        <h6 className='font-weight-800'>{product?.title}</h6>
                         {/* <p className='text-secondary'>{product.merchandise.product.description}</p> */}
                       </Col>
                     </Row>
                   </Col>
                   <Col md='4' className='quantity text-end'>
-                    <div className='price text-center'>{product.merchandise.product.priceRange.maxVariantPrice.currencyCode}&nbsp; {product.merchandise.product.priceRange.maxVariantPrice.amount} </div>
+                    <div className='price text-center'>{transformedCart?.currencyCode}&nbsp; {product?.unitCost} </div>
                     <div className='quantity-control text-end'>
                       <Button
                         className='quantity-control-btn'
-                        onClick={() => removeQuantityFromCart(product)}
+                        onClick={() => removeQuantityFromCart(product?.variantId, product?.cartId, product?.quantity )}
                       >
                         -
                       </Button>
-                      {product.quantity}
+                      {product?.quantity}
                       <Button
                         className='quantity-control-btn'
-                        onClick={() => addQuantityFromCart(product)}
+                        onClick={() => addQuantityFromCart(product?.variantId, product?.cartId, product?.quantity)}
                       >
                         +
                       </Button>
@@ -126,7 +123,8 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                       <p className='font-weight-bold muted'>{sanityContent?.taxField && language === 'ar' ? sanityContent?.taxField?.ar : sanityContent?.taxField?.en}</p>
                     </Col>
                     <Col md='6' className='text-end'>
-                      <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5>
+                      {/* <h5>{price && price?.totalTaxAmount?.amount} {price && price?.totalTaxAmount?.currencyCode} </h5> */}
+                      <h5>{transformedCart?.totalCost}</h5>
                     </Col>
                   </Row>
 
@@ -142,7 +140,8 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                       <p className='font-weight-bold muted' >{sanityContent?.totalField && language === 'ar' ? sanityContent?.totalField?.ar : sanityContent?.totalField?.en}</p>
                     </Col>
                     <Col md='6' className='text-end'>
-                      <h5> {price && price?.totalAmount?.amount} {price && price?.totalAmount?.currencyCode} </h5>
+                      {/* <h5> {price && price?.totalAmount?.amount} {price && price?.totalAmount?.currencyCode} </h5> */}
+                      <h5> {transformedCart?.totalCostWithTax} {transformedCart?.currencyCode} </h5>
                     </Col>
                   </Row>
 
@@ -152,7 +151,6 @@ const Cart: React.FC = ({ sanityContent, removeItemFromCart, handleClick, produc
                         style={{ backgroundColor: sanityContent?.buttonColor }}
                         className='proceed-checkout'
                         onClick={() => checkout()}
-
                       >
                         {language === 'ar' ? sanityContent?.buttonName?.ar : sanityContent?.buttonName?.en}
                       </button>

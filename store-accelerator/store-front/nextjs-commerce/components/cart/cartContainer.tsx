@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Context } from "../../app/context";
 import { useRouter } from 'next/navigation'
-import { getContent, performCommonIntegration } from '@/integrations/common-integration'
+import { getContent, performCommonIntegration, performIntegration } from '@/integrations/common-integration'
 import { fetchCart, fetchCartPage, fetchShipment } from '@/integrations/sanity/sanity-integration';
 import Cart from './cart';
 import { addItem, removeItem, updateItemQuantity } from './handle';
@@ -53,64 +53,64 @@ export default async function CartContainer() {
   const [Products, setProducts] = useState<any>()
   const [price, setPrice] = useState<any>()
   const [reload, setReload] = useState(false);
+  const [transformedCart, setTransformedCart] = useState({});
 
   let cartId = getCookie('cartId');
   let cart;
-  const updateCart = useCallback(async () => {
-    if (cartId) {
-      const cart = await performCommonIntegration(getCart, cartId);
-      const products = cart?.products;
-      const price = cart?.cost;
-      setProducts(products);
-      setPrice(price);
-    }
-  }, [cartId]);
-  
+
   const fetchData = useCallback(async () => {
-    await updateCart();
+    fetchCartResponse();
     const sanityCart = await getContent(fetchCart);
     setSanityContent(sanityCart);
     // console.log("sanityCart", sanityCart);
-  }, [updateCart]);
+  },[]);
   
   const removeItemFromCart = useCallback(async (lineId: string) => {
     await removeItem(lineId);
-    updateCart(); // Update the cart data after an item is removed
-  }, [removeItem, updateCart]);
+    fetchCartResponse();
+    // updateCart(); // Update the cart data after an item is removed
+  }, [removeItem]);
   
-  const removeQuantityFromCart = useCallback(async (product: any) => {
+  const removeQuantityFromCart = useCallback(async (variantId,cartLineId,quantity) => {
     try {
       const payload = {
-        lineId: product.id,
-        variantId: product.merchandise.id,
-        quantity: product.quantity - 1
+        lineId: cartLineId,
+        variantId: variantId,
+        quantity: quantity - 1
       };
       await updateItemQuantity(payload);
-      await updateCart(); // Update the cart data after the quantity is updated
+      fetchCartResponse();
+      //await updateCart(); // Update the cart data after the quantity is updated
     } catch (error) {
       console.error("Error updating quantity:", error);
     }
-  }, [updateItemQuantity, updateCart]);
+  }, [updateItemQuantity]);
 
-  const addQuantityFromCart = useCallback(async (product: any) => {
+  const addQuantityFromCart = useCallback(async (variantId,cartLineId,quantity) => {
     try {
       const payload = {
-        lineId: product.id,
-        variantId: product.merchandise.id,
-        quantity: product.quantity + 1
+        lineId:cartLineId,
+        variantId: variantId,
+        quantity: quantity + 1
       };
       await updateItemQuantity(payload);
-      await updateCart(); // Update the cart data after the quantity is updated
+      fetchCartResponse();
+      //await updateCart(); // Update the cart data after the quantity is updated
     } catch (error) {
       console.error("Error updating quantity:", error);
     }
-  }, [updateItemQuantity, updateCart]);
+  }, [updateItemQuantity]);
   
   
   useEffect(() => {
     fetchData();
+    fetchCartResponse();
   }, [fetchData]);
-
+  
+  const fetchCartResponse = async () => {
+    const cartResponse = await performIntegration("getCart",cartId);
+    setTransformedCart(cartResponse["current"]);
+ }
   const router = useRouter();
   const handleClick = () => {
     router.push('/search/all');
@@ -125,6 +125,7 @@ export default async function CartContainer() {
       price={price}
       removeQuantityFromCart={removeQuantityFromCart}
       addQuantityFromCart={addQuantityFromCart}
+      transformedCart={transformedCart}
     />
   )
 }

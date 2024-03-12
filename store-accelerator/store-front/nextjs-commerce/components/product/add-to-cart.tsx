@@ -23,8 +23,8 @@ export async function AddToCart({
   const defaultVariantId = variants?.length === 1 ? variants[0]?.id : undefined;
 
   const variant = variants?.find((variant: any) =>
-    variant?.selectedOptions.every(
-      (option: any) => option?.value === searchParams.get(option?.name.toLowerCase())
+    variant?.selectedOptions?.every(
+      (option: any) => option?.value === searchParams?.get(option?.name.toLowerCase())
     )
   );
   const { language } = useLanguageContext()

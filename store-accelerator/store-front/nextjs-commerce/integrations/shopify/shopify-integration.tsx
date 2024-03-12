@@ -3,6 +3,7 @@ import { getConfig, getConfigForProvider ,fetchApiConfig} from '../../config';
 import { dataTransformer, performTransformation, TransformationResult } from '../common-transformer';
 import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, productByIdsQuery, productDetails, removeFromCartMutation } from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
+import { performCartTransformation } from './shopify-transformer';
 
 interface ShopifyProduct {
   id: string;
@@ -127,16 +128,13 @@ interface ShopifyProductIdResponse {
  
   export const apiFetch = async (endPoint: string, storefrontAccessToken: string, options: any): Promise<Response> => {
     const max_wait = 2000;
-  
     async function wait(ms: number) {
       return new Promise(resolve => {
         setTimeout(resolve, ms);
       });
     }
-  
     try {
       let retry = 0, result;
-  
       do {
         if (retry !== 0) {
           await wait(Math.pow(2, retry));
@@ -197,7 +195,6 @@ const getProductDetails = async (endPoint,storefrontAccessToken): Promise<Transf
 };
 
 const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<TransformationResult> => {
-
   const query = {
     query: collectionDetails,
   };
@@ -215,7 +212,6 @@ const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<Tra
       id: node.id,
       title: node.title,
     }));
-
     // const data: ShopifyCollection[] = responseData.data.collections.edges
     // .filter(({ node }) => node.products.edges.length > 0) // Filter collections with products
     // .map(({ node }) => ({
@@ -224,7 +220,6 @@ const getCollectionDetails = async (endPoint,storefrontAccessToken): Promise<Tra
     // }));
 
     const { transformedData } = performTransformation(data, transformerConfig);
-
     return transformedData;
   } catch (error) {
     console.error('Error fetching Shopify products:', error);
@@ -289,6 +284,7 @@ export const getProductsByHandle = async (handle: string, language: string): Pro
 
     const transformProductData = (data) => {
       return {
+
         id: data?.id,
         handle: data?.handle,
         availableForSale: data?.availableForSale,
@@ -302,9 +298,11 @@ export const getProductsByHandle = async (handle: string, language: string): Pro
           values: option?.values
         })),
         featuredImage: {
+
           src: data?.featuredImage?.originalSrc,
           altText: data?.featuredImage?.altText || ''
         },
+
         images: data?.images?.edges?.map(edge => ({
           src: edge?.node?.originalSrc,
           altText: edge?.node?.altText || ''
@@ -321,6 +319,7 @@ export const getProductsByHandle = async (handle: string, language: string): Pro
         currencyCode: data?.priceRange?.minVariantPrice?.currencyCode,
         highPrice: data?.priceRange?.maxVariantPrice?.amount,
         lowPrice: data?.priceRange?.minVariantPrice?.amount,
+
       };
     };
     const transformedData = transformProductData(data);
@@ -695,42 +694,36 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
     },
     cache: 'no-store'
   });
-
   return reshapeCart(res.body.data.cartLinesRemove.cart);
 }
 
 // ************ shopify get cart **********  
 
-export const getCart = async (cartId: string) => {
+export const recieveCartId = (cartId: string) => {
+  const {commerceConfig} = getConfigForProvider("shopify");
+  const {apiEndpoint , storefrontAccessToken} = commerceConfig
+  return getCart(apiEndpoint, storefrontAccessToken,cartId);
+}
+
+export const getCart = async (endPoint, storefrontAccessToken,cartId: string) => {
   try {
-    const { commerceConfig } = getConfig();
-
-    const storefrontAccessToken = commerceConfig.storefrontAccessToken;
-    const apiEndpoint = commerceConfig.apiEndpoint;
-
     const query = {
       query: getCartMutation,
       variables: {
         cartId: cartId,
       }
     };
-
-    const response = await apiFetch(apiEndpoint, storefrontAccessToken, query); // Await apiFetch here
-
-
+    const response = await apiFetch(endPoint, storefrontAccessToken, query); // Await apiFetch here
     if (!response.ok) {
       throw new Error(`Failed to fetch Shopify cart. Status: ${response.status}`);
     }
-
     const data = await response.json();
-
-    const products = removeEdgesAndNodes(data.data.cart.lines)
-    const cost = data.data.cart.cost
-
-
-    console.log(" data from getcart", data);
-
-    return { products, cost };
+    const transformedResponse = performCartTransformation(data, transformerConfig);
+    // const products = removeEdgesAndNodes(data.data.cart.lines)
+    // const cost = data.data.cart.cost
+    // console.log(" data from getcart", data);
+    //return { products, cost };
+    return transformedResponse;
   } catch (error) {
     console.error("Error:", error.message);
   }
@@ -773,6 +766,6 @@ const shopifyMethods = {
   "createCart":createCart,
   "addToCart":addToCart,
   "removeFromCart":removeFromCart,
-  "getcart":getCart,
+  "getCart":getCart,
   "updateCart":updateCart
 }

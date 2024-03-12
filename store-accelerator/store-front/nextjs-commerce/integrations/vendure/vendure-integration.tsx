@@ -1,17 +1,23 @@
-import { getConfig, getConfigForProvider, fetchApiConfig } from "@/config";
+import { getConfig, getConfigForProvider } from "@/config";
 import { collectionList } from "@/queries/collection.query";
-import { ApolloClient,InMemoryCache } from "@apollo/client";
 import { productsList } from "@/queries/products.query";
 import { collectionProductsList } from "@/queries/collectionProductsList.query";
 import { dataTransformer } from "./vendure-transformer";
 import transformerJsonConfig from './vendure-transform-config.json'
+import { createCartQuery } from "@/queries/createCart.mutation";
+import { fetchCart } from "@/queries/activeCart.query";
+import { nextOrderStates } from "@/queries/nextOrderStates.query";
+import { removeCartItemQuery } from "@/queries/removeItemFromCart.mutation";
+import { updateCartItemQuery } from "@/queries/updateCartItem.mutation";
+import { performCartTransformation } from "./vendure-transformer";
+import { addItemToCartQuery } from "@/queries/addItemToCart.mutation";
 
-const vendureApi = async (provider, methodName:String, ...args) => {
+const vendureApi = async (provider, methodName: String, ...args) => {
+    console.log("Entered VendureAPI method");
     if (vendureMethods.hasOwnProperty(methodName)) {
-      const {commerceConfig} = getConfigForProvider(provider);
-      const {apiEndpoint} = commerceConfig;
-      console.log(apiEndpoint)
-      return await vendureMethods[methodName](apiEndpoint,...args);
+        const { commerceConfig } = getConfigForProvider(provider);
+        const { apiEndpoint } = commerceConfig;
+        return await vendureMethods[methodName](apiEndpoint, ...args);
     }
 }
 
@@ -102,10 +108,160 @@ const getCollectionProductDetails = async (endPoint: string, collectionName: str
     }
 };
 
+const createCart = async (endPoint, productVariantId, quantity) => {
+    if (endPoint !== null) {
+        await fetch(endPoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: createCartQuery,
+                variables: {
+                    productVariantId: `${productVariantId}`,
+                    quantity: quantity || 1
+                }
+            })
+        }).then(async (res) => {
+            const response = await res.json();
+            return response;
+        })
+            .catch(err => console.log(err))
+    } else {
+        return ("Configuration != Vendure")
+    }
+}
+
+const addItemToCart = async (endPoint) => {
+    var responseData;
+    const sessionToken = 'eyJ0b2tlbiI6Ijc5YzVlYTJhMzU4YjkwOWNiMTQ1ZDcyODE2MjFiZGJiZDExNWUwYzU1OTFlNzk2NjE4MjZlZGNjYTg2MzJhMTUifQ=='
+    console.log(decodeURIComponent(sessionToken));
+    if (endPoint !== null) {
+        await fetch(endPoint, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${decodeURIComponent(sessionToken)}`
+            },
+            body: JSON.stringify({
+                query: addItemToCartQuery,
+            })
+        })
+            .then(async (res) => {
+                const response = await res.json();
+                responseData = response;
+            })
+            .catch(err => console.log(err));
+            const transformedData = performCartTransformation(responseData,transformerJsonConfig);
+            return transformedData;
+    } else {
+        return ("Configuration != Vendure")
+    }
+}
+
+const getCart = async (endPoint) => {
+    var responseData;
+    console.log("Get Cart Invoked");
+    const token = 'dfb86375251e7ea886f2436d512b15283b2ce308371f97224b238b08ec38829d'
+    if (endPoint !== null) {
+        await fetch(endPoint, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                query: fetchCart,
+            })
+        })
+            .then(async (res) => {
+                const response = await res.json();
+                responseData = response;
+            })
+            .catch(err => console.log(err));
+            const transformedData = performCartTransformation(responseData, transformerJsonConfig);
+            return transformedData;
+    } else {
+        return ("Configuration != Vendure")
+    }
+}
+
+const nextCartState = async (endPoint) => {
+    console.log("Entered NextCartState");
+    if (endPoint !== null) {
+        await fetch(endPoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: nextOrderStates
+            })
+        }).then(res => res.json())
+            .catch(err => console.log(err))
+    } else {
+        return ("Configuration != Vendure")
+    }
+}
+
+const removeFromCart = async (endPoint, orderLineId) => {
+    var responseData;
+    console.log("remove OrderLine :", orderLineId)
+    if (endPoint !== null) {
+        await fetch(endPoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                query: removeCartItemQuery,
+                variables: {
+                    orderLineId: orderLineId
+                }
+            })
+        }).then(res => res.json())
+        .then(data => responseData = data)
+            .catch(err => console.log(err));
+        const transformedData = performCartTransformation(responseData,transformerJsonConfig);
+        return transformedData;
+    } else {
+        return ("Configuration != Vendure")
+    }
+}
+
+const updateCartItem = async (endPoint,orderLineId,quantity) => {
+    var responseData;
+    if(endPoint !== null){
+        await fetch(endPoint,{
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({
+                query: updateCartItemQuery,
+                variables:{
+                    orderLineId:orderLineId,
+                    quantity:quantity
+                }
+            })
+        }).then((res)=>res.json()).then(data => responseData = data).catch(err => console.log(err));
+        return performCartTransformation(responseData,transformerJsonConfig);
+    }else{
+        return ("Configuration != Vendure")
+    }
+}
+
 
 const vendureMethods = {
-        "getCollectionDetails":getCollectionDetails,
-        "getCollectionProductDetails":getCollectionProductDetails,
-        "getProductDetails":getProductDetails
+    "getCollectionDetails": getCollectionDetails,
+    "getCollectionProductDetails": getCollectionProductDetails,
+    "getProductDetails": getProductDetails,
+    "createCart": createCart,
+    "getCart": getCart,
+    "nextCartState": nextCartState,
+    "removeFromCart": removeFromCart,
+    "updateCartItem":updateCartItem,
+    "addItemToCart":addItemToCart
 }
+
 export default vendureApi

@@ -5,7 +5,7 @@
             "outputField":"id"
         },
         {
-            "inputField":"name",
+            "inputField":"title",
             "outputField":"title"
         },
         {
@@ -15,6 +15,39 @@
         {
             "inputField":"product",
             "outputField":"imageSrc"
+        },
+        {
+            "inputField":"productVariant.name",
+            "outputField":"name"  
+        },
+        {
+            "inputField":"featuredAsset.preview",
+            "outputField":"imageSrc"  
+        },
+        {
+            "inputField":"quantity",
+            "outputField":"quantity"  
+        },
+        {
+            "inputField":"totalQuantity",
+            "outputField":"totalQuantity"
+        },
+        {
+            "inputField":"totalWithTax",
+            "outputField":"totalCostWithTax"
+        },
+        {
+            "inputField":"lines",
+            "outputField":"items",
+            "type":"List"
+        },
+        {
+            "inputField":"unitPriceWithTax",
+            "outputField":"unitCost"
+        }, 
+        {
+            "inputField":"linePriceWithTax",
+            "outputField":"overallCost"
         }
     ]
 }

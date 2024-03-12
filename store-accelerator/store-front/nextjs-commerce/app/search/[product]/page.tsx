@@ -30,10 +30,9 @@ export default function YourComponent() {
         setPlpData(response);
         const transCollectionData = await performIntegration("getCollectionDetails");
         setCollections(transCollectionData);
-        const firstCollectionTitle = transCollectionData?.[0]?.title
+        const firstCollectionTitle = transCollectionData?.[0]?.title;
         setSelectedCollection(firstCollectionTitle);
-        const transformedData = await performIntegration("getCollectionProductDetails", firstCollectionTitle, sortKey, reverse );
-        console.log(transformedData);
+        const transformedData = await performIntegration("getCollectionProductDetails", firstCollectionTitle, sortKey, reverse);
         setProducts(transformedData);
         const button = await getContent(fetchProductCard)
         setButton(button)
@@ -88,9 +87,9 @@ export default function YourComponent() {
             <div className={styles['collection-list']}>
                   <h2>{language === 'ar' ? plpData?.collections?.ar : plpData?.collections?.en}</h2>
                   <ul className={styles['list']}>
-                    {collections.map((collection) => (
-                      <li key={collection.id} onClick={() => handleCategoryClick(collection.title)} style={{ listStyleType: 'none' }} className={collection.title === selectedCollection ? styles['selected-option'] : ''}>
-                        {collection.title}
+                    {collections?.map((collection) => (
+                      <li key={collection?.id} onClick={() => handleCategoryClick(collection.title)} style={{ listStyleType: 'none' }} className={collection.title === selectedCollection ? styles['selected-option'] : ''}>
+                        {collection?.title}
                       </li>
                     ))}
                   </ul>      

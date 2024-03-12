@@ -41,13 +41,23 @@ export const configurations: Configurations = {
 
 const fetchProvider = {
   //API to fetch products
-  "getProductDetails" : type.TYPE_SPECIFICATION.VENDURE_TYPE,
+  "getProductDetails" : type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
   //API to fetch Collections
   "getCollectionDetails": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
   //API to fetch Products (image, name, price) for a give collection
   "getCollectionProductDetails": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
   //API to fetch Cart
-  "getCart" : type.TYPE_SPECIFICATION.SHOPIFY_TYPE
+  "getCart" : type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to create Cart
+  "createCart": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to remove from Cart
+  "removeFromCart":type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to update cart item quantity
+  "updateCartItem":type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to fetch next order states
+  "nextCartState":type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to add an item to activeOrder/Cart
+  "addItemToCart": type.TYPE_SPECIFICATION.SHOPIFY_TYPE
 }
 
 //configuration
@@ -70,8 +80,6 @@ export const getConfig = () => {
   })
 
 };
-
-
 
 export const fetchProviderConfig = (methodName: String): String => {
   //based on the methodName we have to get the Provider

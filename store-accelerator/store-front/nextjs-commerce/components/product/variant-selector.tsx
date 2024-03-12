@@ -22,7 +22,7 @@ export function VariantSelector({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const hasNoOptionsOrJustOneOption =
-    !options?.length || (options?.length === 1 && options[0]?.values.length === 1);
+    !options?.length || (options?.length === 1 && options[0]?.values?.length === 1);
 
   if (hasNoOptionsOrJustOneOption) {
     return null;
