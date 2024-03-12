@@ -41,6 +41,41 @@ const performTransformation = (data: any[], additionalArgs:any): { transformedDa
   };
 };
 
+const performHomeTransformation = (data: any[], additionalArgs:any): {transformedHomeData: any[]} => {
+  if (!data) {
+    throw new Error('Input data is undefined');
+  }
+
+  const transformedHomeData = data.map((item) => {
+    const transformedItem: Record<string, any> = {};
+
+    additionalArgs.transformer.forEach((transform:any) => {
+      const { inputFieldName, outputFieldName, convertTo } = transform;
+      let value;
+
+      if (item.hasOwnProperty(inputFieldName)) {
+        value = item[inputFieldName];
+
+        if (convertTo === 'integerToString') {
+          value = String(parseInt(value, 10));
+        } else if (convertTo === 'jsonArrayToList') {
+          value = value.map((item: any) => item.toString());
+        } else if (convertTo === 'stringToInteger') {
+          value = parseInt(value, 10);
+        }
+
+        transformedItem[outputFieldName] = value;
+      }
+    });
+
+    return transformedItem;
+  });
+
+  return {
+    transformedHomeData,
+  };
+};
+
 
 export function dataTransformer(data: any, transformerJsonConfig: any) {
 console.log("hiii")
@@ -91,7 +126,7 @@ export const customUi = (getPageData: any[]): CustomPage | undefined => {
 };
 
 
-export { performTransformation };
+export { performTransformation ,performHomeTransformation};
 
 export interface TransformationResult {
 }

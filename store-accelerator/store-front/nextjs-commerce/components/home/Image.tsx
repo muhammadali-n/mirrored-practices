@@ -15,7 +15,7 @@ function ProductImage({imageUrl ,key}:any) {
                           src={imageUrl}
                           alt="hero"
                           className="img-fluid"
-                          style={{ maxWidth: '300%', height: '100%' }}
+                          style={{ maxWidth: '300%' }}
                         />
                         
                       </div>

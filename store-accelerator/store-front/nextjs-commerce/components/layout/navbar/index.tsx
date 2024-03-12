@@ -7,6 +7,7 @@ import { fetchHeader } from '@/integrations/sanity/sanity-integration';
 import './module.css'
 import LanguageSwitcher from '../../LanguageSwitcher';
 import { useLanguageContext } from '@/app/context/languageContext';
+import Search from './search';
 
 interface MenuItem {
     _key: string;
@@ -103,7 +104,7 @@ export default function Navbar() {
                         ))}
                         </ul>
                         {/* Render search bar */}
-                        <form className="d-flex justify-content-center position-relative navbar-form">
+                        {/* <form className="d-flex justify-content-center position-relative navbar-form">
                             <input
                                 type="text"
                                 name="search"
@@ -124,6 +125,11 @@ export default function Navbar() {
                         <div>
                         <LanguageSwitcher />
                         </div>
+                        </form>  */}
+                        <div className="hidden justify-center md:flex md:w-1/3">
+                             <Search />
+                        </div>
+
                         <div className="d-flex align-items-center">
                             {/* Render cart icon */}
                             <Link href={`/cart/cart`} className="nav-link text-white">
