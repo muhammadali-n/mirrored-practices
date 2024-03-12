@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Slider } from "@mui/material";
+import Slider from 'react-slick'
 import { Container, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from "reactstrap";
 
 interface TopPicksProps {
