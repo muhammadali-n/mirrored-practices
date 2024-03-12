@@ -67,15 +67,7 @@ const HeaderActionArea = (props: HeaderActionAreaProps) => {
           justifyContent: 'space-between',
         }}
       >
-        {showSearchBarInLargeHeader && (
-          <Box sx={headerActionAreaStyles.searchSuggestionsWrapper} data-testid="Search-container">
-            <SearchSuggestions
-              isViewSearchPortal={isMobileSearchPortalVisible}
-              onEnterSearch={() => toggleSearchBar(false)}
-            />
-          </Box>
-        )}
-        <Box
+                <Box
           component={'section'}
           sx={{
             ...kiboHeaderStyles.logoStyles,
@@ -85,6 +77,15 @@ const HeaderActionArea = (props: HeaderActionAreaProps) => {
             <KiboLogo />
           </Link>
         </Box>
+        {showSearchBarInLargeHeader && (
+          <Box sx={headerActionAreaStyles.searchSuggestionsWrapper} data-testid="Search-container">
+            <SearchSuggestions
+              isViewSearchPortal={isMobileSearchPortalVisible}
+              onEnterSearch={() => toggleSearchBar(false)}
+            />
+          </Box>
+        )}
+
 
         <Box display="flex" flex={1} justifyContent={'flex-end'} gap={2}>
           <StoreFinderIcon size={isHeaderSmall ? 'small' : 'medium'} />

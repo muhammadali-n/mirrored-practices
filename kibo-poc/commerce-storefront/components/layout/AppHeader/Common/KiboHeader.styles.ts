@@ -4,7 +4,7 @@ export const topHeaderStyles = {
       xs: 'none',
       md: 'flex',
     },
-    backgroundColor: 'common.blue',
+    backgroundColor: '#1450A0',
     justifyContent: 'flex-end',
     zIndex: (theme: any) => theme.zIndex.modal,
     paddingBlock: 1,
@@ -20,7 +20,7 @@ export const topHeaderStyles = {
 export const headerActionAreaStyles = {
   wrapper: {
     display: 'flex',
-    backgroundColor: 'common.white',
+    backgroundColor: '#1450A0',
     paddingBlock: { xs: 0, md: 1 },
   },
   container: {
