@@ -268,6 +268,7 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
       reverse: reverse
     }
   };
+
   try {
     const response = await apiFetch(endPoint, storefrontAccessToken, query); // Await apiFetch here
 
@@ -897,47 +898,7 @@ export const shopifyApi = async (provider, methodName, ...args) => {
   }
 }
 
-export async function getCollectionProducts({
-  collection,
-  reverse,
-  sortKey
-}: {
-  collection: string;
-  reverse?: boolean;
-  sortKey?: string;
-}): Promise<Product[]> {
-  const res = await shopifyFetch<ShopifyCollectionProductsOperation>({
-    query: getCollectionProductsQuery,
-    tags: [TAGS.collections, TAGS.products],
-    variables: {
-      handle: collection,
-      reverse,
-      sortKey: sortKey === 'CREATED_AT' ? 'CREATED' : sortKey
-    }
-  });
-  console.log("aaaa",res)
 
-  if (!res.body.data.collection) {
-    console.log(`No collection found for \`${collection}\``);
-    return [];
-  }
-
-  return reshapeProducts(removeEdgesAndNodes(res.body.data.collection.products));
-}
-
-export async function getCollection(handle: string): Promise<Collection | undefined> {
-  const res = await shopifyFetch<ShopifyCollectionOperation>({
-    query: getCollectionsQuery,
-    tags: [TAGS.collections],
-    variables: {
-      handle
-    }
-  });
-  console.log("",res)
-
-
-  return reshapeCollection(res.body.data.collection);
-}
 const reshapeCollection = (collection: ShopifyCollection): Collection | undefined => {
   if (!collection) {
     return undefined;

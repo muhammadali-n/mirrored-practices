@@ -121,13 +121,14 @@ export default function Navbar() {
                                 height={20}
                                 style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} // Position search icon
                             />
-                        </form>
-                        <div>
-                        <LanguageSwitcher />
-                        </div>
-                        </form>  */}
+                        // </form>
+                        // <div>
+                        // <LanguageSwitcher />
+                        // </div>
+                        // </form>  */}
                         <div className="hidden justify-center md:flex md:w-1/3">
                              <Search />
+                             {/* <div> <LanguageSwitcher /></div> */}
                         </div>
 
                         <div className="d-flex align-items-center">
