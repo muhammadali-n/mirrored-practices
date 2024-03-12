@@ -1,9 +1,10 @@
 'use client'
 import React, { Suspense, useEffect, useState } from 'react';
-import { performCommonIntegration} from '../integrations/common-integration';
+import { performCommonIntegration, IntegrationResult } from '../integrations/common-integration';
 import { getContent } from '../integrations/common-integration';
 import { fetchHomePage } from '../integrations/sanity/sanity-integration';
 import Footer from '../components/layout/footer';
+import { getProducts } from '../integrations/shopify/shopify-integration';
 import ProductGridCarousel from '../components/home/ProductGridCarousel';
 import { urlFor } from './lib/sanity';
 import ProductCard from '../components/home/ProductCard';
@@ -35,7 +36,8 @@ const Home: React.FC = () => {
       try {
         const pageData = await getContent(fetchHomePage);
         setHomePageContent(pageData)
-        console.log("pageData", pageData)
+        const integrationData: IntegrationResult = await performCommonIntegration(getProducts);
+        setTransformedData(integrationData);
       } catch (error) {
         console.error('Error fetching and processing data:', error);
       }

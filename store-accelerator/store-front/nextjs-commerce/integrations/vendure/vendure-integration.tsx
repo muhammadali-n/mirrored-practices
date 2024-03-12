@@ -288,7 +288,7 @@ const vendureMethods = {
     "getCollectionDetails": getCollectionDetails,
     "getCollectionProductDetails": getCollectionProductDetails,
     "getProductDetails": getProductDetails,
-        "getProductsByHandle": getProductsByHandle,,
+        "getProductsByHandle": getProductsByHandle,
     "createCart": createCart,
     "getCart": getCart,
     "nextCartState": nextCartState,
