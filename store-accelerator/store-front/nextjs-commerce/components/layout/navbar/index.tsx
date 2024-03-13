@@ -7,9 +7,9 @@ import { fetchHeader } from '@/integrations/sanity/sanity-integration';
 import './module.css'
 import LanguageSwitcher from '../../LanguageSwitcher';
 import { useLanguageContext } from '@/app/context/languageContext';
-import Search from './search';
 import { getSearchSuggestions } from '@/integrations/shopify/shopify-integration';
-
+import SearchBar from './search';
+ 
 interface MenuItem {
   _key: string;
   path: string;
@@ -18,7 +18,6 @@ interface MenuItem {
     en: string;
   };
 }
-
 interface HeaderData {
   storeNameTranslation: {
     ar: string;
@@ -45,27 +44,24 @@ interface HeaderData {
     en: string;
   }
 }
-
+ 
 export default function Navbar() {
   const [headerData, setHeaderData] = useState<HeaderData | null>(null);
-
+ 
   useEffect(() => {
     const fetchHeaderData = async () => {
       try {
         // Fetch header data from the API
         const response = await getContent(fetchHeader);
-
-
         setHeaderData(response);
       } catch (error) {
         console.error('Error fetching header data:', error);
       }
     };
-
+ 
     fetchHeaderData();
   }, []);
   const { language } = useLanguageContext();
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-black">
                 <div className="container-fluid">
@@ -73,7 +69,7 @@ export default function Navbar() {
                         <div className="d-flex align-items-center">
                             <div className="col-sm-12 d-flex justify-content-center">
                                 {/* Render the logo using the Image component */}
-
+ 
                                 <img src={urlFor(headerData?.storeLogo)?.url()} alt={language ==='ar'? headerData?.storeLogoTranslation?.ar : headerData?.storeLogoTranslation?.en} width={50} height={40} />
                             </div>
                             {/* Render store name next to the logo */}
@@ -106,37 +102,15 @@ export default function Navbar() {
                             </li>
                         ))}
                         </ul>
-                        {/* Render search bar */}
-                        {/* <form className="d-flex justify-content-center position-relative navbar-form">
-                            <input
-                                type="text"
-                                name="search"
-                                placeholder={language ==='ar'? headerData?.searchBarAltTranslation?.ar : headerData?.searchBarAltTranslation?.en}
-                                autoComplete="off"
-                                className="form-control bg-black text-white search-input"
-                                style={{ width: '400px'
-                             }}// Adjust padding and color
-                            />
-                            <img
-                                src={urlFor(headerData?.searchBar)?.url()}
-                                alt={language ==='ar'? headerData?.placeholder?.ar : headerData?.placeholder?.en}
-                                width={20}
-                                height={20}
-                                style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} // Position search icon
-                            />
-                        </form>
-                        <div>
-                        <LanguageSwitcher />
-                        </div>
-                        </form>  */}
                         <div className="d-flex " style={{ width: '50%' }}>
-                             <Search />
+                             <SearchBar/>
                         </div>
-
+                        <div><LanguageSwitcher/></div>
+ 
                         <div className="d-flex align-items-center">
                             {/* Render cart icon */}
                             <Link href={`/cart/cart`} className="nav-link text-white">
-
+ 
                                 <img src={urlFor(headerData?.cartIcon)?.url()} alt={language ==='ar'? headerData?.cartIconAltTranslation?.ar : headerData?.cartIconAltTranslation?.en} width={30} height={30} style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} />
                             </Link>
                         </div>
