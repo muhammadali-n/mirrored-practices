@@ -2,7 +2,7 @@
 import { HIDDEN_PRODUCT_TAG, TAGS } from '@/lib/constants';
 import { getConfig, getConfigForProvider ,fetchApiConfig} from '../../config';
 import { dataTransformer, performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getCollectionsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, getProductsQuery, productByIdsQuery, productDetails, removeFromCartMutation,searchSuggestion } from './shopify-query';
+import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getCollectionsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, getProductsQuery, productByIdsQuery, productDetails, removeFromCartMutation,searchSuggestion} from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -293,11 +293,9 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
   }
 };
 
-export const getProductsByHandle = async (handle: string, language: string): Promise<any> => {
+export const getProductsByHandle = async (endPoint, storefrontAccessToken,handle: string, language: string): Promise<any> => {
   const { commerceConfig } = getConfig();
 
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const endPoint = commerceConfig.apiEndpoint
 
   const query = {
     query: getProductByHandle(language),

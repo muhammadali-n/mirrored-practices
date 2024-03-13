@@ -3,8 +3,9 @@ import { collectionList } from "@/queries/collection.query";
 import { ApolloClient,InMemoryCache } from "@apollo/client";
 import { productsList } from "@/queries/products.query";
 import { collectionProductsList } from "@/queries/collectionProductsList.query";
-import { dataTransformer } from "./vendure-transformer";
+import { dataTransformer, transformPdpData } from "./vendure-transformer";
 import transformerJsonConfig from './vendure-transform-config.json'
+import { productDetails } from "@/queries/productDetails";
 
 const vendureApi = async (provider, methodName:String, ...args) => {
     if (vendureMethods.hasOwnProperty(methodName)) {
@@ -38,7 +39,7 @@ export const apiFetch = async (endPoint, query) => {
                   body: JSON.stringify(query),
               });
               retry++;
-              console.log(retry,"re")
+            //   console.log(retry,"re")
           } while (result.status === 429 || result.status === 400 || result.status=== 401 && (Math.pow(2, retry) <= fetchApiConfig.max_wait));
       
           return result;
@@ -91,7 +92,38 @@ const getCollectionProductDetails = async (endPoint: string, collectionName: str
             });
             const responseData = await response.json();
             const transferData = responseData?.data?.collection?.productVariants?.items;
-            const transformedResponse = dataTransformer(transferData, transformerJsonConfig);
+            const transformedResponse = transferData.map(item => ({
+                id: item.id,
+                title: item.name,
+                price: item.price,
+                imageSrc: item.product.featuredAsset.preview,
+                handle: item.product.slug
+              }));
+            // const transformedResponse = dataTransformer(transferData, transformerJsonConfig);
+            return transformedResponse;
+        } else {
+            return "Configuration != Vendure";
+        }
+    } catch (error) {
+        console.error('Error in getCollectionProductDetails:', error);
+        throw error; 
+    }
+};
+
+const getProductsByHandle = async (endPoint: string, handle: string, uppercaseLanguage:string) => {
+    try {
+        if (endPoint !== null) {
+            const response = await apiFetch(endPoint, {
+                query: productDetails,
+                variables: { slug: `${handle.toLowerCase()}` }
+            });
+            const responseData = await response.json();
+
+            const data = responseData.data.product;
+            if (data == null) {
+              throw Error;
+            }
+            const transformedResponse=transformPdpData(data);
             return transformedResponse;
         } else {
             return "Configuration != Vendure";
@@ -106,6 +138,7 @@ const getCollectionProductDetails = async (endPoint: string, collectionName: str
 const vendureMethods = {
         "getCollectionDetails":getCollectionDetails,
         "getCollectionProductDetails":getCollectionProductDetails,
-        "getProductDetails":getProductDetails
-}
+        "getProductDetails":getProductDetails,
+        "getProductsByHandle": getProductsByHandle,
+    }
 export default vendureApi

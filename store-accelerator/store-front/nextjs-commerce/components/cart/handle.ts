@@ -53,7 +53,7 @@ export async function removeItem( lineId: string) {
 
   try {
     await removeFromCart(cartId, [lineId]);
-    revalidateTag(TAGS.cart);
+    // revalidateTag(TAGS.cart);
   } catch (error) {
     if (error?.message?.includes('Status: 401')) {
       toast.error('Unauthorized access.');

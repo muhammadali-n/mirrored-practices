@@ -4,9 +4,13 @@ export const collectionProductsList = `
             productVariants{
                 totalItems
                 items{
+                    id
                     name
                     price
                     product{
+                        slug
+                        id
+                        name
                         featuredAsset{
                             preview
                         }

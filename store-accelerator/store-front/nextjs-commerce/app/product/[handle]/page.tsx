@@ -5,7 +5,7 @@ import Footer from '@/components/layout/footer';
 import { Image, Product } from '@/lib/types';
 import Link from 'next/link';
 import { getProductsByHandle, getRelatedProductsById } from '@/integrations/shopify/shopify-integration';
-import { performCommonIntegration, getContent } from '@/integrations/common-integration';
+import { performCommonIntegration, getContent, performIntegration } from '@/integrations/common-integration';
 import { Gallery } from '@/components/product/gallery';
 import { ProductDescription } from '@/components/product/product-description';
 import './style.css';
@@ -27,7 +27,7 @@ export default function ProductPage({ params }: { params: { handle: string } }) 
       try {
         const uppercaseLanguage = language.toUpperCase();
 
-        const product = await performCommonIntegration(getProductsByHandle, params.handle, uppercaseLanguage);
+        const product = await performIntegration("getProductsByHandle", params.handle, uppercaseLanguage);
         setProducts(product);
       } catch (error) {
         if (error?.message?.includes('Status: 401')) {
@@ -73,7 +73,7 @@ export default function ProductPage({ params }: { params: { handle: string } }) 
   );
 }
 
-const RelatedProducts = async({ id }: { id: string }) => {
+const RelatedProducts = ({ id }: { id: string }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [pdpData, setPdpdata]=useState<any>([]);
   useEffect(() => {

@@ -78,7 +78,6 @@ const performHomeTransformation = (data: any[], additionalArgs:any): {transforme
 
 
 export function dataTransformer(data: any, transformerJsonConfig: any) {
-console.log("hiii")
 
 function findProp(obj: any, prop: (string | string[]), defval: any) {
   if (typeof defval === 'undefined') defval = null;
