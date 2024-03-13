@@ -12,6 +12,8 @@
 
 package com.valoriz.kiboconnector.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
@@ -19,8 +21,11 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Image {
+public class InventoryList {
 
-    @JacksonXmlProperty(localName = "path", isAttribute = true)
-    private String path;
+    @JacksonXmlProperty(localName = "header")
+    private InventoryListHeader header;
+
+    @JacksonXmlProperty(localName = "records")
+    private List<InventoryRecord> records;
 }
