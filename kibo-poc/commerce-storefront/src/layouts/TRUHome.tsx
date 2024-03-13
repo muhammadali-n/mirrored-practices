@@ -37,6 +37,8 @@ import {
 } from 'reactstrap';
 
 import TopPicks from "../widgets/homepage/TopPicks";
+import SliderHome from "../widgets/homepage/SliderHome";
+import KiboHeroCarousel from "@/components/home/Carousel/KiboHeroCarousel";
 
 // import VideoPlayer from "@components/videoplayer";
 
@@ -54,8 +56,8 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
   );
 }
 
-const Home = (props: { products: []; }) => {
-  const { products } = props;
+const Home = (props: { products: []; carouselItem: []; }) => {
+  const { products, carouselItem } = props;
 
   //slick slider
   const settings = {
@@ -97,30 +99,8 @@ const Home = (props: { products: []; }) => {
     <div>
       <main className="home-outer">
         {/* <FeedBack /> */}
-        <div className="d-none">
-        {/* <SliderHome /> */}
-        </div>
-        {/* <div className="banner">
-          <div className="bnr-left">
-            <a href="#">
-              <img src="/images/tru/PRODUCTDES-7957-TRU-Electric-vehicles-HP-Banner-Desktop-Eng-100.jpg" alt="TRU" className="img-fluid d-none d-md-block" />
-              <img src="/images/tru/PRODUCTDES-8022-TRU-Electric-vehicles-HP-Banner-Mobile-Eng-100.jpg" alt="TRU" className="img-fluid d-block d-md-none" />
-            </a>
-          </div>
-          <div className="bnr-right">
-            <a href="#">
-              <img src="/images/tru/PRODUCTDES-8002-TRU-EucationalToys-HP-Banner-Desktop-Eng.png" alt="TRU" className="img-fluid d-none d-md-block" />
-              <img src="/images/tru/PRODUCTDES-8002-TRU-EucationalToys-HP-Banner-Mobile-Eng.png" alt="TRU" className="img-fluid d-block d-md-none" />
-            </a>
-          </div>
-          <div className="bnr-single d-none">
-            <a href="#">
-              <img src="/images/tru/PRODUCTDES-8026-TRU-AnniversarySale-HP-Banner-Desktop-Eng.png" alt="TRU" className="img-fluid d-none d-md-block" />
-              <img src="/images/tru/PRODUCTDES-8026-TRU-AnniversarySale-HP-Banner-Mobile-Eng.png" alt="TRU" className="img-fluid d-block d-md-none" />
-            </a>
-          </div>
-        </div> */}
-
+        <SliderHome carouselItem={carouselItem} />
+        {/* <KiboHeroCarousel carouselItem={carouselItem || []}></KiboHeroCarousel> */}
         {/* <BannerSm /> */}
         {/* <PopularCategories /> */}
 
@@ -332,9 +312,9 @@ const Home = (props: { products: []; }) => {
             <Row>
               <Col xs="12" md="4">
                 <Card>
-                  {/* <div className="embed-responsive embed-responsive-16by9">
-                    <iframe className="embed-responsive-item" width="560" height="315" src="https://www.youtube-nocookie.com/embed/FsfpwpLSMXE?start=4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                  </div> */}
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <iframe className="embed-responsive-item" width="560" height="315" src="https://www.youtube-nocookie.com/embed/FsfpwpLSMXE?start=4" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                  </div>
                   {/* <VideoPlayer /> */}
                   <CardBody>
                     <a href="#">

@@ -629,14 +629,14 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
       <div className="pdp-sticky-bar fixed-bottom">
         <Container>
           <div className="sticky-bar-content">
-            <div className="sticky-title">{"Disney Frozen Elsa's Magical Story Cape"}</div>
+            <div className="sticky-title">{productName}</div>
             <div className="sticky-buttons">
               <div className="pricing-card">
                 <CardSubtitle>
-                  <span>229 AED</span>
+                  <span>{t('currency', { val: productPrice?.regular })}</span>
                 </CardSubtitle>
                 <CardText className="offer-price">
-                  99<span>AED</span>
+                {t('currency', { val: productPrice?.special })}
                 </CardText>
               </div>
               <div className="product-actions">

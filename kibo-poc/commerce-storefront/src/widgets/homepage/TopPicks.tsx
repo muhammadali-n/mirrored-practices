@@ -1,5 +1,6 @@
 import React from "react";
 
+import Link from "next/link";
 import Slider from "react-slick";
 import { Container, Card, CardBody, CardImg, CardSubtitle, CardText, CardTitle } from "reactstrap";
 
@@ -16,7 +17,9 @@ interface TopPicksProps {
       price: number;
       salePrice: number;
     };
-    isPurchasable: boolean;
+    purchasableState: {
+      isPurchasable: boolean;
+    }
     inventoryInfo: {
       onlineStockAvailable: number;
     };
@@ -71,8 +74,9 @@ const TopPicks: React.FC<TopPicksProps> = ({ products }) => {
       <Container>
         <h2 className="title-main">Top Picks</h2>
         <Slider {...settings} className="custom-card slick-card-list">
-          {products.map((product) => (
+          {Array.isArray(products) && products.map((product) => (
             <Card key={product.productCode}>
+              <Link href={`/product/${product?.productCode}`}>
               <div className="card-outer">
                 <figure>
                   <CardImg width="100%" src={product?.content?.productImages[0]?.imageUrl} alt={product?.content?.productImages[0]?.altText} />
@@ -85,7 +89,7 @@ const TopPicks: React.FC<TopPicksProps> = ({ products }) => {
                     </CardSubtitle>
                     <CardText className="offer-price">{product.price.salePrice} AED</CardText>
                   </div>
-                  {product.isPurchasable ? (
+                  {product.purchasableState.isPurchasable ? (
                     <p className="availability">
                       {product.inventoryInfo.onlineStockAvailable > 0 ? (
                         <span>In Stock</span>
@@ -100,6 +104,7 @@ const TopPicks: React.FC<TopPicksProps> = ({ products }) => {
                   )}
                 </CardBody>
               </div>
+              </Link>
             </Card>
           ))}
         </Slider>
