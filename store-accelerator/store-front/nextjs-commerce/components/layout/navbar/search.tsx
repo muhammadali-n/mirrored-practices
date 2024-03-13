@@ -3,11 +3,10 @@
 import { createUrl } from '@/lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getContent } from '@/integrations/common-integration';
+import { getContent, performCommonIntegration, performIntegration } from '@/integrations/common-integration';
 import { fetchHeader } from '@/integrations/sanity/sanity-integration';
 import { urlFor } from '@/app/lib/sanity';
 import Image from 'next/image';
-
 
 export default function Search() {
   const router = useRouter();
@@ -48,6 +47,8 @@ export default function Search() {
     }
   }
   const [headerData, setHeaderData] = useState<HeaderData | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(true);
 
   useEffect(() => {
     const fetchHeaderData = async () => {
@@ -63,9 +64,15 @@ export default function Search() {
     fetchHeaderData();
   }, []);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const handleOnclick = (suggestion: string) => {
+    const newParams = new URLSearchParams();
+    newParams.set('q', suggestion);
+    router.push(createUrl('/product-search/collection', newParams));
+    setShowSuggestions(false);
+  }
 
+  function onSubmit(e: React.FormEvent<HTMLElement>) {
+    e.preventDefault();
     const val = e.target as HTMLFormElement;
     const search = val.search as HTMLInputElement;
     const newParams = new URLSearchParams(searchParams.toString());
@@ -75,28 +82,54 @@ export default function Search() {
     } else {
       newParams.delete('q');
     }
-
     router.push(createUrl('/product-search/collection', newParams));
   }
 
+
+  const handleInputChange = async (e) => {
+    const value = e?.target?.value;
+    const search = await performIntegration("getSearchSuggestions", value);
+    setSearchQuery(search);
+  };
+
+  console.log("search", searchQuery);
+
   return (
-    <form onSubmit={onSubmit} className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
-      <input
-        key={searchParams?.get('q')}
-        type="text"
-        name="search"
-        placeholder={headerData?.searchBarAltTranslation?.ar || headerData?.searchBarAltTranslation?.en || "Search for products..."} autoComplete="off"
-        defaultValue={searchParams?.get('q') || ''}
-        className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-800 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
-      />
-      <Image
-        src={urlFor(headerData?.searchBar)?.url()}
-        alt={headerData?.placeholder?.ar || headerData?.placeholder?.en}
-        width={20}
-        height={20}
-        style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)' }} // Position search icon
-      />
-    </form>
+    <div className='search-bar'>
+      <form onSubmit={onSubmit} className=" relative w-full lg:w-80 xl:w-full">
+        <input
+          key={searchParams?.get('q')}
+          type="text"
+          name="search"
+          placeholder={headerData?.searchBarAltTranslation?.ar || headerData?.searchBarAltTranslation?.en || "Search for products..."} autoComplete="off"
+          defaultValue={searchParams?.get('q') || ''}
+          onChange={handleInputChange}
+          style={{ width: '26em' }}
+          className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-800 dark:bg-transparent dark:text-white dark:placeholder:text-neutral-400"
+        />
+        <Image
+          src={urlFor(headerData?.searchBar)?.url()}
+          alt={headerData?.placeholder?.ar || headerData?.placeholder?.en}
+          width={30}
+          height={30}
+          onClick={onSubmit}
+          style={{ position: 'absolute' }} // Position search icon
+        />
+      </form>
+      {Array.isArray(searchQuery) && showSuggestions && (
+        <ul className="suggestions-list list-unstyled">
+          {searchQuery.map((suggestion, index) => (
+            <li
+              key={index}
+              onClick={() => handleOnclick(suggestion)}
+              className="clickable-list-item"
+            >
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 
 }

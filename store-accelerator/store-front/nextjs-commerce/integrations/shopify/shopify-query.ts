@@ -633,3 +633,24 @@ export const getProductsQuery = /* GraphQL */ `
   }
   ${productFragment}
 `;
+export const searchSuggestion =`
+query suggestions($query: String!) {
+  predictiveSearch(query: $query) {
+    queries {
+      text
+    }
+    collections {
+      id
+    }
+    products {
+      id
+      title
+    }
+    pages {
+      id
+    }
+    articles {
+      id
+    }
+  }
+}`;
