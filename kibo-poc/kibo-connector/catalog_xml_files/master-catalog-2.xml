@@ -1002,4 +1002,392 @@
   </options>
   <classification-category>tru_toys</classification-category>
  </product>
+  <product product-id="12345678">
+  <ean>6941607306277</ean>
+  <unit>EA</unit>
+  <display-name xml:lang="ar-AE">سترة سباحة سبايدر مان قابلة للنفخ (51 × 46 سم)</display-name>
+  <display-name xml:lang="ar-BH">سترة سباحة سبايدر مان قابلة للنفخ (51 × 46 سم)</display-name>
+  <display-name xml:lang="ar-EG">سترة سباحة سبايدر مان قابلة للنفخ (51 × 46 سم)</display-name>
+  <display-name xml:lang="ar-KW">سترة سباحة سبايدر مان قابلة للنفخ (51 × 46 سم)</display-name>
+  <display-name xml:lang="ar-QA">سترة سباحة سبايدر مان قابلة للنفخ (51 × 46 سم)</display-name>
+  <display-name xml:lang="en-AE">Bestway Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <display-name xml:lang="en-BH">Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <display-name xml:lang="en-EG">Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <display-name xml:lang="en-KW">Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <display-name xml:lang="en-QA">Bestway Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <display-name xml:lang="en-US">Bestway Spider-Man Inflatable Swim Vest (51 x 46 cm)</display-name>
+  <online-flag site-id="toysrus-UAE">true</online-flag>
+  <searchable-flag>true</searchable-flag>
+  <list-price>1100</list-price>
+  <sales-price>1000</sales-price>
+  <images merge-mode="replace">
+   <image-group view-type="medium">
+    <image path="926040_106.jpg"/>
+    <image path="926040_107.jpg"/>
+   </image-group>
+  </images>
+  <custom-attributes>
+   <custom-attribute attribute-id="ATTYP" xml:lang="ar-AE">00</custom-attribute>
+   <custom-attribute attribute-id="ATTYP" xml:lang="en-AE">00</custom-attribute>
+   <custom-attribute attribute-id="EANTP" xml:lang="ar-AE">I6</custom-attribute>
+   <custom-attribute attribute-id="EANTP" xml:lang="en-AE">I6</custom-attribute>
+   <custom-attribute attribute-id="GEWEI" xml:lang="ar-AE">KGM</custom-attribute>
+   <custom-attribute attribute-id="GEWEI" xml:lang="en-AE">KGM</custom-attribute>
+   <custom-attribute attribute-id="MTART" xml:lang="ar-AE">ZTRS</custom-attribute>
+   <custom-attribute attribute-id="MTART" xml:lang="en-AE">ZTRS</custom-attribute>
+   <custom-attribute attribute-id="MC_LONGDESC" xml:lang="ar-AE">AF506216</custom-attribute>
+   <custom-attribute attribute-id="MC_LONGDESC" xml:lang="en-AE">AF506216</custom-attribute>
+   <custom-attribute attribute-id="MC_SHORTDESC" xml:lang="ar-AE">سترات /العربات</custom-attribute>
+   <custom-attribute attribute-id="MC_SHORTDESC" xml:lang="en-AE">Vests/Floats</custom-attribute>
+   <custom-attribute attribute-id="sku" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="BREIT" xml:lang="ar-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="BREIT" xml:lang="en-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="BRGEW" xml:lang="ar-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="BRGEW" xml:lang="en-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="HOEHE" xml:lang="ar-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="HOEHE" xml:lang="en-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="LAENG" xml:lang="ar-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="LAENG" xml:lang="en-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="NTGEW" xml:lang="ar-AE">0.0000</custom-attribute>
+   <custom-attribute attribute-id="NTGEW" xml:lang="en-AE">0.0000</custom-attribute>
+   <custom-attribute attribute-id="VOLUM" xml:lang="ar-AE">0.0420</custom-attribute>
+   <custom-attribute attribute-id="VOLUM" xml:lang="en-AE">0.0420</custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_NUM1" xml:lang="ar-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_NUM1" xml:lang="en-AE">1.0000</custom-attribute>
+   <custom-attribute attribute-id="BWSCL" xml:lang="ar-AE">1</custom-attribute>
+   <custom-attribute attribute-id="BWSCL" xml:lang="en-AE">1</custom-attribute>
+   <custom-attribute attribute-id="EAN11" xml:lang="ar-AE">6941607306277</custom-attribute>
+   <custom-attribute attribute-id="EAN11" xml:lang="en-AE">6941607306277</custom-attribute>
+   <custom-attribute attribute-id="MAKTM" xml:lang="en-AE">51cm x 46cm Swim Vest 2</custom-attribute>
+   <custom-attribute attribute-id="MAKTM" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="MATKL" xml:lang="ar-AE">AF506216</custom-attribute>
+   <custom-attribute attribute-id="MATKL" xml:lang="en-AE">AF506216</custom-attribute>
+   <custom-attribute attribute-id="MWSKZ" xml:lang="ar-AE">A2</custom-attribute>
+   <custom-attribute attribute-id="MWSKZ" xml:lang="en-AE">A2</custom-attribute>
+   <custom-attribute attribute-id="gender" xml:lang="ar-AE">للجنسين</custom-attribute>
+   <custom-attribute attribute-id="gender" xml:lang="en-AE">Unisex</custom-attribute>
+   <custom-attribute attribute-id="GRNDATE" xml:lang="ar-AE">. ..</custom-attribute>
+   <custom-attribute attribute-id="GRNDATE" xml:lang="en-AE">. ..</custom-attribute>
+   <custom-attribute attribute-id="BRAND_ID" xml:lang="ar-AE">Bestway</custom-attribute>
+   <custom-attribute attribute-id="BRAND_ID" xml:lang="en-AE">Bestway</custom-attribute>
+   <custom-attribute attribute-id="DEL_TYPE" xml:lang="ar-AE">ALL</custom-attribute>
+   <custom-attribute attribute-id="DEL_TYPE" xml:lang="en-AE">ALL</custom-attribute>
+   <custom-attribute attribute-id="PREORDER" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="PREORDER" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="WARRANTY" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="WARRANTY" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="GIFT_WRAP" xml:lang="ar-AE">TRUE</custom-attribute>
+   <custom-attribute attribute-id="GIFT_WRAP" xml:lang="en-AE">TRUE</custom-attribute>
+   <custom-attribute attribute-id="HAZARDOUS" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="HAZARDOUS" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="INSTALLATION" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="INSTALLATION" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="displayBrand" xml:lang="ar-AE">بست واي</custom-attribute>
+   <custom-attribute attribute-id="displayBrand" xml:lang="en-AE">Bestway</custom-attribute>
+   <custom-attribute attribute-id="WAREHOUSE_ONLY" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="WAREHOUSE_ONLY" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="assetUpdatedAt" xml:lang="en-AE">230222</custom-attribute>
+   <custom-attribute attribute-id="assetUpdatedAt" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox1" xml:lang="ar-AE">1 سترة سباحة</custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox1" xml:lang="en-AE">1 swim vest</custom-attribute>
+   <custom-attribute attribute-id="TRUDisplayColor" xml:lang="en-AE">Multicolored</custom-attribute>
+   <custom-attribute attribute-id="TRUDisplayColor" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="VENDOR_DELIVERY" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="VENDOR_DELIVERY" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="recommendedFor1" xml:lang="ar-AE">اللعب النشط</custom-attribute>
+   <custom-attribute attribute-id="recommendedFor1" xml:lang="en-AE">Active Play</custom-attribute>
+   <custom-attribute attribute-id="recommendedFor2" xml:lang="ar-AE">المهارات الحركية</custom-attribute>
+   <custom-attribute attribute-id="recommendedFor2" xml:lang="en-AE">Motor Skills</custom-attribute>
+   <custom-attribute attribute-id="TRUProductTitleURL" xml:lang="ar-AE">سترة سباحة سبايدر مان قابلة للنفخ(51 × 46 سم)</custom-attribute>
+   <custom-attribute attribute-id="TRUProductTitleURL" xml:lang="en-AE">Spider-Man Inflatable Swim Vest (51 x 46 cm)</custom-attribute>
+   <custom-attribute attribute-id="secondaryBrandName" xml:lang="ar-AE">بست واي</custom-attribute>
+   <custom-attribute attribute-id="secondaryBrandName" xml:lang="en-AE">Bestway</custom-attribute>
+   <custom-attribute attribute-id="minimumTargetAgeTRU" xml:lang="ar-AE">3 سنوات</custom-attribute>
+   <custom-attribute attribute-id="minimumTargetAgeTRU" xml:lang="en-AE">3 years</custom-attribute>
+   <custom-attribute attribute-id="productFinderTheme1" xml:lang="ar-AE">الأنشطة الخارجية</custom-attribute>
+   <custom-attribute attribute-id="productFinderTheme1" xml:lang="en-AE">Outdoor Activities</custom-attribute>
+   <custom-attribute attribute-id="assembledLength" xml:lang="en-AE">51 cm</custom-attribute>
+   <custom-attribute attribute-id="assembledLength" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productSafetyWarning" xml:lang="ar-AE">خطورة الاختناق: أجزاء صغيرة؛ غير مناسبة للأطفال دون سن 3 سنوات</custom-attribute>
+   <custom-attribute attribute-id="productSafetyWarning" xml:lang="en-AE">Choking Hazard: Small parts - Not for children under 3 years</custom-attribute>
+   <custom-attribute attribute-id="GLTAB" xml:lang="ar-AE">20200225</custom-attribute>
+   <custom-attribute attribute-id="GLTAB" xml:lang="en-AE">20200225</custom-attribute>
+   <custom-attribute attribute-id="character1" xml:lang="ar-AE">سبايدر مان</custom-attribute>
+   <custom-attribute attribute-id="character1" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="character2" xml:lang="en-AE">Spider-Man</custom-attribute>
+   <custom-attribute attribute-id="character2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="assembledWidth" xml:lang="en-AE">46 cm</custom-attribute>
+   <custom-attribute attribute-id="assembledWidth" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="tertiaryBrandName" xml:lang="ar-AE">سبايدر مان</custom-attribute>
+   <custom-attribute attribute-id="tertiaryBrandName" xml:lang="en-AE">Spider-Man</custom-attribute>
+   <custom-attribute attribute-id="maximumTargetAgeTRU" xml:lang="ar-AE">6 سنوات</custom-attribute>
+   <custom-attribute attribute-id="maximumTargetAgeTRU" xml:lang="en-AE">6 years</custom-attribute>
+   <custom-attribute attribute-id="webDisplay" xml:lang="en-AE">TRUE</custom-attribute>
+   <custom-attribute attribute-id="webDisplay" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="batteryIncluded" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="batteryIncluded" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="surpriseProduct" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="surpriseProduct" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="assemblyRequired" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="assemblyRequired" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="publishWithoutArabic" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="publishWithoutArabic" xml:lang="en-AE">TRUE</custom-attribute>
+   <custom-attribute attribute-id="browseOnly" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="browseOnly" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="doNotExport" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="doNotExport" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="pumpIncluded" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="pumpIncluded" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="batteryRequired" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="batteryRequired" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="priceDisplayOnCart" xml:lang="ar-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="priceDisplayOnCart" xml:lang="en-AE">FALSE</custom-attribute>
+   <custom-attribute attribute-id="keyFeature1" xml:lang="ar-AE">استمتع باللعب في المياه دون خوف مع سترة سباحة سبايدر مان القابلة للنفخ من بيست واي (51 × 46 سم)</custom-attribute>
+   <custom-attribute attribute-id="keyFeature1" xml:lang="en-AE">Enjoy splashing about in the water fearlessly with the Bestway Spider-Man Inflatable Swim Vest (51 x 46 cm)</custom-attribute>
+   <custom-attribute attribute-id="keyFeature2" xml:lang="ar-AE">بها 2 حزام أمامي قابل للتعديل لتلائمك بالضبط مع مشابك سريعة الفك لتثبيتها بإحكام</custom-attribute>
+   <custom-attribute attribute-id="keyFeature2" xml:lang="en-AE">Featuring 2 front adjustable straps for a perfect fit and quick-release buckles to hold it securely in place</custom-attribute>
+   <custom-attribute attribute-id="keyFeature3" xml:lang="ar-AE">تحمل رسوم سبايدر-مان بألوان مشرقة، وتجعل اللعب في المسبح أكثر متعة</custom-attribute>
+   <custom-attribute attribute-id="keyFeature3" xml:lang="en-AE">Designed with brightly colored Spider-Man graphics, this inflatable swim vest brings added joy to water play</custom-attribute>
+   <custom-attribute attribute-id="keyFeature4" xml:lang="ar-AE">مزودة بـ 3 حجيرات هواء منها واحدة للياقة، ولذلك فسترة السباحة تتميز بقدرة أكبر على الطفو</custom-attribute>
+   <custom-attribute attribute-id="keyFeature4" xml:lang="en-AE">Equipped with 3 air chambers, including one for the collar, this swim vest offers more buoyancy</custom-attribute>
+   <custom-attribute attribute-id="ADDITIONAL_EAN" xml:lang="ar-AE">
+ 6942138913514</custom-attribute>
+   <custom-attribute attribute-id="ADDITIONAL_EAN" xml:lang="en-AE">
+ 6942138913514</custom-attribute>
+   <custom-attribute attribute-id="keyFeature5" xml:lang="ar-AE">ابدأ المرح فورًا بمجرد إخراج سترة السباحة القابلة للنفخ من علبتها - إنها مزودة بصمام أمان لسهولة النفخ وسرعة التفريغ لتخزين مريح</custom-attribute>
+   <custom-attribute attribute-id="keyFeature5" xml:lang="en-AE">This inflatable swim vest is equipped with safety valves to easily inflate and quickly deflate for easy storage</custom-attribute>
+   <custom-attribute attribute-id="keyFeature6" xml:lang="ar-AE">سترة سباحة سبايدر مان تمنح الأطفال بعمر 3 إلى 6 سنوات ساعات لا تنتهي من اللعب والمغامرات في المياه</custom-attribute>
+   <custom-attribute attribute-id="keyFeature6" xml:lang="en-AE">Suitable for kids ages 3 to 6 years</custom-attribute>
+   <custom-attribute attribute-id="keyFeature7" xml:lang="ar-AE">لكي تعمل السترة جيدًا، يجب أن يكون وزن الطفل من 18 إلى 30 كجم</custom-attribute>
+   <custom-attribute attribute-id="keyFeature7" xml:lang="en-AE">Supports 18 to 30 kg</custom-attribute>
+   <custom-attribute attribute-id="keyFeature8" xml:lang="ar-AE">يوصى باستخدامها تحت إشراف الكبار طوال الوقت</custom-attribute>
+   <custom-attribute attribute-id="keyFeature8" xml:lang="en-AE">Adult supervision required</custom-attribute>
+   <custom-attribute attribute-id="keyFeature9" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature9" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LSTBI" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LSTBI" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="truBatteryType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="truBatteryType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox2" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox3" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox3" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox4" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox4" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox5" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox5" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox6" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox6" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="AL_BOM_MATNR" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="AL_BOM_MATNR" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="AL_BOM_QUANT" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="AL_BOM_QUANT" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="AL_BOM_UNIT" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="AL_BOM_UNIT" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="CLEARANCE" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="CLEARANCE" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="EXCLUSIVE" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="EXCLUSIVE" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="FOC" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="FOC" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_CHAR1" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_CHAR1" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_CHAR2" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_CHAR2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_NUM2" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="GLOBAL_NUM2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LANG_ISO" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LANG_ISO" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_CHAR1" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_CHAR1" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_CHAR2" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_CHAR2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_NUM1" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_NUM1" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_NUM2" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LOCAL_NUM2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="LVORM" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="LVORM" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="MFRPN" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="MFRPN" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="PROD_GROUP" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="PROD_GROUP" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="PROD_RANGE" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="PROD_RANGE" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="SATNR" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="SATNR" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="SPRAS" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="SPRAS" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="TOT_SHELF_LIFE" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="TOT_SHELF_LIFE" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="WOW" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="WOW" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="assembledDepth" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="assembledDepth" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="assembledHeight" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="assembledHeight" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="bRUPlayTypeFACET" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="bRUPlayTypeFACET" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="babyGearType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="babyGearType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="bubbleControl" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="bubbleControl" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="bundledSKU" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="bundledSKU" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="campingType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="campingType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="carSeatFeatures" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="carSeatFeatures" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="character3" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="character3" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="character4" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="character4" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="childWeightMax" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="childWeightMax" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="childWeightMin" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="childWeightMin" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="displayCOLOUR" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="displayCOLOUR" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="displaycolor" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="displayshape" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="educationalSTEMType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="educationalSTEMType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="electricVehicleType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="electricVehicleType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="equipmentType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="equipmentType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="ewasteSurchargeCountry" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="ewasteSurchargeCountry" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="ewasteSurchargeSKU" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="ewasteSurchargeSKU" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="gameType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="gameType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="googleProductCategory" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="googleProductCategory" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="interestSubject" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="interestSubject" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="juvenileProductSize" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="juvenileProductSize" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature10" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature10" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature11" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature11" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature12" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="keyFeature12" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="learningSkillDevelopment" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="learningSkillDevelopment" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="legalNotice" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="legalNotice" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="maxCapacity" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="maxCapacity" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="maxWeightAllowed" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="maxWeightAllowed" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="maxnumberplayers" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="maxnumberplayers" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="mfrSuggestedAgeMax" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="mfrSuggestedAgeMax" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="mfrSuggestedAgeMin" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="mfrSuggestedAgeMin" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="modelName" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="modelName" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="modelNumber" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="modelNumber" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="noOfMainBurners" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="noOfMainBurners" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="noveltyType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="noveltyType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="nurseryType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="nurseryType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="onlineCollectionName" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="onlineCollectionName" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="otherStandardFS" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="otherStandardFS" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="plannedLaunchDate" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="plannedLaunchDate" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="playType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="playType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="poweredBy" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="poweredBy" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="preOrderEndDate" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="preOrderEndDate" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="preOrderStartDate" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="preOrderStartDate" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="presellQuantity" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="presellQuantity" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="presellQuantityUnits" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="presellQuantityUnits" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="primaryCategory" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="primaryCategory" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productAwards" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productAwards" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productDescription" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productDescription" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productFinderTheme2" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productFinderTheme2" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productManualDescription" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productManualDescription" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productManualName" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productManualName" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productManuals" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productManuals" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="productType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="productType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="promotionalStickerDisplay" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="promotionalStickerDisplay" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="puzzleType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="puzzleType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="recommendedFor" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="recommendedFor" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="recommendedFor3" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="recommendedFor3" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="recommendedFor4" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="recommendedFor4" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="scooterType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="scooterType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="shipInOrigContainer" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="shipInOrigContainer" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="size" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="size" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="skateType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="skateType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="specialAssemblyInstructions" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="specialAssemblyInstructions" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="sportType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="sportType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="studio_comments" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="studio_comments" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="teamMaxNo" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="teamMaxNo" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="teamMinNo" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="teamMinNo" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="teamToy" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="teamToy" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="trampolineType" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="trampolineType" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="vendorsProductDemoURL" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="vendorsProductDemoURL" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="videoUrl" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="videoUrl" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="warning" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="warning" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="washingInstructions" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="washingInstructions" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox10" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox10" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox11" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox11" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox12" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox12" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox7" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox7" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox8" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox8" xml:lang="ar-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox9" xml:lang="en-AE"></custom-attribute>
+   <custom-attribute attribute-id="whatsInTheBox9" xml:lang="ar-AE"></custom-attribute>
+  </custom-attributes>
+  <options>
+   <shared-option option-id="optionGiftWrapping"/>
+  </options>
+  <classification-category>tru_toys</classification-category>
+ </product>
 </catalog>

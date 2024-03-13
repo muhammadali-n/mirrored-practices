@@ -63,7 +63,7 @@
 
 .selected-option {
   text-decoration: underline;
-  color: white;
+  color: #ffffff;
 }
 
 /* Define styles for the list items */
@@ -103,7 +103,7 @@
   /* justify-content: center; */
   gap: 20px;
   /* Adjust the gap between the collection list and data cards */
-  color: white;
+  color: #ffffff;
   background-color: black;
 
 }

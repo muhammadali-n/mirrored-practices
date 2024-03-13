@@ -9,9 +9,10 @@ import { fetchPdpData } from '@/integrations/sanity/sanity-integration';
 import { ProductVariant } from '@/lib/types';
 import { addItem } from '../cart/handle';
 import { useLanguageContext } from '@/app/context/languageContext';
+import { useEffect, useState } from 'react';
 
 
-export async function AddToCart({
+export function AddToCart({
   variants,
   availableForSale
 }: {
@@ -28,7 +29,19 @@ export async function AddToCart({
     )
   );
   const { language } = useLanguageContext()
-  const pdpData = await getContent(fetchPdpData)
+  const [pdpData, setPdpData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getContent(fetchPdpData);
+        setPdpData(data);
+      } catch (error) {
+        console.error('Error fetching pdpData:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const selectedVariantId = variant?.id || defaultVariantId;
 

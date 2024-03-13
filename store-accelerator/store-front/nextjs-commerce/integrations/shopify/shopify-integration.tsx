@@ -2,7 +2,7 @@
 import { HIDDEN_PRODUCT_TAG, TAGS } from '@/lib/constants';
 import { getConfig, getConfigForProvider ,fetchApiConfig} from '../../config';
 import { dataTransformer, performTransformation, TransformationResult } from '../common-transformer';
-import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getCollectionsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, getProductsQuery, productByIdsQuery, productDetails, removeFromCartMutation } from './shopify-query';
+import { addToCartMutation, collectionDetails, createCartMutation, editCartItemsMutation, getCartMutation, getCollectionProductsQuery, getCollectionsQuery, getProductByHandle, getProductByIdQuery, getProductRecommendations, getProductsByCollectionQuery, getProductsQuery, productByIdsQuery, productDetails, removeFromCartMutation,searchSuggestion} from './shopify-query';
 import transformerConfig from './shopify-transform-config.json';
 
 interface ShopifyProduct {
@@ -157,6 +157,7 @@ interface ShopifyProductIdResponse {
 
  
   export const apiFetch = async (endPoint: string, storefrontAccessToken: string, options: any): Promise<Response> => {
+  console.log("api feth ill varunnund");
   
     async function wait(ms: number) {
       return new Promise(resolve => {
@@ -293,11 +294,9 @@ export const getCollectionProductDetails = async (endPoint, storefrontAccessToke
   }
 };
 
-export const getProductsByHandle = async (handle: string, language: string): Promise<any> => {
+export const getProductsByHandle = async (endPoint, storefrontAccessToken,handle: string, language: string): Promise<any> => {
   const { commerceConfig } = getConfig();
 
-  const storefrontAccessToken = commerceConfig.storefrontAccessToken
-  const endPoint = commerceConfig.apiEndpoint
 
   const query = {
     query: getProductByHandle(language),
@@ -889,6 +888,39 @@ const reshapeImages = (images: Connection<Image>, productTitle: string) => {
     };
   });
 };
+export async function getSearchSuggestions(endPoint,storefrontAccessToken ,searchQuery: string): Promise<string[]> {
+  
+  if (searchQuery.length > 0) {
+    const query1 =
+    {
+      query: searchSuggestion,
+      variables: {
+        query: searchQuery,
+      }
+    };
+    if (!searchQuery) {
+      console.log('Search query is not provided');
+      return;
+    }
+    const response = await apiFetch(endPoint, storefrontAccessToken, query1);
+    const data = await response.json();
+    console.log("data", data);
+    
+    if (data.data && data.data.predictiveSearch && data.data.predictiveSearch.products) {
+      const productTitles = data.data.predictiveSearch.products.map(({ title }) => title);
+      return productTitles;
+    }
+    else {
+      throw new Error("Unexpected response");
+    }
+  }
+}
+
+
+
+
+
+
 
 export const shopifyApi = async (provider, methodName, ...args) => {
   if(shopifyMethods.hasOwnProperty(methodName)){
@@ -920,5 +952,6 @@ const shopifyMethods = {
   "addToCart":addToCart,
   "removeFromCart":removeFromCart,
   "getcart":getCart,
-  "updateCart":updateCart
+  "updateCart":updateCart,
+  "getSearchSuggestions": getSearchSuggestions
 }

@@ -19,8 +19,20 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Image {
+public class InventoryRecord {
 
-    @JacksonXmlProperty(localName = "path", isAttribute = true)
-    private String path;
+    @JacksonXmlProperty(localName = "product-id", isAttribute = true)
+    private String productId;
+
+    @JacksonXmlProperty(localName = "allocation")
+    private double allocation;
+
+    @JacksonXmlProperty(localName = "allocation-timestamp")
+    private String allocationTimestamp;
+
+    @JacksonXmlProperty(localName = "preorder-backorder-handling")
+    private String preOrderBackorderHandling;
+
+    @JacksonXmlProperty(localName = "preorder-backorder-allocation")
+    private Double preOrderBackorderAllocation;
 }

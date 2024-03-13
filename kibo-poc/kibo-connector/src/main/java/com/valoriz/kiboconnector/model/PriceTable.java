@@ -19,8 +19,17 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Image {
+public class PriceTable {
 
-    @JacksonXmlProperty(localName = "path", isAttribute = true)
-    private String path;
+    @JacksonXmlProperty(localName = "product-id", isAttribute = true)
+    private String productId;
+
+    @JacksonXmlProperty(localName = "online-from")
+    private String onlineFrom;
+
+    @JacksonXmlProperty(localName = "online-to")
+    private String onlineTo;
+
+    @JacksonXmlProperty(localName = "amount")
+    private Double amount;
 }

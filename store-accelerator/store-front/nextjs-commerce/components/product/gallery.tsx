@@ -8,10 +8,24 @@ import './module.css'
 import { getContent } from '@/integrations/common-integration';
 import { fetchPdpData } from '@/integrations/sanity/sanity-integration';
 import { urlFor } from '@/app/lib/sanity';
+import { useEffect, useState } from 'react';
 
-export async function Gallery({ images }: { images: { src: string; altText: string }[] }) {
+export function Gallery({ images }: { images: { src: string; altText: string }[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [pdpData, setPdpData] = useState<any>(null); 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getContent(fetchPdpData);
+        setPdpData(data);
+      } catch (error) {
+        console.error('Error fetching pdpData:', error);
+      }
+    };
+    fetchData();
+  }, []);
   const imageSearchParam = searchParams.get('image');
   const imageIndex = imageSearchParam ? parseInt(imageSearchParam) : 0;
 
@@ -24,7 +38,6 @@ export async function Gallery({ images }: { images: { src: string; altText: stri
   const previousImageIndex = imageIndex === 0 ? images.length - 1 : imageIndex - 1;
   previousSearchParams.set('image', previousImageIndex.toString());
   const previousUrl = createUrl(pathname, previousSearchParams);
-  const pdpData = await getContent(fetchPdpData);
 
   const buttonClassName = 'h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center inline';
 

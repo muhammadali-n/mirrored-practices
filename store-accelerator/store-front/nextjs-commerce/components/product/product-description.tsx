@@ -5,7 +5,7 @@ import styles from '../../styles/product-card.module.css';
 import { AddToCart } from './add-to-cart';
 
 
-export async function ProductDescription({ product }: { product: Product}) {
+export function ProductDescription({ product }: { product: Product}) {
 
 
     return (
