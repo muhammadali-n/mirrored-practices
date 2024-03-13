@@ -19,8 +19,14 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Image {
+public class InventoryListHeader {
 
-    @JacksonXmlProperty(localName = "path", isAttribute = true)
-    private String path;
+    @JacksonXmlProperty(localName = "list-id", isAttribute = true)
+    private String listId;
+
+    @JacksonXmlProperty(localName = "default-instock")
+    private boolean defaultInStock;
+
+    @JacksonXmlProperty(localName = "description")
+    private String description;
 }

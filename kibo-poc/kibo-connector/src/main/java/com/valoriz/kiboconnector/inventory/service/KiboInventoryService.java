@@ -10,17 +10,13 @@
  * @author Saajid
  */
 
-package com.valoriz.kiboconnector.model;
+package com.valoriz.kiboconnector.inventory.service;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.valoriz.kiboconnector.model.Inventory;
 
-import lombok.Data;
+public interface KiboInventoryService {
 
-@Data
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Image {
+    void updateProductsInventory(Inventory inventory);
 
-    @JacksonXmlProperty(localName = "path", isAttribute = true)
-    private String path;
+    String getInventoryJobStatus(long jobId);
 }
