@@ -13,6 +13,7 @@ import type { GetStaticPropsContext } from 'next'
 interface HomePageProps {
   carouselItem: any
   products: any
+  categoriesTree: any
 }
 export async function getStaticProps(context: GetStaticPropsContext) {
   const { locale } = context
@@ -34,12 +35,12 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 const Home: NextPageWithLayout<HomePageProps> = (props) => {
-  const { carouselItem, products } = props
-  const items = products?.products?.items;
+  const { carouselItem, products, categoriesTree } = props
+  const items = products?.products?.items || [];
 
   return (
     <>
-      <TRUHome products={items} carouselItem={carouselItem} />
+      <TRUHome products={items} carouselItem={carouselItem} categoriesTree={categoriesTree} />
     </>
   )
 }

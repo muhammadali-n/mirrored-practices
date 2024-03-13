@@ -39,8 +39,32 @@ import {
 import TopPicks from "../widgets/homepage/TopPicks";
 import SliderHome from "../widgets/homepage/SliderHome";
 import KiboHeroCarousel from "@/components/home/Carousel/KiboHeroCarousel";
+import categoryTree from "../pages/api/category-tree";
+import Link from "next/link";
 
 // import VideoPlayer from "@components/videoplayer";
+
+interface Category {
+  count: number;
+  categoryId: number;
+  categoryCode: string;
+  isDisplayed: boolean;
+  content: {
+      name: string;
+      slug: string;
+      description: string;
+      metaTagTitle: string;
+      metaTagDescription: string;
+      metaTagKeywords: string;
+      categoryImages: {
+          imageUrl: string;
+          cmsId: string;
+          altText: string;
+      }[];
+  };
+  childrenCategories: Category[];
+}
+
 
 function SampleNextArrow(props: { className: any; style: any; onClick: any; }) {
   const { className, style, onClick } = props;
@@ -56,8 +80,8 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
   );
 }
 
-const Home = (props: { products: []; carouselItem: []; }) => {
-  const { products, carouselItem } = props;
+const Home = (props: { products: []; carouselItem: []; categoriesTree: Category }) => {
+  const { products, carouselItem, categoriesTree } = props;
 
   //slick slider
   const settings = {
@@ -154,102 +178,20 @@ const Home = (props: { products: []; carouselItem: []; }) => {
             <h2 className="title-main">Most popular categories</h2>
 
             <Row className="category-card">
-              <Col xs="12" md="4" lg="3">
+            {Array.isArray(categoriesTree) && categoriesTree.map((category, index) => (
+              <Col xs="12" md="4" lg="3" key={`category_${index+1}`}>
                 <div className="cg-item left yellow">
                   <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6690_HP_LEGO.png" alt="" /></figure>
+                    <figure><img src={category?.content?.categoryImages[0]?.imageUrl} alt="" /></figure>
                     <div className="cg-content">
-                      <h4>LEGO & building toys</h4>
+                      <h4>{category?.content?.name}</h4>
                       <i className="i-shape-splat"></i>
-                      <a href="#"></a>
+                      <Link href={`/category/${category?.content?.categoryCode}`}></Link>
                     </div>
                   </div>
                 </div>
               </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item right green">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6917_HP_Blume.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Surprise toys & collectibles</h4>
-                      <i className="i-shape-blast"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item left teal">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6690_HP_dolls & doll play.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Dolls & doll play</h4>
-                      <i className="i-shape-cloud"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item right blue">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6690_HP_guns, blasters.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Guns, blasters & accessories</h4>
-                      <i className="i-shape-pebble"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item left purple">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6690_HP_action figures.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Action figures & playsets</h4>
-                      <i className="i-shape-spiral"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item right pink">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6907_HP_pools & water fun.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Pools & water fun</h4>
-                      <i className="i-shape-scribble"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item left yellow">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6690_HP_scooters.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Scooters</h4>
-                      <i className="i-shape-splat"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs="12" md="4" lg="3">
-                <div className="cg-item right green">
-                  <div className="cg-col">
-                    <figure><img src="images/tru/DUX-6907_HP_DXT Electric Drift Trike.png" alt="" /></figure>
-                    <div className="cg-content">
-                      <h4>Electric vehicles</h4>
-                      <i className="i-shape-blast"></i>
-                      <a href="#"></a>
-                    </div>
-                  </div>
-                </div>
-              </Col>
+            ))}
             </Row>
           </Container>
         </div>
