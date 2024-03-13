@@ -47,9 +47,8 @@ export default function Search({ searchParams }: {
                 setProducts(transformedData);
                 const button = await getContent(fetchProductCard)
                 setButton(button)
-                const response = await getProducts({ sortKey, reverse, query: searchValue });
+                const response = await performIntegration("getProducts",searchValue ,sortKey, reverse);
                 setProducts(response);
-                console.log("ooo",response)
             } catch (errors) {
                 console.log(errors);
             }

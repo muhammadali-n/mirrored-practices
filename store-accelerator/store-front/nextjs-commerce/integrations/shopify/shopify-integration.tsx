@@ -156,9 +156,7 @@ interface ShopifyProductIdResponse {
   };
 
  
-  export const apiFetch = async (endPoint: string, storefrontAccessToken: string, options: any): Promise<Response> => {
-  console.log("api feth ill varunnund");
-  
+  export const apiFetch = async (endPoint: string, storefrontAccessToken: string, options: any): Promise<Response> => {  
     async function wait(ms: number) {
       return new Promise(resolve => {
         setTimeout(resolve, ms);
@@ -785,28 +783,6 @@ export async function updateCart(
 ******* shopify cart end ***********
 **************************************/
 
-export async function getProducts({
-  query,
-  reverse,
-  sortKey
-}: {
-  query?: string;
-  reverse?: boolean;
-  sortKey?: string;
-}): Promise<Product[]> {
-  const res = await shopifyFetch<ShopifyProductsOperation>({
-    query: getProductsQuery,
-    tags: [TAGS.products],
-    variables: {
-      query,
-      reverse,
-      sortKey
-    }
-  });
-
-  return reshapeProducts(removeEdgesAndNodes(res.body.data.products));
-}
-
 export type ShopifyProductsOperation = {
   data: {
     products: Connection<ShopifyProduct>;
@@ -981,6 +957,34 @@ const reshapeCollection = (collection: ShopifyCollection): Collection | undefine
   };
 };
 
+export const getProducts = async (endPoint, storefrontAccessToken, query1: string, sortKey: string, reverse: Boolean): Promise<ShopifyProduct[]> => {
+  console.log("query",query1)
+  const querys = {
+    query: getProductsQuery,
+    variables: {
+      sortKey:sortKey,
+      reverse :reverse,
+       query :query1
+      
+    }
+  };
+
+  try {
+    const response = await apiFetch(endPoint, storefrontAccessToken, querys); // Await apiFetch here
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch products by collection. Status: ${response.status}`);
+    }
+    const responseData= await response.json();
+    const blue = reshapeProducts(removeEdgesAndNodes(responseData.data.products));
+    return blue
+  } catch (error) {
+    console.error('Error fetching products by collection:', error);
+    throw error;
+  }
+};
+
+
 const shopifyMethods = {
   "getCollectionDetails":getCollectionDetails,
   "getProductDetails":getProductDetails,
@@ -992,5 +996,6 @@ const shopifyMethods = {
   "removeFromCart":removeFromCart,
   "getcart":getCart,
   "updateCart":updateCart,
-  "getSearchSuggestions": getSearchSuggestions
+  "getSearchSuggestions": getSearchSuggestions,
+  "getProducts":getProducts
 }

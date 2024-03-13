@@ -8,7 +8,7 @@ import { fetchHeader } from '@/integrations/sanity/sanity-integration';
 import { urlFor } from '@/app/lib/sanity';
 import Image from 'next/image';
 
-export default function Search() {
+export default function SearchBar() {
   const router = useRouter();
   const searchParams = useSearchParams();
   interface MenuItem {
