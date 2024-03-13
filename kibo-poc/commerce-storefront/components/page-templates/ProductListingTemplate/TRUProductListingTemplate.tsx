@@ -18,7 +18,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 
 import TRUProductCard from '@/components/product/ProductCard/TRUProductCard'
 import { ProductCardListViewProps } from '@/components/product/ProductCardListView/ProductCardListView'
-import { CategoryFacetData } from '@/components/product-listing/CategoryFacet/CategoryFacet'
+import CategoryFacet, { CategoryFacetData } from '@/components/product-listing/CategoryFacet/CategoryFacet'
 import { useProductCardActions, useUpdateRoutes } from '@/hooks'
 import { productGetters } from '@/lib/getters'
 import { uiHelpers } from '@/lib/helpers'
@@ -280,7 +280,10 @@ const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
                         <i></i>
                       </div>
                     </h3>
-                    <UncontrolledCollapse toggler="#fc2" defaultOpen={true}>
+                    {showCategoryFacet && (
+                <CategoryFacet categoryFacet={categoryFacet} breadcrumbs={breadCrumbsList} />
+              )}
+                    {/* <UncontrolledCollapse toggler="#fc2" defaultOpen={true}>
                       <ul className="filter-item-list">
                         <li>
                           <a href="#" className="filter-item-link">
@@ -319,7 +322,7 @@ const TRUProductListingTemplate = (props: ProductListingTemplateProps) => {
                           </a>
                         </li>
                       </ul>
-                    </UncontrolledCollapse>
+                    </UncontrolledCollapse> */}
                   </div>
                 </div>
                 <div className="filter-apply">

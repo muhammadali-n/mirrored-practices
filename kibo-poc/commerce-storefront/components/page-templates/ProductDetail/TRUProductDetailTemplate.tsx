@@ -443,7 +443,7 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                     right now.
                   </div>
                   <div className="price-text">
-                    <CardText>{t('currency', { val: productPrice?.special })}</CardText>
+                    <CardText>{t('currency', { val: productPrice?.special | productPrice?.regular })}</CardText>
                   </div>
                 </div>
                 <Box paddingY={1}>
@@ -636,7 +636,7 @@ const TRUProductDetailTemplate = (props: ProductDetailTemplateProps) => {
                   <span>{t('currency', { val: productPrice?.regular })}</span>
                 </CardSubtitle>
                 <CardText className="offer-price">
-                {t('currency', { val: productPrice?.special })}
+                {t('currency', { val: productPrice?.special | productPrice?.regular })}
                 </CardText>
               </div>
               <div className="product-actions">

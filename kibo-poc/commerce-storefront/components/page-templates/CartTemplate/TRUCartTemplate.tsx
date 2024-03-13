@@ -244,7 +244,7 @@ const TRUCartTemplate = (props: CartTemplateProps) => {
                               <p className="discounted-price">
                                 <span>{t('currency', { val: item?.product?.price?.price})}</span>
                               </p>
-                              <span className="price">{t('currency', { val: item?.product?.price?.salePrice})}</span>
+                              <span className="price">{t('currency', { val: item?.product?.price?.salePrice || item?.product?.price?.price})}</span>
                               {/* <span className="price-each">AED each</span> */}
                             </div>
                             <ResponsiveWrapper xs><Button color="link">Move to wishlist</Button></ResponsiveWrapper>

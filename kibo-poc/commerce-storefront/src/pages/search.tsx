@@ -86,6 +86,7 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
     publicRuntimeConfig.productListing.sortOptions
   )
   const categoryFacet = productSearchGetters.getCategoryFacet(searchPageResults, '')
+  console.info({categoryFacet})
 
   const changeSorting = (sort: string) => {
     router.push(
@@ -102,7 +103,6 @@ const SearchPage: NextPage<SearchPageType> = (props) => {
   }
 
   const changePagination = (value: any) => {
-    console.info({ value })
     router.push({
       pathname: router?.pathname,
       query: {
