@@ -39,6 +39,8 @@
 .suggestions-list {
   list-style: none;
   padding: 0;
+  position: relative; /* Add this line */
+  z-index: 9999; /* Add this line */
 }
 
 .clickable-list-item {
