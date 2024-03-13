@@ -19,11 +19,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   const categoriesTree: CategoryTreeResponse = (await getCategoryTree()) || null
   const topProducts: any = (await productSearch(
     {
-      categoryCode: "tru_toys",
-      pageSize: 1,
+      pageSize: 16,
     })) || null;
   const products = topProducts?.data;
-  console.info( { products })
 
   return {
     props: {
