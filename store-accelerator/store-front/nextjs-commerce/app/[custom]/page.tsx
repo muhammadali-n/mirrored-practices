@@ -71,8 +71,8 @@ function Page(params: any) {
 <>
 
     <div className="container">
-      <div key={transformedData.id} className="sections">
-        <h1 className="title mb-8 text-5xl font-bold">{transformedData.title}</h1>
+      <div key={transformedData?.id} className="sections">
+        <h1 className="title mb-8 text-5xl font-bold">{transformedData?.title}</h1>
         {transformedData?.sections
           ?.sort((a: any, b: any) => a.order - b.order)
           .map((section: any) => (

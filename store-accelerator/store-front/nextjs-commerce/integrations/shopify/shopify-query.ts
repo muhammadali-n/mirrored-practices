@@ -1,3 +1,4 @@
+
 export const getProductsByCollectionQuery = `
   query GetProductsByCollection($collectionId: ID!) {
     collection(id: $collectionId) {
@@ -27,6 +28,8 @@ export const getProductsByCollectionQuery = `
     }
   }
 `;
+
+
 
 export const getCollectionProductsQuery = /* GraphQL */ `
   query getCollectionProducts(
@@ -591,6 +594,63 @@ export const editCartItemsMutation = /* GraphQL */ `
   ${cartFragment}
 `;
 
+export const collectionFragment = /* GraphQL */ `
+  fragment collection on Collection {
+    handle
+    title
+    description
+    seo {
+      ...seo
+    }
+    updatedAt
+  }
+  ${seoFragment}
+`;
+
+export const getCollectionsQuery = /* GraphQL */ `
+  query getCollection($handle: String!) {
+    collection(handle: $handle) {
+      ...collection
+    }
+  }
+  ${collectionFragment}
+`;
+
 /*************************************
 ******* shopify cart end ***********
 **************************************/
+
+
+export const getProductsQuery = /* GraphQL */ `
+  query getProducts($sortKey: ProductSortKeys, $reverse: Boolean, $query: String) {
+    products(sortKey: $sortKey, reverse: $reverse, query: $query, first: 100) {
+      edges {
+        node {
+          ...product
+        }
+      }
+    }
+  }
+  ${productFragment}
+`;
+export const searchSuggestion =`
+query suggestions($query: String!) {
+  predictiveSearch(query: $query) {
+    queries {
+      text
+    }
+    collections {
+      id
+    }
+    products {
+      id
+      title
+    }
+    pages {
+      id
+    }
+    articles {
+      id
+    }
+  }
+}`;

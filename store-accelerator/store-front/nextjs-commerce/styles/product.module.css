@@ -54,8 +54,9 @@
   }
   
   .selected-option {
-    text-decoration: underline;
-    color: white;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
   }
   
   /* Define styles for the list items */
@@ -87,7 +88,7 @@
     flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
     justify-content: center;
     gap: 20px; /* Adjust the gap between the collection list and data cards */
-    color: white;
+    color: #ffffff;
   }
   
   .collection-list,

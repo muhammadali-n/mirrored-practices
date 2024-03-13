@@ -2,47 +2,49 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { urlFor } from '@/app/lib/sanity';
-import { getContent } from '@/integrations/common-integration';
+import { getContent, performCommonIntegration } from '@/integrations/common-integration';
 import { fetchHeader } from '@/integrations/sanity/sanity-integration';
 import './module.css'
 import LanguageSwitcher from '../../LanguageSwitcher';
 import { useLanguageContext } from '@/app/context/languageContext';
+import Search from './search';
+import { getSearchSuggestions } from '@/integrations/shopify/shopify-integration';
 
 interface MenuItem {
-    _key: string;
-    path: string;
-    translation: {
-      ar: string;
-      en: string;
-    };
+  _key: string;
+  path: string;
+  translation: {
+    ar: string;
+    en: string;
+  };
+}
+
+interface HeaderData {
+  storeNameTranslation: {
+    ar: string;
+    en: string;
+  };
+  storeLogo: string;
+  storeLogoTranslation: {
+    ar: string;
+    en: string;
+  };
+  searchBar: string;
+  searchBarAltTranslation: {
+    ar: string;
+    en: string;
+  };
+  menuItems: MenuItem[];
+  cartIcon: string;
+  cartIconAltTranslation: {
+    ar: string;
+    en: string;
+  };
+  placeholder: {
+    ar: string;
+    en: string;
   }
-  
-  interface HeaderData {
-    storeNameTranslation: {
-      ar: string;
-      en: string;
-    };
-    storeLogo: string;
-    storeLogoTranslation: {
-      ar: string;
-      en: string;
-    };
-    searchBar: string;
-    searchBarAltTranslation: {
-      ar: string;
-      en: string;
-    };
-    menuItems: MenuItem[];
-    cartIcon: string;
-    cartIconAltTranslation: {
-      ar: string;
-      en: string;
-    };
-    placeholder:{
-        ar: string;
-        en: string;
-    }
-  }
+}
 
 export default function Navbar() {
   const [headerData, setHeaderData] = useState<HeaderData | null>(null);
@@ -52,6 +54,8 @@ export default function Navbar() {
       try {
         // Fetch header data from the API
         const response = await getContent(fetchHeader);
+
+
         setHeaderData(response);
       } catch (error) {
         console.error('Error fetching header data:', error);
@@ -103,7 +107,7 @@ export default function Navbar() {
                         ))}
                         </ul>
                         {/* Render search bar */}
-                        <form className="d-flex justify-content-center position-relative navbar-form">
+                        {/* <form className="d-flex justify-content-center position-relative navbar-form">
                             <input
                                 type="text"
                                 name="search"
@@ -124,6 +128,11 @@ export default function Navbar() {
                         <div>
                         <LanguageSwitcher />
                         </div>
+                        </form>  */}
+                        <div className="d-flex " style={{ width: '50%' }}>
+                             <Search />
+                        </div>
+
                         <div className="d-flex align-items-center">
                             {/* Render cart icon */}
                             <Link href={`/cart/cart`} className="nav-link text-white">
@@ -135,6 +144,4 @@ export default function Navbar() {
                 </div>
         </nav>
     );
-
-
 }

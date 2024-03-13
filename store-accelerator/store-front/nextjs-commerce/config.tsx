@@ -48,6 +48,8 @@ const fetchProvider = {
   "getCollectionProductDetails": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
   //API to fetch Cart
   "getCart" : type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
+  //API to fetch search suggestion
+  "getSearchSuggestions": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
   "getProductsByHandle": type.TYPE_SPECIFICATION.SHOPIFY_TYPE,
 }
 

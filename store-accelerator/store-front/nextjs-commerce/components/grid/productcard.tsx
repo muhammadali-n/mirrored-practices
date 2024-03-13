@@ -9,6 +9,7 @@ import { useLanguageContext } from '@/app/context/languageContext';
 import { toast } from 'react-toastify';
 
 interface Product {
+  featuredImage: any;
   handle:string;
   variantId: any;
   id: string;
@@ -33,13 +34,14 @@ const ProductCard: React.FC<{ product: Product,className:any, button: any }> = (
   }
   const { language } = useLanguageContext();
 
+
   return (
     <div className={styles['product-card-container']}>
       <Link className="relative inline-block h-full w-full " href={`/product/${product.handle}`} style={{ textDecoration: 'none', color: 'inherit' }}>     
 
       <div className={styles['flex-container']}>
         <div>
-          <img src={product.imageSrc} alt={product.title} className={styles['product-image']} />
+          <img src={product.imageSrc || product?.featuredImage?.url} alt={product.title} className={styles['product-image']} />
         </div>
         <div className={styles['product-title']}>
           {product.title}
